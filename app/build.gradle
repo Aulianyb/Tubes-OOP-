@@ -8,8 +8,11 @@
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
-    id 'application'
+    id 'java'
 }
+
+apply plugin: 'application'
+group 'simplicity'
 
 repositories {
     // Use Maven Central for resolving dependencies.
