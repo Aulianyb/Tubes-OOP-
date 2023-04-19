@@ -4,6 +4,6 @@ and i oop
 # Setup
 ```
 ./gradlew build
-./gradlew run
+./gradlew --console plain run
 ```
 
