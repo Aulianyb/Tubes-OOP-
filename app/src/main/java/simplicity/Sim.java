@@ -1,12 +1,12 @@
 public class Sim{
     private String namaLengkap; 
-    //pekerjaan; 
+    private Pekerjaan pekerjaan; 
     private int uang;
-    //tambahin inventory nanti
+    private Inventory inventory; 
     private int kekenyangan; 
     private int mood; 
     private int kesehatan; 
-    //tambahin status
+    private Status status; 
 
     //nanti tambahin buildernya
 
@@ -14,7 +14,9 @@ public class Sim{
         return namaLengkap; 
     }
 
-    //tambahin getter pekerjaan
+    public Pekerjaan getPekerjaan(){
+        return pekerjaan; 
+    }
 
     public int getUang(){
         return uang; 
@@ -32,13 +34,17 @@ public class Sim{
         return kesehatan; 
     }
 
-    //getter status
+    public Status getStatus(){
+        return status; 
+    }
 
     public void setNama(String namaBaru){
         namaLengkap = namaBaru; 
     }
 
-    //changePekerjaan
+    public void setPekerjaan(Pekerjaan pekerjaan){
+        this.pekerjaan = pekerjaan; 
+    }
 
     public void setKekeyangan(int diff){
         kekenyangan += diff; 
