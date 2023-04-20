@@ -1,4 +1,4 @@
-package com.simplicity;
+package simplicity; 
 
 public class Sim{
     private String namaLengkap; 
@@ -19,8 +19,7 @@ public class Sim{
         pekerjaan = new Pekerjaan("Programmer"); 
 
         // inventory = new Inventory(); 
-        status = new Status();
-        this.namaLengkap = namaLengkap;
+        status = new Status(); 
     }
 
     public String getNama(){
