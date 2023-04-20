@@ -41,7 +41,12 @@ public class Pekerjaan {
         } 
     }
 
-    public void kerja(Waktu durasi){
-        // isi nanti
+    public void kerja(Sim sim, Waktu durasi){
+        int detik=240; //ini placeholder buat total detik
+        sim.setKekeyangan(-10 * (detik / 30));
+        sim.setMood(-10 * (detik / 30));
+        sim.setUang(((detik / 60) / 4) * gaji);
+
+        //ini nanti tambahin time passing
     }
 }
