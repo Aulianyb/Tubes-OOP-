@@ -1,6 +1,6 @@
-import simplicity;
+package com.simplicity;
 
-public class testing {
+public class Testing {
     public static void main(String[] args){
         Sim s1 = new Sim("Default"); 
         s1.setPekerjaan("");

@@ -1,4 +1,4 @@
-package simplicity; 
+package com.simplicity;
 
 public class Sim{
     private String namaLengkap; 
