@@ -37,7 +37,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'simplicity.Main'
+    mainClass = 'com.simplicity.Main'
 }
 
 tasks.named('test') {
