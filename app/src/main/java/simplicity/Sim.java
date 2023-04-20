@@ -1,14 +1,26 @@
+import main.java.simplicity.*;  
+
 public class Sim{
     private String namaLengkap; 
     private Pekerjaan pekerjaan; 
     private int uang;
-    private Inventory inventory; 
+    // private Inventory inventory; 
     private int kekenyangan; 
     private int mood; 
     private int kesehatan; 
     private Status status; 
 
     //nanti tambahin buildernya
+    public Sim(String namaLengkap){
+        kekenyangan = 80; 
+        uang = 100; 
+        
+        // Ini randomizernya belum buat, masih placeholder
+        pekerjaan = new Pekerjaan("Programmer"); 
+
+        // inventory = new Inventory(); 
+        status = new Status(); 
+    }
 
     public String getNama(){
         return namaLengkap; 
@@ -42,8 +54,9 @@ public class Sim{
         namaLengkap = namaBaru; 
     }
 
-    public void setPekerjaan(Pekerjaan pekerjaan){
-        this.pekerjaan = pekerjaan; 
+    //ini enaknya pakai String aja
+    public void setPekerjaan(String pekerjaan){
+        this.pekerjaan.setPekerjaan(pekerjaan);
     }
 
     public void setKekeyangan(int diff){
@@ -56,6 +69,12 @@ public class Sim{
 
     public void setKesehatan(int diff){
         kesehatan += diff; 
+    }
+
+    public static void main(String[] args){
+        Sim s1 = new Sim("Default"); 
+        s1.setPekerjaan("Polisi");
+        System.out.println(s1.getPekerjaan().getGaji()); 
     }
 
 }
