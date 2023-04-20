@@ -19,7 +19,9 @@ public class Sim{
         pekerjaan = new Pekerjaan("Programmer"); 
 
         // inventory = new Inventory(); 
-        status = new Status(); 
+        status = new Status();
+
+        this.namaLengkap = namaLengkap;
     }
 
     public String getNama(){
