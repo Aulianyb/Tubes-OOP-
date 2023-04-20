@@ -1,4 +1,4 @@
-import main.java.simplicity.*;  
+package simplicity; 
 
 public class Sim{
     private String namaLengkap; 

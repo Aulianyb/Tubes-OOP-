@@ -1,4 +1,4 @@
-package main.java.simplicity;
+package simplicity;
 import java.util.*;
 
 public class Pekerjaan {
