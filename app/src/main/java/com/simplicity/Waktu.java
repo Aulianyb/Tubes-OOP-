@@ -53,4 +53,8 @@ public class Waktu {
             System.out.print(":" + this.detik);
         }
     }
+    
+    public int toDetik() {
+        return((this.jam*3600)+(this.menit*60)+this.detik);
+    }
 }
