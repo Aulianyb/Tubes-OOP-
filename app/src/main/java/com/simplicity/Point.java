@@ -4,10 +4,12 @@ import java.util.*;
 public class Point {
     private int x;
     private int y;
+    private int hashCode;
 
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
+        this.hashCode = Objects.hash(x,y);
     } 
 
     public int getX() {
@@ -26,8 +28,23 @@ public class Point {
         this.y = y;
     }
 
-    public boolean isEqual(int x2, int y2) {
-        return ((this.x == x2) && (this.y == y2));
+    @Override
+    public String toString() {
+        return String.format("<%d, %d>",getX(),getY());
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Point that = (Point) o;
+        return x == that.x && y == that.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.hashCode;
     }
 }
 
