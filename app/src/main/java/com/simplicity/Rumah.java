@@ -3,10 +3,10 @@ package com.simplicity;
 import java.util.*;
 
 public class Rumah {
-    private List<Ruangan> daftarRuangan = new ArrayList<Ruangan>();
+    private HashMap<Point, Ruangan> daftarRuangan = new HashMap<Point, Ruangan>();
     private Point lokasi;
 
-    public List<Ruangan> getDaftarRuangan() {
+    public HashMap<Point, Ruangan> getDaftarRuangan() {
         return this.daftarRuangan;
     }
 
@@ -14,11 +14,15 @@ public class Rumah {
         return this.lokasi;
     }
 
-    public void setLokasi(Point point) {
-        this.lokasi = point;
+    public void setLokasi(Point lokasi) {
+        this.lokasi = lokasi;
     }
 
-    public void upgradeRumah(Ruangan ruangan) {
-        daftarRuangan.add(ruangan);
+    public void upgradeRumah(Point lokasi, Ruangan ruangan) {
+        daftarRuangan.put(lokasi, ruangan);
+    }
+
+    public void pindahRuangan(Ruangan ruangan) {
+        // to do
     }
 }

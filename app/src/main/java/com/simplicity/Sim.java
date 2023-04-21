@@ -92,10 +92,10 @@ public class Sim{
     public void setKesehatan(int diff){
         kesehatan += diff; 
         if (kesehatan < 0){
-            kekenya = 0; 
+            kesehatan = 0;
         }
-        if (kekenyangan > 100){
-            kekenyangan = 100; 
+        if (kesehatan > 100){
+            kesehatan = 100;
         }
     }
 

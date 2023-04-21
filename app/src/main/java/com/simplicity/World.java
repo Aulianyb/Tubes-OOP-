@@ -2,14 +2,12 @@ package com.simplicity;
 import java.util.*;
 
 public class World {
-    private int panjang;
-    private int lebar;
+    private int panjang = 64;
+    private int lebar = 64;
     private HashMap<Point, Rumah> rumahList = new HashMap<Point, Rumah>();
     private Waktu waktu;
 
-    public World(int panjang, int lebar, Waktu waktu) {
-        this.panjang = panjang;
-        this.lebar = lebar;
+    public World(Waktu waktu) {
         this.waktu = waktu;
     }
 
@@ -33,7 +31,7 @@ public class World {
         return this.waktu;
     }
 
-    public void addRumah(Point location, Rumah rumah) {
-        rumahList.put(location, rumah);
+    public void addRumah(Point lokasi, Rumah rumah) {
+        rumahList.put(lokasi, rumah);
     }
 }
