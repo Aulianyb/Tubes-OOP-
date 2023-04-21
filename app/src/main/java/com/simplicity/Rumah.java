@@ -51,7 +51,6 @@ public class Rumah {
             this.displayDaftarRuangan();
             Scanner input = new Scanner(System.in);
             String pilihRuangan = input.next();
-            input.close();
             for (Map.Entry<Point, Ruangan> entry : this.daftarRuangan.entrySet()) {
                 if (entry.getValue().getNama().equals(pilihRuangan)) {
                     locRuangan = entry.getKey();
