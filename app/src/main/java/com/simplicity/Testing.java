@@ -6,7 +6,10 @@ public class Testing {
         System.out.println(s1.getKekeyangan());
         System.out.println(s1.getMood());
         System.out.println(s1.getUang());
-        s1.getPekerjaan().kerja(s1, null);
+        
+        Waktu w = new Waktu(0, 0, 5); 
+        s1.tidur(w);
+
         System.out.println(s1.getKekeyangan());
         System.out.println(s1.getMood()); 
         System.out.println(s1.getUang());

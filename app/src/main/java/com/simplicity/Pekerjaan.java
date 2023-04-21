@@ -10,6 +10,7 @@ public class Pekerjaan {
         put("Programmer", 45);
         put("Dokter", 50); 
     }}; 
+    private static Thread thread; 
     private String namaPekerjaan; 
     private int gaji; 
 
@@ -42,11 +43,25 @@ public class Pekerjaan {
     }
 
     public void kerja(Sim sim, Waktu durasi){
-        int detik=240; //ini placeholder buat total detik
-        sim.setKekeyangan(-10 * (detik / 30));
-        sim.setMood(-10 * (detik / 30));
-        sim.setUang(((detik / 60) / 4) * gaji);
+        int detik=durasi.toDetik();
+        if (detik % 120 == 0){
+            thread = new Thread(new Runnable(){
+                public void run(){
+                    try{
+                        System.out.println("Bekerja...");
+                        Thread.sleep(detik * 1000);
+                    } catch(InterruptedException e){
 
-        //ini nanti tambahin time passing
+                    } finally{
+                        sim.setKekeyangan(-10 * (detik / 30));
+                        sim.setMood(-10 * (detik / 30));
+                        sim.setUang(((detik / 60) / 4) * gaji);
+                    }
+                }
+            }); 
+            thread.run(); 
+        } else{
+            System.out.println("Durasi Harus kelipatan 120!"); 
+        }
     }
 }
