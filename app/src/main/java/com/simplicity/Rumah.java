@@ -4,6 +4,10 @@ import java.util.*;
 
 public class Rumah {
     private HashMap<Point, Ruangan> daftarRuangan = new HashMap<Point, Ruangan>();
+    int x = 0;
+    int y = 0;
+    Point defaultPoint = new Point(x, y);
+    private Ruangan currRuangan = daftarRuangan.get(defaultPoint);
     private Point lokasi;
     private String owner;
 
@@ -13,6 +17,10 @@ public class Rumah {
     }
     public HashMap<Point, Ruangan> getDaftarRuangan() {
         return this.daftarRuangan;
+    }
+
+    public String getNamaCurrRuangan() {
+        return this.currRuangan.getNama();
     }
 
     public Point getLokasi() {
@@ -57,8 +65,20 @@ public class Rumah {
         }
     }
 
-    public void pindahRuangan(Ruangan ruangan) {
-        // to do
+    public void pindahRuangan() {
+        boolean avail = false;
+        this.displayDaftarRuangan();
+        Scanner input = new Scanner(System.in);
+        String pilihRuangan = input.nextLine();
+        for (Map.Entry<Point, Ruangan> entry : this.daftarRuangan.entrySet()) {
+            if (entry.getValue().getNama().equals(pilihRuangan)) {
+                this.currRuangan = entry.getValue();
+                avail = true;
+            }
+        }
+        if (!avail) {
+            System.out.println("Ruangan yang dipilih tidak tersedia");
+        }
     }
 
     public String getOwner() {
