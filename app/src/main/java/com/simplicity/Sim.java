@@ -9,7 +9,7 @@ public class Sim{
     private String namaLengkap; 
     private Pekerjaan pekerjaan; 
     private int uang;
-    // private Inventory inventory; 
+    private Inventory inventory; 
     private int kekenyangan; 
     private int mood; 
     private int kesehatan; 
@@ -27,10 +27,11 @@ public class Sim{
         // Ini randomizernya belum buat, masih placeholder
         pekerjaan = new Pekerjaan("Programmer"); 
 
-        // inventory = new Inventory(); 
+        inventory = new Inventory(); 
         status = new Status();
 
         this.namaLengkap = namaLengkap;
+        
     }
 
     public String getNama(){
@@ -59,6 +60,10 @@ public class Sim{
 
     public Status getStatus(){
         return status; 
+    }
+
+    public Inventory getInventory(){
+        return inventory; 
     }
 
     public void setNama(String namaBaru){
