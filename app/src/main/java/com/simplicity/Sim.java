@@ -1,11 +1,10 @@
 package com.simplicity;
-
+import java.util.*; 
 //Masih harus dikode time passing! -- udah!
 
 public class Sim{
     private static Thread thread; 
     private static int detik;
-
     private String namaLengkap; 
     private Pekerjaan pekerjaan; 
     private int uang;
@@ -14,24 +13,21 @@ public class Sim{
     private int mood; 
     private int kesehatan; 
     private Status status; 
-    private Rumah rumah; 
-    private Ruangan ruangan; 
+    private static String[] listPekerjaan = {"Badut Sulap", "Koki", "Polisi", "Programmer", "Dokter"}; 
+    private static Random randomizer = new Random(); 
+
 
     //nanti tambahin buildernya
     public Sim(String namaLengkap){
         kekenyangan = 80; 
         mood = 80; 
         kesehatan = 100; 
-        uang = 100; 
-        
-        // Ini randomizernya belum buat, masih placeholder
-        pekerjaan = new Pekerjaan("Programmer"); 
-
+        uang = 100;  
+        int x = randomizer.nextInt(5); 
+        pekerjaan = new Pekerjaan(listPekerjaan[x]); 
         inventory = new Inventory(); 
         status = new Status();
-
         this.namaLengkap = namaLengkap;
-        
     }
 
     public String getNama(){
@@ -79,7 +75,7 @@ public class Sim{
         uang += diff; 
     }
 
-    public void setKekeyangan(int diff){
+    public void setKekenyangan(int diff){
         kekenyangan += diff; 
         if (kekenyangan < 0){
             kekenyangan = 0; 
@@ -115,14 +111,26 @@ public class Sim{
             thread = new Thread(new Runnable(){
                 public void run(){
                     try {
-                        System.out.println("Olaharaga! Huft Huft..."); //indikator buat testing
-                        Thread.sleep(detik * 1000);
+                        System.out.println("Olahraga dalam progress!"); //indikator buat testing
+                        System.out.printf("["); 
+                        for (int i=0;i<10;i++){
+                            Thread.sleep(detik * 100);
+                            System.out.printf(">"); 
+                        }
+                        System.out.printf("]"); 
                     } catch (InterruptedException e){
                     }
                     finally{
+                        int x = 5 * (detik / 20); 
+                        int y = -5 * (detik / 20); 
+                        int z = 10 * (detik / 20); 
                         setKesehatan(5 * (detik / 20));
-                        setKekeyangan(-5 * (detik / 20));
-                        setMood(+10 * (detik/20)); 
+                        setKekenyangan(-5 * (detik / 20));
+                        setMood(10 * (detik / 20)); 
+                        System.out.println("\nOlahraga Selesai!");
+                        System.out.println("Kesehatan : +" + x);                      
+                        System.out.println("Kekenyangan : " + y);                      
+                        System.out.println("Mood : +" + z);                      
                     } 
                 }
             }); 
@@ -132,64 +140,22 @@ public class Sim{
         }
     }
 
-    //tolong pindahin ke Kasur.java
-    public void tidur(Waktu durasi){
-        detik=durasi.toDetik();
+    public void berkunjung(Rumah tujuan, Waktu durasi){
+        double hasil = Math.sqrt(Math.pow(tujuan.getLokasi().getX() - rumah.getLokasi().getX(), 2) + Math.pow(tujuan.getLokasi().getY() - rumah.getLokasi().getY(), 2)); 
+        detik = (int) hasil; 
         thread = new Thread(new Runnable(){
             public void run(){
                 try {
-                    System.out.println("Tidur Z z z..."); //indikator buat testing
-                    Thread.sleep(detik * 1000);
+                    System.out.println("Berjalan ke rumah tujuan.."); //indikator buat testing
+                    for (int i=0;i<10;i++){
+                        Thread.sleep(detik * 100);
+                        System.out.printf(">"); 
+                    }
                 } catch (InterruptedException e){
                 }
                 finally{
-                    setMood(30 * ((detik / 60) / 4));
-                    setKesehatan(20 * (detik / 240));
-                } 
-            }
-        }); 
-        thread.run(); 
-        //to do : kalau gak tidur gimana nanti?
-    }
-
-    public void makan(){
-        //nungguin dulu Makanan.java
-    }
-
-    public void memasak(){
-        //nungguin dulu Makanan.java
-    }
-
-    public void berkunjung(Rumah tujuan){
-        detik = Math.sqrt(Math.pow(tujuan.getLokasi().getX() - rumah.getLokasi().getX(), 2) + Math.pow(tujuan.getLokasi().getY() - rumah.getLokasi().getY(), 2)); 
-        thread = new Thread(new Runnable(){
-            public void run(){
-                try {
-                    System.out.println("Buang Air..."); //indikator buat testing
-                    Thread.sleep(detik * 1000);
-                } catch (InterruptedException e){
-                }
-                finally{
-                    setKekeyangan(-10 * (detik / 30));
+                    setKekenyangan(-10 * (detik / 30));
                     setMood(+10 * (detik / 30)); 
-                } 
-            }
-        }); 
-        thread.run(); 
-    }
-
-    // ini aku simpen di toilet
-    public void buangAir(){
-        thread = new Thread(new Runnable(){
-            public void run(){
-                try {
-                    System.out.println("Buang Air..."); //indikator buat testing
-                    Thread.sleep(10000);
-                } catch (InterruptedException e){
-                }
-                finally{
-                    setKekeyangan(-20);
-                    setMood(10); 
                 } 
             }
         }); 
@@ -198,6 +164,33 @@ public class Sim{
 
     public boolean isDie(){
         return ((kesehatan <= 0) || (mood <= 0) || (kekenyangan <= 0)); 
+    }
+
+    public synchronized void beliBarang(BisaDibeli barang){
+        if (uang < barang.getHarga()){
+            System.out.println("Maaf, uang yang dimiliki tidak mencukupi!"); 
+        } else{
+            setUang(-1 * barang.getHarga());
+            System.out.println(barang.getNamaObjek() + " sedang dalam proses pengiriman..");
+            Thread threadBeli = new Thread(new Runnable(){
+                public void run(){
+                    try{
+                        Thread.sleep(2000);
+                        // ini random maksudnya apa
+                    }catch(InterruptedException e){
+
+                    }finally{
+                        System.out.println(barang.getNamaObjek() + " sudah sampai ditujuan!");
+                        inventory.addItem(barang, detik);
+                    }
+                }
+            }); 
+            threadBeli.run(); 
+        }
+    }
+
+    public void meditasi(){
+
     }
 
 
