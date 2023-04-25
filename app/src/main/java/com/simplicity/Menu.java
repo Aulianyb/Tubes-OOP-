@@ -6,15 +6,6 @@ public class Menu {
 
     }
 
-//    public void mainMenu() {
-//        displayMainMenu("awal");
-//
-//    }
-//
-//    public void inGameMenu() {
-//        displayMainMenu("ingame");
-//    }
-
     public void displayMainMenu(String option) {
         String[] optionAwal = {"Start Game", "Help", "Exit"};
         String[] optionInGame = {
@@ -30,7 +21,8 @@ public class Menu {
                 "Add Sim",
                 "Help",
                 "Exit"};
-        if(option.equals("awal")) {
+
+        if(option.equals("start")) {
             System.out.println("Welcome to Sim-Plicity");
             for(int i = 1; i <= optionAwal.length; i++) {
                 System.out.printf("%d. %s%n",i,optionAwal[i-1]);
@@ -47,12 +39,13 @@ public class Menu {
 
     public void startGame(Scanner inp) {
         boolean end = false;
+        displayMainMenu("start");
         while(!end) {
             System.out.println("Masukkan Command: ");
             String cmd = inp.nextLine().toLowerCase();
             switch (cmd) {
                 case "start game" -> end = true;
-                case "help" -> help();
+                case "help" -> help("start");
                 case "exit" -> {
                     end = true;
                     exit();
@@ -60,10 +53,28 @@ public class Menu {
                 default -> System.out.println("Input tidak valid, silahkan masukkan ulang input");
             }
         }
+        System.out.print("Masukkan nama lengkap Sim : ");
     }
 
-    public void help() {
-
+    public void help(String option) {
+        if (option.equals("start")) {
+            System.out.println(
+                    "1. Start Game\t : Memulai permainan\n" +
+                    "2. Exit\t\t : Keluar dari game\n");
+        }
+        else if(option.equals("ingame")) {
+            System.out.println("1. Action\t\t : Melakukan sebuah aksi pada suatu objek\n" +
+                    "2. List Object\t\t : Menampilkan daftar objek dalam sebuah ruangan\n" +
+                    "3. Go to Object\t\t : Berjalan menuju suatu objek\n" +
+                    "4. Move Room\t\t : Berganti ke ruangan yang ada pada rumah yang sedang ditempati\n" +
+                    "5. Edit Room\t\t : Berisi opsi pembelian barang baru atau pemindahan barang\n" +
+                    "6. View Inventory\t : Menampilkan isi inventory milik sebuah Sim\n" +
+                    "7. View Current Location\t : Menampilkan lokasi Rumah dan Ruangan dari Sim\n" +
+                    "8. View Sim Info\t : Menampilkan informasi setiap atribut dari Sim\n" +
+                    "9. Change Sim\t\t : Memilih sebuah Sim yang dimainkan\n" +
+                    "10. Add Sim\t\t : Menambahkan sebuah Sim\n" +
+                    "11. Exit\t\t : Keluar dari game\n");
+        }
     }
 
     public void exit() {
@@ -71,19 +82,25 @@ public class Menu {
         System.exit(0);
     }
 
-    public void viewSimInfo() {
-
+    public void viewSimInfo(Sim sim) {
+        System.out.println("Current Sim Info");
+        System.out.printf("Nama\t\t: %s",sim.getNama());
+        System.out.printf("Pekerjaan\t\t: %s",sim.getPekerjaan().getPekerjaan());
+        System.out.printf("Kesehatan\t\t: %d",sim.getKesehatan());
+        System.out.printf("Kekenyangan\t\t: %d",sim.getKekeyangan());
+        System.out.printf("Mood\t\t: %d",sim.getMood());
+        System.out.printf("Uang\t\t: %d",sim.getUang());
     }
 
-    public void viewCurrentLoc() {
-
+    public void viewCurrentLoc(World world) {
+        world.displayCurrentLoc();
     }
 
-    public void viewInventory() {
-
+    public void viewInventory(Sim sim) {
+        sim.getInventory().lihatInventory();
     }
 
-    public void upgradeHouse() {
+    public void upgradeHouse(Sim sim, World world, Scanner inp) {
 
     }
 
@@ -92,10 +109,6 @@ public class Menu {
     }
 
     public void editRoom() {
-
-    }
-
-    public void addSim() {
 
     }
 
@@ -112,6 +125,10 @@ public class Menu {
     }
 
     public void action() {
+
+    }
+
+    public void inGame(Scanner inp) {
 
     }
 }
