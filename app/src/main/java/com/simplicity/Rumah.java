@@ -1,20 +1,19 @@
 package com.simplicity;
-
 import java.util.*;
 
 public class Rumah {
     private HashMap<Point, Ruangan> daftarRuangan = new HashMap<Point, Ruangan>();
-    int x = 0;
-    int y = 0;
-    Point defaultPoint = new Point(x, y);
-    private Ruangan currRuangan = daftarRuangan.get(defaultPoint);
+    private Ruangan currRuangan;
     private Point lokasi;
     private String owner;
 
-    public Rumah(Point lokasi, String owner) {
-        setLokasi(lokasi);
-        this.owner = owner;
+    public Rumah(Point lokasi) {
+        Point defaultPoint = new Point(0, 0);
+        this.currRuangan = new Ruangan();
+        daftarRuangan.put(defaultPoint, this.currRuangan);
+        this.lokasi = lokasi;
     }
+
     public HashMap<Point, Ruangan> getDaftarRuangan() {
         return this.daftarRuangan;
     }
@@ -33,6 +32,7 @@ public class Rumah {
 
     public void displayDaftarRuangan() {
         int i = 1;
+        System.out.println("Daftar ruangan dalam rumah: ");
         for (Map.Entry<Point, Ruangan> entry : this.daftarRuangan.entrySet()) {
             System.out.println(i + ". <" + entry.getKey() + ", " + entry.getValue().getNama() + ">");
             i++;
@@ -157,5 +157,9 @@ public class Rumah {
 
     public String getOwner() {
         return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }

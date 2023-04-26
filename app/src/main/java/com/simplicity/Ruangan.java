@@ -4,8 +4,8 @@ import java.util.*;
 public class Ruangan {
     private String namaRuangan;
     private String[][] matrixRuangan;
-    private int panjang = 6;
-    private int lebar = 6;
+    private final int panjang = 6;
+    private final int lebar = 6;
     private HashMap<Point, Furnitur> daftarObjek = new HashMap<Point, Furnitur>(); // Point objek mengarah ke titik paling atas kiri objek
 
     public Ruangan() {
@@ -69,18 +69,6 @@ public class Ruangan {
         return this.namaRuangan;
     }
 
-    public int getPanjang() {
-        return this.panjang;
-    }
-
-    public int getLebar() {
-        return this.lebar;
-    }
-
-    public int getLuas() {
-        return(this.panjang*this.lebar);
-    }
-
     public void displayDaftarObjek() {
         int i = 1;
         System.out.println("Daftar objek dalam ruangan: ");
@@ -127,15 +115,15 @@ public class Ruangan {
         }
     }
 
-    public void pasangBarang() {
+    public void addObjek() {
 
     }
 
-    public void moveBarang() {
+    public void move() {
 
     }
 
-    public void removeBarang() {
+    public void removeObjek() {
 
     }
 }
