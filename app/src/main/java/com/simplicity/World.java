@@ -4,11 +4,11 @@ import java.util.*;
 public class World {
     private final int panjang = 64;
     private final int lebar = 64;
-    private HashMap<Point, Rumah> rumahList;
+    private static HashMap<Point, Rumah> rumahList;
     private Waktu waktu;
     private Sim currentSim;
     private ArrayList<Sim> sims = new ArrayList<>();
-    private Point currentLoc;
+    private static Point currentLoc;
 
 
     public World(Waktu waktu, Sim currentSim, Point currentLoc) {
@@ -72,7 +72,7 @@ public class World {
     }
 
     public void displayCurrentLoc() {
-        Rumah currentRumah = rumahList.get(currentLoc);
+        Rumah currentRumah = getCurrentRumah();
         System.out.println("Current location :");
         System.out.printf("Rumah : %s's house%n",currentRumah.getOwner());
         System.out.printf("Ruangan : %s%n", currentRumah.getNamaCurrRuangan());
@@ -81,4 +81,15 @@ public class World {
     public Rumah getCurrentRumah() {
         return rumahList.get(currentLoc);
     }
+
+    public void displaySims() {
+        for(int i = 0; i < sims.size(); i++) {
+            System.out.printf("%d. %s%n",i+1,sims.get(i).getNama());
+        }
+    }
+
+    public ArrayList<Sim> getSims() {
+        return sims;
+    }
+
 }

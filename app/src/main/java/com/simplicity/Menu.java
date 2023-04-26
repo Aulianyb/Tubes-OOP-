@@ -69,7 +69,7 @@ public class Menu {
                     "4. Move Room\t\t : Berganti ke ruangan yang ada pada rumah yang sedang ditempati\n" +
                     "5. Edit Room\t\t : Berisi opsi pembelian barang baru atau pemindahan barang\n" +
                     "6. View Inventory\t : Menampilkan isi inventory milik sebuah Sim\n" +
-                    "7. View Current Location\t : Menampilkan lokasi Rumah dan Ruangan dari Sim\n" +
+                    "7. View Current Location : Menampilkan lokasi Rumah dan Ruangan dari Sim\n" +
                     "8. View Sim Info\t : Menampilkan informasi setiap atribut dari Sim\n" +
                     "9. Change Sim\t\t : Memilih sebuah Sim yang dimainkan\n" +
                     "10. Add Sim\t\t : Menambahkan sebuah Sim\n" +
@@ -84,12 +84,12 @@ public class Menu {
 
     public void viewSimInfo(Sim sim) {
         System.out.println("Current Sim Info");
-        System.out.printf("Nama\t\t: %s",sim.getNama());
-        System.out.printf("Pekerjaan\t\t: %s",sim.getPekerjaan().getPekerjaan());
-        System.out.printf("Kesehatan\t\t: %d",sim.getKesehatan());
-        System.out.printf("Kekenyangan\t\t: %d",sim.getKekeyangan());
-        System.out.printf("Mood\t\t: %d",sim.getMood());
-        System.out.printf("Uang\t\t: %d",sim.getUang());
+        System.out.printf("Nama\t\t: %s%n",sim.getNama());
+        System.out.printf("Pekerjaan\t: %s%n",sim.getPekerjaan().getPekerjaan());
+        System.out.printf("Kesehatan\t: %d%n",sim.getKesehatan());
+        System.out.printf("Kekenyangan\t: %d%n",sim.getKekeyangan());
+        System.out.printf("Mood\t\t: %d%n",sim.getMood());
+        System.out.printf("Uang\t\t: %d%n",sim.getUang());
     }
 
     public void viewCurrentLoc(World world) {
@@ -112,7 +112,16 @@ public class Menu {
 
     }
 
-    public void changeSim() {
+    public void changeSim(World world, Scanner inp) {
+        world.displaySims();
+        System.out.println("Pilih sim : ");
+        String namasim = inp.nextLine();
+        for(Sim sim : world.getSims()) {
+            if(sim.getNama().equals(namasim)) {
+                world.setCurrentSim(sim);
+                break;
+            }
+        }
 
     }
 

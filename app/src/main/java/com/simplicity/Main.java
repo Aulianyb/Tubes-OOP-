@@ -6,10 +6,47 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        Menu game = new Menu();
-        game.displayMainMenu("awal");
+        Menu menu = new Menu();
         Scanner input = new Scanner(System.in);
-        game.startGame(input);
+        menu.startGame(input);
+        menu.inGame(input);
 
+        String namalengkap = input.nextLine();
+        World world = new World(new Waktu(0, 0, 0), new Sim(namalengkap), new Point(0,0) );
+
+        world.addSim(namalengkap);
+        world.addRumah(namalengkap);
+
+        world.displayWorld();
+        boolean end = false;
+        while(!end) {
+            menu.displayMainMenu("ingame");
+            System.out.print("Masukkan Command: ");
+            String cmd = input.nextLine().toLowerCase();
+            switch (cmd) {
+                case "action" -> menu.action();
+                case "list object" -> menu.listObj();
+                case "go to object" -> menu.goToObj();
+                case "move room" -> menu.moveRoom();
+                case "edit room" -> menu.editRoom();
+                case "view inventory" -> menu.viewInventory(world.getCurrentSim());
+                case "view current location" -> menu.viewCurrentLoc(world);
+                case "view sim info" -> menu.viewSimInfo(world.getCurrentSim());
+                case "change sim" -> menu.changeSim(world,input);
+                case "add sim" -> {
+                    System.out.print("Masukkan nama sim baru : ");
+                    String newsim = input.nextLine();
+                    world.addSim(newsim);
+                    world.addRumah(newsim);
+                    world.displayWorld();
+                }
+                case "help" -> menu.help("ingame");
+                case "exit" -> {
+                    end = true;
+                    menu.exit();
+                }
+                default -> System.out.println("Input tidak valid, silahkan masukkan ulang input");
+            }
+        }
     }
 }
