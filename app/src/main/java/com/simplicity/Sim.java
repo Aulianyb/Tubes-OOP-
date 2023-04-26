@@ -189,6 +189,10 @@ public class Sim{
         }
     }
 
+    public void pasangBarang(Furnitur barang){
+        //aku bingung
+    }
+
     public void meditasi(Waktu durasi){
         detik=durasi.toDetik();
         if (detik % 30 == 0){
@@ -208,7 +212,7 @@ public class Sim{
                         int x = 10 * (detik / 30); 
                         setMood(x); 
                         System.out.println("\nMeditasi Selesai!");                  
-                        System.out.println("Mood : +" + z);                      
+                        System.out.println("Mood : +" + x);                      
                     } 
                 }
             }); 
@@ -218,6 +222,112 @@ public class Sim{
         }
     }
 
-    
+    public void berkelahi(Sim kawan){
+        System.out.println("Kamu mengajak " + kawan.getNama() + " berkelahi!"); //indikator buat testing
+        if (kawan.getMood() > 90){
+            System.out.println(kawan.getNama() + " menolak ajakanmu.");
+            System.out.println("'Berkelahi itu tidak Baik! >:(' - " + kawan.getNama());
+        } else{
+            System.out.println(kawan.getNama() + " menerima ajakanmu!");
+            System.out.println(kawan.getNama() + " melontarkan pukulannya!");
+            thread = new Thread(new Runnable(){
+                public void run(){
+                    try {
+                        System.out.printf("["); 
+                        for (int i=0;i<10;i++){
+                            Thread.sleep(1000);
+                            System.out.printf(">"); 
+                        }
+                        System.out.printf("]"); 
+                    } catch (InterruptedException e){
+                    }
+                    finally{
+                        int win = randomizer.nextInt(2); 
+                        setKesehatan(-10);
+                        kawan.setKesehatan(-10); 
+                        System.out.println("\nPerkelahian Selesai!");
+                        if (win == 1){
+                            System.out.println("\nYipee! Kamu menang!");
+                            kawan.setMood(-10);
+                            setMood(10);
+                            System.out.println("Mood : +10");
+                        } else{
+                            System.out.println("\nUh oh... kamu kalah..");
+                            kawan.setMood(10);
+                            setMood(-10);
+                            System.out.println("Mood : -10");
+                        }                  
+                        System.out.println("Kesehatan : -10");                      
+                    } 
+                }
+            });
+            thread.run(); 
+        } 
+    }
+
+    public void nyanyi(Waktu durasi){
+        detik=durasi.toDetik();
+        if (detik % 30 == 0){
+            thread = new Thread(new Runnable(){
+                public void run(){
+                    try {
+                        System.out.println(namaLengkap + " sedang bernyanyi! La.. la.. la.."); //indikator buat testing
+                        System.out.printf("["); 
+                        for (int i=0;i<10;i++){
+                            Thread.sleep(detik * 100);
+                            System.out.printf(">"); 
+                        }
+                        System.out.printf("]"); 
+                    } catch (InterruptedException e){
+                    }
+                    finally{
+                        int x = 20 * (detik / 30); 
+                        setMood(x); 
+                        System.out.println("\nBernyanyi Selesai!");                  
+                        System.out.println("Mood : +" + x);                      
+                    } 
+                }
+            }); 
+            thread.run();   
+        } else{
+            System.out.println("Durasi Harus kelipatan 30!"); 
+        }
+    }
+
+    public void menari(Waktu durasi){
+        detik = durasi.getDetik(); 
+        if (detik % 10 == 0){
+            thread = new Thread(new Runnable(){
+                public void run(){
+                    try {
+                        System.out.println(namaLengkap + " sedang menari!"); //indikator buat testing
+                        System.out.printf("["); 
+                        for (int i=0;i<10;i++){
+                            Thread.sleep(detik * 100);
+                            System.out.printf(">"); 
+                        }
+                        System.out.printf("]"); 
+                    } catch (InterruptedException e){
+                    }
+                    finally{
+                        int x = 20 * (detik / 10); 
+                        setMood(x); 
+                        System.out.println("\nMenari Selesai!");                  
+                        System.out.println("Mood : +" + x);    
+                        if (detik > 10){
+                            System.out.println("\nBadanmu.. terasa pegal..");
+                            System.out.println("Kesehatan : -5");    
+                            setKesehatan(-5);    
+                        }                  
+                    } 
+                }
+            }); 
+            thread.run();   
+        } else{
+            System.out.println("Durasi Harus kelipatan 10!"); 
+        }
+    }
+
+
 
 }
