@@ -17,7 +17,7 @@ public class Testing {
         // System.out.println(s2.getMood());
         // System.out.println(s2.getUang());
 
-        Waktu w = new Waktu(0, 0, 30); 
+        Waktu w = new Waktu(0, 0, 120); 
         Waktu w2 = new Waktu(0, 0, 40); 
 
         // s1.olahraga(w);
@@ -28,7 +28,8 @@ public class Testing {
         Rumah r2 = new Rumah(p2, s1.getNama());  
   
         // s1.berkelahi(s2);
-        s1.menari(w);
+        // s1.monolog(w);
+        s1.lelucon(s2);
         System.out.println("STATUS S1");
         System.out.println(s1.getKesehatan());
         System.out.println(s1.getKekeyangan());

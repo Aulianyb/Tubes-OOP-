@@ -315,7 +315,7 @@ public class Sim{
                         System.out.println("\nMenari Selesai!");                  
                         System.out.println("Mood : +" + x);    
                         if (detik > 10){
-                            System.out.println("\nBadanmu.. terasa pegal..");
+                            System.out.println("Badanmu.. terasa pegal..");
                             System.out.println("Kesehatan : -5");    
                             setKesehatan(-5);    
                         }                  
@@ -328,6 +328,100 @@ public class Sim{
         }
     }
 
+    public void daydreaming(){
+        thread = new Thread( new Runnable(){
+            public void run(){
+                System.out.println("Menghalu- eh daydreaming dimulai!");
+                System.out.println(namaLengkap + " menutup matanya...");
+                try {
+                    System.out.printf("["); 
+                    for (int i=0;i<10;i++){
+                        Thread.sleep(1000);
+                        System.out.printf(">"); 
+                    }
+                    System.out.printf("]"); 
+                } catch (InterruptedException e){
+                }
+                finally{
+                    int x = randomizer.nextInt(4); 
+                    int diff=0; 
+                    switch (x){
+                        case 0: 
+                            System.out.println("\n" + namaLengkap + " membayangkan dapat IPK 4.0!");
+                            diff = 30; 
+                            break;
+                        case 1: 
+                            System.out.println("\n" + namaLengkap + " membayangkan bermain di pantai!");
+                            diff = 10;
+                            break; 
+                        case 2:
+                            System.out.println("\n" + namaLengkap + "... tidak bisa membayangkan apa apa...");
+                            diff = 0;
+                            break;
+                        case 3:
+                            System.out.println("\n" + namaLengkap + " membayangkan MIMPI BURUK AHH!!");
+                            diff = -50;
+                            break;  
+                    }            
+                    setMood(diff);
+                    if (diff > 0){
+                        System.out.println("Mood : +" + diff);    
+                    } else{
+                        System.out.println("Mood : " + diff);   
+                    }
+                } 
+            }
+        }); 
+        thread.run();
+    }
 
+    public void monolog(Waktu durasi){
+        detik = durasi.getDetik(); 
+        if (detik % 30 == 0){
+            thread = new Thread(new Runnable(){
+                public void run(){
+                    try {
+                        System.out.println(namaLengkap + " bermonolog!"); //indikator buat testing
+                        System.out.printf("["); 
+                        for (int i=0;i<10;i++){
+                            Thread.sleep(detik * 100);
+                            System.out.printf(">"); 
+                        }
+                        System.out.printf("]"); 
+                    } catch (InterruptedException e){
+                    }
+                    finally{
+                        int x = 20 * (detik / 30); 
+                        setMood(x); 
+                        System.out.println("\nBermonolog Selesai!");                  
+                        System.out.println("Mood : +" + x);    
+                        if (detik > 60){
+                            System.out.println("kok kamu ngomong sendiri lama banget sih...");
+                            System.out.println("Kesehatan : -10");    
+                            setKesehatan(-10);    
+                        }                  
+                    } 
+                }
+            }); 
+            thread.run();   
+        } else{
+            System.out.println("Durasi Harus kelipatan 30!"); 
+        }
+    }
 
+    public void lelucon(Sim kawan){
+        System.out.println(namaLengkap + " memberikan lelucon kepada " + kawan.getNama() + "!"); 
+        int x = randomizer.nextInt(2); 
+        if (x == 1){
+            System.out.println(kawan.getNama() + " tidak menganggap leluconmu lucu..."); 
+            setMood(-10); 
+            System.out.println("Mood : -10");    
+
+        }else{
+            System.out.println(kawan.getNama() + " tertawa mendengar leluconmu!"); 
+            setMood(10); 
+            kawan.setMood(10);  
+            System.out.println("Mood : +10");    
+        }
+    }
 }
