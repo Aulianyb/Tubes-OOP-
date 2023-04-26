@@ -43,24 +43,96 @@ public class Rumah {
         return daftarRuangan.containsKey(lokasi);
     }
 
-    public void upgradeRumah(Point lokasi, Ruangan ruangan) {
-        int x = 0;
-        int y = 0;
-        Point locRuangan = new Point(x, y);
+    public boolean containsRuangan (String namaRuangan) {
+        boolean valid;
+        valid = false;
+        for (Map.Entry<Point, Ruangan> entry : this.daftarRuangan.entrySet()) {
+            if (entry.getValue().getNama().equals(namaRuangan)) {
+                valid = true;
+                break;
+            }
+        }
+        return valid;
+    }
+
+    public void upgradeRumah() {
+        int x;
+        int y;
+        boolean valid = true;
+        int initialX = 0;
+        int initialY = 0;
+        Point locAcuan = new Point(initialX, initialY);
+        this.displayDaftarRuangan();
+        Scanner input = new Scanner(System.in);
         if (daftarRuangan.size() > 1) {
-            this.displayDaftarRuangan();
-            Scanner input = new Scanner(System.in);
-            String pilihRuangan = input.next();
-            for (Map.Entry<Point, Ruangan> entry : this.daftarRuangan.entrySet()) {
-                if (entry.getValue().getNama().equals(pilihRuangan)) {
-                    locRuangan = entry.getKey();
+            do {
+                System.out.print("Masukkan ruangan acuan: ");
+                String pilihRuangan = input.next();
+                if (!containsRuangan(pilihRuangan)) {
+                    valid = false;
+                    System.out.println("Ruangan tidak tersedia, silakan coba lagi!");
+                } else {
+                    valid = true;
                 }
-            }
-            if (((lokasi.getX() == locRuangan.getX()+1 || lokasi.getX() == locRuangan.getX()-1) && lokasi.getY() == 0 && !isAvailable(lokasi)) || ((lokasi.getY() == locRuangan.getY()+1 || lokasi.getY() == locRuangan.getY()-1) && lokasi.getX() == 0 && !isAvailable(lokasi))) {
-                daftarRuangan.put(lokasi, ruangan);
+                for (Map.Entry<Point, Ruangan> entry : this.daftarRuangan.entrySet()) {
+                    if (entry.getValue().getNama().equals(pilihRuangan)) {
+                        locAcuan = entry.getKey();
+                    }
+                }
+            } while(!valid);
+        }
+        System.out.print("Masukkan nama ruangan yang ingin ditambahkan: ");
+        String namaRuangan = input.next();
+        System.out.print("Masukkan lokasi ruangan (ATAS/BAWAH/KANAN/KIRI): ");
+        String pilihLokasi = input.next();
+        if (pilihLokasi.equals("ATAS")) {
+            x = locAcuan.getX();
+            y = locAcuan.getY()+1;
+            Point locRuangan = new Point(x, y);
+            if (!isAvailable(locRuangan)) {
+                Ruangan ruangan = new Ruangan(namaRuangan);
+                daftarRuangan.put(locRuangan, ruangan);
             } else {
-                System.out.println("Ruangan tidak bisa ditambahkan");
+                valid = false;
             }
+        } else if (pilihLokasi.equals("BAWAH")) {
+            x = locAcuan.getX();
+            y = locAcuan.getY()-1;
+            Point locRuangan = new Point(x, y);
+            if (!isAvailable(locRuangan)) {
+                Ruangan ruangan = new Ruangan(namaRuangan);
+                daftarRuangan.put(locRuangan, ruangan);
+            } else {
+                valid = false;
+            }
+        } else if (pilihLokasi.equals("KANAN")) {
+            x = locAcuan.getX()+1;
+            y = locAcuan.getY();
+            Point locRuangan = new Point(x, y);
+            if (!isAvailable(locRuangan)) {
+                Ruangan ruangan = new Ruangan(namaRuangan);
+                daftarRuangan.put(locRuangan, ruangan);
+            } else {
+                valid = false;
+            }
+        } else if (pilihLokasi.equals("KIRI")) {
+            x = locAcuan.getX()-1;
+            y = locAcuan.getY();
+            Point locRuangan = new Point(x, y);
+            if (!isAvailable(locRuangan)) {
+                Ruangan ruangan = new Ruangan(namaRuangan);
+                daftarRuangan.put(locRuangan, ruangan);
+            } else {
+                valid = false;
+            }
+        } else {
+            valid = false;
+        }
+        if (valid) {
+            System.out.println("Ruangan berhasil ditambahkan!");
+            this.displayDaftarRuangan();
+        } else {
+            System.out.println("Ruangan tidak bisa ditambahkan!");
         }
     }
 
@@ -68,15 +140,18 @@ public class Rumah {
         boolean avail = false;
         this.displayDaftarRuangan();
         Scanner input = new Scanner(System.in);
-        String pilihRuangan = input.nextLine();
+        System.out.print("Masukkan ruangan yang ingin dituju: ");
+        String pilihRuangan = input.next();
         for (Map.Entry<Point, Ruangan> entry : this.daftarRuangan.entrySet()) {
             if (entry.getValue().getNama().equals(pilihRuangan)) {
                 this.currRuangan = entry.getValue();
                 avail = true;
             }
         }
-        if (!avail) {
-            System.out.println("Ruangan yang dipilih tidak tersedia");
+        if (avail) {
+            System.out.println("Sekarang Sim sudah berada di " + this.currRuangan.getNama() + "!");
+        } else {
+            System.out.println("Ruangan yang dipilih tidak tersedia!");
         }
     }
 
