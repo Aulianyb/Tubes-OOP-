@@ -2,15 +2,8 @@ package com.simplicity;
 
 public class Testing {
     public static void main(String[] args) throws InterruptedException{
-        Sim s1 = new Sim("Default"); 
-        Sim s2 = new Sim("Kawan"); 
-        s2.setMood(100);
+        // s2.setMood(100);
         // System.out.println(s1.getPekerjaan().getPekerjaan());
-        System.out.println("STATUS S1");
-        System.out.println(s1.getKesehatan());
-        System.out.println(s1.getKekeyangan());
-        System.out.println(s1.getMood());
-        System.out.println(s1.getUang());
         // System.out.println("STATUS S2");
         // System.out.println(s1.getKesehatan());
         // System.out.println(s2.getKekeyangan());
@@ -21,15 +14,23 @@ public class Testing {
         Waktu w2 = new Waktu(0, 0, 40); 
 
         // s1.olahraga(w);
-        Point p1 = new Point(2, 2); 
+        Point p1 = new Point(30, 30); 
         Point p2 = new Point(0, 0); 
 
-        Rumah r1 = new Rumah(p1, s1.getNama());
-        Rumah r2 = new Rumah(p2, s1.getNama());  
-  
+        Rumah r1 = new Rumah(p1, "Default");
+        Rumah r2 = new Rumah(p2, "Kawan");  
+        Sim s1 = new Sim("Default", r1); 
+        Sim s2 = new Sim("Kawan", r2); 
+        System.out.println("STATUS S1");
+        System.out.println(s1.getKesehatan());
+        System.out.println(s1.getKekeyangan());
+        System.out.println(s1.getMood());
+        System.out.println(s1.getUang());
         // s1.berkelahi(s2);
-        // s1.monolog(w);
-        s1.lelucon(s2);
+        // // s1.monolog(w);
+        // // s1.lelucon(s2);
+        s1.berkunjung(r2);
+
         System.out.println("STATUS S1");
         System.out.println(s1.getKesehatan());
         System.out.println(s1.getKekeyangan());
@@ -40,7 +41,6 @@ public class Testing {
         // System.out.println(s2.getMood());
         // System.out.println(s2.getUang());
   
-        // s1.berkunjung(r2, w);
 
         // s1.getInventory().lihatInventory();
         // BahanMakanan m = new BahanMakanan("Nasi");

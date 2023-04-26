@@ -3,8 +3,13 @@ import java.util.*;
 //Masih harus dikode time passing! -- udah!
 
 public class Sim{
+    //atribut static
     private static Thread thread; 
     private static int detik;
+    private static String[] listPekerjaan = {"Badut Sulap", "Koki", "Polisi", "Programmer", "Dokter"}; 
+    private static Random randomizer = new Random(); 
+
+    //atribut non static
     private String namaLengkap; 
     private Pekerjaan pekerjaan; 
     private int uang;
@@ -13,12 +18,9 @@ public class Sim{
     private int mood; 
     private int kesehatan; 
     private Status status; 
-    private static String[] listPekerjaan = {"Badut Sulap", "Koki", "Polisi", "Programmer", "Dokter"}; 
-    private static Random randomizer = new Random(); 
-
-
-    //nanti tambahin buildernya
-    public Sim(String namaLengkap){
+    private Rumah currentRumah; 
+    
+    public Sim(String namaLengkap, Rumah rumah){
         kekenyangan = 80; 
         mood = 80; 
         kesehatan = 100; 
@@ -28,6 +30,7 @@ public class Sim{
         inventory = new Inventory(); 
         status = new Status();
         this.namaLengkap = namaLengkap;
+        currentRumah = rumah; 
     }
 
     public String getNama(){
@@ -141,12 +144,13 @@ public class Sim{
     }
 
     public void berkunjung(Rumah tujuan){
-        double hasil = Math.sqrt(Math.pow(tujuan.getLokasi().getX() - rumah.getLokasi().getX(), 2) + Math.pow(tujuan.getLokasi().getY() - rumah.getLokasi().getY(), 2)); 
+        double hasil = Math.sqrt(Math.pow(tujuan.getLokasi().getX() - currentRumah.getLokasi().getX(), 2) + Math.pow(tujuan.getLokasi().getY() - currentRumah.getLokasi().getY(), 2)); 
         detik = (int) hasil; 
         thread = new Thread(new Runnable(){
             public void run(){
                 try {
                     System.out.println("Berjalan ke rumah tujuan.."); //indikator buat testing
+                    System.out.printf("["); //indikator buat testing
                     for (int i=0;i<10;i++){
                         Thread.sleep(detik * 100);
                         System.out.printf(">"); 
@@ -154,8 +158,14 @@ public class Sim{
                 } catch (InterruptedException e){
                 }
                 finally{
-                    setKekenyangan(-10 * (detik / 30));
-                    setMood(+10 * (detik / 30)); 
+                    System.out.printf("]"); //indikator buat testing
+                    int x = -10 * (detik / 30); 
+                    int y = 10 * (detik / 30);
+                    setKekenyangan(x);
+                    setMood(y); 
+                    System.out.println("\nKunjungan Selesai!");
+                    System.out.println("Kekenyangan : "  + x); 
+                    System.out.println("Mood : +" + y); 
                 } 
             }
         }); 
@@ -187,10 +197,6 @@ public class Sim{
             }); 
             thread.start(); 
         }
-    }
-
-    public void pasangBarang(Furnitur barang){
-        //aku bingung
     }
 
     public void meditasi(Waktu durasi){
