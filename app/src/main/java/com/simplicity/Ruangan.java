@@ -100,20 +100,30 @@ public class Ruangan {
                 }
             }
         }
+        String horizontal = "-";
+        String vertical = "|";
+        for (int y = 0; y < this.panjang; y++) {
+            for (int x = 0; x < maxLength+2; x++) {
+                horizontal = horizontal + "-";
+            }
+        }
+        System.out.println(horizontal + "-");
         for (int y = 0; y < this.panjang; y++) {
             for (int x = 0; x < this.lebar; x++) {
                 String cell = matrixRuangan[x][y];
                 int padding = maxLength - cell.length();
-                System.out.print("| ");
-                for(int z = 0; z < padding/2; z++) {
+                System.out.print(vertical + " ");
+                for (int k=0; k<padding/2; k++) {
                     System.out.print(" ");
                 }
                 System.out.print(cell);
-                for(int z = 0; z < (padding+1)/2; z++) {
+                for (int z = 0; z < (padding+1)/2; z++) {
                     System.out.print(" ");
                 }
             }
-            System.out.println("|");
+            System.out.print(" ");
+            System.out.println(vertical);
+            System.out.println(horizontal + "-");
         }
     }
 
