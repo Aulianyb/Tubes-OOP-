@@ -1,13 +1,15 @@
 package com.simplicity;
 
 public class Testing {
-    public static void main(String[] args){
+    public static void main(String[] args) throws InterruptedException{
         Sim s1 = new Sim("Default"); 
         System.out.println(s1.getPekerjaan().getPekerjaan()); 
         System.out.println(s1.getKekeyangan());
         System.out.println(s1.getMood());
         System.out.println(s1.getUang());
         Waktu w = new Waktu(0, 0, 20); 
+        Waktu w2 = new Waktu(0, 0, 40); 
+
         // s1.olahraga(w);
         Point p1 = new Point(2, 2); 
         Point p2 = new Point(0, 0); 
@@ -16,9 +18,14 @@ public class Testing {
         Rumah r2 = new Rumah(p2, s1.getNama());  
         // s1.berkunjung(r2, w);
 
-        // s1.getInventory().lihatInventory();
+        s1.getInventory().lihatInventory();
         BahanMakanan m = new BahanMakanan("Nasi");
-        s1.beliBarang(m);
+        s1.beliBarang(m, 2);
+        s1.olahraga(w);
+        // s1.olahraga(w2);
+
+        s1.getInventory().lihatInventory();
+
         // s1.getInventory().reduceItem(m, 1); 
         // s1.getInventory().addItem(m, 5);
         // s1.getInventory().addItem(m, 10);
