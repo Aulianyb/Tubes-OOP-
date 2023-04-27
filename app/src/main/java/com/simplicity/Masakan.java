@@ -40,4 +40,14 @@ public class Masakan extends Makanan {
     public List<BahanMakanan> getBahan() {
         return ingredients;
     }
+
+    //Mengecek ketersediaan bahan pada inventory
+    public boolean bahanInInventory(Inventory<ObjekGame> inv, List<BahanMakanan> l) {
+        for (BahanMakanan m : l) {
+            if (!inv.getInventoryMakanan().containsKey(m)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

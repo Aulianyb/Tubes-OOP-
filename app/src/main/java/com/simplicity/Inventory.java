@@ -13,6 +13,10 @@ public class Inventory<T extends ObjekGame> {
         inventoryPeralatan = new HashMap<>(); 
     }
 
+    public Map<T, Integer> getInventoryMakanan() {
+        return inventoryMakanan;
+    }
+
     public void reduceItem(T item, Integer jumlah){
         if (item instanceof Makanan){
             if (inventoryMakanan.containsKey(item)){
