@@ -7,7 +7,7 @@ public class Menu {
     }
 
     public void displayMainMenu(String option) {
-        String[] optionAwal = {"Start Game", "Help", "Exit"};
+        String[] optionAwal = {"Start Game", "Load Game", "Help", "Exit"};
         String[] optionInGame = {
                 "Action",
                 "List Object",
@@ -20,10 +20,11 @@ public class Menu {
                 "Change Sim",
                 "Add Sim",
                 "Help",
+                "Save",
                 "Exit"};
 
         if(option.equals("start")) {
-            System.out.println("Welcome to Sim-Plicity");
+            System.out.println("New Game Menu");
             for(int i = 1; i <= optionAwal.length; i++) {
                 System.out.printf("%d. %s%n",i,optionAwal[i-1]);
             }
@@ -35,25 +36,6 @@ public class Menu {
             }
             System.out.println();
         }
-    }
-
-    public void startGame(Scanner inp) {
-        boolean end = false;
-        displayMainMenu("start");
-        while(!end) {
-            System.out.println("Masukkan Command: ");
-            String cmd = inp.nextLine().toLowerCase();
-            switch (cmd) {
-                case "start game" -> end = true;
-                case "help" -> help("start");
-                case "exit" -> {
-                    end = true;
-                    exit();
-                }
-                default -> System.out.println("Input tidak valid, silahkan masukkan ulang input");
-            }
-        }
-        System.out.print("Masukkan nama lengkap Sim : ");
     }
 
     public void help(String option) {
@@ -112,19 +94,6 @@ public class Menu {
 
     }
 
-    public void changeSim(World world, Scanner inp) {
-        world.displaySims();
-        System.out.println("Pilih sim : ");
-        String namasim = inp.nextLine();
-        for(Sim sim : world.getSims()) {
-            if(sim.getNama().equals(namasim)) {
-                world.setCurrentSim(sim);
-                break;
-            }
-        }
-
-    }
-
     public void listObj() {
 
     }
@@ -137,7 +106,10 @@ public class Menu {
 
     }
 
-    public void inGame(Scanner inp) {
+    public void save() {
+
+    }
+    public void load() {
 
     }
 }
