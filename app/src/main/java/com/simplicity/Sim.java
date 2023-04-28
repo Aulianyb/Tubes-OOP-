@@ -430,4 +430,8 @@ public class Sim{
             System.out.println("Mood : +10");    
         }
     }
+
+    public Rumah getCurrentRumah() {
+        return currentRumah;
+    }
 }

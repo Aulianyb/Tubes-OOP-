@@ -6,46 +6,91 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
+        // Game init
         Menu menu = new Menu();
         Scanner input = new Scanner(System.in);
-        menu.startGame(input);
-        menu.inGame(input);
+        World world = new World(new Waktu(0, 0, 0));
 
-        String namalengkap = input.nextLine();
-        World world = new World(new Waktu(0, 0, 0), new Sim(namalengkap), new Point(0,0) );
-
-        world.addSim(namalengkap);
-        world.addRumah(namalengkap);
+        // Start Game
+        boolean end = false;
+        System.out.println("Welcome to Sim-Plicity");
+        while(!end) {
+            menu.displayMainMenu("start");
+            System.out.println("Masukkan Command: ");
+            String cmd = input.nextLine().toLowerCase();
+            switch (cmd) {
+                case "start game":
+                    // New User
+                    world.addSim(input);
+                    end = true;
+                    break;
+                case "load game":
+                    menu.load();
+                    menu.exit();
+                case "help":
+                    menu.help("start");
+                    break;
+                case "exit":
+                    end = true;
+                    menu.exit();
+                    break;
+                default:
+                    System.out.println("Input tidak valid, silahkan masukkan ulang input");
+                    break;
+            }
+        }
 
         world.displayWorld();
-        boolean end = false;
+
+        // Game interface
+        end = false;
         while(!end) {
+            world.displayCurrentRuangan();
             menu.displayMainMenu("ingame");
             System.out.print("Masukkan Command: ");
             String cmd = input.nextLine().toLowerCase();
             switch (cmd) {
-                case "action" -> menu.action();
-                case "list object" -> menu.listObj();
-                case "go to object" -> menu.goToObj();
-                case "move room" -> menu.moveRoom();
-                case "edit room" -> menu.editRoom();
-                case "view inventory" -> menu.viewInventory(world.getCurrentSim());
-                case "view current location" -> menu.viewCurrentLoc(world);
-                case "view sim info" -> menu.viewSimInfo(world.getCurrentSim());
-                case "change sim" -> menu.changeSim(world,input);
-                case "add sim" -> {
-                    System.out.print("Masukkan nama sim baru : ");
-                    String newsim = input.nextLine();
-                    world.addSim(newsim);
-                    world.addRumah(newsim);
+                case "action":
+                    menu.action();
+                    break;
+                case "list object":
+                    menu.listObj();
+                    break;
+                case "go to object":
+                    menu.goToObj();
+                    break;
+                case "move room":
+                    menu.moveRoom();
+                    break;
+                case "edit room":
+                    menu.editRoom();
+                    break;
+                case "view inventory":
+                    menu.viewInventory(world.getCurrentSim());
+                    break;
+                case "view current location":
+                    menu.viewCurrentLoc(world);
+                    break;
+                case "view sim info":
+                    menu.viewSimInfo(world.getCurrentSim());
+                    break;
+                case "change sim":
+                    world.changeSim(input);
+                    break;
+                case "add sim":
+                    world.addSim(input);
                     world.displayWorld();
-                }
-                case "help" -> menu.help("ingame");
-                case "exit" -> {
+                    break;
+                case "help":
+                    menu.help("ingame");
+                    break;
+                case "exit":
                     end = true;
                     menu.exit();
-                }
-                default -> System.out.println("Input tidak valid, silahkan masukkan ulang input");
+                    break;
+                default:
+                    System.out.println("Input tidak valid, silahkan masukkan ulang input");
+                    break;
             }
         }
     }
