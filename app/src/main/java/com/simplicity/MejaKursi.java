@@ -37,19 +37,15 @@ public class MejaKursi extends Furnitur {
                     for (Makanan ma : inv.keySet()) {
                         if (ma.getNamaObjek().equals(namaMakanan)) {
                             valid = true;
+                            temp = ma;
                             break;
                         }
                     }
 
                     if (valid) {
                         System.out.println("Makan..."); //indikator buat testing
-                        for (Makanan m : inv.keySet()) {
-                            if (m.getNamaObjek().equals(namaMakanan)) {
-                                temp = m;
-                                sim.getInventory().reduceItem(m, 1);
-                            }
-                        }
                         Thread.sleep(30000);
+                        sim.getInventory().reduceItem(temp, 1);
                         sim.setKekenyangan(temp.getNilaiKekenyangan());
                     }
                     else {
