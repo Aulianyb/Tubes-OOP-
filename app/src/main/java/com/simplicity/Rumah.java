@@ -43,7 +43,7 @@ public class Rumah {
         return daftarRuangan.containsKey(lokasi);
     }
 
-    public boolean containsRuangan (String namaRuangan) {
+    public boolean containsRuangan(String namaRuangan) {
         boolean valid;
         valid = false;
         for (Map.Entry<Point, Ruangan> entry : this.daftarRuangan.entrySet()) {
@@ -79,7 +79,7 @@ public class Rumah {
                         locAcuan = entry.getKey();
                     }
                 }
-            } while(!valid);
+            } while (!valid);
         }
         System.out.print("Masukkan nama ruangan yang ingin ditambahkan: ");
         String namaRuangan = input.next();
@@ -87,7 +87,7 @@ public class Rumah {
         String pilihLokasi = input.next();
         if (pilihLokasi.equals("ATAS")) {
             x = locAcuan.getX();
-            y = locAcuan.getY()+1;
+            y = locAcuan.getY() + 1;
             Point locRuangan = new Point(x, y);
             if (!isAvailable(locRuangan)) {
                 Ruangan ruangan = new Ruangan(namaRuangan);
@@ -97,7 +97,7 @@ public class Rumah {
             }
         } else if (pilihLokasi.equals("BAWAH")) {
             x = locAcuan.getX();
-            y = locAcuan.getY()-1;
+            y = locAcuan.getY() - 1;
             Point locRuangan = new Point(x, y);
             if (!isAvailable(locRuangan)) {
                 Ruangan ruangan = new Ruangan(namaRuangan);
@@ -106,7 +106,7 @@ public class Rumah {
                 valid = false;
             }
         } else if (pilihLokasi.equals("KANAN")) {
-            x = locAcuan.getX()+1;
+            x = locAcuan.getX() + 1;
             y = locAcuan.getY();
             Point locRuangan = new Point(x, y);
             if (!isAvailable(locRuangan)) {
@@ -116,7 +116,7 @@ public class Rumah {
                 valid = false;
             }
         } else if (pilihLokasi.equals("KIRI")) {
-            x = locAcuan.getX()-1;
+            x = locAcuan.getX() - 1;
             y = locAcuan.getY();
             Point locRuangan = new Point(x, y);
             if (!isAvailable(locRuangan)) {
@@ -161,5 +161,9 @@ public class Rumah {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public Ruangan getCurrRuangan() {
+        return currRuangan;
     }
 }
