@@ -3,7 +3,7 @@ import java.util.*;
 import java.lang.Math;
 
 public class Kompor extends Furnitur {
-    List<Masakan> menu;
+    List<Masakan> menu = new ArrayList<Masakan>();
 
     //Initializing field
     {
@@ -19,7 +19,6 @@ public class Kompor extends Furnitur {
         super(namaObjek);
         setValidAction(new Status());
         getValidAction().setStatus("memasak");
-        menu = new ArrayList<Masakan>();
     }
 
     //add masakan to list menu
