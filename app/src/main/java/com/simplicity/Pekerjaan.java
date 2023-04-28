@@ -53,7 +53,7 @@ public class Pekerjaan {
                     } catch(InterruptedException e){
 
                     } finally{
-                        sim.setKekeyangan(-10 * (detik / 30));
+                        sim.setKekenyangan(-10 * (detik / 30));
                         sim.setMood(-10 * (detik / 30));
                         sim.setUang(((detik / 60) / 4) * gaji);
                     }

@@ -19,7 +19,7 @@ public class Toilet extends Furnitur {
                 } catch (InterruptedException e){
                 }
                 finally{
-                    sim.setKekeyangan(-20);
+                    sim.setKekenyangan(-20);
                     sim.setMood(10);
                 }
             }
