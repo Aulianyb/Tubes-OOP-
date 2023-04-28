@@ -26,6 +26,7 @@ public class MejaKursi extends Furnitur {
                     System.out.println("Makanan yang terdapat dalam inventory:");
                     for (Makanan m : inv.keySet()) {
                         System.out.println(i+". "+m.getNamaObjek());
+                        i++;
                     }
 
                     //Input makanan yang ingin dimakan
