@@ -7,6 +7,7 @@ public class Waktu {
     private static int menit;
     private static int detik;
     private static HashMap <Kiriman, Integer> barangDikirim = new HashMap<Kiriman, Integer>();
+    private static HashMap <Rumah, Integer> ongoingUpgrade = new HashMap<Rumah, Integer>(); 
 
     public Waktu(int jam, int menit, int detik) {
         jam = 0;
@@ -65,12 +66,10 @@ public class Waktu {
         detik += durasi % 60;
         menit += durasi / 60; 
         if (!barangDikirim.isEmpty()){
-            System.out.println("test2"); 
             barangDikirim.forEach((key, value) -> {
                 int temp = value - durasi; 
                 if (temp <= 0){
                     key.getSim().terimaBarang(key.getBarang(), key.getJumlah());
-                    // barangDikirim.remove(key, value); 
                 }
                 barangDikirim.put(key, temp); 
             });
@@ -83,11 +82,33 @@ public class Waktu {
                 }
             }
         }
+
+        if (!ongoingUpgrade.isEmpty()){
+            ongoingUpgrade.forEach((key, value) -> {
+                int temp = value - durasi; 
+                if (temp <= 0){
+                    key.implementUpgrade();
+                }
+                ongoingUpgrade.put(key, temp); 
+            });
+            Iterator <Map.Entry<Rumah, Integer>> iterator = ongoingUpgrade.entrySet().iterator(); 
+
+            while (iterator.hasNext()){
+                Map.Entry<Rumah, Integer> entry  = iterator.next ();
+                if (entry.getValue() <= 0){
+                    iterator.remove(); 
+                }
+            }
+        }
     }
 
     public static void addBeli(BisaDibeli barang, Sim sim, int jumlah, Integer duration){
         Kiriman kiriman = new Kiriman(barang, sim, jumlah); 
         barangDikirim.put(kiriman, duration); 
+    }
+
+    public static void addUpgrade(Rumah rumah){
+        ongoingUpgrade.put(rumah, 18 * 60); 
     }
 
     public static void displayPengiriman(){
@@ -102,6 +123,21 @@ public class Waktu {
                     System.out.println(key.getBarang().getNamaObjek() + " : " + value + " detik"); 
                 }
             });    
+        }
+    }
+
+    public static void displayUpgrade(){
+        System.out.println("=================="); 
+        System.out.println("UPGRADE RUMAH"); 
+        System.out.println("==================");
+        if (ongoingUpgrade.isEmpty()){
+            System.out.println("Tidak ada upgrade rumah yang sedang berjalan saat ini"); 
+        }else{
+            ongoingUpgrade.forEach((key, value)->{
+                if(key.getOwner() == World.getCurrentSim().getNama()){
+                    System.out.println("Rumah " + key.getOwner() + " : " + (value / 60) + " menit " + (value % 60) + " detik"); 
+                }
+            });
         }
     }
 }
