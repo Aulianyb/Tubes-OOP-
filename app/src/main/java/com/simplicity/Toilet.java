@@ -18,7 +18,7 @@ public class Toilet extends Furnitur {
                     Thread.sleep(10000);
                     sim.setKekenyangan(-20);
                     sim.setMood(10);
-                    Waktu.timePass(10000);
+                    Waktu.timePass(10);
                 } catch (InterruptedException e){
                 }
             }
