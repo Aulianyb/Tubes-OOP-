@@ -47,6 +47,7 @@ public class MejaKursi extends Furnitur {
                         Thread.sleep(30000);
                         sim.getInventory().reduceItem(temp, 1);
                         sim.setKekenyangan(temp.getNilaiKekenyangan());
+                        Waktu.timePass(30000);
                     }
                     else {
                         System.out.println("Makanan tidak terdapat pada inventory.");

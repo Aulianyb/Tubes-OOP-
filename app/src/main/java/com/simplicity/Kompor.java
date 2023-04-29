@@ -22,7 +22,7 @@ public class Kompor extends Furnitur {
     }
 
     //add masakan to list menu
-    public void addMenu(List<Masakan> l, Masakan m) {
+    private void addMenu(List<Masakan> l, Masakan m) {
         l.add(m);
     }
 
@@ -95,11 +95,13 @@ public class Kompor extends Furnitur {
                     @Override
                     public void run() {
                         try {
-                            Thread.sleep(Math.round(1.5 * (masakan.getNilaiKekenyangan())));
+                            int durasiMasak = (int)Math.round(1.5 * (masakan.getNilaiKekenyangan())) * 1000;
+                            Thread.sleep(durasiMasak);
                             for (int i = 0; i < masakan.getBahan().size(); i++) {
                                 sim.getInventory().reduceItem(masakan.getBahan().get(i), 1);
                             }
                             sim.getInventory().addItem(masakan, 1);
+                            Waktu.timePass(durasiMasak);
                         } catch (InterruptedException e) {
                             System.out.println("Proses memasak dihentikan. Bahan makanan dikembalikan ke Inventory...");
                         }
