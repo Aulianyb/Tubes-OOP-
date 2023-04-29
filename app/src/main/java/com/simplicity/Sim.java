@@ -422,4 +422,8 @@ public class Sim{
     public Rumah getCurrentRumah() {
         return currentRumah;
     }
+
+    public void setCurrentRumah(Rumah rumah) {
+        currentRumah = rumah;
+    }
 }
