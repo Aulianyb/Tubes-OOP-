@@ -2,17 +2,8 @@ package com.simplicity;
 
 public class Testing {
     public static void main(String[] args) throws InterruptedException{
-        // s2.setMood(100);
-        // System.out.println(s1.getPekerjaan().getPekerjaan());
-        // System.out.println("STATUS S2");
-        // System.out.println(s1.getKesehatan());
-        // System.out.println(s2.getKekeyangan());
-        // System.out.println(s2.getMood());
-        // System.out.println(s2.getUang());
-
-        Waktu w = new Waktu(0, 0, 120); 
-        Waktu w2 = new Waktu(0, 0, 40); 
-
+        Waktu w = new Waktu(0, 0, 0); 
+        Menu m = new Menu(); 
         // s1.olahraga(w);
         Point p1 = new Point(30, 30); 
         Point p2 = new Point(0, 0); 
@@ -21,48 +12,16 @@ public class Testing {
         Rumah r2 = new Rumah(p2);  
         Sim s1 = new Sim("Default", r1); 
         Sim s2 = new Sim("Kawan", r2); 
-        System.out.println("STATUS S1");
-        System.out.println(s1.getKesehatan());
-        System.out.println(s1.getKekeyangan());
-        System.out.println(s1.getMood());
-        System.out.println(s1.getUang());
-        // s1.berkelahi(s2);
-        // // s1.monolog(w);
-        // // s1.lelucon(s2);
-        s1.berkunjung(r2);
+        m.viewSimInfo(s1);
 
-        System.out.println("STATUS S1");
-        System.out.println(s1.getKesehatan());
-        System.out.println(s1.getKekeyangan());
-        System.out.println(s1.getMood());
-        System.out.println(s1.getUang());
-        // System.out.println("STATUS S2");
-        // System.out.println(s2.getKekeyangan());
-        // System.out.println(s2.getMood());
-        // System.out.println(s2.getUang());
-  
+        w.displayWaktu();
+        // BahanMakanan b = new BahanMakanan("Nasi")
+        // s1.beliBarang(null, 0);
+        s1.olahraga(20);
+        w.displayWaktu();
 
-        // s1.getInventory().lihatInventory();
-        // BahanMakanan m = new BahanMakanan("Nasi");
-        // s1.beliBarang(m, 2);
-        // // s1.olahraga(w);
-        // s1.meditasi(w);
+        m.viewSimInfo(s1);
 
-        // s1.getInventory().lihatInventory();
-
-        // s1.getInventory().reduceItem(m, 1); 
-        // s1.getInventory().addItem(m, 5);
-        // s1.getInventory().addItem(m, 10);
-        // s1.getInventory().lihatInventory();
-        // s1.getInventory().reduceItem(m, 5); 
-        // s1.getInventory().lihatInventory();
-        
-        // Toilet t = new Toilet("toilet");
-        // s1.getInventory().addItem(t, 10); 
-        // s1.getInventory().lihatInventory();
-        // s1.getInventory().reduceItem(t, 5);
-        // s1.getInventory().lihatInventory();
-        // s1.getInventory().reduceItem(t, 7);
     
     }
         

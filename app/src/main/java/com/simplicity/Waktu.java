@@ -2,61 +2,71 @@ package com.simplicity;
 import java.util.*;
 
 public class Waktu {
-    private int hari; 
-    private int jam;
-    private int menit;
-    private int detik;
+    private static int hari; 
+    private static int jam;
+    private static int menit;
+    private static int detik;
+    private static HashMap <BisaDibeli, Integer> pekerjaanAktif = new HashMap<BisaDibeli, Integer>();
 
     public Waktu(int jam, int menit, int detik) {
-        this.jam = jam;
-        this.menit = menit;
-        this.detik = detik;
+        jam = 0;
+        menit = 0;
+        detik = 0;
         hari = 0; 
     }
 
     public int getJam() {
-        return this.jam;
+        return jam;
     }    
 
     public int getMenit() {
-        return this.menit;
+        return menit;
     }
 
     public int getDetik() {
-        return this.detik;
+        return detik;
     }
 
-    public void setJam(int jam) {
-        this.jam = jam;
+    public void setJam(int jam_input) {
+        jam = jam_input;
     }
 
-    public void setMenit(int menit) {
-        this.menit = menit;
+    public void setMenit(int menit_input) {
+        menit = menit_input;
     }
 
-    public void setDetik (int detik) {
-        this.detik = detik;
+    public void setDetik (int detik_input) {
+        detik = detik_input;
     }
 
     public void displayWaktu() {
-        if (this.jam<10) {
-            System.out.print("0" + this.jam);
+        if (jam<10) {
+            System.out.print("0" + jam);
         } else {
-            System.out.print(this.jam);
+            System.out.print(jam);
         }
-        if (this.menit<10) {
-            System.out.print(":0" + this.menit);
+        if (menit<10) {
+            System.out.print(":0" + menit);
         } else {
-            System.out.print(":" + this.menit);
+            System.out.print(":" + menit);
         }
-        if (this.detik<10) {
-            System.out.print(":0" + this.detik);
+        if (detik<10) {
+            System.out.print(":0" + detik);
         } else {
-            System.out.print(":" + this.detik);
+            System.out.print(":" + detik);
         }
     }
     
     public int toDetik() {
-        return((this.jam*3600)+(this.menit*60)+this.detik);
+        return((jam*3600)+(menit*60)+detik);
+    }
+
+    public static void timePass(int durasi){
+        detik += durasi % 60;
+        menit += durasi / 60; 
+    }
+
+    public static addBeli(BisaDibeli barang, Integer duration){
+        pekerjaanAktif.put(barang, duration); 
     }
 }

@@ -108,8 +108,7 @@ public class Sim{
         }
     }
 
-    public void olahraga(Waktu durasi){
-        detik=durasi.toDetik();
+    public void olahraga(int detik){
         if (detik % 20 == 0){
             thread = new Thread(new Runnable(){
                 public void run(){
@@ -141,6 +140,7 @@ public class Sim{
         } else{
             System.out.println("Durasi Harus kelipatan 20!"); 
         }
+        Waktu.timePass(detik);
     }
 
     public void berkunjung(Rumah tujuan){
@@ -183,24 +183,28 @@ public class Sim{
             setUang(-1 * barang.getHarga() * jumlah);
             int x = (randomizer.nextInt(5) + 1) * 30; 
             System.out.println(barang.getNamaObjek() + " sedang dalam proses pengiriman..");
-            thread = new Thread(new Runnable(){
-                public void run(){
-                    try{
-                        Thread.sleep(x * 1000);
-                    }catch(InterruptedException e){
+            // thread = new Thread(new Runnable(){
+            //     public void run(){
+            //         try{
+            //             Thread.sleep(x * 1000);
+            //         }catch(InterruptedException e){
 
-                    }finally{
-                        System.out.println(barang.getNamaObjek() + " sudah sampai ditujuan!");
-                        inventory.addItem((ObjekGame) barang, jumlah);
-                    }
-                }
-            }); 
-            thread.start(); 
+            //         }finally{
+            //             System.out.println(barang.getNamaObjek() + " sudah sampai ditujuan!");
+            //             inventory.addItem((ObjekGame) barang, jumlah);
+            //         }
+            //     }
+            // }); 
+            // thread.start(); 
+            Waktu.addOngoing("beli barang" + barang.getNamaObjek(), x);
         }
     }
 
-    public void meditasi(Waktu durasi){
-        detik=durasi.toDetik();
+    public void terimaBarang(BisaDibeli barang){
+        
+    }
+
+    public void meditasi(int durasi){
         if (detik % 30 == 0){
             thread = new Thread(new Runnable(){
                 public void run(){
@@ -271,8 +275,7 @@ public class Sim{
         } 
     }
 
-    public void nyanyi(Waktu durasi){
-        detik=durasi.toDetik();
+    public void nyanyi(int durasi){
         if (detik % 30 == 0){
             thread = new Thread(new Runnable(){
                 public void run(){
@@ -300,8 +303,7 @@ public class Sim{
         }
     }
 
-    public void menari(Waktu durasi){
-        detik = durasi.getDetik(); 
+    public void menari(int durasi){
         if (detik % 10 == 0){
             thread = new Thread(new Runnable(){
                 public void run(){
@@ -381,8 +383,7 @@ public class Sim{
         thread.run();
     }
 
-    public void monolog(Waktu durasi){
-        detik = durasi.getDetik(); 
+    public void monolog(int durasi){
         if (detik % 30 == 0){
             thread = new Thread(new Runnable(){
                 public void run(){
