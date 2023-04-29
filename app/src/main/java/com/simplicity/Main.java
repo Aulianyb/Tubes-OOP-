@@ -67,7 +67,7 @@ public class Main {
                     menu.editRoom();
                     break;
                 case "view inventory":
-                    menu.viewInventory(world);
+                    menu.viewInventory();
                     break;
                 case "view current location":
                     menu.viewCurrentLoc(world);

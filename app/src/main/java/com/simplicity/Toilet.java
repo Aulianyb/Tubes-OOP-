@@ -16,11 +16,10 @@ public class Toilet extends Furnitur {
                 try {
                     System.out.println("Buang Air..."); //indikator buat testing
                     Thread.sleep(10000);
-                } catch (InterruptedException e){
-                }
-                finally{
                     sim.setKekenyangan(-20);
                     sim.setMood(10);
+                    Waktu.timePass(10000);
+                } catch (InterruptedException e){
                 }
             }
         });

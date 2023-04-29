@@ -1,7 +1,5 @@
 package com.simplicity;
 import java.util.*;
-//aku gatau kenapa ngebug kalau aku gak kasih ini :V
-//jadi aku kasih aja
 
 public class Inventory<T extends ObjekGame> {
     //Makanan : objectnya, Integer : jumlah
