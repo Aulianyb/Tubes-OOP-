@@ -6,6 +6,9 @@ public class Rumah {
     private Ruangan currRuangan;
     private Point lokasi;
     private String owner;
+    private String namaRuangan; 
+    private Point locRuangan; 
+    private String ongoingUpgrade; 
 
     public Rumah(Point lokasi) {
         Point defaultPoint = new Point(0, 0);
@@ -78,58 +81,53 @@ public class Rumah {
             } while (!valid);
         }
         System.out.print("Masukkan nama ruangan yang ingin ditambahkan: ");
-        String namaRuangan = input.next();
+        namaRuangan = input.next();
         System.out.print("Masukkan lokasi ruangan (ATAS/BAWAH/KANAN/KIRI): ");
-        String pilihLokasi = input.next();
-        if (pilihLokasi.equals("ATAS")) {
+        ongoingUpgrade = input.next();
+        if (ongoingUpgrade.equals("ATAS")) {
             x = locAcuan.getX();
             y = locAcuan.getY() + 1;
-            Point locRuangan = new Point(x, y);
-            if (!isAvailable(locRuangan)) {
-                Ruangan ruangan = new Ruangan(namaRuangan);
-                daftarRuangan.put(locRuangan, ruangan);
-            } else {
+            locRuangan = new Point(x, y);
+            if (isAvailable(locRuangan)) {
                 valid = false;
             }
-        } else if (pilihLokasi.equals("BAWAH")) {
+        } else if (ongoingUpgrade.equals("BAWAH")) {
             x = locAcuan.getX();
             y = locAcuan.getY() - 1;
-            Point locRuangan = new Point(x, y);
-            if (!isAvailable(locRuangan)) {
-                Ruangan ruangan = new Ruangan(namaRuangan);
-                daftarRuangan.put(locRuangan, ruangan);
-            } else {
+            locRuangan = new Point(x, y);
+            if (isAvailable(locRuangan)) {
                 valid = false;
             }
-        } else if (pilihLokasi.equals("KANAN")) {
+        } else if (ongoingUpgrade.equals("KANAN")) {
             x = locAcuan.getX() + 1;
             y = locAcuan.getY();
-            Point locRuangan = new Point(x, y);
-            if (!isAvailable(locRuangan)) {
-                Ruangan ruangan = new Ruangan(namaRuangan);
-                daftarRuangan.put(locRuangan, ruangan);
-            } else {
+            locRuangan = new Point(x, y);
+            if (isAvailable(locRuangan)) {
                 valid = false;
-            }
-        } else if (pilihLokasi.equals("KIRI")) {
+            } 
+        } else if (ongoingUpgrade.equals("KIRI")) {
             x = locAcuan.getX() - 1;
             y = locAcuan.getY();
-            Point locRuangan = new Point(x, y);
-            if (!isAvailable(locRuangan)) {
-                Ruangan ruangan = new Ruangan(namaRuangan);
-                daftarRuangan.put(locRuangan, ruangan);
-            } else {
+            locRuangan = new Point(x, y);
+            if (isAvailable(locRuangan)) {
                 valid = false;
             }
         } else {
             valid = false;
         }
         if (valid) {
-            System.out.println("Ruangan berhasil ditambahkan!");
-            this.displayDaftarRuangan();
+            System.out.println("Proses upgrade rumah dimulai!");
+            Waktu.addUpgrade(this);
         } else {
             System.out.println("Ruangan tidak bisa ditambahkan!");
         }
+    }
+
+    public void implementUpgrade(){
+        Ruangan ruangan = new Ruangan(namaRuangan);
+        daftarRuangan.put(locRuangan, ruangan);
+        System.out.println("Ruangan berhasil ditambahkan!");
+        this.displayDaftarRuangan();
     }
 
     public void pindahRuangan() {
