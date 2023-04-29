@@ -163,6 +163,9 @@ public class Menu {
         } else {
             int durasi;
             switch(actioninput) {
+                case "upgrade rumah" :
+                    upgradeHouse(world);
+                    break;
                 case "kerja" :
                     world.getCurrentSim();
                     break;

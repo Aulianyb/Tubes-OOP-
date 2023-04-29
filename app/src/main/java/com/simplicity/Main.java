@@ -22,7 +22,7 @@ public class Main {
             switch (cmd) {
                 case "start game":
                     // New User
-                    world.addSim(input);
+                    world.addSim(input,"init");
                     end = true;
                     break;
                 case "load game":
@@ -79,7 +79,7 @@ public class Main {
                     world.changeSim(input);
                     break;
                 case "add sim":
-                    world.addSim(input);
+                    world.addSim(input,"");
                     world.displayWorld();
                     break;
                 case "help":

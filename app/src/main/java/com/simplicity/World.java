@@ -48,7 +48,7 @@ public class World {
         System.out.println();
     }
 
-    public void addSim(Scanner inp) {
+    public void addSim(Scanner inp, String conditional) {
         boolean end = false;
         List<String> names = new ArrayList<>();
         for(Sim sim : getSims()) {
@@ -63,6 +63,9 @@ public class World {
             } else {
                 Rumah rumah = addRumah(namaLengkap);
                 Sim sim = new Sim(namaLengkap, rumah);
+                if(conditional.equals("init")) {
+                    setCurrentSim(sim);
+                }
                 setCurrentSim(sim);
                 sims.add(sim);
                 end = true;
