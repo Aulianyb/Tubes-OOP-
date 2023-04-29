@@ -1,11 +1,11 @@
 package com.simplicity;
 
-public class BarangDikirim {
+public class Kiriman {
     private BisaDibeli barang;
     private Sim sim;
     private int jumlah;
 
-    public BarangDikirim(BisaDibeli barang, Sim sim, int jumlah){
+    public Kiriman(BisaDibeli barang, Sim sim, int jumlah){
         this.barang = barang;
         this.sim = sim;
         this.jumlah = jumlah;

@@ -137,10 +137,10 @@ public class Sim{
                 }
             }); 
             thread.run();   
+            Waktu.timePass(detik);
         } else{
             System.out.println("Durasi Harus kelipatan 20!"); 
         }
-        Waktu.timePass(detik);
     }
 
     public void berkunjung(Rumah tujuan){
@@ -162,7 +162,8 @@ public class Sim{
                     setMood(y); 
                     System.out.println("\nKunjungan Selesai!");
                     System.out.println("Kekenyangan : "  + x); 
-                    System.out.println("Mood : +" + y);                  
+                    System.out.println("Mood : +" + y);  
+                    Waktu.timePass(detik);                
                 } catch (InterruptedException e){
                 }
             }
@@ -219,6 +220,7 @@ public class Sim{
                         setMood(x); 
                         System.out.println("\nMeditasi Selesai!");                  
                         System.out.println("Mood : +" + x);   
+                        Waktu.timePass(detik);
                     } catch (InterruptedException e){
                     }
                 }
@@ -261,7 +263,8 @@ public class Sim{
                             setMood(-10);
                             System.out.println("Mood : -10");
                         }                  
-                        System.out.println("Kesehatan : -10");              
+                        System.out.println("Kesehatan : -10");       
+                        Waktu.timePass(10);       
                     } catch (InterruptedException e){
                     }
                 }
@@ -286,6 +289,7 @@ public class Sim{
                         setMood(x); 
                         System.out.println("\nBernyanyi Selesai!");                  
                         System.out.println("Mood : +" + x);         
+                        Waktu.timePass(detik);
                     } catch (InterruptedException e){
                     }
                 }
@@ -317,6 +321,7 @@ public class Sim{
                             System.out.println("Kesehatan : -5");    
                             setKesehatan(-5);    
                         }          
+                        Waktu.timePass(detik);
                     } catch (InterruptedException e){
                     }
                 }
@@ -365,6 +370,7 @@ public class Sim{
                     } else{
                         System.out.println("Mood : " + diff);   
                     }
+                    Waktu.timePass(detik);
                 } catch (InterruptedException e){
                 }
             }
@@ -393,6 +399,7 @@ public class Sim{
                             System.out.println("Kesehatan : -10");    
                             setKesehatan(-10);    
                         }                
+                        Waktu.timePass(detik);
                     } catch (InterruptedException e){
                     }
                 }
