@@ -65,13 +65,28 @@ public class Waktu {
         detik += durasi % 60;
         menit += durasi / 60; 
         if (!barangDikirim.isEmpty()){
+            System.out.println("test2"); 
             barangDikirim.forEach((key, value) -> {
-                value -= durasi; 
+                int temp = value - durasi; 
+                if (temp <= 0){
+                    barangDikirim.remove(key, value); 
+
+                }else{
+                    barangDikirim.put(key, temp); 
+                }
             });
+
         }
     }
 
     public static void addBeli(BisaDibeli barang, Integer duration){
         barangDikirim.put(barang, duration); 
+    }
+
+    public static void displayPengiriman(){
+        System.out.println("BARANG DALAM PENGIRIMAN"); 
+        barangDikirim.forEach((key, value)->{
+            System.out.println(key.getNamaObjek() + " : " + value + " detik"); 
+        });   
     }
 }
