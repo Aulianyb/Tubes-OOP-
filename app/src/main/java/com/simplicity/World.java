@@ -95,7 +95,7 @@ public class World {
     }
 
     public Rumah getCurrentRumah() {
-        return daftarRumah.get(currentLoc);
+        return getCurrentSim().getCurrentRumah();
     }
 
     public void displaySims() {
@@ -144,5 +144,9 @@ public class World {
         else {
             System.out.println("Tidak ada sim lain!");
         }
+    }
+
+    public Furnitur getCurrFurnitur() {
+        return getCurrentRumah().getCurrRuangan().getCurrFurnitur();
     }
 }

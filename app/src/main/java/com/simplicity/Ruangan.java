@@ -8,6 +8,7 @@ public class Ruangan {
     private final int lebar = 6;
     private HashMap<Point, Furnitur> daftarObjek = new HashMap<Point, Furnitur>(); // Point objek mengarah ke titik paling atas kiri objek
 
+    private Furnitur currFurnitur;
     public Ruangan() {
         this.namaRuangan = "Default";
         this.matrixRuangan = new String[panjang][lebar];
@@ -53,6 +54,7 @@ public class Ruangan {
             }
         }
         daftarObjek.put(locMejaKursi, mejaKursi);
+        currFurnitur = null;
     }
 
     public Ruangan(String namaRuangan) {
@@ -120,10 +122,30 @@ public class Ruangan {
     }
 
     public void move() {
-
+        Scanner input = new Scanner(System.in);
+        System.out.println("Available Object :");
+        displayDaftarObjek();
+        System.out.println("Pilih objek yang ingin dituju :");
+        String obj = input.nextLine();
+        boolean found = false;
+        for(Furnitur furnitur : daftarObjek.values()) {
+            if(obj.equals(furnitur.getNamaObjek())) {
+                currFurnitur = furnitur;
+                found = true;
+            }
+        }
+        if(found) {
+            System.out.printf("Current object : %s%n", currFurnitur.getNamaObjek());
+        } else {
+            System.out.println("Objek tidak ada diruangan ini!!");
+        }
     }
 
     public void removeObjek() {
 
+    }
+
+    public Furnitur getCurrFurnitur() {
+        return currFurnitur;
     }
 }
