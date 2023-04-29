@@ -1,5 +1,7 @@
 package com.simplicity;
 
+import org.checkerframework.checker.units.qual.K;
+
 public class Testing {
     public static void main(String[] args) throws InterruptedException{
         World w = new World(new Waktu());
@@ -14,17 +16,17 @@ public class Testing {
         w.setCurrentSim(s1);
         m.viewSimInfo(w);
 
-        Toilet accessedFurnitur;
-
 
         w.getWaktu().displayWaktu();
         BahanMakanan b = new BahanMakanan("Nasi");
-        BahanMakanan b2 = new BahanMakanan("Sapi");
+        BahanMakanan b2 = new BahanMakanan("Ayam");
+        BahanMakanan b3 = new BahanMakanan("Sapi");
 
         Kiriman bb = new Kiriman(b, s1, 10);
 
         s1.beliBarang(b, 1);
         s1.beliBarang(b2, 2);
+        s1.beliBarang(b3, 3);
 
         Waktu.displayPengiriman();
 //        s1.olahraga(20);
@@ -36,11 +38,21 @@ public class Testing {
         //w.setCurrFurnitur(w.getDaftarRumah().get(point).getDaftarRuangan().get(point).getDaftarObjek().get(new Point(5, 5)));
         w.setCurrFurnitur(w.addRumah("s1").getCurrRuangan().getDaftarObjek().get(new Point(5, 5)));
 
+        Toilet accessedFurnitur2;
+        accessedFurnitur2 = (Toilet) w.getCurrFurnitur();
+        accessedFurnitur2.buangAir(s1);
+        m.viewSimInfo(w);
+        s1.getInventory().lihatInventory();
 
-        accessedFurnitur = (Toilet)w.getCurrFurnitur();
-        accessedFurnitur.buangAir(s1);
+        w.setCurrFurnitur(w.getCurrentRumah().getCurrRuangan().getDaftarObjek().get(new Point(1, 0)));
+
+        Kompor accessedFurnitur;
+
+        accessedFurnitur = (Kompor) w.getCurrFurnitur();
+        accessedFurnitur.masak(s1);
         m.viewSimInfo(w);
         w.getWaktu().displayWaktu();
+        s1.getInventory().lihatInventory();
     }
         
 }

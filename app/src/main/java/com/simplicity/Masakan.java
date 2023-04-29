@@ -41,13 +41,37 @@ public class Masakan extends Makanan {
         return ingredients;
     }
 
-    //Mengecek ketersediaan bahan pada inventory
-    public boolean bahanInInventory(Inventory<ObjekGame> inv, List<BahanMakanan> l) {
+    public String listBahan(List<BahanMakanan> l) {
+        int i = 0;
+
+        String s = "";
+        s += "[";
         for (BahanMakanan m : l) {
-            if (!inv.getInventoryMakanan().containsKey(m)) {
-                return false;
+            s += m.getNamaObjek();
+            if (i != l.size()-1) {
+                s += ", ";
+            }
+            i++;
+        }
+        s += "]";
+
+        return s;
+    }
+
+    //Mengecek ketersediaan bahan pada inventory
+    public boolean bahanInInventory(Sim sim, List<BahanMakanan> l) {
+        for (BahanMakanan m : l) {
+            if (sim.getInventory().getInventoryMakanan().containsKey((ObjekGame)m)) {
+                System.out.println(m.getNamaObjek());
+                //return false;
             }
         }
+//        for (int i = 0; i < l.size(); i++) {
+//            if (sim.getInventory().getInventoryMakanan().containsKey(l.get(i))) {
+//                System.out.println(i);
+//                //return false;
+//            }
+//        }
         return true;
     }
 }

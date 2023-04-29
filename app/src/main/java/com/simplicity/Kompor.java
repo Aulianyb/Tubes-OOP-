@@ -36,7 +36,7 @@ public class Kompor extends Furnitur {
         for (int k = 0; k < 4; k++) {
             System.out.print(" ");
         }
-        System.out.print("|");
+        System.out.print(" |");
         for (int k = 0; k < 13; k++) {
             System.out.print(" ");
         }
@@ -54,8 +54,8 @@ public class Kompor extends Furnitur {
                 System.out.print(" ");
             }
             System.out.print("| ");
-            System.out.print(m.getBahan().toString());
-            for (int j = 0; j < 30 - m.getBahan().toString().length(); j++) {
+            System.out.print(m.listBahan(m.getBahan()));
+            for (int j = 0; j < 30 - m.listBahan(m.getBahan()).length(); j++) {
                 System.out.print(" ");
             }
             System.out.print("|");
@@ -88,25 +88,27 @@ public class Kompor extends Furnitur {
             Masakan masakan = new Masakan(input);
 
             //Mengecek bahanMakanan pada inventory
-            if (!masakan.bahanInInventory(sim.getInventory(), masakan.getBahan())) {
+            if (!masakan.bahanInInventory(sim, masakan.getBahan())) {
                 System.out.println("Bahan tidak tersedia pada inventory!");
             } else {
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
+                            System.out.println("Memasak...");
                             int durasiMasak = (int)Math.round(1.5 * (masakan.getNilaiKekenyangan()));
                             Thread.sleep(durasiMasak * 1000);
                             for (int i = 0; i < masakan.getBahan().size(); i++) {
-                                sim.getInventory().reduceItem(masakan.getBahan().get(i), 1);
+                                sim.getInventory().reduceItem((Makanan)masakan.getBahan().get(i), 1);
                             }
-                            sim.getInventory().addItem(masakan, 1);
+                            sim.getInventory().addItem((Makanan)masakan, 1);
                             Waktu.timePass(durasiMasak);
                         } catch (InterruptedException e) {
                             System.out.println("Proses memasak dihentikan. Bahan makanan dikembalikan ke Inventory...");
                         }
                     }
                 });
+                thread.run();
             }
         }
     }
