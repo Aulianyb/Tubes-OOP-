@@ -155,9 +155,6 @@ public class Sim{
                         Thread.sleep(detik * 100);
                         System.out.printf(">"); 
                     }
-                } catch (InterruptedException e){
-                }
-                finally{
                     System.out.printf("]"); //indikator buat testing
                     int x = -10 * (detik / 30); 
                     int y = 10 * (detik / 30);
@@ -165,8 +162,9 @@ public class Sim{
                     setMood(y); 
                     System.out.println("\nKunjungan Selesai!");
                     System.out.println("Kekenyangan : "  + x); 
-                    System.out.println("Mood : +" + y); 
-                } 
+                    System.out.println("Mood : +" + y);                  
+                } catch (InterruptedException e){
+                }
             }
         }); 
         thread.run(); 
@@ -200,8 +198,9 @@ public class Sim{
         }
     }
 
-    public void terimaBarang(BisaDibeli barang){
-
+    public void terimaBarang(BisaDibeli barang, int jumlah){
+        System.out.println(barang.getNamaObjek() + " sudah sampai ditujuan!");
+        inventory.addItem((ObjekGame) barang, jumlah);
     }
 
     public void meditasi(int durasi){
@@ -216,14 +215,12 @@ public class Sim{
                             System.out.printf(">"); 
                         }
                         System.out.printf("]"); 
-                    } catch (InterruptedException e){
-                    }
-                    finally{
                         int x = 10 * (detik / 30); 
                         setMood(x); 
                         System.out.println("\nMeditasi Selesai!");                  
-                        System.out.println("Mood : +" + x);                      
-                    } 
+                        System.out.println("Mood : +" + x);   
+                    } catch (InterruptedException e){
+                    }
                 }
             }); 
             thread.run();   
@@ -249,9 +246,6 @@ public class Sim{
                             System.out.printf(">"); 
                         }
                         System.out.printf("]"); 
-                    } catch (InterruptedException e){
-                    }
-                    finally{
                         int win = randomizer.nextInt(2); 
                         setKesehatan(-10);
                         kawan.setKesehatan(-10); 
@@ -267,8 +261,9 @@ public class Sim{
                             setMood(-10);
                             System.out.println("Mood : -10");
                         }                  
-                        System.out.println("Kesehatan : -10");                      
-                    } 
+                        System.out.println("Kesehatan : -10");              
+                    } catch (InterruptedException e){
+                    }
                 }
             });
             thread.run(); 
@@ -287,14 +282,12 @@ public class Sim{
                             System.out.printf(">"); 
                         }
                         System.out.printf("]"); 
-                    } catch (InterruptedException e){
-                    }
-                    finally{
                         int x = 20 * (detik / 30); 
                         setMood(x); 
                         System.out.println("\nBernyanyi Selesai!");                  
-                        System.out.println("Mood : +" + x);                      
-                    } 
+                        System.out.println("Mood : +" + x);         
+                    } catch (InterruptedException e){
+                    }
                 }
             }); 
             thread.run();   
@@ -315,9 +308,6 @@ public class Sim{
                             System.out.printf(">"); 
                         }
                         System.out.printf("]"); 
-                    } catch (InterruptedException e){
-                    }
-                    finally{
                         int x = 20 * (detik / 10); 
                         setMood(x); 
                         System.out.println("\nMenari Selesai!");                  
@@ -326,8 +316,9 @@ public class Sim{
                             System.out.println("Badanmu.. terasa pegal..");
                             System.out.println("Kesehatan : -5");    
                             setKesehatan(-5);    
-                        }                  
-                    } 
+                        }          
+                    } catch (InterruptedException e){
+                    }
                 }
             }); 
             thread.run();   
@@ -348,9 +339,6 @@ public class Sim{
                         System.out.printf(">"); 
                     }
                     System.out.printf("]"); 
-                } catch (InterruptedException e){
-                }
-                finally{
                     int x = randomizer.nextInt(4); 
                     int diff=0; 
                     switch (x){
@@ -377,7 +365,8 @@ public class Sim{
                     } else{
                         System.out.println("Mood : " + diff);   
                     }
-                } 
+                } catch (InterruptedException e){
+                }
             }
         }); 
         thread.run();
@@ -395,9 +384,6 @@ public class Sim{
                             System.out.printf(">"); 
                         }
                         System.out.printf("]"); 
-                    } catch (InterruptedException e){
-                    }
-                    finally{
                         int x = 20 * (detik / 30); 
                         setMood(x); 
                         System.out.println("\nBermonolog Selesai!");                  
@@ -406,8 +392,9 @@ public class Sim{
                             System.out.println("kok kamu ngomong sendiri lama banget sih...");
                             System.out.println("Kesehatan : -10");    
                             setKesehatan(-10);    
-                        }                  
-                    } 
+                        }                
+                    } catch (InterruptedException e){
+                    }
                 }
             }); 
             thread.run();   
