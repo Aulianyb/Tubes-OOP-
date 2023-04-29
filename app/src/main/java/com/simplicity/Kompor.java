@@ -75,7 +75,7 @@ public class Kompor extends Furnitur {
 
         //Menginstansiasi objek masakan
         for (Masakan m : menu) {
-            if (m.getNamaObjek().equals(input)) {
+            if (m.getNamaObjek().toLowerCase().equals(input.toLowerCase())) {
                 valid = true;
                 break;
             }

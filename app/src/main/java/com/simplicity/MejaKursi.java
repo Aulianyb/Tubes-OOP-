@@ -35,7 +35,7 @@ public class MejaKursi extends Furnitur {
                     boolean valid = false;
                     //Mengonsumsi makanan
                     for (Makanan ma : inv.keySet()) {
-                        if (ma.getNamaObjek().equals(namaMakanan)) {
+                        if (ma.getNamaObjek().toLowerCase().equals(namaMakanan.toLowerCase())) {
                             valid = true;
                             temp = ma;
                             break;

@@ -1,4 +1,5 @@
 package com.simplicity;
+import java.util.*;
 
 public class Kasur extends Furnitur{
     //Konstruktor
@@ -9,7 +10,9 @@ public class Kasur extends Furnitur{
     }
 
     //Status
-    public void tidur(Sim sim, int detik){
+    public void tidur(Sim sim){
+        Scanner scanner = new Scanner(System.in);
+        int detik = Integer.parseInt(scanner.nextLine());
         Thread thread = new Thread(new Runnable(){
             public void run(){
                 try {
