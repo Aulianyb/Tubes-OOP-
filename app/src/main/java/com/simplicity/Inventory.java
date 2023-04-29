@@ -15,6 +15,10 @@ public class Inventory<T extends ObjekGame> {
         return inventoryMakanan;
     }
 
+    public Map<T, Integer> getInventoryPeralatan() {
+        return inventoryPeralatan;
+    }
+
     public T itemFound(T item){
         T temp = null; 
         Iterator <Map.Entry<T, Integer>> iterator = inventoryMakanan.entrySet().iterator(); 
@@ -51,7 +55,7 @@ public class Inventory<T extends ObjekGame> {
                 if (inventoryMakanan.get(temp) == 0){
                     inventoryMakanan.remove(temp); 
                 }
-                System.out.println("Item " + temp.getNamaObjek() + " berhasil dikurangi sebanyak " + jumlah + " buah!"); 
+                System.out.println("Item " + temp.getNamaObjek() + " berhasil dikurangi sebanyak " + jumlah + " buah dari inventory!");
             }else{
                 System.out.println("Maaf, tidak ada item " + item.getNamaObjek() + " dalam Inventory"); 
             }
@@ -62,7 +66,7 @@ public class Inventory<T extends ObjekGame> {
                     System.out.println("Saat ini kamu memiliki " + temp.getNamaObjek() + " sebanyak " + inventoryPeralatan.get(temp) + " buah. ");
                 } else{
                     inventoryPeralatan.put(temp,Integer.valueOf(inventoryPeralatan.get(temp) - jumlah)); 
-                    System.out.println("Item " + temp.getNamaObjek() + " berhasil dikurangi sebanyak " + jumlah + " buah!"); 
+                    System.out.println("Item " + temp.getNamaObjek() + " berhasil dikurangi sebanyak " + jumlah + " buah dari inventory!");
                 }
                 if (inventoryPeralatan.get(temp) == 0){
                     inventoryPeralatan.remove(temp); 
