@@ -19,8 +19,8 @@ public class Testing {
         BahanMakanan b = new BahanMakanan("Nasi");
         BahanMakanan b2 = new BahanMakanan("Sapi");
 
-        BarangDikirim bb = new BarangDikirim(b, s1, 10); 
-
+        Kiriman bb = new Kiriman(b, s1, 10); 
+        s1.getInventory().lihatInventory();
         s1.beliBarang(b, 1);
         s1.beliBarang(b2, 2);
 
@@ -28,6 +28,7 @@ public class Testing {
         s1.olahraga(20);
         w.displayWaktu();
         Waktu.displayPengiriman();
+        s1.getInventory().lihatInventory();
 
         m.viewSimInfo(s1);
 

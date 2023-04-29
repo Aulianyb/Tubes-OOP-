@@ -180,7 +180,7 @@ public class Sim{
             System.out.println("Maaf, uang yang dimiliki tidak mencukupi!"); 
         } else{
             setUang(-1 * barang.getHarga() * jumlah);
-            Integer x = (randomizer.nextInt(5) + 1) * 30; 
+            Integer x = (randomizer.nextInt(5) + 1) * 30;  
             System.out.println(barang.getNamaObjek() + " sedang dalam proses pengiriman..");
             // thread = new Thread(new Runnable(){
             //     public void run(){
@@ -195,7 +195,7 @@ public class Sim{
             //     }
             // }); 
             // thread.start(); 
-            Waktu.addBeli(barang, x);
+            Waktu.addBeli(barang, this, jumlah, x);
         }
     }
 

@@ -6,7 +6,7 @@ public class Waktu {
     private static int jam;
     private static int menit;
     private static int detik;
-    private static HashMap <BisaDibeli, Integer> barangDikirim = new HashMap<BisaDibeli, Integer>();
+    private static HashMap <Kiriman, Integer> barangDikirim = new HashMap<Kiriman, Integer>();
 
     public Waktu(int jam, int menit, int detik) {
         jam = 0;
@@ -69,24 +69,37 @@ public class Waktu {
             barangDikirim.forEach((key, value) -> {
                 int temp = value - durasi; 
                 if (temp <= 0){
-                    barangDikirim.remove(key, value); 
-
-                }else{
-                    barangDikirim.put(key, temp); 
+                    key.getSim().terimaBarang(key.getBarang(), key.getJumlah());
+                    // barangDikirim.remove(key, value); 
                 }
+                barangDikirim.put(key, temp); 
             });
+            Iterator <Map.Entry<Kiriman, Integer>> iterator = barangDikirim.entrySet().iterator(); 
 
+            while (iterator.hasNext()){
+                Map.Entry<Kiriman, Integer> entry  = iterator.next ();
+                if (entry.getValue() <= 0){
+                    iterator.remove(); 
+                }
+            }
         }
     }
 
-    public static void addBeli(BisaDibeli barang, Integer duration){
-        barangDikirim.put(barang, duration); 
+    public static void addBeli(BisaDibeli barang, Sim sim, int jumlah, Integer duration){
+        Kiriman kiriman = new Kiriman(barang, sim, jumlah); 
+        barangDikirim.put(kiriman, duration); 
     }
 
     public static void displayPengiriman(){
+        System.out.println("=================="); 
         System.out.println("BARANG DALAM PENGIRIMAN"); 
-        barangDikirim.forEach((key, value)->{
-            System.out.println(key.getNamaObjek() + " : " + value + " detik"); 
-        });   
+        System.out.println("=================="); 
+        if (barangDikirim.isEmpty()){
+            System.out.println("Tidak ada barang dalam pengiriman");
+        }else{
+            barangDikirim.forEach((key, value)->{
+                System.out.println(key.getBarang().getNamaObjek() + " : " + value + " detik"); 
+            });    
+        }
     }
 }
