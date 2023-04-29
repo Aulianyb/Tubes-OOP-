@@ -6,7 +6,7 @@ public class World {
     private final int lebar = 64;
     private HashMap<Point, Rumah> daftarRumah = new HashMap<>();
     private Waktu waktu;
-    private Sim currentSim;
+    private static Sim currentSim;
     private ArrayList<Sim> sims = new ArrayList<>();
     private static Point currentLoc;
 
@@ -74,7 +74,7 @@ public class World {
         currentSim = sim;
     }
 
-    public Sim getCurrentSim() {
+    public static Sim getCurrentSim() {
         return currentSim;
     }
 

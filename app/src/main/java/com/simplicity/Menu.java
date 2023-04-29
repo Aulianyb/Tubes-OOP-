@@ -4,7 +4,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
-import com.google.gson.Gson;
+// import com.google.gson.Gson;
 public class Menu {
 
     public Menu() {
@@ -72,20 +72,20 @@ public class Menu {
     public void viewSimInfo(World world) {
 
         System.out.println("Current Sim Info");
-        System.out.printf("Nama\t\t: %s%n", world.getCurrentSim().getNama());
-        System.out.printf("Pekerjaan\t: %s%n",world.getCurrentSim().getPekerjaan().getPekerjaan());
-        System.out.printf("Kesehatan\t: %d%n",world.getCurrentSim().getKesehatan());
-        System.out.printf("Kekenyangan\t: %d%n",world.getCurrentSim().getKekeyangan());
-        System.out.printf("Mood\t\t: %d%n",world.getCurrentSim().getMood());
-        System.out.printf("Uang\t\t: %d%n",world.getCurrentSim().getUang());
+        System.out.printf("Nama\t\t: %s%n", World.getCurrentSim().getNama());
+        System.out.printf("Pekerjaan\t: %s%n",World.getCurrentSim().getPekerjaan().getPekerjaan());
+        System.out.printf("Kesehatan\t: %d%n",World.getCurrentSim().getKesehatan());
+        System.out.printf("Kekenyangan\t: %d%n",World.getCurrentSim().getKekeyangan());
+        System.out.printf("Mood\t\t: %d%n",World.getCurrentSim().getMood());
+        System.out.printf("Uang\t\t: %d%n",World.getCurrentSim().getUang());
     }
 
     public void viewCurrentLoc(World world) {
         world.displayCurrentLoc();
     }
 
-    public void viewInventory(World world) {
-        world.getCurrentSim().getInventory().lihatInventory();
+    public void viewInventory() {
+        World.getCurrentSim().getInventory().lihatInventory();
     }
 
     public void upgradeHouse(World world) {
@@ -123,7 +123,7 @@ public class Menu {
          }
 
          // Get valid action to upgrade house
-        if(world.getCurrentRumah().getOwner().equals(world.getCurrentSim().getNama())) {
+        if(world.getCurrentRumah().getOwner().equals(World.getCurrentSim().getNama())) {
             actions.add("Upgrade rumah");
         }
 
@@ -164,27 +164,29 @@ public class Menu {
             int durasi;
             switch(actioninput) {
                 case "kerja" :
-                    world.getCurrentSim();
+                    System.out.print("Input durasi : ");
+                    durasi = input.nextInt();
+                    World.getCurrentSim().getPekerjaan().kerja(World.getCurrentSim(), durasi);
                     break;
                 case "olahraga" :
                     System.out.print("Input durasi : ");
                     durasi = input.nextInt();
-                    world.getCurrentSim().olahraga(durasi);
+                    World.getCurrentSim().olahraga(durasi);
                     break;
                 case "tidur" :
                     System.out.print("Input durasi : ");
                     durasi = input.nextInt();
-                    world.getCurrentSim();
+                    World.getCurrentSim();
                     break;
                 case "makan" :
                     System.out.print("Input durasi : ");
                     durasi = input.nextInt();
-                    world.getCurrentSim();
+                    World.getCurrentSim();
                     break;
                 case "memasak" :
                     System.out.print("Input durasi : ");
                     durasi = input.nextInt();
-                    world.getCurrentSim();
+                    World.getCurrentSim();
                     break;
                 case "berkunjung" :
                     world.displayWorld();
@@ -199,17 +201,17 @@ public class Menu {
                     if(rumahtujuan == null) {
                         System.out.println("Rumah tujuan tidak valid!!");
                     } else {
-                        world.getCurrentSim().berkunjung(rumahtujuan);
-                        world.getCurrentSim().setCurrentRumah(rumahtujuan);
+                        World.getCurrentSim().berkunjung(rumahtujuan);
+                        World.getCurrentSim().setCurrentRumah(rumahtujuan);
                     }
                     break;
                 case "buang air" :
-                    world.getCurrentSim();
+                    World.getCurrentSim();
                     break;
                 case "meditasi" :
                     System.out.print("Input durasi : ");
                     durasi = input.nextInt();
-                    world.getCurrentSim().meditasi(durasi);
+                    World.getCurrentSim().meditasi(durasi);
                     break;
                 case "berkelahi" :
                     world.displaySims();
@@ -224,26 +226,26 @@ public class Menu {
                     if(simlawan == null) {
                         System.out.println("Lawan tidak valid!!");
                     } else {
-                        world.getCurrentSim().berkelahi(simlawan);
+                        World.getCurrentSim().berkelahi(simlawan);
                     }
                     break;
                 case "nyanyi" :
                     System.out.print("Input durasi : ");
                     durasi = input.nextInt();
-                    world.getCurrentSim().nyanyi(durasi);
+                    World.getCurrentSim().nyanyi(durasi);
                     break;
                 case "menari" :
                     System.out.print("Input durasi : ");
                     durasi = input.nextInt();
-                    world.getCurrentSim().menari(durasi);
+                    World.getCurrentSim().menari(durasi);
                     break;
                 case "daydreaming" :
-                    world.getCurrentSim().daydreaming();
+                    World.getCurrentSim().daydreaming();
                     break;
                 case "monolog" :
                     System.out.print("Input durasi : ");
                     durasi = input.nextInt();
-                    world.getCurrentSim().monolog(durasi);
+                    World.getCurrentSim().monolog(durasi);
                     break;
                 case "lelucon" :
                     world.displaySims();
@@ -258,7 +260,7 @@ public class Menu {
                     if(simtarget == null) {
                         System.out.println("Target tidak valid!!");
                     } else {
-                        world.getCurrentSim().lelucon(simtarget);
+                        World.getCurrentSim().lelucon(simtarget);
                     }
                     break;
                 default :

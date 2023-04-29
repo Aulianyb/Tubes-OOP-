@@ -132,12 +132,12 @@ public class Sim{
                         System.out.println("\nOlahraga Selesai!");
                         System.out.println("Kesehatan : +" + x);                      
                         System.out.println("Kekenyangan : " + y);                      
-                        System.out.println("Mood : +" + z);                      
+                        System.out.println("Mood : +" + z);  
+                        Waktu.timePass(detik);                    
                     } 
                 }
             }); 
             thread.run();   
-            Waktu.timePass(detik);
         } else{
             System.out.println("Durasi Harus kelipatan 20!"); 
         }
@@ -181,20 +181,7 @@ public class Sim{
         } else{
             setUang(-1 * barang.getHarga() * jumlah);
             Integer x = (randomizer.nextInt(5) + 1) * 30;  
-            System.out.println(barang.getNamaObjek() + " sedang dalam proses pengiriman..");
-            // thread = new Thread(new Runnable(){
-            //     public void run(){
-            //         try{
-            //             Thread.sleep(x * 1000);
-            //         }catch(InterruptedException e){
-
-            //         }finally{
-            //             System.out.println(barang.getNamaObjek() + " sudah sampai ditujuan!");
-            //             inventory.addItem((ObjekGame) barang, jumlah);
-            //         }
-            //     }
-            // }); 
-            // thread.start(); 
+            System.out.println(barang.getNamaObjek() + " sedang dalam proses pengiriman.."); 
             Waktu.addBeli(barang, this, jumlah, x);
         }
     }
@@ -204,7 +191,7 @@ public class Sim{
         inventory.addItem((ObjekGame) barang, jumlah);
     }
 
-    public void meditasi(int durasi){
+    public void meditasi(int detik){
         if (detik % 30 == 0){
             thread = new Thread(new Runnable(){
                 public void run(){
@@ -273,7 +260,7 @@ public class Sim{
         } 
     }
 
-    public void nyanyi(int durasi){
+    public void nyanyi(int detik){
         if (detik % 30 == 0){
             thread = new Thread(new Runnable(){
                 public void run(){
@@ -300,7 +287,7 @@ public class Sim{
         }
     }
 
-    public void menari(int durasi){
+    public void menari(int detik){
         if (detik % 10 == 0){
             thread = new Thread(new Runnable(){
                 public void run(){
@@ -378,7 +365,7 @@ public class Sim{
         thread.run();
     }
 
-    public void monolog(int durasi){
+    public void monolog(int detik){
         if (detik % 30 == 0){
             thread = new Thread(new Runnable(){
                 public void run(){

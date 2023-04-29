@@ -98,7 +98,9 @@ public class Waktu {
             System.out.println("Tidak ada barang dalam pengiriman");
         }else{
             barangDikirim.forEach((key, value)->{
-                System.out.println(key.getBarang().getNamaObjek() + " : " + value + " detik"); 
+                if (key.getSim() == World.getCurrentSim()){
+                    System.out.println(key.getBarang().getNamaObjek() + " : " + value + " detik"); 
+                }
             });    
         }
     }
