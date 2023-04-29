@@ -15,8 +15,8 @@ public class Testing {
         m.viewSimInfo(s1);
 
         w.displayWaktu();
-        // BahanMakanan b = new BahanMakanan("Nasi")
-        // s1.beliBarang(null, 0);
+        BahanMakanan b = new BahanMakanan("Nasi");
+        s1.beliBarang(b, 1);
         s1.olahraga(20);
         w.displayWaktu();
 
