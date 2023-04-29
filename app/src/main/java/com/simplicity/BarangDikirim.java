@@ -1,5 +1,4 @@
 package com.simplicity;
-import com.simplicity.BisaDibeli;
 
 public class BarangDikirim {
     private BisaDibeli barang; 
