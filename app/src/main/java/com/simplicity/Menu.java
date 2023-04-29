@@ -223,7 +223,7 @@ public class Menu {
                             simlawan = sim;
                         }
                     }
-                    if(simlawan == null) {
+                    if(simlawan == null || simlawan.getNama() == World.getCurrentSim().getNama()) {
                         System.out.println("Lawan tidak valid!!");
                     } else {
                         World.getCurrentSim().berkelahi(simlawan);
