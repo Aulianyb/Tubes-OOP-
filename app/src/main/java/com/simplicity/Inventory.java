@@ -27,6 +27,17 @@ public class Inventory<T extends ObjekGame> {
         return temp; 
     }
 
+    public boolean itemAvailable(T item){
+        Iterator <Map.Entry<T, Integer>> iterator = inventoryMakanan.entrySet().iterator();
+        while (iterator.hasNext()){
+            Map.Entry<T, Integer> entry  = iterator.next ();
+            if (entry.getKey().equals(item)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void reduceItem(T item, Integer jumlah){
         T temp = itemFound(item); 
         if (item instanceof Makanan){

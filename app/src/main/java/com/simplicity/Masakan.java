@@ -61,9 +61,8 @@ public class Masakan extends Makanan {
     //Mengecek ketersediaan bahan pada inventory
     public boolean bahanInInventory(Sim sim, List<BahanMakanan> l) {
         for (BahanMakanan m : l) {
-            if (sim.getInventory().getInventoryMakanan().containsKey((ObjekGame)m)) {
-                System.out.println(m.getNamaObjek());
-                //return false;
+            if (!sim.getInventory().itemAvailable(m)) {
+                return false;
             }
         }
 //        for (int i = 0; i < l.size(); i++) {

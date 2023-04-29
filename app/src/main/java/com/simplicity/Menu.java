@@ -289,6 +289,6 @@ public class Menu {
 //        } catch (FileNotFoundException e) {
 //            throw new RuntimeException(e);
 //        }
-        return new World(new Waktu(0,0,0));
+        return new World(new Waktu());
     }
 }

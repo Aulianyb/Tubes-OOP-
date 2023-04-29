@@ -19,12 +19,14 @@ public class Testing {
         BahanMakanan b = new BahanMakanan("Nasi");
         BahanMakanan b2 = new BahanMakanan("Ayam");
         BahanMakanan b3 = new BahanMakanan("Sapi");
+        BahanMakanan b4 = new BahanMakanan("Kentang");
 
         Kiriman bb = new Kiriman(b, s1, 10);
 
         s1.beliBarang(b, 1);
         s1.beliBarang(b2, 2);
         s1.beliBarang(b3, 3);
+        s1.beliBarang(b4, 2);
 
         Waktu.displayPengiriman();
 //        s1.olahraga(20);
@@ -50,6 +52,11 @@ public class Testing {
         Kompor accessedFurnitur;
 
         accessedFurnitur = (Kompor) w.getCurrFurnitur();
+        accessedFurnitur.masak(s1);
+        m.viewSimInfo(w);
+        w.getWaktu().displayWaktu();
+        s1.getInventory().lihatInventory();
+
         accessedFurnitur.masak(s1);
         m.viewSimInfo(w);
         w.getWaktu().displayWaktu();
