@@ -2,6 +2,7 @@ package com.simplicity;
 import java.util.*;
 
 public class Waktu {
+    private int hari; 
     private int jam;
     private int menit;
     private int detik;
@@ -10,6 +11,7 @@ public class Waktu {
         this.jam = jam;
         this.menit = menit;
         this.detik = detik;
+        hari = 0; 
     }
 
     public int getJam() {

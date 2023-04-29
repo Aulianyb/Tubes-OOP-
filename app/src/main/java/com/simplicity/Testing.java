@@ -17,8 +17,8 @@ public class Testing {
         Point p1 = new Point(30, 30); 
         Point p2 = new Point(0, 0); 
 
-        Rumah r1 = new Rumah(p1, "Default");
-        Rumah r2 = new Rumah(p2, "Kawan");  
+        Rumah r1 = new Rumah(p1);
+        Rumah r2 = new Rumah(p2);  
         Sim s1 = new Sim("Default", r1); 
         Sim s2 = new Sim("Kawan", r2); 
         System.out.println("STATUS S1");
