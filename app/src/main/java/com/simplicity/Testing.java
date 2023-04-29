@@ -14,11 +14,20 @@ public class Testing {
         Sim s2 = new Sim("Kawan", r2); 
         m.viewSimInfo(s1);
 
+
         w.displayWaktu();
-        // BahanMakanan b = new BahanMakanan("Nasi")
-        // s1.beliBarang(null, 0);
+        BahanMakanan b = new BahanMakanan("Nasi");
+        BahanMakanan b2 = new BahanMakanan("Sapi");
+
+        BarangDikirim bb = new BarangDikirim(b, s1, 10); 
+
+        s1.beliBarang(b, 1);
+        s1.beliBarang(b2, 2);
+
+        Waktu.displayPengiriman();
         s1.olahraga(20);
         w.displayWaktu();
+        Waktu.displayPengiriman();
 
         m.viewSimInfo(s1);
 

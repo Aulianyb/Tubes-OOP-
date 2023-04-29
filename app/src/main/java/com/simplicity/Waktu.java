@@ -6,7 +6,7 @@ public class Waktu {
     private static int jam;
     private static int menit;
     private static int detik;
-    private static HashMap <BisaDibeli, Integer> pekerjaanAktif = new HashMap<BisaDibeli, Integer>();
+    private static HashMap <BisaDibeli, Integer> barangDikirim = new HashMap<BisaDibeli, Integer>();
 
     public Waktu(int jam, int menit, int detik) {
         jam = 0;
@@ -64,9 +64,29 @@ public class Waktu {
     public static void timePass(int durasi){
         detik += durasi % 60;
         menit += durasi / 60; 
+        if (!barangDikirim.isEmpty()){
+            System.out.println("test2"); 
+            barangDikirim.forEach((key, value) -> {
+                int temp = value - durasi; 
+                if (temp <= 0){
+                    barangDikirim.remove(key, value); 
+
+                }else{
+                    barangDikirim.put(key, temp); 
+                }
+            });
+
+        }
     }
 
-    public static addBeli(BisaDibeli barang, Integer duration){
-        pekerjaanAktif.put(barang, duration); 
+    public static void addBeli(BisaDibeli barang, Integer duration){
+        barangDikirim.put(barang, duration); 
+    }
+
+    public static void displayPengiriman(){
+        System.out.println("BARANG DALAM PENGIRIMAN"); 
+        barangDikirim.forEach((key, value)->{
+            System.out.println(key.getNamaObjek() + " : " + value + " detik"); 
+        });   
     }
 }

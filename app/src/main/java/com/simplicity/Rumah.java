@@ -14,10 +14,6 @@ public class Rumah {
         this.lokasi = lokasi;
     }
 
-    public HashMap<Point, Ruangan> getDaftarRuangan() {
-        return this.daftarRuangan;
-    }
-
     public String getNamaCurrRuangan() {
         return this.currRuangan.getNama();
     }
