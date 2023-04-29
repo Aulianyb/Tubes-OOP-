@@ -260,7 +260,7 @@ public class Menu {
                             simtarget = sim;
                         }
                     }
-                    if(simtarget == null) {
+                    if(simtarget == null || simtarget.getNama() == World.getCurrentSim().getNama()) {
                         System.out.println("Target tidak valid!!");
                     } else {
                         World.getCurrentSim().lelucon(simtarget);

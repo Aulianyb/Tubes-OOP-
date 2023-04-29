@@ -240,7 +240,7 @@ public class Sim{
                         kawan.setKesehatan(-10); 
                         System.out.println("\nPerkelahian Selesai!");
                         if (win == 1){
-                            System.out.println("\nYipee! Kamu menang!");
+                            System.out.println("Yipee! Kamu menang!");
                             kawan.setMood(-10);
                             setMood(10);
                             System.out.println("Mood : +10");

@@ -36,7 +36,7 @@ public class Testing {
         Menu menu = new Menu();
         Scanner input = new Scanner(System.in);
         World world = new World(new Waktu(0, 0, 0));
-        world.addSim(input);
+        world.addSim(input, "init");
         World.getCurrentSim().getInventory().lihatInventory();
     }
         

@@ -66,7 +66,6 @@ public class World {
                 if(conditional.equals("init")) {
                     setCurrentSim(sim);
                 }
-                setCurrentSim(sim);
                 sims.add(sim);
                 end = true;
             }
