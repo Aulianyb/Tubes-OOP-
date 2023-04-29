@@ -149,4 +149,8 @@ public class World {
     public Furnitur getCurrFurnitur() {
         return getCurrentRumah().getCurrRuangan().getCurrFurnitur();
     }
+
+    public HashMap<Point, Rumah> getDaftarRumah() {
+        return daftarRumah;
+    }
 }
