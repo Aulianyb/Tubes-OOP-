@@ -9,7 +9,7 @@ public class Waktu {
     private static HashMap <Kiriman, Integer> barangDikirim = new HashMap<Kiriman, Integer>();
     private static HashMap <Rumah, Integer> ongoingUpgrade = new HashMap<Rumah, Integer>(); 
 
-    public Waktu(int jam, int menit, int detik) {
+    public Waktu() {
         jam = 0;
         menit = 0;
         detik = 0;
@@ -56,6 +56,7 @@ public class Waktu {
         } else {
             System.out.print(":" + detik);
         }
+        System.out.println(""); 
     }
     
     public int toDetik() {

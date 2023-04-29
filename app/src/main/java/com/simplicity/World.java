@@ -155,4 +155,8 @@ public class World {
     public HashMap<Point, Rumah> getDaftarRumah() {
         return daftarRumah;
     }
+
+    public void setCurrFurnitur(Furnitur f) {
+        getCurrentRumah().getCurrRuangan().setCurrFurnitur(f);
+    }
 }

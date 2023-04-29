@@ -15,33 +15,46 @@ public class Inventory<T extends ObjekGame> {
         return inventoryMakanan;
     }
 
+    public T itemFound(T item){
+        T temp = null; 
+        Iterator <Map.Entry<T, Integer>> iterator = inventoryMakanan.entrySet().iterator(); 
+        while (iterator.hasNext()){
+            Map.Entry<T, Integer> entry  = iterator.next ();
+            if (entry.getKey().equals(item)){
+                temp = entry.getKey();  
+            }
+        }
+        return temp; 
+    }
+
     public void reduceItem(T item, Integer jumlah){
+        T temp = itemFound(item); 
         if (item instanceof Makanan){
-            if (inventoryMakanan.containsKey(item)){
-                if (inventoryMakanan.get(item) - jumlah < 0){
+            if (temp != null){
+                if (inventoryMakanan.get(temp) - jumlah < 0){
                     System.out.println("Maaf! Jumlah item tidak cukup..");
-                    System.out.println("Saat ini kamu memiliki " + item.getNamaObjek() + " sebanyak " + inventoryMakanan.get(item) + " buah. ");
+                    System.out.println("Saat ini kamu memiliki " + temp.getNamaObjek() + " sebanyak " + inventoryMakanan.get(item) + " buah. ");
                 } else{
-                    inventoryMakanan.put(item, Integer.valueOf(inventoryMakanan.get(item) - jumlah)); 
+                    inventoryMakanan.put(temp, Integer.valueOf(inventoryMakanan.get(temp) - jumlah)); 
                 }
-                if (inventoryMakanan.get(item) == 0){
-                    inventoryMakanan.remove(item); 
+                if (inventoryMakanan.get(temp) == 0){
+                    inventoryMakanan.remove(temp); 
                 }
-                System.out.println("Item " + item.getNamaObjek() + " berhasil dikurangi sebanyak " + jumlah + " buah!"); 
+                System.out.println("Item " + temp.getNamaObjek() + " berhasil dikurangi sebanyak " + jumlah + " buah!"); 
             }else{
                 System.out.println("Maaf, tidak ada item " + item.getNamaObjek() + " dalam Inventory"); 
             }
         } else{
-            if (inventoryPeralatan.containsKey(item)){
-                if (inventoryPeralatan.get(item) - jumlah < 0){
+            if (temp != null){
+                if (inventoryPeralatan.get(temp) - jumlah < 0){
                     System.out.println("Maaf! Jumlah item tidak cukup..");
-                    System.out.println("Saat ini kamu memiliki " + item.getNamaObjek() + " sebanyak " + inventoryPeralatan.get(item) + " buah. ");
+                    System.out.println("Saat ini kamu memiliki " + temp.getNamaObjek() + " sebanyak " + inventoryPeralatan.get(temp) + " buah. ");
                 } else{
-                    inventoryPeralatan.put(item,Integer.valueOf(inventoryPeralatan.get(item) - jumlah)); 
-                    System.out.println("Item " + item.getNamaObjek() + " berhasil dikurangi sebanyak " + jumlah + " buah!"); 
+                    inventoryPeralatan.put(temp,Integer.valueOf(inventoryPeralatan.get(temp) - jumlah)); 
+                    System.out.println("Item " + temp.getNamaObjek() + " berhasil dikurangi sebanyak " + jumlah + " buah!"); 
                 }
-                if (inventoryPeralatan.get(item) == 0){
-                    inventoryPeralatan.remove(item); 
+                if (inventoryPeralatan.get(temp) == 0){
+                    inventoryPeralatan.remove(temp); 
                 }
         
             }else{

@@ -1,7 +1,5 @@
 package com.simplicity;
 
-import org.checkerframework.checker.units.qual.K;
-
 public class Testing {
     public static void main(String[] args) throws InterruptedException{
         World w = new World(new Waktu());
@@ -42,7 +40,10 @@ public class Testing {
         accessedFurnitur2 = (Toilet) w.getCurrFurnitur();
         accessedFurnitur2.buangAir(s1);
         m.viewSimInfo(w);
+        BahanMakanan nasiBaru = new BahanMakanan("Nasi");
         s1.getInventory().lihatInventory();
+        // s1.getInventory().reduceItem(nasiBaru, 1); 
+        // s1.getInventory().lihatInventory();
 
         w.setCurrFurnitur(w.getCurrentRumah().getCurrRuangan().getDaftarObjek().get(new Point(1, 0)));
 

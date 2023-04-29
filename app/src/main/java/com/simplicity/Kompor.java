@@ -97,11 +97,12 @@ public class Kompor extends Furnitur {
                         try {
                             System.out.println("Memasak...");
                             int durasiMasak = (int)Math.round(1.5 * (masakan.getNilaiKekenyangan()));
-                            Thread.sleep(durasiMasak * 1000);
+                            Thread.sleep(durasiMasak * 100);
                             for (int i = 0; i < masakan.getBahan().size(); i++) {
-                                sim.getInventory().reduceItem((Makanan)masakan.getBahan().get(i), 1);
+                                System.out.println(masakan.getBahan().get(i).getNamaObjek()); 
+                                sim.getInventory().reduceItem((ObjekGame)masakan.getBahan().get(i), 1);
                             }
-                            sim.getInventory().addItem((Makanan)masakan, 1);
+                            sim.getInventory().addItem((ObjekGame)masakan, 1);
                             Waktu.timePass(durasiMasak);
                         } catch (InterruptedException e) {
                             System.out.println("Proses memasak dihentikan. Bahan makanan dikembalikan ke Inventory...");

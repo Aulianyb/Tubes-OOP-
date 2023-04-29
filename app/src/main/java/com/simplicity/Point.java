@@ -32,6 +32,7 @@ public class Point {
     public String toString() {
         return String.format("<%d, %d>",getX(),getY());
     }
+    
     @Override
     public boolean equals(Object o) {
         if (this == o)

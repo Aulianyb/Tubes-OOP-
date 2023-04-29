@@ -148,4 +148,12 @@ public class Ruangan {
     public Furnitur getCurrFurnitur() {
         return currFurnitur;
     }
+
+    public Map<Point, Furnitur> getDaftarObjek() {
+        return daftarObjek;
+    }
+
+    public void setCurrFurnitur(Furnitur f) {
+        currFurnitur = f;
+    }
 }
