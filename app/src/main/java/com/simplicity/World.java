@@ -6,7 +6,7 @@ public class World {
     private final int lebar = 64;
     private HashMap<Point, Rumah> daftarRumah = new HashMap<>();
     private Waktu waktu;
-    private Sim currentSim;
+    private static Sim currentSim;
     private ArrayList<Sim> sims = new ArrayList<>();
     private static Point currentLoc;
 
@@ -48,7 +48,7 @@ public class World {
         System.out.println();
     }
 
-    public void addSim(Scanner inp) {
+    public void addSim(Scanner inp, String conditional) {
         boolean end = false;
         List<String> names = new ArrayList<>();
         for(Sim sim : getSims()) {
@@ -63,7 +63,9 @@ public class World {
             } else {
                 Rumah rumah = addRumah(namaLengkap);
                 Sim sim = new Sim(namaLengkap, rumah);
-                setCurrentSim(sim);
+                if(conditional.equals("init")) {
+                    setCurrentSim(sim);
+                }
                 sims.add(sim);
                 end = true;
             }
@@ -74,7 +76,7 @@ public class World {
         currentSim = sim;
     }
 
-    public Sim getCurrentSim() {
+    public static Sim getCurrentSim() {
         return currentSim;
     }
 

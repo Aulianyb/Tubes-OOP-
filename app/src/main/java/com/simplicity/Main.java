@@ -22,7 +22,7 @@ public class Main {
             switch (cmd) {
                 case "start game":
                     // New User
-                    world.addSim(input);
+                    world.addSim(input,"init");
                     end = true;
                     break;
                 case "load game":
@@ -67,7 +67,7 @@ public class Main {
                     menu.editRoom();
                     break;
                 case "view inventory":
-                    menu.viewInventory(world);
+                    menu.viewInventory();
                     break;
                 case "view current location":
                     menu.viewCurrentLoc(world);
@@ -79,7 +79,7 @@ public class Main {
                     world.changeSim(input);
                     break;
                 case "add sim":
-                    world.addSim(input);
+                    world.addSim(input,"");
                     world.displayWorld();
                     break;
                 case "help":

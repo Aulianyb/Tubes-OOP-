@@ -42,20 +42,30 @@ public class Pekerjaan {
         } 
     }
 
-    public void kerja(Sim sim, Waktu durasi){
-        int detik=durasi.toDetik();
+    public void kerja(Sim sim, int detik){
         if (detik % 120 == 0){
             thread = new Thread(new Runnable(){
                 public void run(){
                     try{
                         System.out.println("Bekerja...");
-                        Thread.sleep(detik * 1000);
+                        System.out.printf("["); 
+                        for (int i=0;i<10;i++){
+                            Thread.sleep(detik * 100);
+                            System.out.printf(">"); 
+                        }
+                        System.out.printf("]\n"); 
+                        int x = -10 * (detik / 30); 
+                        int y = -10 * (detik / 30); 
+                        int z = ((detik / 60) / 4) * gaji; 
+                        sim.setKekenyangan(x);
+                        sim.setMood(y);
+                        sim.setUang(z);
+                        System.out.println("Bekerja Selesai!");
+                        System.out.println("Kekenyangan : +" + x);                      
+                        System.out.println("Mood : " + y);                      
+                        System.out.println("Uang : +" + z);  
+                        Waktu.timePass(detik); 
                     } catch(InterruptedException e){
-
-                    } finally{
-                        sim.setKekenyangan(-10 * (detik / 30));
-                        sim.setMood(-10 * (detik / 30));
-                        sim.setUang(((detik / 60) / 4) * gaji);
                     }
                 }
             }); 
