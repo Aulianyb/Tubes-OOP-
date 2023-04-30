@@ -19,7 +19,7 @@ public class MejaKursi extends Furnitur {
             public void run(){
                 Makanan temp = null;
                 try {
-                    Map<Makanan, Integer> inv = sim.getInventory().getInventoryMakanan();
+                    Map<Makanan, Integer> inv = sim.getInventory();
                     int i = 1;
 
                     //Menampilkan daftar makanan yang dimiliki

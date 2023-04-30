@@ -23,14 +23,17 @@ public class Testing {
         BahanMakanan b3 = new BahanMakanan("Sapi");
         BahanMakanan b4 = new BahanMakanan("Kentang");
 
-        Kiriman bb = new Kiriman(b, s1, 10);
+        World.getCurrentSim().beliBarang(b, 10);
+        World.getCurrentSim().beliBarang(aaa, 1);
 
-        w.getWaktu().displayWaktu();
-        World.getCurrentSim().setUang(-100);
-        World.getCurrentSim().testAction(820);
-        World.getCurrentSim().changePekerjaan("Koki"); 
-        w.getWaktu().displayWaktu();
-        m.viewSimInfo(w);
+        Waktu.displayPengiriman();
+
+        World.getCurrentSim().getInventory().lihatInventory();
+        World.getCurrentSim().testAction(10); 
+        Waktu.displayPengiriman();
+        World.getCurrentSim().getInventory().lihatInventory();
+
+    
     }
         
 }

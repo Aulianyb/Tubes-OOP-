@@ -2,26 +2,19 @@ package com.simplicity;
 import java.util.*;
 
 public class Inventory<T extends ObjekGame> {
-    //Makanan : objectnya, Integer : jumlah
-    private HashMap<T, Integer> inventoryMakanan;
-    private HashMap<T, Integer> inventoryPeralatan;
+    private HashMap<T, Integer> inventory;
 
     public Inventory(){
-        inventoryMakanan = new HashMap<>(); 
-        inventoryPeralatan = new HashMap<>(); 
+        inventory = new HashMap<>(); 
     }
 
-    public Map<T, Integer> getInventoryMakanan() {
-        return inventoryMakanan;
-    }
-
-    public Map<T, Integer> getInventoryPeralatan() {
-        return inventoryPeralatan;
+    public Map<T, Integer> getInventory(){
+        return inventory; 
     }
 
     public T itemFound(T item){
         T temp = null; 
-        Iterator <Map.Entry<T, Integer>> iterator = inventoryMakanan.entrySet().iterator(); 
+        Iterator <Map.Entry<T, Integer>> iterator = inventory.entrySet().iterator(); 
         while (iterator.hasNext()){
             Map.Entry<T, Integer> entry  = iterator.next ();
             if (entry.getKey().equals(item)){
@@ -32,7 +25,7 @@ public class Inventory<T extends ObjekGame> {
     }
 
     public boolean itemAvailable(T item){
-        Iterator <Map.Entry<T, Integer>> iterator = inventoryMakanan.entrySet().iterator();
+        Iterator <Map.Entry<T, Integer>> iterator = inventory.entrySet().iterator();
         while (iterator.hasNext()){
             Map.Entry<T, Integer> entry  = iterator.next ();
             if (entry.getKey().equals(item)){
@@ -44,37 +37,19 @@ public class Inventory<T extends ObjekGame> {
 
     public void reduceItem(T item, Integer jumlah){
         T temp = itemFound(item); 
-        if (item instanceof Makanan){
-            if (temp != null){
-                if (inventoryMakanan.get(temp) - jumlah < 0){
-                    System.out.println("Maaf! Jumlah item tidak cukup..");
-                    System.out.println("Saat ini kamu memiliki " + temp.getNamaObjek() + " sebanyak " + inventoryMakanan.get(item) + " buah. ");
-                } else{
-                    inventoryMakanan.put(temp, Integer.valueOf(inventoryMakanan.get(temp) - jumlah)); 
-                }
-                if (inventoryMakanan.get(temp) == 0){
-                    inventoryMakanan.remove(temp); 
-                }
-                System.out.println("Item " + temp.getNamaObjek() + " berhasil dikurangi sebanyak " + jumlah + " buah dari inventory!");
-            }else{
-                System.out.println("Maaf, tidak ada item " + item.getNamaObjek() + " dalam Inventory"); 
+        if (temp != null){
+            if (inventory.get(temp) - jumlah < 0){
+                System.out.println("Maaf! Jumlah item tidak cukup..");
+                System.out.println("Saat ini kamu memiliki " + temp.getNamaObjek() + " sebanyak " + inventory.get(item) + " buah. ");
+            } else{
+                inventory.put(temp, Integer.valueOf(inventory.get(temp) - jumlah)); 
             }
-        } else{
-            if (temp != null){
-                if (inventoryPeralatan.get(temp) - jumlah < 0){
-                    System.out.println("Maaf! Jumlah item tidak cukup..");
-                    System.out.println("Saat ini kamu memiliki " + temp.getNamaObjek() + " sebanyak " + inventoryPeralatan.get(temp) + " buah. ");
-                } else{
-                    inventoryPeralatan.put(temp,Integer.valueOf(inventoryPeralatan.get(temp) - jumlah)); 
-                    System.out.println("Item " + temp.getNamaObjek() + " berhasil dikurangi sebanyak " + jumlah + " buah dari inventory!");
-                }
-                if (inventoryPeralatan.get(temp) == 0){
-                    inventoryPeralatan.remove(temp); 
-                }
-        
-            }else{
-                System.out.println("Maaf, tidak ada item " + item.getNamaObjek() + " dalam Inventory"); 
+            if (inventory.get(temp) == 0){
+                inventory.remove(temp); 
             }
+            System.out.println("Item " + temp.getNamaObjek() + " berhasil dikurangi sebanyak " + jumlah + " buah dari inventory!");
+        }else{
+            System.out.println("Maaf, tidak ada item " + item.getNamaObjek() + " dalam Inventory"); 
         }
     }
 
@@ -82,19 +57,11 @@ public class Inventory<T extends ObjekGame> {
         T temp = itemFound(item); 
         if (item instanceof Makanan){
             if (temp != null){
-                inventoryMakanan.put(temp, inventoryMakanan.get(temp) + jumlah); 
+                inventory.put(temp, inventory.get(temp) + jumlah); 
             } else{
-                inventoryMakanan.put(item, jumlah); 
-            }
-        } else{
-            if (temp != null){
-                inventoryPeralatan.put(temp, inventoryPeralatan.get(temp) + jumlah); 
-            } else{
-                inventoryPeralatan.put(item, jumlah); 
+                inventory.put(item, jumlah); 
             }
         }
-
-        System.out.println("Berhasil menambahkan " + item.getNamaObjek() + " sebanyak " + jumlah + " buah!"); 
     }
 
     public void lihatInventory(){
@@ -103,13 +70,10 @@ public class Inventory<T extends ObjekGame> {
         System.out.println(" I N V E N T O R Y"); 
         System.out.println("=================="); 
 
-        if (inventoryMakanan.isEmpty() && inventoryPeralatan.isEmpty()){
+        if (inventory.isEmpty()){
             System.out.println("Oops! Sepertinya tidak ada apa apa dalam Inventory Sim ini"); 
         } else{
-            inventoryMakanan.forEach((key, value) -> {
-                System.out.println(key.getNamaObjek() + " : " + value); 
-            });
-            inventoryPeralatan.forEach((key, value) -> {
+            inventory.forEach((key, value) -> {
                 System.out.println(key.getNamaObjek() + " : " + value); 
             });
         }
