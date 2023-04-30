@@ -79,17 +79,16 @@ public class Inventory<T extends ObjekGame> {
     }
 
     public void addItem(T item, int jumlah){
-        // ini cara tau harus masukin ke Makanan atau non Makanan gimana ya?
-        //nunggu dulu mungkin ada indikatornya
+        T temp = itemFound(item); 
         if (item instanceof Makanan){
-            if (inventoryMakanan.containsKey(item)){
-                inventoryMakanan.put(item, inventoryMakanan.get(item) + jumlah); 
+            if (temp != null){
+                inventoryMakanan.put(temp, inventoryMakanan.get(temp) + jumlah); 
             } else{
                 inventoryMakanan.put(item, jumlah); 
             }
         } else{
-            if (inventoryPeralatan.containsKey(item)){
-                inventoryPeralatan.put(item, inventoryPeralatan.get(item) + jumlah); 
+            if (temp != null){
+                inventoryPeralatan.put(temp, inventoryPeralatan.get(temp) + jumlah); 
             } else{
                 inventoryPeralatan.put(item, jumlah); 
             }

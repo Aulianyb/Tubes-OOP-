@@ -121,7 +121,7 @@ public class Waktu {
         }else{
             barangDikirim.forEach((key, value)->{
                 if (key.getSim() == World.getCurrentSim()){
-                    System.out.println(key.getBarang().getNamaObjek() + " : " + value + " detik"); 
+                    System.out.println(key.getBarang().getNamaObjek() + "(" + key.getJumlah() +") : " + value + " detik"); 
                 }
             });    
         }
