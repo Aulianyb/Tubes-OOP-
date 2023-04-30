@@ -105,7 +105,7 @@ public class Ruangan {
         int i = 1;
         System.out.println("Daftar objek dalam ruangan: ");
         for (Map.Entry<Point, String> entry : this.daftarObjek.entrySet()) {
-            System.out.println(i + ". <" + entry.getKey().displayPoint() + ", " + entry.getValue() + ">");
+            System.out.println(i + ". <" + entry.getKey() + ", " + entry.getValue() + ">");
             i++;
         }
     }
@@ -198,9 +198,9 @@ public class Ruangan {
                         break;
                     }
                 }
-                Toilet toilet = new Toilet(namaBarang+(i+1));
-                matrixRuangan[x][y] = toilet.getNamaObjek();
-                daftarObjek.put(locToilet, toilet.getNamaObjek());
+                Toilet toilet = new Toilet(namaBarang);
+                matrixRuangan[x][y] = toilet.getNamaObjek()+(i+1);
+                daftarObjek.put(locToilet, toilet.getNamaObjek()+(i+1));
                 jumlahObjek.put(toilet, i+1);
                 System.out.println(namaBarang + " berhasil dipasang!");
                 currentSim.getInventory().reduceItem(key, 1);
@@ -232,9 +232,9 @@ public class Ruangan {
                         break;
                     }
                 }
-                KomporListrik komporListrik = new KomporListrik(namaBarang+(i+1));
-                matrixRuangan[x][y] = komporListrik.getNamaObjek();
-                daftarObjek.put(locKomporListrik, komporListrik.getNamaObjek());
+                KomporListrik komporListrik = new KomporListrik(namaBarang);
+                matrixRuangan[x][y] = komporListrik.getNamaObjek()+(i+1);
+                daftarObjek.put(locKomporListrik, komporListrik.getNamaObjek()+(i+1));
                 jumlahObjek.put(komporListrik, i+1);
                 System.out.println(namaBarang + " berhasil dipasang!");
                 currentSim.getInventory().reduceItem(key, 1);
@@ -266,9 +266,9 @@ public class Ruangan {
                         break;
                     }
                 }
-                Jam jam = new Jam(namaBarang+(i+1));
-                matrixRuangan[x][y] = jam.getNamaObjek();
-                daftarObjek.put(locJam, jam.getNamaObjek());
+                Jam jam = new Jam(namaBarang);
+                matrixRuangan[x][y] = jam.getNamaObjek()+(i+1);
+                daftarObjek.put(locJam, jam.getNamaObjek()+(i+1));
                 jumlahObjek.put(jam, i+1);
                 System.out.println(namaBarang + " berhasil dipasang!");
                 currentSim.getInventory().reduceItem(key, 1);
@@ -321,36 +321,36 @@ public class Ruangan {
                         break;
                     }
                 }
-                KasurSingle kasurSingle = new KasurSingle(namaBarang+(i+1));
+                KasurSingle kasurSingle = new KasurSingle(namaBarang);
                 if (x1<=x2 && y1<=y2) {
                     for (int a = x1; a < x2+1; a++) {
                         for (int b = y1; b < y2+1; b++) {
-                            matrixRuangan[a][b] = kasurSingle.getNamaObjek();
+                            matrixRuangan[a][b] = kasurSingle.getNamaObjek()+(i+1);
                         }
                     }
                 } else if (x1<=x2 && y1>y2) {
                     for (int a = x1; a < x2+1; a++) {
                         for (int b = y2; b < y1+1; b++) {
-                            matrixRuangan[a][b] = kasurSingle.getNamaObjek();
+                            matrixRuangan[a][b] = kasurSingle.getNamaObjek()+(i+1);
                         }
                     }
                 } else if (x1>x2 && y1<=y2) {
                     for (int a = x2; a < x1+1; a++) {
                         for (int b = y1; b < y2+1; b++) {
-                            matrixRuangan[a][b] = kasurSingle.getNamaObjek();
+                            matrixRuangan[a][b] = kasurSingle.getNamaObjek()+(i+1);
                         }
                     }
                 } else {
                     for (int a = x2; a < x1+1; a++) {
                         for (int b = y2; b < y1+1; b++) {
-                            matrixRuangan[a][b] = kasurSingle.getNamaObjek();
+                            matrixRuangan[a][b] = kasurSingle.getNamaObjek()+(i+1);
                         }
                     }
                 }
-                daftarObjek.put(locKasurSingle1, kasurSingle.getNamaObjek());
-                daftarObjek.put(locKasurSingle2, kasurSingle.getNamaObjek());
-                daftarObjek.put(locKasurSingle3, kasurSingle.getNamaObjek());
-                daftarObjek.put(locKasurSingle4, kasurSingle.getNamaObjek());
+                daftarObjek.put(locKasurSingle1, kasurSingle.getNamaObjek()+(i+1));
+                daftarObjek.put(locKasurSingle2, kasurSingle.getNamaObjek()+(i+1));
+                daftarObjek.put(locKasurSingle3, kasurSingle.getNamaObjek()+(i+1));
+                daftarObjek.put(locKasurSingle4, kasurSingle.getNamaObjek()+(i+1));
                 jumlahObjek.put(kasurSingle, i+1);
                 System.out.println(namaBarang + " berhasil dipasang!");
                 currentSim.getInventory().reduceItem(key, 1);
@@ -388,34 +388,34 @@ public class Ruangan {
                         break;
                     }
                 }
-                KomporGas komporGas = new KomporGas(namaBarang+(i+1));
+                KomporGas komporGas = new KomporGas(namaBarang);
                 if (x1<=x2 && y1<=y2) {
                     for (int a = x1; a < x2+1; a++) {
                         for (int b = y1; b < y2+1; b++) {
-                            matrixRuangan[a][b] = komporGas.getNamaObjek();
+                            matrixRuangan[a][b] = komporGas.getNamaObjek()+(i+1);
                         }
                     }
                 } else if (x1<=x2 && y1>y2) {
                     for (int a = x1; a < x2+1; a++) {
                         for (int b = y2; b < y1+1; b++) {
-                            matrixRuangan[a][b] = komporGas.getNamaObjek();
+                            matrixRuangan[a][b] = komporGas.getNamaObjek()+(i+1);
                         }
                     }
                 } else if (x1>x2 && y1<=y2) {
                     for (int a = x2; a < x1+1; a++) {
                         for (int b = y1; b < y2+1; b++) {
-                            matrixRuangan[a][b] = komporGas.getNamaObjek();
+                            matrixRuangan[a][b] = komporGas.getNamaObjek()+(i+1);
                         }
                     }
                 } else {
                     for (int a = x2; a < x1+1; a++) {
                         for (int b = y2; b < y1+1; b++) {
-                            matrixRuangan[a][b] = komporGas.getNamaObjek();
+                            matrixRuangan[a][b] = komporGas.getNamaObjek()+(i+1);
                         }
                     }
                 }
-                daftarObjek.put(locKomporGas1, komporGas.getNamaObjek());
-                daftarObjek.put(locKomporGas2, komporGas.getNamaObjek());
+                daftarObjek.put(locKomporGas1, komporGas.getNamaObjek()+(i+1));
+                daftarObjek.put(locKomporGas2, komporGas.getNamaObjek()+(i+1));
                 jumlahObjek.put(komporGas, i+1);
                 System.out.println(namaBarang + " berhasil dipasang!");
                 currentSim.getInventory().reduceItem(key, 1);
@@ -480,20 +480,20 @@ public class Ruangan {
                         break;
                     }
                 }
-                KasurQueenSize kasurQueenSize = new KasurQueenSize(namaBarang+(i+1));
+                KasurQueenSize kasurQueenSize = new KasurQueenSize(namaBarang);
                 for (int a = x1; a < x4+1; a++) {
                     for (int b = y1; b < y4+1; b++) {
-                        matrixRuangan[a][b] = kasurQueenSize.getNamaObjek();
+                        matrixRuangan[a][b] = kasurQueenSize.getNamaObjek()+(i+1);
                     }
                 }
-                daftarObjek.put(locKasurQueenSize1, kasurQueenSize.getNamaObjek());
-                daftarObjek.put(locKasurQueenSize2, kasurQueenSize.getNamaObjek());
-                daftarObjek.put(locKasurQueenSize3, kasurQueenSize.getNamaObjek());
-                daftarObjek.put(locKasurQueenSize4, kasurQueenSize.getNamaObjek());
-                daftarObjek.put(locKasurQueenSize5, kasurQueenSize.getNamaObjek());
-                daftarObjek.put(locKasurQueenSize6, kasurQueenSize.getNamaObjek());
-                daftarObjek.put(locKasurQueenSize7, kasurQueenSize.getNamaObjek());
-                daftarObjek.put(locKasurQueenSize8, kasurQueenSize.getNamaObjek());
+                daftarObjek.put(locKasurQueenSize1, kasurQueenSize.getNamaObjek()+(i+1));
+                daftarObjek.put(locKasurQueenSize2, kasurQueenSize.getNamaObjek()+(i+1));
+                daftarObjek.put(locKasurQueenSize3, kasurQueenSize.getNamaObjek()+(i+1));
+                daftarObjek.put(locKasurQueenSize4, kasurQueenSize.getNamaObjek()+(i+1));
+                daftarObjek.put(locKasurQueenSize5, kasurQueenSize.getNamaObjek()+(i+1));
+                daftarObjek.put(locKasurQueenSize6, kasurQueenSize.getNamaObjek()+(i+1));
+                daftarObjek.put(locKasurQueenSize7, kasurQueenSize.getNamaObjek()+(i+1));
+                daftarObjek.put(locKasurQueenSize8, kasurQueenSize.getNamaObjek()+(i+1));
                 jumlahObjek.put(kasurQueenSize, i+1);
                 System.out.println(namaBarang + " berhasil dipasang!");
                 currentSim.getInventory().reduceItem(key, 1);
@@ -564,22 +564,22 @@ public class Ruangan {
                         break;
                     }
                 }
-                KasurKingSize kasurKingSize = new KasurKingSize(namaBarang+(i+1));
+                KasurKingSize kasurKingSize = new KasurKingSize(namaBarang);
                 for (int a = x1; a < x4+1; a++) {
                     for (int b = y1; b < y4+1; b++) {
-                        matrixRuangan[a][b] = kasurKingSize.getNamaObjek();
+                        matrixRuangan[a][b] = kasurKingSize.getNamaObjek()+(i+1);
                     }
                 }
-                daftarObjek.put(locKasurKingSize1, kasurKingSize.getNamaObjek());
-                daftarObjek.put(locKasurKingSize2, kasurKingSize.getNamaObjek());
-                daftarObjek.put(locKasurKingSize3, kasurKingSize.getNamaObjek());
-                daftarObjek.put(locKasurKingSize4, kasurKingSize.getNamaObjek());
-                daftarObjek.put(locKasurKingSize5, kasurKingSize.getNamaObjek());
-                daftarObjek.put(locKasurKingSize6, kasurKingSize.getNamaObjek());
-                daftarObjek.put(locKasurKingSize7, kasurKingSize.getNamaObjek());
-                daftarObjek.put(locKasurKingSize8, kasurKingSize.getNamaObjek());
-                daftarObjek.put(locKasurKingSize9, kasurKingSize.getNamaObjek());
-                daftarObjek.put(locKasurKingSize10, kasurKingSize.getNamaObjek());
+                daftarObjek.put(locKasurKingSize1, kasurKingSize.getNamaObjek()+(i+1));
+                daftarObjek.put(locKasurKingSize2, kasurKingSize.getNamaObjek()+(i+1));
+                daftarObjek.put(locKasurKingSize3, kasurKingSize.getNamaObjek()+(i+1));
+                daftarObjek.put(locKasurKingSize4, kasurKingSize.getNamaObjek()+(i+1));
+                daftarObjek.put(locKasurKingSize5, kasurKingSize.getNamaObjek()+(i+1));
+                daftarObjek.put(locKasurKingSize6, kasurKingSize.getNamaObjek()+(i+1));
+                daftarObjek.put(locKasurKingSize7, kasurKingSize.getNamaObjek()+(i+1));
+                daftarObjek.put(locKasurKingSize8, kasurKingSize.getNamaObjek()+(i+1));
+                daftarObjek.put(locKasurKingSize9, kasurKingSize.getNamaObjek()+(i+1));
+                daftarObjek.put(locKasurKingSize10, kasurKingSize.getNamaObjek()+(i+1));
                 jumlahObjek.put(kasurKingSize, i+1);
                 System.out.println(namaBarang + " berhasil dipasang!");
                 currentSim.getInventory().reduceItem(key, 1);
@@ -634,21 +634,21 @@ public class Ruangan {
                         break;
                     }
                 }
-                MejaKursi mejaKursi = new MejaKursi(namaBarang+(i+1));
+                MejaKursi mejaKursi = new MejaKursi(namaBarang);
                 for (int a = x1; a < x4+1; a++) {
                     for (int b = y1; b < y4+1; b++) {
-                        matrixRuangan[a][b] = mejaKursi.getNamaObjek();
+                        matrixRuangan[a][b] = mejaKursi.getNamaObjek()+(i+1);
                     }
                 }
-                daftarObjek.put(locMejaKursi1, mejaKursi.getNamaObjek());
-                daftarObjek.put(locMejaKursi2, mejaKursi.getNamaObjek());
-                daftarObjek.put(locMejaKursi3, mejaKursi.getNamaObjek());
-                daftarObjek.put(locMejaKursi4, mejaKursi.getNamaObjek());
-                daftarObjek.put(locMejaKursi5, mejaKursi.getNamaObjek());
-                daftarObjek.put(locMejaKursi6, mejaKursi.getNamaObjek());
-                daftarObjek.put(locMejaKursi7, mejaKursi.getNamaObjek());
-                daftarObjek.put(locMejaKursi8, mejaKursi.getNamaObjek());
-                daftarObjek.put(locMejaKursi9, mejaKursi.getNamaObjek());
+                daftarObjek.put(locMejaKursi1, mejaKursi.getNamaObjek()+(i+1));
+                daftarObjek.put(locMejaKursi2, mejaKursi.getNamaObjek()+(i+1));
+                daftarObjek.put(locMejaKursi3, mejaKursi.getNamaObjek()+(i+1));
+                daftarObjek.put(locMejaKursi4, mejaKursi.getNamaObjek()+(i+1));
+                daftarObjek.put(locMejaKursi5, mejaKursi.getNamaObjek()+(i+1));
+                daftarObjek.put(locMejaKursi6, mejaKursi.getNamaObjek()+(i+1));
+                daftarObjek.put(locMejaKursi7, mejaKursi.getNamaObjek()+(i+1));
+                daftarObjek.put(locMejaKursi8, mejaKursi.getNamaObjek()+(i+1));
+                daftarObjek.put(locMejaKursi9, mejaKursi.getNamaObjek()+(i+1));
                 jumlahObjek.put(mejaKursi, i+1);
                 System.out.println(namaBarang + " berhasil dipasang!");
                 currentSim.getInventory().reduceItem(key, 1);
@@ -679,8 +679,68 @@ public class Ruangan {
         }
     }
 
-    public void removeBarang() {
-        // otwwww
+    public void removeBarang(Sim currentSim) {
+        boolean valid = false;
+        String namaBarang;
+        Scanner input = new Scanner(System.in);
+        do {
+            int i = 0;
+            this.displayDaftarObjek();
+            System.out.print("Masukkan nama barang yang ingin dihapus: ");
+            namaBarang = input.next();
+            Iterator<Map.Entry<Point, String>> iter = daftarObjek.entrySet().iterator();
+            while (iter.hasNext()) {
+                Map.Entry<Point, String> entry = iter.next();
+                if (entry.getValue().equals(namaBarang)) {
+                    valid = true;
+                    iter.remove();
+                    if (entry.getValue().contains("KasurSingle")) {
+                        KasurSingle objek = new KasurSingle("KasurSingle");
+                        currentSim.getInventory().addItem(objek, 1);
+                        jumlahObjek.put(objek, i-1);
+                    } else if (entry.getValue().contains("KasurQueenSize")) {
+                        KasurQueenSize objek = new KasurQueenSize("KasurQueenSize");
+                        currentSim.getInventory().addItem(objek, 1);
+                        jumlahObjek.put(objek, i-1);
+                    } else if (entry.getValue().contains("KasurKingSize")) {
+                        KasurKingSize objek = new KasurKingSize("KasurKingSize");
+                        currentSim.getInventory().addItem(objek, 1);
+                        jumlahObjek.put(objek, i-1);
+                    } else if (entry.getValue().contains("Toilet")) {
+                        Toilet objek = new Toilet("Toilet");
+                        currentSim.getInventory().addItem(objek, 1);
+                        jumlahObjek.put(objek, i-1);
+                    } else if (entry.getValue().contains("KomporGas")) {
+                        KomporGas objek = new KomporGas("KomporGas");
+                        currentSim.getInventory().addItem(objek, 1);
+                        jumlahObjek.put(objek, i-1);
+                    } else if (entry.getValue().contains("KomporListrik")) {
+                        KomporListrik objek = new KomporListrik("KomporListrik");
+                        currentSim.getInventory().addItem(objek, 1);
+                        jumlahObjek.put(objek, i-1);
+                    } else if (entry.getValue().contains("MejaKursi")) {
+                        MejaKursi objek = new MejaKursi("MejaKursi");
+                        currentSim.getInventory().addItem(objek, 1);
+                        jumlahObjek.put(objek, i-1);
+                    } else {
+                        Jam objek = new Jam("Jam");
+                        currentSim.getInventory().addItem(objek, 1);
+                        jumlahObjek.put(objek, i-1);
+                    }
+                }
+            }
+            if (!valid) {
+                System.out.println("Barang tidak tersedia silahkan coba lagi!");
+            } else {
+                for (int x = 0; x < this.lebar; x++) {
+                    for (int y = 0; y < this.panjang; y++) {
+                        if (matrixRuangan[x][y].equals(namaBarang)) {
+                            matrixRuangan[x][y] = "Kosong";
+                        }
+                    }
+                }
+            }
+        } while (!valid);
     }
 
     public Furnitur getCurrFurnitur() {
