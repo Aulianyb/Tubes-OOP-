@@ -8,6 +8,7 @@ public class Furnitur extends ObjekGame implements BisaDibeli{
 
     public Furnitur(String namaObjek) {
         super(namaObjek);
+        setKategori("Furnitur");
         this.panjang = 0;
         this.lebar = 0;
     }

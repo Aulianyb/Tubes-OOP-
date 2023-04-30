@@ -6,6 +6,7 @@ public class Makanan extends ObjekGame {
     //Konstruktor
     public Makanan(String namaObjek) {
         super(namaObjek);
+        setKategori("Makanan");
     }
 
     //Getter

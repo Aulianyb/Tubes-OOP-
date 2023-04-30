@@ -2,7 +2,7 @@ package com.simplicity;
 
 public class ObjekGame {
     private String namaObjek;
-    //private String kategori;
+    private String kategori;
 
     //Konstruktur
     public ObjekGame(String namaObjek) {
@@ -17,6 +17,14 @@ public class ObjekGame {
     //Setter
     public void setNamaObjek(String namaObjek) {
         this.namaObjek = namaObjek;
+    }
+
+    public String getKategori() {
+        return kategori;
+    }
+
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
     }
 
     // @Override
