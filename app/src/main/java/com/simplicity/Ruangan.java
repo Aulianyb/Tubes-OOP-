@@ -105,7 +105,7 @@ public class Ruangan {
         int i = 1;
         System.out.println("Daftar objek dalam ruangan: ");
         for (Map.Entry<Point, String> entry : this.daftarObjek.entrySet()) {
-            System.out.println(i + ". <" + entry.getKey() + ", " + entry.getValue() + ">");
+            System.out.println(i + ". <" + entry.getKey().displayPoint() + ", " + entry.getValue() + ">");
             i++;
         }
     }

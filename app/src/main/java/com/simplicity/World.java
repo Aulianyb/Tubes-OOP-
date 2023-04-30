@@ -8,7 +8,7 @@ public class World {
     private Waktu waktu;
     private static Sim currentSim;
     private ArrayList<Sim> sims = new ArrayList<>();
-    private static Point currentLoc;
+
 
     public World(Waktu waktu) {
         this.waktu = waktu;
@@ -43,7 +43,7 @@ public class World {
 
     public void displayWorld() {
         for(Point key : daftarRumah.keySet()) {
-            System.out.println(key + ": Rumah " + daftarRumah.get(key).getOwner());
+            System.out.println(key.displayPoint() + ": Rumah " + daftarRumah.get(key).getOwner());
         }
         System.out.println();
     }
@@ -78,14 +78,6 @@ public class World {
 
     public static Sim getCurrentSim() {
         return currentSim;
-    }
-
-    public void setCurrentLoc(Point loc) {
-        currentLoc = loc;
-    }
-
-    public Point getCurrentLoc() {
-        return currentLoc;
     }
 
     public void displayCurrentLoc() {
@@ -156,7 +148,7 @@ public class World {
         return daftarRumah;
     }
 
-    public void setCurrFurnitur(Furnitur f) {
-        getCurrentRumah().getCurrRuangan().setCurrFurnitur(f);
-    }
+//    public void setCurrFurnitur(Furnitur f) {
+//        getCurrentRumah().getCurrRuangan().setCurrFurnitur(f);
+//    }
 }
