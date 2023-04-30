@@ -64,7 +64,7 @@ public class Menu {
         }
     }
 
-    public void exit() {
+    public static void exit() {
         System.out.println("Thanks for playing! Goodbye!");
         System.exit(0);
     }
@@ -221,7 +221,7 @@ public class Menu {
                     System.out.print("Input lawan berkelahi: ");
                     String lawan = input.nextLine().toLowerCase();
                     Sim simlawan = null;
-                    for(Sim sim : world.getSims()) {
+                    for(Sim sim : World.getSims()) {
                         if (sim.getNama().equalsIgnoreCase(lawan)) {
                             simlawan = sim;
                         }
@@ -255,7 +255,7 @@ public class Menu {
                     System.out.print("Input target Sim: ");
                     String target = input.nextLine().toLowerCase();
                     Sim simtarget = null;
-                    for(Sim sim : world.getSims()) {
+                    for(Sim sim : World.getSims()) {
                         if (sim.getNama().equalsIgnoreCase(target)) {
                             simtarget = sim;
                         }

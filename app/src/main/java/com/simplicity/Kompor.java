@@ -97,7 +97,7 @@ public class Kompor extends Furnitur {
                         try {
                             System.out.println("Memasak...");
                             int durasiMasak = (int)Math.round(1.5 * (masakan.getNilaiKekenyangan()));
-                            Thread.sleep(durasiMasak * 100);
+                            Thread.sleep(durasiMasak * 1000);
                             for (int i = 0; i < masakan.getBahan().size(); i++) {
                                 sim.getInventory().reduceItem((ObjekGame)masakan.getBahan().get(i), 1);
                             }

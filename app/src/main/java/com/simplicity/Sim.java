@@ -175,6 +175,18 @@ public class Sim{
         return ((kesehatan <= 0) || (mood <= 0) || (kekenyangan <= 0)); 
     }
 
+    public void printDeathMessage(){
+        if (kesehatan <= 0){
+            System.out.println(namaLengkap + " sakit berat dan meninggal!");
+        }
+        if (mood <= 0){
+            System.out.println(namaLengkap + " mengalami dan meninggal!");
+        }
+        if (kekenyangan <= 0){
+            System.out.println(namaLengkap + " kelaparan dan meninggal!");
+        }
+    }
+
     public void beliBarang(BisaDibeli barang, int jumlah){
         if (uang < barang.getHarga() * jumlah){
             System.out.println("Maaf, uang yang dimiliki tidak mencukupi!"); 
@@ -420,5 +432,10 @@ public class Sim{
 
     public void setCurrentRumah(Rumah rumah) {
         currentRumah = rumah;
+    }
+
+    //buat testing 
+    public void testAction(int detik){
+        Waktu.timePass(detik);
     }
 }

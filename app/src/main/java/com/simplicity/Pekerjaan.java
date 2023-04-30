@@ -61,7 +61,7 @@ public class Pekerjaan {
                         sim.setMood(y);
                         sim.setUang(z);
                         System.out.println("Bekerja Selesai!");
-                        System.out.println("Kekenyangan : +" + x);                      
+                        System.out.println("Kekenyangan : " + x);                      
                         System.out.println("Mood : " + y);                      
                         System.out.println("Uang : +" + z);  
                         Waktu.timePass(detik); 

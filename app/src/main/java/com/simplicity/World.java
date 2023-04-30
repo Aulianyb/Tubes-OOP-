@@ -7,7 +7,7 @@ public class World {
     private HashMap<Point, Rumah> daftarRumah = new HashMap<>();
     private Waktu waktu;
     private static Sim currentSim;
-    private ArrayList<Sim> sims = new ArrayList<>();
+    private static ArrayList<Sim> sims = new ArrayList<>();
     private static Point currentLoc;
 
     public World(Waktu waktu) {
@@ -72,7 +72,7 @@ public class World {
         }
     }
 
-    public void setCurrentSim(Sim sim) {
+    public static void setCurrentSim(Sim sim) {
         currentSim = sim;
     }
 
@@ -100,13 +100,13 @@ public class World {
         return getCurrentSim().getCurrentRumah();
     }
 
-    public void displaySims() {
+    public static void displaySims() {
         for(int i = 0; i < sims.size(); i++) {
             System.out.println(i+1 + ". " + sims.get(i).getNama());
         }
     }
 
-    public ArrayList<Sim> getSims() {
+    public static ArrayList<Sim> getSims() {
         return sims;
     }
 
@@ -117,7 +117,7 @@ public class World {
                 .displayRuangan();
     }
 
-    public void changeSim(Scanner inp) {
+    public static void changeSim(Scanner inp) {
         if(getSims().size() > 1) {
             List<String> names = new ArrayList<>();
             for(Sim sim : getSims()) {
@@ -134,7 +134,7 @@ public class World {
                 if(found) {
                     for(Sim sim : getSims()) {
                         if(sim.getNama().equals(namasim)) {
-                            setCurrentSim(sim);
+                            World.setCurrentSim(sim);
                             end = true;
                         }
                     }
@@ -156,7 +156,41 @@ public class World {
         return daftarRumah;
     }
 
-    public void setCurrFurnitur(Furnitur f) {
-        getCurrentRumah().getCurrRuangan().setCurrFurnitur(f);
+    public static void checkDeath(){
+        if(currentSim.isDie()){
+            System.out.println("Oh no! " + currentSim.getNama() + " telah meninggal..");
+            System.out.println("GANTI SIM atau GAME OVER?");
+            System.out.printf("Masukan pilihan : ");
+            Scanner input = new Scanner(System.in); 
+            String choice = input.nextLine().toUpperCase(); 
+            boolean valid = false; 
+            if (choice.equals("GANTI SIM")){
+                changeSim(input);
+            } else if (choice.equals("GAME OVER")){
+                Menu.exit();
+            } else{
+                while (!valid){
+                    System.out.println("Input tidak valid!");
+                    System.out.println("Masukan ulang pilihan : ");
+                    if (choice.equals("GANTI SIM")){
+                        valid = true; 
+                        changeSim(input);
+                    } else if (choice.equals("GAME OVER")){
+                        valid = true; 
+                        Menu.exit();
+                    }
+                }
+            }
+        }
+    }
+    
+    public static void updateSim(){
+        ArrayList <Sim> copy = new ArrayList<Sim>(sims); 
+        for (Sim sim : copy){
+            if (sim.isDie()){
+                sim.printDeathMessage(); 
+                sims.remove(sim); 
+            }
+        }
     }
 }

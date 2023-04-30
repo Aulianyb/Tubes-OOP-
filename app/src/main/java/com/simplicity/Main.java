@@ -27,13 +27,13 @@ public class Main {
                     break;
                 case "load game":
                     world = menu.load();
-                    menu.exit();
+                    Menu.exit();
                 case "help":
                     menu.help("start");
                     break;
                 case "exit":
                     end = true;
-                    menu.exit();
+                    Menu.exit();
                     break;
                 default:
                     System.out.println("Input tidak valid, silahkan masukkan ulang input");
@@ -90,7 +90,7 @@ public class Main {
                     break;
                 case "exit":
                     end = true;
-                    menu.exit();
+                    Menu.exit();
                     break;
                 default:
                     System.out.println("Input tidak valid, silahkan masukkan ulang input");

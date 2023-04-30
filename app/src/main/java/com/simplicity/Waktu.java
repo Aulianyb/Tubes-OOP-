@@ -66,6 +66,11 @@ public class Waktu {
     public static void timePass(int durasi){
         detik += durasi % 60;
         menit += durasi / 60; 
+
+        //cek apakah tiap SIM masih hidup atau gak
+        World.checkDeath(); 
+        World.updateSim();
+
         if (!barangDikirim.isEmpty()){
             barangDikirim.forEach((key, value) -> {
                 int temp = value - durasi; 
