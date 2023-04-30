@@ -19,14 +19,16 @@ public class MejaKursi extends Furnitur {
             public void run(){
                 Makanan temp = null;
                 try {
-                    Map<Makanan, Integer> inv = sim.getInventory();
+                    //Map<Makanan, Integer> inv = sim.getInventory();
                     int i = 1;
 
                     //Menampilkan daftar makanan yang dimiliki
                     System.out.println("Makanan yang terdapat dalam inventory:");
-                    for (Makanan m : inv.keySet()) {
-                        System.out.println(i+". "+m.getNamaObjek());
-                        i++;
+                    for (ObjekGame m : ((Map<ObjekGame, Integer>)sim.getInventory().getInventory()).keySet()) {
+                        if (m instanceof Makanan) {
+                            System.out.println(i + ". " + m.getNamaObjek());
+                            i++;
+                        }
                     }
 
                     //Input makanan yang ingin dimakan
@@ -34,10 +36,10 @@ public class MejaKursi extends Furnitur {
                     String namaMakanan = scanner.nextLine();
                     boolean valid = false;
                     //Mengonsumsi makanan
-                    for (Makanan ma : inv.keySet()) {
-                        if (ma.getNamaObjek().toLowerCase().equals(namaMakanan.toLowerCase())) {
+                    for (ObjekGame ma : ((Map<ObjekGame, Integer>)sim.getInventory().getInventory()).keySet()) {
+                        if (ma instanceof Makanan && ma.getNamaObjek().toLowerCase().equals(namaMakanan.toLowerCase())) {
                             valid = true;
-                            temp = ma;
+                            temp = (Makanan)ma;
                             break;
                         }
                     }
@@ -55,6 +57,7 @@ public class MejaKursi extends Furnitur {
 
 
                 } catch (InterruptedException e){
+                    System.out.println("Makan dihentikan.");
                 }
             }
         });

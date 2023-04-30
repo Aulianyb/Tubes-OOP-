@@ -443,4 +443,8 @@ public class Sim{
         System.out.println("Ini aksi test selama " + detik + " detik");
         Waktu.timePass(detik);
     }
+
+    public void setJamTidur(int detik) {
+        jamTidur = 0;
+    }
 }

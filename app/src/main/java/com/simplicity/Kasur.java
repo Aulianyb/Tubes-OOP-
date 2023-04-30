@@ -16,22 +16,29 @@ public class Kasur extends Furnitur{
         Thread thread = new Thread(new Runnable(){
             public void run(){
                 try {
-                    int sleepTime = detik * 1000;
-                    System.out.println("Tidur Z z z..."); //indikator buat testing
-                    while (sleepTime > 0) {
-                        if (sleepTime - 180000 >= 0) {
-                            Thread.sleep(180000);
-                            sim.setMood(30);
-                            sim.setKesehatan(20);
-                            sleepTime -= 180000;
+                    if (detik <= 0) {
+                        System.out.println("Durasi tidur tidak valid!");
+                    } else {
+                        int sleepTime = detik * 1000;
+                        System.out.println("Tidur Z z z..."); //indikator buat testing
+                        while (sleepTime > 0) {
+                            if (sleepTime - 240000 >= 0) {
+                                Thread.sleep(240000);
+                                sim.setMood(30);
+                                sim.setKesehatan(20);
+                                sleepTime -= 240000;
+                            } else {
+                                Thread.sleep(sleepTime);
+                                sleepTime = 0;
+                            }
                         }
-                        else {
-                            Thread.sleep(sleepTime);
-                            sleepTime = 0;
+                        if (detik >= 180) {
+                            sim.setJamTidur(0);
                         }
+                        Waktu.timePass(detik);
                     }
-                    Waktu.timePass(detik);
-                } catch (InterruptedException e){
+                } catch(InterruptedException e){
+                    System.out.println("Tidur dihentikan.");
                 }
             }
         });

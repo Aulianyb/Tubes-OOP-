@@ -22,6 +22,7 @@ public class Toilet extends Furnitur {
                     sim.setMood(10);
                     Waktu.timePass(10);
                 } catch (InterruptedException e){
+                    System.out.println("Buang air dihentikan.");
                 }
             }
         });

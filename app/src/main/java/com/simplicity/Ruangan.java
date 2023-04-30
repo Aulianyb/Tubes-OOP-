@@ -9,6 +9,17 @@ public class Ruangan {
     private HashMap<Point, String> daftarObjek = new HashMap<Point, String>();
     private HashMap<Furnitur, Integer> jumlahObjek = new HashMap<Furnitur, Integer>();
 
+    //Placeholder biar bisa debug
+    private List<Furnitur> availableFurnitur = new ArrayList<Furnitur>();
+
+    {
+        availableFurnitur.add(new Kasur("kasur"));
+        availableFurnitur.add(new Kasur("kompor"));
+        availableFurnitur.add(new Kasur("mejakursi"));
+        availableFurnitur.add(new Kasur("toilet"));
+        availableFurnitur.add(new Kasur("jam"));
+    }
+
     private Furnitur currFurnitur;
     public Ruangan() {
         this.namaRuangan = "Default";
@@ -636,8 +647,13 @@ public class Ruangan {
         String obj = input.nextLine();
         boolean found = false;
         for(String furnitur : daftarObjek.values()) {
-            if(obj.equals(furnitur)) {
-                // currFurnitur = furnitur;
+            if(furnitur.contains(obj)) {
+                for (int z = 0; z < availableFurnitur.size(); z++) {
+                    if (availableFurnitur.get(z).getNamaObjek().toLowerCase().equals(obj.toLowerCase())) {
+                        currFurnitur = availableFurnitur.get(z);
+                        break;
+                    }
+                }
                 found = true;
             }
         }
