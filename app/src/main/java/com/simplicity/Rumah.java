@@ -33,7 +33,8 @@ public class Rumah {
         int i = 1;
         System.out.println("Daftar ruangan dalam rumah: ");
         for (Map.Entry<Point, Ruangan> entry : this.daftarRuangan.entrySet()) {
-            System.out.println(i + ". <" + entry.getKey() + ", " + entry.getValue().getNama() + ">");
+            //ini getKey kenapa ya :'v uhhhh ngebug
+            System.out.println(i + ". <" + entry.getKey().displayPoint() + ", " + entry.getValue().getNama() + ">");
             i++;
         }
     }
