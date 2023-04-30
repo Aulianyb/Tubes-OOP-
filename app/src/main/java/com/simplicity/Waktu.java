@@ -14,11 +14,11 @@ public class Waktu {
         hari = 0; 
     }
 
-    public int getMenit() {
+    public static int getMenit() {
         return menit;
     }
 
-    public int getDetik() {
+    public static int getDetik() {
         return detik;
     }
 
