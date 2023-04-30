@@ -290,7 +290,7 @@ public class Ruangan {
                 x2 = input.nextInt();
                 System.out.print("y: ");
                 y2 = input.nextInt();
-                if (((x2 == x1+3 && y1 == y2) || (y2 == y1+3 && x1 == x2) || (x2 == x1-3 && y1 == y2) || (y2 == y1+3 && x1 == x2)) && cekPoint(x1, y1) && cekPoint(x2, y2)) {
+                if (((x2 == x1+3 && y1 == y2) || (y2 == y1+3 && x1 == x2) || (x2 == x1-3 && y1 == y2) || (y2 == y1-3 && x1 == x2)) && cekPoint(x1, y1) && cekPoint(x2, y2)) {
                     valid = true;
                 } else {
                     System.out.println("Titik tidak sesuai, coba ulangi!");
@@ -372,7 +372,7 @@ public class Ruangan {
                 x2 = input.nextInt();
                 System.out.print("y: ");
                 y2 = input.nextInt();
-                if ((x2 == x1+1 || y2 == y1+1 || x2 == x1-1 || y2 == y1-1) && cekPoint(x1, y1) && cekPoint(x2, y2)) {
+                if (((x2 == x1+1 && y1 == y2) || (y2 == y1+1 && x1 == x2) || (x2 == x1-1 && y1 == y2) || (y2 == y1-1 && x1 == x2)) && cekPoint(x1, y1) && cekPoint(x2, y2)) {
                     valid = true;
                 } else {
                     System.out.println("Titik tidak sesuai dengan dimensi!");
