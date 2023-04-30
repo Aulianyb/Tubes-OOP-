@@ -124,10 +124,13 @@ public class World {
                 boolean found = names.contains(namasim);
 
                 if(found) {
-                    for(Sim sim : getSims()) {
-                        if(sim.getNama().equals(namasim)) {
-                            World.setCurrentSim(sim);
-                            end = true;
+                    for(int i = 0; i < sims.size(); i++) {
+                        if(sims.get(i).getNama().equals(getCurrentSim().getNama())) {
+                            sims.set(i,getCurrentSim());
+                        }
+                        if(sims.get(i).getNama().equals(namasim)) {
+                            World.setCurrentSim(sims.get(i));
+                            end=true;
                         }
                     }
                 } else {
