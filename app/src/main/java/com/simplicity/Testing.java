@@ -23,8 +23,12 @@ public class Testing {
         BahanMakanan b3 = new BahanMakanan("Sapi");
         BahanMakanan b4 = new BahanMakanan("Kentang");
 
-        World.getCurrentSim().beliBarang(b, 10);
-        World.getCurrentSim().beliBarang(aaa, 1);
+        World.getCurrentSim().beliBarang(b, 2);
+        World.getCurrentSim().beliBarang(b2, 1);
+        World.getCurrentSim().beliBarang(b2, 1);
+        World.getCurrentSim().beliBarang(b3, 1);
+
+        w.getWaktu().displayWaktu(); 
 
         Waktu.displayPengiriman();
 
@@ -32,7 +36,6 @@ public class Testing {
         World.getCurrentSim().testAction(10); 
         Waktu.displayPengiriman();
         World.getCurrentSim().getInventory().lihatInventory();
-
     
     }
         
