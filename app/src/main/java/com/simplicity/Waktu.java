@@ -41,6 +41,10 @@ public class Waktu {
     }
 
     public void displayWaktu() {
+
+        System.out.print("HARI " + hari);
+        System.out.println(""); 
+
         if (jam<10) {
             System.out.print("0" + jam);
         } else {
@@ -105,6 +109,12 @@ public class Waktu {
                     iterator.remove(); 
                 }
             }
+        }
+
+        if (menit / 12 > 0){
+            hari += menit / 12; 
+            menit = menit % 12; 
+            //reset makan, dll ya gitu deh
         }
     }
 

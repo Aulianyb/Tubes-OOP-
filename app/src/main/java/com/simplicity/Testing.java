@@ -27,8 +27,10 @@ public class Testing {
 
         Kiriman bb = new Kiriman(b, s1, 10);
 
-        s1.setKekenyangan(-1000);
-        World.getCurrentSim().testAction(20);
+        w.getWaktu().displayWaktu();
+        World.getCurrentSim().testAction(820);
+        w.getWaktu().displayWaktu();
+
         m.viewSimInfo(w);
     }
         

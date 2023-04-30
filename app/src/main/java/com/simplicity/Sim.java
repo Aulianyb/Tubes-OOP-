@@ -436,6 +436,7 @@ public class Sim{
 
     //buat testing 
     public void testAction(int detik){
+        System.out.println("Ini aksi test selama " + detik + " detik");
         Waktu.timePass(detik);
     }
 }

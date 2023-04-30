@@ -5,13 +5,13 @@ public class World {
     private final int panjang = 64;
     private final int lebar = 64;
     private HashMap<Point, Rumah> daftarRumah = new HashMap<>();
-    private Waktu waktu;
+    private static Waktu waktu;
     private static Sim currentSim;
     private static ArrayList<Sim> sims = new ArrayList<>();
     // private static Point currentLoc;
 
-    public World(Waktu waktu) {
-        this.waktu = waktu;
+    public World(Waktu waktu_input) {
+        waktu = waktu_input;
     }
 
     public HashMap<Point, Rumah> getRumahList() {
@@ -19,7 +19,7 @@ public class World {
     }
 
     public Waktu getWaktu() {
-        return this.waktu;
+        return waktu;
     }
 
     public Rumah addRumah(String namaLengkap) {
