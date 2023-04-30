@@ -164,6 +164,7 @@ public class Ruangan {
             currentSim.getInventory().lihatInventory();
             System.out.print("Masukkan nama barang yang ingin dipasang: ");
             namaBarang = input.next();
+            //mungkin ntar pake method yang ada di inventory buat ngecek
             for (Map.Entry<Furnitur, Integer> entry : ((Map<Furnitur,Integer>) currentSim.getInventory().getInventoryPeralatan()).entrySet()){
                 if (entry.getKey().getNamaObjek().equals(namaBarang)) {
                     key = entry.getKey();

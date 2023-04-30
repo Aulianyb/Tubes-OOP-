@@ -192,4 +192,11 @@ public class World {
             sim.getPekerjaan().addDay();
         }
     }
+
+    // SIM nambahin atributnya 
+    // Waktu -> nambahin atributnya -> ngecek tiap sim nambahin / ngurangin waktu setelah tidur / makan
+    // bakalan kereset tiap hari
+
+    // tidur -> 10 menit -> dapet penalti
+    // besok harinya timer diubah jadi 10 lagi atau gak
 }

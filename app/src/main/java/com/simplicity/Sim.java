@@ -19,6 +19,8 @@ public class Sim{
     private int kesehatan; 
     private Status status; 
     private Rumah currentRumah; 
+    private int jamTidur;
+    private int jamBuangAir; 
     
     public Sim(String namaLengkap, Rumah rumah){
         kekenyangan = 80; 
@@ -31,6 +33,8 @@ public class Sim{
         status = new Status();
         this.namaLengkap = namaLengkap;
         currentRumah = rumah; 
+        jamTidur = 0; 
+        jamBuangAir = 0;
     }
 
     public String getNama(){
