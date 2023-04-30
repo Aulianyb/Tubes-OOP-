@@ -36,7 +36,7 @@ public class Waktu {
         System.out.println(""); 
 
         if (menit<10) {
-            System.out.print(":0" + menit);
+            System.out.print("0" + menit);
         } else {
             System.out.print(":" + menit);
         }
@@ -114,9 +114,7 @@ public class Waktu {
     }
 
     public static void displayPengiriman(){
-        System.out.println("=================="); 
         System.out.println("BARANG DALAM PENGIRIMAN"); 
-        System.out.println("=================="); 
         if (barangDikirim.isEmpty()){
             System.out.println("Tidak ada barang dalam pengiriman");
         }else{

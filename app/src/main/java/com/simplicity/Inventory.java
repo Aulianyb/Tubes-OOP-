@@ -66,15 +66,23 @@ public class Inventory<T extends ObjekGame> {
 
     public void lihatInventory(){
         // ini juga nampilin dua duanya kah? makanan dan non makanan?
-        System.out.println("==================");
-        System.out.println(" I N V E N T O R Y"); 
-        System.out.println("=================="); 
+        System.out.println(""); 
+        System.out.println(" ".repeat(12) + "I N V E N T O R Y" + " ".repeat(12)); 
+        System.out.println("-".repeat(42)); 
+        System.out.println("|     Nama Barang    | Kategori | Jumlah |"); 
+        System.out.println("-".repeat(42)); 
 
         if (inventory.isEmpty()){
-            System.out.println("Oops! Sepertinya tidak ada apa apa dalam Inventory Sim ini"); 
+            System.out.println("|" + " ".repeat(20) + "|" + " ".repeat(10) + "|" + " ".repeat(8) + "|"); 
+            System.out.println("-".repeat(42)); 
+
         } else{
             inventory.forEach((key, value) -> {
-                System.out.println(key.getNamaObjek() + " : " + value); 
+                int x = 20 - key.getNamaObjek().length();
+                int y = 10; 
+                int z = 8 - value.toString().length(); 
+                System.out.println("|" + key.getNamaObjek() + " ".repeat(x) + "|" + " ".repeat(y) + "|" + value + " ".repeat(z) + "|"); 
+                System.out.println("-".repeat(42)); 
             });
         }
 

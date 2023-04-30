@@ -113,6 +113,7 @@ public class Menu {
     public void action(World world) {
         Scanner input = new Scanner(System.in);
         List<String> actions = new ArrayList<>();
+        boolean ownHouse = false;
 
         // Get valid action from currFurnitur
          if(!(world.getCurrFurnitur() == null)) {
@@ -125,6 +126,7 @@ public class Menu {
          // Get valid action to upgrade house
         if(world.getCurrentRumah().getOwner().equals(World.getCurrentSim().getNama())) {
             actions.add("Upgrade rumah");
+            ownHouse = true;
         }
 
         // Add sim valid actions
@@ -138,6 +140,7 @@ public class Menu {
         actions.add("Daydreaming");
         actions.add("Monolog");
         actions.add("Lelucon");
+        actions.add("Edit Room");
 
         // Display valid action
         System.out.println("Valid Action");
@@ -165,6 +168,19 @@ public class Menu {
             switch(actioninput) {
                 case "upgrade rumah" :
                     upgradeHouse(world);
+                    break;
+                case "beli barang" :
+                    displayBahanMakanan();
+                    displayFurnitur();
+                    System.out.println("Input detail barang");
+                    System.out.print("Nama barang");
+                    String namabarang = input.nextLine().toLowerCase();
+                    System.out.print("Jumlah barang : ");
+                    int jumlah = input.nextInt();
+                    BisaDibeli barang = createObjekGame(namabarang);
+                    if(barang != null) {
+                        World.getCurrentSim().beliBarang(barang,jumlah);
+                    }
                     break;
                 case "kerja" :
                     System.out.print("Input durasi : ");
@@ -251,7 +267,7 @@ public class Menu {
                     World.getCurrentSim().monolog(durasi);
                     break;
                 case "lelucon" :
-                    world.displaySims();
+                    World.displaySims();
                     System.out.print("Input target Sim: ");
                     String target = input.nextLine().toLowerCase();
                     Sim simtarget = null;
@@ -266,9 +282,86 @@ public class Menu {
                         World.getCurrentSim().lelucon(simtarget);
                     }
                     break;
+                case "melihat waktu" :
+
+                    break;
                 default :
                     System.out.println("Aksi tidak valid!!");
             }
+        }
+    }
+
+    public void displayBahanMakanan() {
+        String[] bahan = {
+                "Nasi",
+                "Kentang",
+                "Ayam",
+                "Sapi",
+                "Wortel",
+                "Bayam",
+                "Kacang",
+                "Susu",
+        };
+        System.out.println("List Bahan Makanan");
+        for(int i = 1; i <= bahan.length; i++) {
+            System.out.printf("%d. %s%n",i,bahan[i-1]);
+        }
+    }
+
+    public void displayFurnitur() {
+        String[] furnitur = {
+                "Kasur Single",
+                "Kasur Queen Size",
+                "Kasur King Size",
+                "Toilet",
+                "Kompor Gas",
+                "Kompor Listrik",
+                "Meja dan Kursi",
+                "Jam",
+        };
+        System.out.println("List Furnitur");
+        for(int i = 1; i <= furnitur.length; i++) {
+            System.out.printf("%d. %s%n",i,furnitur[i-1]);
+        }
+    }
+
+    public BisaDibeli createObjekGame(String name) {
+        switch(name) {
+            case "nasi" :
+                return new BahanMakanan("Nasi");
+            case "kentang" :
+                return new BahanMakanan("Kentang");
+            case "ayam" :
+                return new BahanMakanan("Ayam");
+            case "sapi" :
+                return new BahanMakanan("Sapi");
+            case "wortel" :
+                return new BahanMakanan("Wortel");
+            case "bayam" :
+                return new BahanMakanan("Bayam");
+            case "kacang" :
+                return new BahanMakanan("Kacang");
+            case "susu" :
+                return new BahanMakanan("Susu");
+            case "kasur single" :
+                return new KasurSingle("KasurSingle");
+            case "kasur queen size" :
+                return new KasurQueenSize("KasurQueenSize");
+            case "kasur king size" :
+                return new KasurKingSize("KasurKingSize");
+            case "toilet" :
+                return new Toilet("Toilet");
+            case "kompor gas" :
+                return new KomporGas("KomporGas");
+            case "kompor listrik" :
+                return new KomporListrik("KomporListrik");
+            case "meja dan kursi" :
+                return new MejaKursi("MejaDanKursi");
+            case "jam" :
+                return new Jam("Jam");
+            default :
+                System.out.println("Barang tidak tersedia!!");
+                return null;
         }
     }
 
