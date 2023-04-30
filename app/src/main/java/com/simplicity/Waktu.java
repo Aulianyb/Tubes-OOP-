@@ -3,22 +3,16 @@ import java.util.*;
 
 public class Waktu {
     private static int hari; 
-    private static int jam;
     private static int menit;
     private static int detik;
     private static HashMap <Kiriman, Integer> barangDikirim = new HashMap<Kiriman, Integer>();
     private static HashMap <Rumah, Integer> ongoingUpgrade = new HashMap<Rumah, Integer>(); 
 
     public Waktu() {
-        jam = 0;
         menit = 0;
         detik = 0;
         hari = 0; 
     }
-
-    public int getJam() {
-        return jam;
-    }    
 
     public int getMenit() {
         return menit;
@@ -26,10 +20,6 @@ public class Waktu {
 
     public int getDetik() {
         return detik;
-    }
-
-    public void setJam(int jam_input) {
-        jam = jam_input;
     }
 
     public void setMenit(int menit_input) {
@@ -45,11 +35,6 @@ public class Waktu {
         System.out.print("HARI " + hari);
         System.out.println(""); 
 
-        if (jam<10) {
-            System.out.print("0" + jam);
-        } else {
-            System.out.print(jam);
-        }
         if (menit<10) {
             System.out.print(":0" + menit);
         } else {
@@ -64,7 +49,7 @@ public class Waktu {
     }
     
     public int toDetik() {
-        return((jam*3600)+(menit*60)+detik);
+        return((menit * 60) + detik);
     }
 
     public static void timePass(int durasi){

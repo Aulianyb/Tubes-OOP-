@@ -2,6 +2,7 @@ package com.simplicity;
 
 public class ObjekGame {
     private String namaObjek;
+    //private String kategori;
 
     //Konstruktur
     public ObjekGame(String namaObjek) {
