@@ -28,8 +28,7 @@ public class Point {
         this.y = y;
     }
 
-    @Override
-    public String toString() {
+    public String displayPoint() {
         return String.format("<%d, %d>",getX(),getY());
     }
     
