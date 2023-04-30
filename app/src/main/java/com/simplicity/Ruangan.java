@@ -20,43 +20,43 @@ public class Ruangan {
         }
         // Default toilet
         Point locToilet = new Point(5, 5);
-        Toilet toilet = new Toilet("Toilet1");
-        matrixRuangan[5][5] = toilet.getNamaObjek();
-        daftarObjek.put(locToilet, toilet.getNamaObjek());
+        Toilet toilet = new Toilet("Toilet");
+        matrixRuangan[5][5] = toilet.getNamaObjek()+1;
+        daftarObjek.put(locToilet, toilet.getNamaObjek()+1);
         jumlahObjek.put(toilet, 1);
         // Default jam
         Point locJam = new Point(3, 0);
-        Jam jam = new Jam("Jam1");
-        matrixRuangan[3][0] = "Jam1";
-        daftarObjek.put(locJam, jam.getNamaObjek());
+        Jam jam = new Jam("Jam");
+        matrixRuangan[3][0] = jam.getNamaObjek()+1;
+        daftarObjek.put(locJam, jam.getNamaObjek()+1);
         jumlahObjek.put(jam, 1);
         // Default kompor
         Point locKompor1 = new Point(1, 0);
         Point locKompor2 = new Point(2, 0);
-        Kompor kompor = new Kompor("Kompor1");
+        Kompor kompor = new Kompor("Kompor");
         for (int x = 1; x < 3; x++) {
             for (int y = 0; y < 1; y++) {
-                matrixRuangan[x][y] = kompor.getNamaObjek();
+                matrixRuangan[x][y] = kompor.getNamaObjek()+1;
             }
         }
-        daftarObjek.put(locKompor1, kompor.getNamaObjek());
-        daftarObjek.put(locKompor2, kompor.getNamaObjek());
+        daftarObjek.put(locKompor1, kompor.getNamaObjek()+1);
+        daftarObjek.put(locKompor2, kompor.getNamaObjek()+1);
         jumlahObjek.put(kompor, 1);
         // Default kasur single
         Point locKasurSingle1 = new Point(5, 0);
         Point locKasurSingle2 = new Point(5, 1);
         Point locKasurSingle3 = new Point(5, 2);
         Point locKasurSingle4 = new Point(5, 3);
-        KasurSingle kasurSingle =  new KasurSingle("KasurSingle1");
+        KasurSingle kasurSingle =  new KasurSingle("KasurSingle");
         for (int x = 5; x < 6; x++) {
             for (int y = 0; y < 4; y++) {
-                matrixRuangan[x][y] = kasurSingle.getNamaObjek();
+                matrixRuangan[x][y] = kasurSingle.getNamaObjek()+1;
             }
         }
-        daftarObjek.put(locKasurSingle1, kasurSingle.getNamaObjek());
-        daftarObjek.put(locKasurSingle2, kasurSingle.getNamaObjek());
-        daftarObjek.put(locKasurSingle3, kasurSingle.getNamaObjek());
-        daftarObjek.put(locKasurSingle4, kasurSingle.getNamaObjek());
+        daftarObjek.put(locKasurSingle1, kasurSingle.getNamaObjek()+1);
+        daftarObjek.put(locKasurSingle2, kasurSingle.getNamaObjek()+1);
+        daftarObjek.put(locKasurSingle3, kasurSingle.getNamaObjek()+1);
+        daftarObjek.put(locKasurSingle4, kasurSingle.getNamaObjek()+1);
         jumlahObjek.put(kasurSingle, 1);
         // Default meja dan kursi makan
         Point locMejaKursi1 = new Point(1, 2);
@@ -68,21 +68,21 @@ public class Ruangan {
         Point locMejaKursi7 = new Point(3, 2);
         Point locMejaKursi8 = new Point(3, 3);
         Point locMejaKursi9 = new Point(3, 4);
-        MejaKursi mejaKursi = new MejaKursi("MejaKursi1");
+        MejaKursi mejaKursi = new MejaKursi("MejaKursi");
         for (int x = 1; x < 4; x++) {
             for (int y = 2; y < 5; y++) {
-                matrixRuangan[x][y] = mejaKursi.getNamaObjek();
+                matrixRuangan[x][y] = mejaKursi.getNamaObjek()+1;
             }
         }
-        daftarObjek.put(locMejaKursi1, mejaKursi.getNamaObjek());
-        daftarObjek.put(locMejaKursi2, mejaKursi.getNamaObjek());
-        daftarObjek.put(locMejaKursi3, mejaKursi.getNamaObjek());
-        daftarObjek.put(locMejaKursi4, mejaKursi.getNamaObjek());
-        daftarObjek.put(locMejaKursi5, mejaKursi.getNamaObjek());
-        daftarObjek.put(locMejaKursi6, mejaKursi.getNamaObjek());
-        daftarObjek.put(locMejaKursi7, mejaKursi.getNamaObjek());
-        daftarObjek.put(locMejaKursi8, mejaKursi.getNamaObjek());
-        daftarObjek.put(locMejaKursi9, mejaKursi.getNamaObjek());
+        daftarObjek.put(locMejaKursi1, mejaKursi.getNamaObjek()+1);
+        daftarObjek.put(locMejaKursi2, mejaKursi.getNamaObjek()+1);
+        daftarObjek.put(locMejaKursi3, mejaKursi.getNamaObjek()+1);
+        daftarObjek.put(locMejaKursi4, mejaKursi.getNamaObjek()+1);
+        daftarObjek.put(locMejaKursi5, mejaKursi.getNamaObjek()+1);
+        daftarObjek.put(locMejaKursi6, mejaKursi.getNamaObjek()+1);
+        daftarObjek.put(locMejaKursi7, mejaKursi.getNamaObjek()+1);
+        daftarObjek.put(locMejaKursi8, mejaKursi.getNamaObjek()+1);
+        daftarObjek.put(locMejaKursi9, mejaKursi.getNamaObjek()+1);
         jumlahObjek.put(mejaKursi, 1);
         currFurnitur = null;
     }
@@ -102,12 +102,28 @@ public class Ruangan {
     }
 
     public void displayDaftarObjek() {
-        int i = 1;
+        int j = 1;
         System.out.println("Daftar objek dalam ruangan: ");
-        for (Map.Entry<Point, String> entry : this.daftarObjek.entrySet()) {
-            System.out.println(i + ". <" + entry.getKey() + ", " + entry.getValue() + ">");
-            i++;
+        for (Map.Entry<Furnitur, Integer> entry : this.jumlahObjek.entrySet()) {
+            for (int i = 1; i < entry.getValue()+1; i++) {
+                if (i == entry.getValue()) {
+                    System.out.println(j + ". " + entry.getKey().getNamaObjek()+i);
+                }
+            }
+            j++;
         }
+    }
+
+    public int getJumlah(Furnitur furnitur) {
+        int jumlah = 0;
+        for (Map.Entry<Furnitur, Integer> entry : this.jumlahObjek.entrySet()) {
+            for (int i = 1; i < entry.getValue()+1; i++) {
+                if (i == entry.getValue()) {
+                    jumlah = i;
+                }
+            }
+        }
+        return jumlah;
     }
 
     public void displayRuangan() {
@@ -192,14 +208,8 @@ public class Ruangan {
             } while (!valid);
             Point locToilet = new Point(x, y);
             if (!isAvailable(locToilet)) {
-                int i = 0;
-                for (Map.Entry<Point, String> entry : this.daftarObjek.entrySet()) {
-                    if (entry.getValue().contains("Toilet")) {
-                        i++;
-                        break;
-                    }
-                }
                 Toilet toilet = new Toilet(namaBarang);
+                int i = getJumlah(toilet);
                 matrixRuangan[x][y] = toilet.getNamaObjek()+(i+1);
                 daftarObjek.put(locToilet, toilet.getNamaObjek()+(i+1));
                 jumlahObjek.put(toilet, i+1);
@@ -226,14 +236,8 @@ public class Ruangan {
             } while (!valid);
             Point locKomporListrik = new Point(x, y);
             if (!isAvailable(locKomporListrik)) {
-                int i = 0;
-                for (Map.Entry<Point, String> entry : this.daftarObjek.entrySet()) {
-                    if (entry.getValue().contains("KomporListrik")) {
-                        i++;
-                        break;
-                    }
-                }
                 KomporListrik komporListrik = new KomporListrik(namaBarang);
+                int i = getJumlah(komporListrik);
                 matrixRuangan[x][y] = komporListrik.getNamaObjek()+(i+1);
                 daftarObjek.put(locKomporListrik, komporListrik.getNamaObjek()+(i+1));
                 jumlahObjek.put(komporListrik, i+1);
@@ -260,14 +264,8 @@ public class Ruangan {
             } while (!valid);
             Point locJam = new Point(x, y);
             if (!isAvailable(locJam)) {
-                int i = 0;
-                for (Map.Entry<Point, String> entry : this.daftarObjek.entrySet()) {
-                    if (entry.getValue().contains("Jam")) {
-                        i++;
-                        break;
-                    }
-                }
                 Jam jam = new Jam(namaBarang);
+                int i = getJumlah(jam);
                 matrixRuangan[x][y] = jam.getNamaObjek()+(i+1);
                 daftarObjek.put(locJam, jam.getNamaObjek()+(i+1));
                 jumlahObjek.put(jam, i+1);
@@ -315,14 +313,8 @@ public class Ruangan {
                 locKasurSingle3 = new Point(x2, y2-2);
             }
             if (!isAvailable(locKasurSingle1) && !isAvailable(locKasurSingle2) && !isAvailable(locKasurSingle3) && !isAvailable(locKasurSingle4)) {
-                int i = 0;
-                for (Map.Entry<Point, String> entry : this.daftarObjek.entrySet()) {
-                    if (entry.getValue().contains("KasurSingle")) {
-                        i++;
-                        break;
-                    }
-                }
                 KasurSingle kasurSingle = new KasurSingle(namaBarang);
+                int i = getJumlah(kasurSingle);
                 if (x1<=x2 && y1<=y2) {
                     for (int a = x1; a < x2+1; a++) {
                         for (int b = y1; b < y2+1; b++) {
@@ -382,14 +374,8 @@ public class Ruangan {
             Point locKomporGas1 = new Point(x1, y1);
             Point locKomporGas2 = new Point(x2, y2);
             if (!isAvailable(locKomporGas1) && !isAvailable(locKomporGas2)) {
-                int i = 0;
-                for (Map.Entry<Point, String> entry : this.daftarObjek.entrySet()) {
-                    if (entry.getValue().contains("KomporGas")) {
-                        i++;
-                        break;
-                    }
-                }
                 KomporGas komporGas = new KomporGas(namaBarang);
+                int i = getJumlah(komporGas);
                 if (x1<=x2 && y1<=y2) {
                     for (int a = x1; a < x2+1; a++) {
                         for (int b = y1; b < y2+1; b++) {
@@ -474,14 +460,8 @@ public class Ruangan {
                 locKasurQueenSize7 = new Point(x1+1, y1+2);
             }
             if (!isAvailable(locKasurQueenSize1) && !isAvailable(locKasurQueenSize2) && !isAvailable(locKasurQueenSize3) && !isAvailable(locKasurQueenSize4) && !isAvailable(locKasurQueenSize5) && !isAvailable(locKasurQueenSize6) && !isAvailable(locKasurQueenSize7) && !isAvailable(locKasurQueenSize8)) {
-                int i = 0;
-                for (Map.Entry<Point, String> entry : this.daftarObjek.entrySet()) {
-                    if (entry.getValue().contains("KasurQueenSize")) {
-                        i++;
-                        break;
-                    }
-                }
                 KasurQueenSize kasurQueenSize = new KasurQueenSize(namaBarang);
+                int i = getJumlah(kasurQueenSize);
                 for (int a = x1; a < x4+1; a++) {
                     for (int b = y1; b < y4+1; b++) {
                         matrixRuangan[a][b] = kasurQueenSize.getNamaObjek()+(i+1);
@@ -558,14 +538,8 @@ public class Ruangan {
                 locKasurKingSize9 = new Point(x1+1, y1+3);
             }
             if (!isAvailable(locKasurKingSize1) && !isAvailable(locKasurKingSize2) && !isAvailable(locKasurKingSize3) && !isAvailable(locKasurKingSize4) && !isAvailable(locKasurKingSize5) && !isAvailable(locKasurKingSize6) && !isAvailable(locKasurKingSize7) && !isAvailable(locKasurKingSize8) && !isAvailable(locKasurKingSize9) && !isAvailable(locKasurKingSize10)) {
-                int i = 0;
-                for (Map.Entry<Point, String> entry : this.daftarObjek.entrySet()) {
-                    if (entry.getValue().contains("KasurKingSize")) {
-                        i++;
-                        break;
-                    }
-                }
                 KasurKingSize kasurKingSize = new KasurKingSize(namaBarang);
+                int i = getJumlah(kasurKingSize);
                 for (int a = x1; a < x4+1; a++) {
                     for (int b = y1; b < y4+1; b++) {
                         matrixRuangan[a][b] = kasurKingSize.getNamaObjek()+(i+1);
@@ -628,14 +602,8 @@ public class Ruangan {
             Point locMejaKursi7 = new Point(x1+2, y1+1);
             Point locMejaKursi8 = new Point(x1+1, y1+2);
             if (!isAvailable(locMejaKursi1) && !isAvailable(locMejaKursi2) && !isAvailable(locMejaKursi3) && !isAvailable(locMejaKursi4) && !isAvailable(locMejaKursi5)  && !isAvailable(locMejaKursi6) && !isAvailable(locMejaKursi7) && !isAvailable(locMejaKursi8) && !isAvailable(locMejaKursi9)) {
-                int i = 0;
-                for (Map.Entry<Point, String> entry : this.daftarObjek.entrySet()) {
-                    if (entry.getValue().contains("MejaKursi")) {
-                        i++;
-                        break;
-                    }
-                }
                 MejaKursi mejaKursi = new MejaKursi(namaBarang);
+                int i = getJumlah(mejaKursi);
                 for (int a = x1; a < x4+1; a++) {
                     for (int b = y1; b < y4+1; b++) {
                         matrixRuangan[a][b] = mejaKursi.getNamaObjek()+(i+1);
@@ -682,6 +650,7 @@ public class Ruangan {
 
     public void removeBarang(Sim currentSim) {
         boolean valid = false;
+        boolean removed = false;
         String namaBarang;
         Scanner input = new Scanner(System.in);
         do {
@@ -695,39 +664,40 @@ public class Ruangan {
                 if (entry.getValue().equals(namaBarang)) {
                     valid = true;
                     iter.remove();
-                    if (entry.getValue().contains("KasurSingle")) {
+                    if (entry.getValue().contains("KasurSingle") && !removed) {
                         KasurSingle objek = new KasurSingle("KasurSingle");
                         currentSim.getInventory().addItem(objek, 1);
                         jumlahObjek.put(objek, i-1);
-                    } else if (entry.getValue().contains("KasurQueenSize")) {
+                    } else if (entry.getValue().contains("KasurQueenSize") && !removed) {
                         KasurQueenSize objek = new KasurQueenSize("KasurQueenSize");
                         currentSim.getInventory().addItem(objek, 1);
                         jumlahObjek.put(objek, i-1);
-                    } else if (entry.getValue().contains("KasurKingSize")) {
+                    } else if (entry.getValue().contains("KasurKingSize") && !removed) {
                         KasurKingSize objek = new KasurKingSize("KasurKingSize");
                         currentSim.getInventory().addItem(objek, 1);
                         jumlahObjek.put(objek, i-1);
-                    } else if (entry.getValue().contains("Toilet")) {
+                    } else if (entry.getValue().contains("Toilet") && !removed) {
                         Toilet objek = new Toilet("Toilet");
                         currentSim.getInventory().addItem(objek, 1);
                         jumlahObjek.put(objek, i-1);
-                    } else if (entry.getValue().contains("KomporGas")) {
+                    } else if (entry.getValue().contains("KomporGas") && !removed) {
                         KomporGas objek = new KomporGas("KomporGas");
                         currentSim.getInventory().addItem(objek, 1);
                         jumlahObjek.put(objek, i-1);
-                    } else if (entry.getValue().contains("KomporListrik")) {
+                    } else if (entry.getValue().contains("KomporListrik") && !removed) {
                         KomporListrik objek = new KomporListrik("KomporListrik");
                         currentSim.getInventory().addItem(objek, 1);
                         jumlahObjek.put(objek, i-1);
-                    } else if (entry.getValue().contains("MejaKursi")) {
+                    } else if (entry.getValue().contains("MejaKursi") && !removed) {
                         MejaKursi objek = new MejaKursi("MejaKursi");
                         currentSim.getInventory().addItem(objek, 1);
                         jumlahObjek.put(objek, i-1);
-                    } else {
+                    } else if (entry.getValue().contains("MejaKursi") && !removed) {
                         Jam objek = new Jam("Jam");
                         currentSim.getInventory().addItem(objek, 1);
                         jumlahObjek.put(objek, i-1);
                     }
+                    removed = true;
                 }
             }
             if (!valid) {
