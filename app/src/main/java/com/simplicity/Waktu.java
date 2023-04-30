@@ -114,6 +114,7 @@ public class Waktu {
         if (menit / 12 > 0){
             hari += menit / 12; 
             menit = menit % 12; 
+            World.updateHarian();
             //reset makan, dll ya gitu deh
         }
     }

@@ -13,6 +13,7 @@ public class Pekerjaan {
     private static Thread thread; 
     private String namaPekerjaan; 
     private int gaji; 
+    private int daysSince; 
 
     public Pekerjaan(String pekerjaan){
         if (pekerjaanvalid.containsKey(pekerjaan)){
@@ -22,6 +23,7 @@ public class Pekerjaan {
             System.out.println("Maaf, pekerjaan yang dimasukkan tidak valid"); 
             //untuk sekarang, nilai atributnya bakalan  null
         } 
+        daysSince = 0; 
     }
 
     public String getPekerjaan(){
@@ -32,10 +34,23 @@ public class Pekerjaan {
         return gaji; 
     }
 
-    public void setPekerjaan(String pekerjaan){
+    public void setPekerjaan(Sim sim, String pekerjaan){
         if (pekerjaanvalid.containsKey(pekerjaan)){
-            namaPekerjaan = pekerjaan; 
-            gaji = pekerjaanvalid.get(pekerjaan);  
+            int biaya = (int) (0.5 * gaji); 
+            if (sim.getUang() < biaya) {
+                System.out.println("Maaf uang " + sim.getNama() + " tidak mencukupi untuk mengganti pekerjaan"); 
+            }
+            else{
+                if (daysSince < 1){
+                    System.out.println("Hanya bisa mengganti pekerjaan satu hari setelah memilih pekerjaan!"); 
+                }
+                else{
+                    sim.setUang(-1 * biaya);
+                    namaPekerjaan = pekerjaan; 
+                    gaji = pekerjaanvalid.get(pekerjaan);
+                    System.out.println("Pekerjaan berhasil diganti menjadi " + pekerjaan); 
+                }
+            }  
         } else{
             System.out.println("Maaf, pekerjaan yang dimasukkan tidak valid"); 
             //untuk sekarang, nilai atributnya bakalan  null
@@ -73,5 +88,13 @@ public class Pekerjaan {
         } else{
             System.out.println("Durasi Harus kelipatan 120!"); 
         }
+    }
+
+    public void setDay(int day){
+        daysSince = day; 
+    }
+
+    public void addDay(){
+        daysSince += 1; 
     }
 }

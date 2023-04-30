@@ -16,8 +16,6 @@ public class Testing {
         m.viewSimInfo(w);
 
         Sim s1 = World.getCurrentSim(); 
-
-        w.getWaktu().displayWaktu();
         BahanMakanan b = new BahanMakanan("Nasi");
         BahanMakanan aaa = new BahanMakanan("Nasi");
 
@@ -28,9 +26,10 @@ public class Testing {
         Kiriman bb = new Kiriman(b, s1, 10);
 
         w.getWaktu().displayWaktu();
+        World.getCurrentSim().setUang(-100);
         World.getCurrentSim().testAction(820);
+        World.getCurrentSim().changePekerjaan("Koki"); 
         w.getWaktu().displayWaktu();
-
         m.viewSimInfo(w);
     }
         

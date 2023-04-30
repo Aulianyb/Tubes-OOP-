@@ -71,7 +71,7 @@ public class Sim{
 
     //ini enaknya pakai String aja
     public void changePekerjaan(String pekerjaan){
-        this.pekerjaan.setPekerjaan(pekerjaan);
+        this.pekerjaan.setPekerjaan(this, pekerjaan);
     }
 
     public void setUang(int diff){
