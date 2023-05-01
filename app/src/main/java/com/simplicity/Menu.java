@@ -239,16 +239,12 @@ public class Menu {
                     World.getCurrentSim().olahraga(durasi);
                     break;
                 case "tidur" :
-                    System.out.print("Input durasi : ");
-                    durasi = input.nextInt();
                     currFurnitur = World.getCurrentSim().getCurrentRumah().getCurrRuangan().getCurrFurnitur();
                     if( currFurnitur instanceof Kasur) {
                         ((Kasur) currFurnitur).tidur(World.getCurrentSim());
                     }
                     break;
                 case "makan" :
-                    System.out.print("Input durasi : ");
-                    durasi = input.nextInt();
                     currFurnitur = World.getCurrentSim().getCurrentRumah().getCurrRuangan().getCurrFurnitur();
                     if( currFurnitur instanceof MejaKursi) {
                         ((MejaKursi) currFurnitur).makan(World.getCurrentSim());

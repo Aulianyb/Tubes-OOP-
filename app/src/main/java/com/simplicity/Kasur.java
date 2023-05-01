@@ -12,6 +12,7 @@ public class Kasur extends Furnitur{
     //Status
     public void tidur(Sim sim){
         Scanner scanner = new Scanner(System.in);
+        System.out.print("Input durasi : ");
         int detik = Integer.parseInt(scanner.nextLine());
         Thread thread = new Thread(new Runnable(){
             public void run(){
