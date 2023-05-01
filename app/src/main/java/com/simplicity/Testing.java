@@ -28,17 +28,16 @@ public class Testing {
         s1.beliBarang(b2, 2);
         s1.beliBarang(b3, 2);  
 
-        Kompor kompor = new Kompor(); 
+        Kompor kompor = new Kompor("kompor"); 
+
+
 
         Waktu.displayPengiriman();  
         Waktu.displayUpgrade();
         s1.getStatus().displayStatus(s1);  
 
         s1.testAction(1100);
-        Waktu.displayPengiriman();
-        Waktu.displayUpgrade();
-
-        s1.getStatus().displayStatus(s1);  
+        kompor.masak(s1);
 
     }
         
