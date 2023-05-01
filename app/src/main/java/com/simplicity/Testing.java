@@ -13,35 +13,32 @@ public class Testing {
         
         Scanner sc = new Scanner(System.in); 
         w.addSim(sc, "init");
+        // w.addSim(sc, "");
+
         m.viewSimInfo(w);
 
         Sim s1 = World.getCurrentSim(); 
         BahanMakanan b = new BahanMakanan("Nasi");
-        BahanMakanan aaa = new BahanMakanan("Nasi");
-
+        BahanMakanan b1 = new BahanMakanan("Nasi");
         BahanMakanan b2 = new BahanMakanan("Ayam");
         BahanMakanan b3 = new BahanMakanan("Sapi");
         BahanMakanan b4 = new BahanMakanan("Kentang");
+        
+        s1.beliBarang(b, 2);
+        s1.beliBarang(b2, 2);
+        s1.beliBarang(b3, 2);  
+        s1.getCurrentRumah().upgradeRumah();
 
-        World.getCurrentSim().beliBarang(b, 2);
-        World.getCurrentSim().beliBarang(b2, 1);
-        World.getCurrentSim().beliBarang(b2, 1);
-        World.getCurrentSim().beliBarang(b3, 1);
-
+        Waktu.displayPengiriman();  
         Waktu.displayUpgrade();
-        World.getCurrentSim().getCurrentRumah().upgradeRumah();
+        s1.getStatus().displayStatus(s1);  
 
-        w.getWaktu().displayWaktu(); 
-
-        Waktu.displayPengiriman();
-
-        World.getCurrentSim().getInventory().lihatInventory();
-        World.getCurrentSim().testAction(10); 
+        s1.testAction(1100);
         Waktu.displayPengiriman();
         Waktu.displayUpgrade();
 
-        World.getCurrentSim().getInventory().lihatInventory();
-    
+        s1.getStatus().displayStatus(s1);  
+
     }
         
 }

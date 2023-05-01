@@ -74,6 +74,7 @@ public class Waktu {
                 Map.Entry<Kiriman, Integer> entry  = iterator.next ();
                 if (entry.getValue() <= 0){
                     iterator.remove(); 
+                    entry.getKey().getSim().getStatus().updatePembelian(entry.getKey().getSim());
                 }
             }
         }
@@ -121,7 +122,7 @@ public class Waktu {
         System.out.println("-".repeat(48)); 
 
 
-        if (barangDikirim.isEmpty()){
+        if (!World.getCurrentSim().getStatus().getBeli()){
             System.out.println("|                    |        |                |"); 
             System.out.println("-".repeat(48)); 
         }else{
@@ -144,7 +145,7 @@ public class Waktu {
         System.out.println("|       Rumah        |     Sisa Waktu     |");
         System.out.println("-".repeat(43));
         
-        if (ongoingUpgrade.isEmpty()){
+        if (!World.getCurrentSim().getCurrentRumah().getUpgradeStatus()){
             System.out.println("|                    |                    |");
             System.out.println("-".repeat(43));
         }else{
@@ -159,5 +160,9 @@ public class Waktu {
                 }
             });
         }
+    }
+
+    public static HashMap<Kiriman, Integer> getPengiriman(){
+        return barangDikirim; 
     }
 }

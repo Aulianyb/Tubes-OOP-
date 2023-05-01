@@ -9,12 +9,14 @@ public class Rumah {
     private String namaRuangan; 
     private Point locRuangan; 
     private String ongoingUpgrade; 
+    private boolean upgrading; 
 
     public Rumah(Point lokasi) {
         Point defaultPoint = new Point(0, 0);
         this.currRuangan = new Ruangan();
         daftarRuangan.put(defaultPoint, this.currRuangan);
         this.lokasi = lokasi;
+        upgrading = false; 
     }
 
     public String getNamaCurrRuangan() {
@@ -117,17 +119,19 @@ public class Rumah {
             valid = false;
         }
         if (valid) {
-            System.out.println("Proses upgrade rumah dimulai!");
+            System.out.println("[NOTICE UPGRADE] Proses upgrade rumah dimulai!");
+            upgrading = true; 
             Waktu.addUpgrade(this);
         } else {
-            System.out.println("Ruangan tidak bisa ditambahkan!");
+            System.out.println("[NOTICE UPGRADE] Ruangan tidak bisa ditambahkan!");
         }
     }
 
     public void implementUpgrade(){
         Ruangan ruangan = new Ruangan(namaRuangan);
         daftarRuangan.put(locRuangan, ruangan);
-        System.out.println("Ruangan berhasil ditambahkan!");
+        System.out.println("[NOTICE UPGRADE] Ruangan berhasil ditambahkan!");
+        upgrading = false;
         this.displayDaftarRuangan();
     }
 
@@ -160,5 +164,9 @@ public class Rumah {
 
     public Ruangan getCurrRuangan() {
         return currRuangan;
+    }
+
+    public boolean getUpgradeStatus(){
+        return upgrading; 
     }
 }
