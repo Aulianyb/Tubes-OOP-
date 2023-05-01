@@ -9,17 +9,6 @@ public class Ruangan {
     private HashMap<Point, String> daftarObjek = new HashMap<Point, String>();
     private HashMap<Furnitur, Integer> jumlahObjek = new HashMap<Furnitur, Integer>();
 
-    //Placeholder biar bisa debug
-    private List<Furnitur> availableFurnitur = new ArrayList<Furnitur>();
-
-    {
-        availableFurnitur.add(new Kasur("kasur"));
-        availableFurnitur.add(new Kasur("kompor"));
-        availableFurnitur.add(new Kasur("mejakursi"));
-        availableFurnitur.add(new Kasur("toilet"));
-        availableFurnitur.add(new Kasur("jam"));
-    }
-
     private Furnitur currFurnitur;
     public Ruangan() {
         this.namaRuangan = "Default";
@@ -639,22 +628,17 @@ public class Ruangan {
     }
 
     public void move() {
-        // belom diliat lagi bentar ya
         Scanner input = new Scanner(System.in);
         System.out.println("Available Object :");
         displayDaftarObjek();
         System.out.println("Pilih objek yang ingin dituju :");
         String obj = input.nextLine();
         boolean found = false;
-        for(String furnitur : daftarObjek.values()) {
-            if(furnitur.contains(obj)) {
-                for (int z = 0; z < availableFurnitur.size(); z++) {
-                    if (availableFurnitur.get(z).getNamaObjek().toLowerCase().equals(obj.toLowerCase())) {
-                        currFurnitur = availableFurnitur.get(z);
-                        break;
-                    }
-                }
+        for(Furnitur furnitur : jumlahObjek.keySet()) {
+            if (obj.toLowerCase().contains(furnitur.getNamaObjek().toLowerCase())) {
                 found = true;
+                currFurnitur = furnitur;
+                break;
             }
         }
         if(found) {
