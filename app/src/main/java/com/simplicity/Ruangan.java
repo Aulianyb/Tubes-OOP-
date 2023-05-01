@@ -634,18 +634,25 @@ public class Ruangan {
         System.out.println("Pilih objek yang ingin dituju :");
         String obj = input.nextLine();
         boolean found = false;
-        for(Furnitur furnitur : jumlahObjek.keySet()) {
-            if (obj.toLowerCase().contains(furnitur.getNamaObjek().toLowerCase())) {
+
+        for(String namaFurnitur : daftarObjek.values()) {
+            if(obj.equalsIgnoreCase(namaFurnitur)) {
                 found = true;
-                currFurnitur = furnitur;
                 break;
             }
         }
         if(found) {
-            System.out.printf("Current object : %s%n", currFurnitur.getNamaObjek());
+            for(Furnitur furnitur : jumlahObjek.keySet()) {
+                if (obj.toLowerCase().contains(furnitur.getNamaObjek().toLowerCase())) {
+                    currFurnitur = furnitur;
+                    System.out.printf("Current object : %s%n", currFurnitur.getNamaObjek());
+                    break;
+                }
+            }
         } else {
             System.out.println("Objek tidak ada diruangan ini!!");
         }
+
     }
 
     public void removeBarang(Sim currentSim) {
