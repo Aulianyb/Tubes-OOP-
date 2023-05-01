@@ -81,7 +81,7 @@ public class Main {
                     break;
                 case "edit room":
                     if(world.isInOwnHouse()) {
-                        menu.editRoom();
+                        menu.editRoom(world);
                     } else {
                         System.out.println("Input tidak valid, silahkan masukkan ulang input");
                     }

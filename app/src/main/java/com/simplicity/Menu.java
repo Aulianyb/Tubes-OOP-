@@ -121,7 +121,27 @@ public class Menu {
         world.getCurrentRumah().pindahRuangan();
     }
 
-    public void editRoom() {
+    public void editRoom(World world) {
+        System.out.println("Aksi Edit :");
+        System.out.println("1. Pasang Barang");
+        System.out.println("2. Pindahin Barang");
+        System.out.println("3. Remove Barang");
+        Scanner input = new Scanner(System.in);
+        System.out.print("Pilih Aksi Edit : ");
+        String action = input.nextLine().toLowerCase();
+        switch(action) {
+            case "pasang barang" :
+                world.getCurrentRumah().getCurrRuangan().pasangBarang(World.getCurrentSim());
+                break;
+            case "pindahin barang" :
+
+                break;
+            case "remove barang" :
+                world.getCurrentRumah().getCurrRuangan().removeBarang(World.getCurrentSim());
+                break;
+            default :
+                System.out.println("Input tidak valid!!");
+        }
     }
 
     public void listObj(World world) {
@@ -491,6 +511,8 @@ public class Menu {
             case 1:
                 int y = Integer.parseInt(sc.nextLine());
                 World.getCurrentSim().testAction(y); 
+                System.out.println("Tidur : " + World.getCurrentSim().getJamTidur().waktu);
+                System.out.println("Tidur : " + World.getCurrentSim().getJamTidur().kondisi);
                 break;
             case 2:
                 Waktu.displayWaktu(); 
