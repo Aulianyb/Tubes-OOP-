@@ -2,6 +2,7 @@ package com.simplicity;
 import java.util.*;
 import java.lang.Math;
 
+
 public class Kompor extends Furnitur {
     List<Masakan> menu = new ArrayList<Masakan>();
 
@@ -85,7 +86,17 @@ public class Kompor extends Furnitur {
             System.out.println("Masakan tidak tersedia!");
         }
         else {
-            Masakan masakan = new Masakan(input);
+            //Format input to match constructor
+            String words[] = input.split("\\s");
+            String capitalizeWord = "";
+            for(String w:words){
+                String first=w.substring(0,1);
+                String afterfirst=w.substring(1);
+                capitalizeWord+=first.toUpperCase()+afterfirst+" ";
+            }
+
+
+            Masakan masakan = new Masakan(capitalizeWord.substring(0,capitalizeWord.length()-1));
 
             //Mengecek bahanMakanan pada inventory
             if (!masakan.bahanInInventory(sim, masakan.getBahan())) {

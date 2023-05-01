@@ -65,12 +65,6 @@ public class Masakan extends Makanan {
                 return false;
             }
         }
-//        for (int i = 0; i < l.size(); i++) {
-//            if (sim.getInventory().getInventoryMakanan().containsKey(l.get(i))) {
-//                System.out.println(i);
-//                //return false;
-//            }
-//        }
         return true;
     }
 }
