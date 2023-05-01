@@ -88,7 +88,7 @@ public class Main {
                     menu.viewSimInfo(world);
                     break;
                 case "change sim":
-                    world.changeSim(input);
+                    World.changeSim(input);
                     break;
                 case "add sim":
                     world.addSim(input,"");

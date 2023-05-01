@@ -161,12 +161,7 @@ public class World {
                 Menu.exit();
             } else {
                 // remove dead sim
-                for(int i = 0; i < sims.size(); i++) {
-                    if(sims.get(i).getNama().equals(currentSim.getNama())) {
-                        sims.remove(i);
-                        break;
-                    }
-                }
+                updateSim();
                 System.out.println("GANTI SIM atau GAME OVER?");
                 System.out.print("Masukan pilihan : ");
                 Scanner input = new Scanner(System.in);
@@ -194,11 +189,10 @@ public class World {
     }
     
     public static void updateSim(){
-        ArrayList <Sim> copy = new ArrayList<Sim>(sims); 
-        for (Sim sim : copy){
-            if (sim.isDie()){
-                sim.printDeathMessage(); 
-                sims.remove(sim); 
+        for(int i = 0; i < sims.size(); i++) {
+            if(sims.get(i).getNama().equals(currentSim.getNama())) {
+                sims.remove(i);
+                break;
             }
         }
     }

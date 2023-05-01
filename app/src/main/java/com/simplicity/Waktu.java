@@ -57,8 +57,7 @@ public class Waktu {
         menit += durasi / 60; 
 
         //cek apakah tiap SIM masih hidup atau gak
-        World.checkDeath(); 
-        World.updateSim();
+        World.checkDeath();
 
         if (!barangDikirim.isEmpty()){
             barangDikirim.forEach((key, value) -> {
