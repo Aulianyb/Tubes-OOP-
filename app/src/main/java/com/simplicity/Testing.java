@@ -28,6 +28,9 @@ public class Testing {
         World.getCurrentSim().beliBarang(b2, 1);
         World.getCurrentSim().beliBarang(b3, 1);
 
+        Waktu.displayUpgrade();
+        World.getCurrentSim().getCurrentRumah().upgradeRumah();
+
         w.getWaktu().displayWaktu(); 
 
         Waktu.displayPengiriman();
@@ -35,6 +38,8 @@ public class Testing {
         World.getCurrentSim().getInventory().lihatInventory();
         World.getCurrentSim().testAction(10); 
         Waktu.displayPengiriman();
+        Waktu.displayUpgrade();
+
         World.getCurrentSim().getInventory().lihatInventory();
     
     }

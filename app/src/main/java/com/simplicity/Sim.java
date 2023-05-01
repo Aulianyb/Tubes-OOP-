@@ -198,13 +198,13 @@ public class Sim{
             setUang(-1 * barang.getHarga() * jumlah);
             // Integer x = (randomizer.nextInt(5) + 1) * 30;  
             Integer x = 5;
-            System.out.println(barang.getNamaObjek() + " sedang dalam proses pengiriman.."); 
+            System.out.println("[NOTICE PENGIRIMAN] " + barang.getNamaObjek() + " sedang dalam proses pengiriman.."); 
             Waktu.addBeli(barang, this, jumlah, x);
         }
     }
 
     public void terimaBarang(BisaDibeli barang, int jumlah){
-        System.out.println(barang.getNamaObjek() + " sudah sampai ditujuan!");
+        System.out.println("[NOTICE PENGIRIMAN] " + barang.getNamaObjek() + " sudah sampai ditujuan!");
         inventory.addItem((ObjekGame) barang, jumlah);
     }
 

@@ -114,28 +114,48 @@ public class Waktu {
     }
 
     public static void displayPengiriman(){
-        System.out.println("BARANG DALAM PENGIRIMAN"); 
+        System.out.println(""); 
+        System.out.println("              P E N G I R I M A N"); 
+        System.out.println("-".repeat(48)); 
+        System.out.println("|     Nama Barang    | Jumlah | Sisa Waktu (d) |"); 
+        System.out.println("-".repeat(48)); 
+
+
         if (barangDikirim.isEmpty()){
-            System.out.println("Tidak ada barang dalam pengiriman");
+            System.out.println("|                    |        |                |"); 
+            System.out.println("-".repeat(48)); 
         }else{
             barangDikirim.forEach((key, value)->{
                 if (key.getSim() == World.getCurrentSim()){
-                    System.out.println(key.getBarang().getNamaObjek() + "(" + key.getJumlah() +") : " + value + " detik"); 
+                    int x = 20 - key.getBarang().getNamaObjek().length();
+                    int y = 8 - key.getJumlah().toString().length(); 
+                    int z = 16 - value.toString().length(); 
+                    System.out.println("|" + key.getBarang().getNamaObjek() + " ".repeat(x) + "|" + key.getJumlah() + " ".repeat(y) + "|" + value + " ".repeat(z) + "|"); 
+                    System.out.println("-".repeat(48)); 
                 }
             });    
         }
     }
 
     public static void displayUpgrade(){
-        System.out.println("=================="); 
-        System.out.println("UPGRADE RUMAH"); 
-        System.out.println("==================");
+        System.out.println(""); 
+        System.out.println("          U P G R A D E  R U M A H"); 
+        System.out.println("-".repeat(43));
+        System.out.println("|       Rumah        |     Sisa Waktu     |");
+        System.out.println("-".repeat(43));
+        
         if (ongoingUpgrade.isEmpty()){
-            System.out.println("Tidak ada upgrade rumah yang sedang berjalan saat ini"); 
+            System.out.println("|                    |                    |");
+            System.out.println("-".repeat(43));
         }else{
             ongoingUpgrade.forEach((key, value)->{
                 if(key.getOwner() == World.getCurrentSim().getNama()){
-                    System.out.println("Rumah " + key.getOwner() + " : " + (value / 60) + " menit " + (value % 60) + " detik"); 
+                    String rumah = "Rumah " + key.getOwner();
+                    String sisaWaktu =  (value / 60) + " menit " + (value % 60) + " detik"; 
+                    int x = 20 - rumah.length(); 
+                    int y = 20 - sisaWaktu.length(); 
+                    System.out.println("|" + rumah + " ".repeat(x) + "|" + sisaWaktu + " ".repeat(y) + "|"); 
+                    System.out.println("-".repeat(43));
                 }
             });
         }

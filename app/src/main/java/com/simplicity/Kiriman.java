@@ -3,9 +3,9 @@ package com.simplicity;
 public class Kiriman {
     private BisaDibeli barang;
     private Sim sim;
-    private int jumlah;
+    private Integer jumlah;
 
-    public Kiriman(BisaDibeli barang, Sim sim, int jumlah){
+    public Kiriman(BisaDibeli barang, Sim sim, Integer jumlah){
         this.barang = barang;
         this.sim = sim;
         this.jumlah = jumlah;
@@ -19,7 +19,7 @@ public class Kiriman {
         return sim;
     }
 
-    public int getJumlah(){
+    public Integer getJumlah(){
         return jumlah;
     }
 }

@@ -79,9 +79,9 @@ public class Inventory<T extends ObjekGame> {
         } else{
             inventory.forEach((key, value) -> {
                 int x = 20 - key.getNamaObjek().length();
-                int y = 10; 
+                int y = 10 - key.getKategori().length(); 
                 int z = 8 - value.toString().length(); 
-                System.out.println("|" + key.getNamaObjek() + " ".repeat(x) + "|" + " ".repeat(y) + "|" + value + " ".repeat(z) + "|"); 
+                System.out.println("|" + key.getNamaObjek() + " ".repeat(x) + "|" + key.getKategori() + " ".repeat(y) + "|" + value + " ".repeat(z) + "|"); 
                 System.out.println("-".repeat(42)); 
             });
         }
