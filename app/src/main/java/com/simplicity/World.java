@@ -210,6 +210,10 @@ public class World {
         }
     }
 
+    public boolean isInOwnHouse() {
+        return currentSim.getCurrentRumah().getOwner().equals(currentSim.getNama());
+    }
+
     // SIM nambahin atributnya 
     // Waktu -> nambahin atributnya -> ngecek tiap sim nambahin / ngurangin waktu setelah tidur / makan
     // bakalan kereset tiap hari

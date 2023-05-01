@@ -18,7 +18,6 @@ public class Menu {
                 "List Object",
                 "Go To Object",
                 "Move Room",
-                "Edit Room",
                 "View Inventory",
                 "View Current Location",
                 "View Sim Info",
@@ -27,19 +26,43 @@ public class Menu {
                 "Help",
                 "Save",
                 "Exit"};
+        String[] optionOwnHouse = {
+                "Action",
+                "List Object",
+                "Go To Object",
+                "Move Room",
+                "View Inventory",
+                "View Current Location",
+                "View Sim Info",
+                "Change Sim",
+                "Add Sim",
+                "Edit Room",
+                "Help",
+                "Save",
+                "Exit"
+        };
 
         if(option.equals("start")) {
-            System.out.println("New Game Menu");
+            System.out.println("/".repeat(19) + " NEW GAME MENU " + "/".repeat(19));
+            System.out.println("");
             for(int i = 1; i <= optionAwal.length; i++) {
-                System.out.printf("%d. %s%n",i,optionAwal[i-1]);
+                System.out.printf(" %d. %s%n",i,optionAwal[i-1]);
             }
             System.out.println();
         } else if(option.equals("ingame")) {
-            System.out.println("In Game Menu");
+            System.out.println("");
+            System.out.println("/".repeat(20) + " IN GAME MENU " + "/".repeat(20));
+            System.out.println("");
+            
             for(int i = 1; i <= optionInGame.length; i++) {
-                System.out.printf("%d. %s%n",i,optionInGame[i-1]);
+                System.out.printf(" %d. %s%n",i,optionInGame[i-1]);
             }
             System.out.println();
+        } else if(option.equals("ownhouse")) {
+            System.out.println("In Game Menu");
+            for(int i = 1; i <= optionInGame.length; i++) {
+                System.out.printf("%d. %s%n",i,optionOwnHouse[i-1]);
+            }
         }
     }
 
@@ -97,16 +120,17 @@ public class Menu {
     }
 
     public void editRoom() {
-
     }
 
     public void listObj(World world) {
+        world.displayCurrentRuangan();
         world.getCurrentRumah()
                 .getCurrRuangan()
                 .displayDaftarObjek();
     }
 
     public void goToObj(World world) {
+        world.displayCurrentRuangan();
         Scanner input = new Scanner(System.in);
         world.getCurrentRumah().getCurrRuangan().move();
         Furnitur currFurnitur = world.getCurrFurnitur();
@@ -183,10 +207,13 @@ public class Menu {
 
 
         // Display valid action
-        System.out.println("Valid Action");
+        System.out.println("");
+        System.out.println("/".repeat(20) + " LIST ACTION " + "/".repeat(20));
+        System.out.println("");
         for(int i = 0; i < actions.size(); i++) {
-            System.out.printf("%d. %s%n",i+1,actions.get(i));
+            System.out.printf(" %d. %s%n",i+1,actions.get(i));
         }
+        System.out.println("");
 
         // Choose action
         System.out.print("Pilih aksi yang ingin dilakukan : ");
@@ -213,7 +240,12 @@ public class Menu {
                     String namapekerjaan = input.nextLine();
                     World.getCurrentSim().changePekerjaan(namapekerjaan);
                 case "upgrade rumah" :
-                    upgradeHouse(world);
+                    if(World.getCurrentSim().getUang() < 1500) {
+                        System.out.println("Uang tidak cukup untuk mengupgrade rumah!!");
+                    } else {
+                        World.getCurrentSim().setUang(-1500);
+                        upgradeHouse(world);
+                    }
                     break;
                 case "beli barang" :
                     displayBahanMakanan();
@@ -335,7 +367,10 @@ public class Menu {
                     }
                     break;
                 case "melihat waktu" :
-
+                    currFurnitur = World.getCurrentSim().getCurrentRumah().getCurrRuangan().getCurrFurnitur();
+                    if( currFurnitur instanceof Jam) {
+                        ((Jam) currFurnitur).lihatJam(World.getCurrentSim());
+                    }
                     break;
                 default :
                     System.out.println("Aksi tidak valid!!");

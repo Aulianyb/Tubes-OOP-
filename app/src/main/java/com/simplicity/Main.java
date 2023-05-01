@@ -58,10 +58,14 @@ public class Main {
         // Game interface
         end = false;
         while(!end) {
-            world.displayCurrentRuangan();
-            menu.displayMainMenu("ingame");
+            if(world.isInOwnHouse()) {
+                menu.displayMainMenu("ownhouse");
+            } else {
+                menu.displayMainMenu("ingame");
+            }
             System.out.print("Masukkan Command : ");
             String cmd = input.nextLine().toLowerCase();
+
             switch (cmd) {
                 case "action":
                     menu.action(world);
@@ -76,7 +80,11 @@ public class Main {
                     menu.moveRoom(world);
                     break;
                 case "edit room":
-                    menu.editRoom();
+                    if(world.isInOwnHouse()) {
+                        menu.editRoom();
+                    } else {
+                        System.out.println("Input tidak valid, silahkan masukkan ulang input");
+                    }
                     break;
                 case "view inventory":
                     menu.viewInventory();
