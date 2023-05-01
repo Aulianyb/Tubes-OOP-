@@ -491,6 +491,8 @@ public class Menu {
             case 1:
                 int y = Integer.parseInt(sc.nextLine());
                 World.getCurrentSim().testAction(y); 
+                System.out.println("Tidur : " + World.getCurrentSim().getJamTidur().waktu);
+                System.out.println("Tidur : " + World.getCurrentSim().getJamTidur().kondisi);
                 break;
             case 2:
                 Waktu.displayWaktu(); 
