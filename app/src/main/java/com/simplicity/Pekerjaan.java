@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Pekerjaan {
 
-    private static HashMap <String, Integer> pekerjaanvalid = new HashMap<String, Integer>(){{
+    static HashMap <String, Integer> pekerjaanvalid = new HashMap<String, Integer>(){{
         put("Badut Sulap", 15);
         put("Koki", 30);
         put("Polisi", 35); 
@@ -48,6 +48,7 @@ public class Pekerjaan {
                     sim.setUang(-1 * biaya);
                     namaPekerjaan = pekerjaan; 
                     gaji = pekerjaanvalid.get(pekerjaan);
+                    daysSince = 0;
                     System.out.println("Pekerjaan berhasil diganti menjadi " + pekerjaan); 
                 }
             }  
@@ -96,5 +97,16 @@ public class Pekerjaan {
 
     public void addDay(){
         daysSince += 1; 
+    }
+
+    public int getDaysSince() {
+        return daysSince;
+    }
+    public static void displayPekerjaanValid() {
+        int i = 1;
+        for(String valid : pekerjaanvalid.keySet()) {
+            System.out.printf("%d. valid%n",i);
+            i++;
+        }
     }
 }

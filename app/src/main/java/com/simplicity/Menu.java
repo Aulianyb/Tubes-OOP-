@@ -143,6 +143,11 @@ public class Menu {
         actions.add("Lelucon");
         actions.add("Beli Barang");
 
+        // Get valid action to change job
+        if(World.getCurrentSim().getPekerjaan().getDaysSince() > 0) {
+            actions.add("Ganti Pekerjaan");
+        }
+
 
         // Display valid action
         System.out.println("Valid Action");
@@ -169,6 +174,11 @@ public class Menu {
             int durasi;
             Furnitur currFurnitur;
             switch(actioninput) {
+                case "ganti pekerjaan" :
+                    Pekerjaan.displayPekerjaanValid();
+                    System.out.print("\nInput nama pekerjaan baru : ");
+                    String namapekerjaan = input.nextLine();
+                    World.getCurrentSim().changePekerjaan(namapekerjaan);
                 case "upgrade rumah" :
                     upgradeHouse(world);
                     break;
