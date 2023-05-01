@@ -165,6 +165,7 @@ public class Menu {
             System.out.println("Aksi yang dimasukkan tidak valid!!");
         } else {
             int durasi;
+            Furnitur currFurnitur;
             switch(actioninput) {
                 case "upgrade rumah" :
                     upgradeHouse(world);
@@ -195,17 +196,26 @@ public class Menu {
                 case "tidur" :
                     System.out.print("Input durasi : ");
                     durasi = input.nextInt();
-                    World.getCurrentSim();
+                    currFurnitur = World.getCurrentSim().getCurrentRumah().getCurrRuangan().getCurrFurnitur();
+                    if( currFurnitur instanceof Kasur) {
+                        ((Kasur) currFurnitur).tidur(World.getCurrentSim());
+                    }
                     break;
                 case "makan" :
                     System.out.print("Input durasi : ");
                     durasi = input.nextInt();
-                    World.getCurrentSim();
+                    currFurnitur = World.getCurrentSim().getCurrentRumah().getCurrRuangan().getCurrFurnitur();
+                    if( currFurnitur instanceof MejaKursi) {
+                        ((MejaKursi) currFurnitur).makan(World.getCurrentSim());
+                    }
                     break;
                 case "memasak" :
                     System.out.print("Input durasi : ");
                     durasi = input.nextInt();
-                    World.getCurrentSim();
+                    currFurnitur = World.getCurrentSim().getCurrentRumah().getCurrRuangan().getCurrFurnitur();
+                    if( currFurnitur instanceof Kompor) {
+                        ((Kompor) currFurnitur).masak(World.getCurrentSim());
+                    }
                     break;
                 case "berkunjung" :
                     world.displayWorld();
@@ -225,7 +235,10 @@ public class Menu {
                     }
                     break;
                 case "buang air" :
-                    World.getCurrentSim();
+                    currFurnitur = World.getCurrentSim().getCurrentRumah().getCurrRuangan().getCurrFurnitur();
+                    if( currFurnitur instanceof Toilet) {
+                        ((Toilet) currFurnitur).buangAir(World.getCurrentSim());
+                    }
                     break;
                 case "meditasi" :
                     System.out.print("Input durasi : ");
@@ -233,7 +246,7 @@ public class Menu {
                     World.getCurrentSim().meditasi(durasi);
                     break;
                 case "berkelahi" :
-                    world.displaySims();
+                    World.displaySims();
                     System.out.print("Input lawan berkelahi: ");
                     String lawan = input.nextLine().toLowerCase();
                     Sim simlawan = null;
@@ -242,7 +255,7 @@ public class Menu {
                             simlawan = sim;
                         }
                     }
-                    if(simlawan == null || simlawan.getNama() == World.getCurrentSim().getNama()) {
+                    if(simlawan == null || simlawan.getNama().equals(World.getCurrentSim().getNama())) {
                         System.out.println("Lawan tidak valid!!");
                     } else {
                         World.getCurrentSim().berkelahi(simlawan);
@@ -276,7 +289,7 @@ public class Menu {
                             simtarget = sim;
                         }
                     }
-                    if(simtarget == null || simtarget.getNama() == World.getCurrentSim().getNama()) {
+                    if(simtarget == null || simtarget.getNama().equals(World.getCurrentSim().getNama())) {
                         System.out.println("Target tidak valid!!");
                     } else {
                         World.getCurrentSim().lelucon(simtarget);
