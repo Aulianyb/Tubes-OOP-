@@ -335,7 +335,10 @@ public class Menu {
                     }
                     break;
                 case "melihat waktu" :
-
+                    currFurnitur = World.getCurrentSim().getCurrentRumah().getCurrRuangan().getCurrFurnitur();
+                    if( currFurnitur instanceof Jam) {
+                        ((Jam) currFurnitur).lihatJam(World.getCurrentSim());
+                    }
                     break;
                 default :
                     System.out.println("Aksi tidak valid!!");
