@@ -45,7 +45,7 @@ public class Sim{
         this.namaLengkap = namaLengkap;
         currentRumah = rumah; 
         jamTidur = new Tracking("Belum tidur");
-        jamBuangAir = new Tracking("Belum buang air");
+        jamBuangAir = new Tracking("Sudah buang air");
     }
 
     public String getNama(){
