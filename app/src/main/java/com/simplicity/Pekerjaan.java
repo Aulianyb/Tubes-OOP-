@@ -14,6 +14,7 @@ public class Pekerjaan {
     private String namaPekerjaan; 
     private int gaji; 
     private int daysSince; 
+    private int jamKerja = 0; 
 
     public Pekerjaan(String pekerjaan){
         if (pekerjaanvalid.containsKey(pekerjaan)){
@@ -24,6 +25,7 @@ public class Pekerjaan {
             //untuk sekarang, nilai atributnya bakalan  null
         } 
         daysSince = 0; 
+        jamKerja = 0; 
     }
 
     public String getPekerjaan(){
@@ -49,6 +51,7 @@ public class Pekerjaan {
                     namaPekerjaan = pekerjaan; 
                     gaji = pekerjaanvalid.get(pekerjaan);
                     daysSince = 0;
+                    jamKerja = 0;
                     System.out.println("Pekerjaan berhasil diganti menjadi " + pekerjaan); 
                 }
             }  
@@ -72,16 +75,20 @@ public class Pekerjaan {
                         System.out.printf("]\n"); 
                         int x = -10 * (detik / 30); 
                         int y = -10 * (detik / 30); 
-                        int z = ((detik / 60) / 4) * gaji; 
                         sim.setKekenyangan(x);
                         sim.setMood(y);
-                        sim.setUang(z);
                         System.out.println("Bekerja Selesai!");
                         System.out.println("Kekenyangan : " + x);                      
                         System.out.println("Mood : " + y);                      
-                        System.out.println("Uang : +" + z);  
                         Waktu.timePass(detik); 
+                        jamKerja += detik; 
+                        if (jamKerja >= 240){
+                            int z = ((detik / 60) / 4) * gaji;
+                            sim.setUang(z); 
+                            System.out.println("Uang : +" + z);  
+                        }
                     } catch(InterruptedException e){
+                    
                     }
                 }
             }); 
@@ -102,11 +109,16 @@ public class Pekerjaan {
     public int getDaysSince() {
         return daysSince;
     }
+    
     public static void displayPekerjaanValid() {
         int i = 1;
         for(String valid : pekerjaanvalid.keySet()) {
             System.out.printf("%d. valid%n",i);
             i++;
         }
+    }
+
+    public void setJamKerja(int x){
+        jamKerja = x; 
     }
 }
