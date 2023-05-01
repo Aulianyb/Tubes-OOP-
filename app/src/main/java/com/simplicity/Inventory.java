@@ -60,7 +60,7 @@ public class Inventory<T extends ObjekGame> {
         } else{
             inventory.put(item, jumlah); 
         }
-        System.out.println("Item " + temp.getNamaObjek() + " berhasil ditambahkan sebanyak " + jumlah + " buah dari inventory!");
+        System.out.println("Item " + item.getNamaObjek() + " berhasil ditambahkan sebanyak " + jumlah + " buah dari inventory!");
     }
 
     public void lihatInventory(){
