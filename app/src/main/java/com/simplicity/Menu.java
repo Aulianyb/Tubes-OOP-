@@ -50,16 +50,18 @@ public class Menu {
             }
             System.out.println();
         } else if(option.equals("ingame")) {
-            System.out.println("");
+            System.out.println();
             System.out.println("/".repeat(20) + " IN GAME MENU " + "/".repeat(20));
-            System.out.println("");
+            System.out.println();
             
             for(int i = 1; i <= optionInGame.length; i++) {
                 System.out.printf(" %d. %s%n",i,optionInGame[i-1]);
             }
             System.out.println();
         } else if(option.equals("ownhouse")) {
-            System.out.println("In Game Menu");
+            System.out.println();
+            System.out.println("/".repeat(20) + " IN GAME MENU " + "/".repeat(20));
+            System.out.println();
             for(int i = 1; i <= optionInGame.length; i++) {
                 System.out.printf("%d. %s%n",i,optionOwnHouse[i-1]);
             }
@@ -248,6 +250,13 @@ public class Menu {
                     }
                     break;
                 case "beli barang" :
+                    System.out.println("         __  __   _   ___ _  _____ _____ "); 
+                    System.out.println("  +     |  \\/  | /_\\ | _ \\ |/ / __|_   _|   +"); 
+                    System.out.println("     +  | |\\/| |/ _ \\|   / ' <| _|  | |       +"); 
+                    System.out.println("   +    |_|  |_/_/ \\_\\_|_\\_|\\_\\___| |_|    +"); 
+                    System.out.println("=================================================="); 
+                    System.out.println("|_   _||_   _||_   _||_   _||_   _||_   _||_   _|"); 
+                    System.out.println("  |_|    |_|    |_|    |_|    |_|    |_|    |_|    "); 
                     displayBahanMakanan();
                     displayFurnitur();
                     System.out.println("Input detail barang");
@@ -389,7 +398,7 @@ public class Menu {
                 "Kacang",
                 "Susu",
         };
-        System.out.println("List Bahan Makanan");
+        System.out.println("-".repeat(14) + " LIST BAHAN MAKANAN " + "-".repeat(14));
         for(int i = 1; i <= bahan.length; i++) {
             System.out.printf("%d. %s%n",i,bahan[i-1]);
         }
@@ -406,7 +415,7 @@ public class Menu {
                 "Meja dan Kursi",
                 "Jam",
         };
-        System.out.println("List Furnitur");
+        System.out.println("-".repeat(17) + " LIST FURNITUR " + "-".repeat(17));
         for(int i = 1; i <= furnitur.length; i++) {
             System.out.printf("%d. %s%n",i,furnitur[i-1]);
         }
@@ -470,5 +479,27 @@ public class Menu {
 //            throw new RuntimeException(e);
 //        }
         return new World(new Waktu());
+    }
+
+    public static void cheat(Scanner sc){
+        System.out.println("INI MENU CHEAT MASUKIN ANGKA YA");
+        System.out.println("1. Timepass -> masukin detik");
+        System.out.println("2. Show Time");
+        System.out.println("3. Unlimited Uang");
+        int x = Integer.parseInt(sc.nextLine());
+        switch (x) {
+            case 1:
+                int y = Integer.parseInt(sc.nextLine());
+                World.getCurrentSim().testAction(y); 
+                break;
+            case 2:
+                Waktu.displayWaktu(); 
+                break; 
+            case 3:
+                World.getCurrentSim().setUang(99999);
+                break; 
+            default:
+                break;
+        }
     }
 }

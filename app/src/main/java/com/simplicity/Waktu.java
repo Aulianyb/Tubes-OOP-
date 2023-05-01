@@ -30,7 +30,7 @@ public class Waktu {
         detik = detik_input;
     }
 
-    public void displayWaktu() {
+    public static void displayWaktu() {
 
         System.out.print("HARI " + hari);
         System.out.println(""); 
