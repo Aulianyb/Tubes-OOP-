@@ -107,7 +107,38 @@ public class Menu {
     }
 
     public void goToObj(World world) {
+        Scanner input = new Scanner(System.in);
         world.getCurrentRumah().getCurrRuangan().move();
+        Furnitur currFurnitur = world.getCurrFurnitur();
+        System.out.printf("Aksi yang bisa dilakukan pada objek ini adalah %s.%n", currFurnitur.getValidAction().getStatus());
+        System.out.println("Apakah ingin melakukan aksi tersebut?");
+        System.out.print("Input jawaban (YA/TIDAK): ");
+        String jawaban = input.nextLine();
+        boolean jawabanvalid = false;
+        while(!jawabanvalid) {
+            jawabanvalid = jawaban.equalsIgnoreCase("ya") || jawaban.equalsIgnoreCase("tidak");
+            if(jawaban.equalsIgnoreCase("ya")) {
+                if(currFurnitur instanceof Kasur) {
+                    ((Kasur) currFurnitur).tidur(World.getCurrentSim());
+                } else if(currFurnitur instanceof Kompor) {
+                    ((Kompor) currFurnitur).masak(World.getCurrentSim());
+                } else if(currFurnitur instanceof MejaKursi) {
+                    ((MejaKursi) currFurnitur).makan(World.getCurrentSim());
+                } else if(currFurnitur instanceof Toilet) {
+                    ((Toilet) currFurnitur).buangAir(World.getCurrentSim());
+                } else {
+                    System.out.println("Objek tidak valid!!");
+                }
+            } else  {
+                System.out.println("Silahkan memilih aksi lain!!");
+            }
+            if(!jawabanvalid) {
+                System.out.println("Silahkan input ulang (YA/TIDAK)!!");
+                System.out.print("Input jawaban (YA/TIDAK) : ");
+                jawaban = input.nextLine();
+            }
+        }
+
     }
 
     public void action(World world) {
