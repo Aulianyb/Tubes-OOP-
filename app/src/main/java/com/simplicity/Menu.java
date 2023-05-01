@@ -500,4 +500,28 @@ public class Menu {
 //        }
         return new World(new Waktu());
     }
+
+    public static void cheat(Scanner sc){
+        System.out.println("INI MENU CHEAT MASUKIN ANGKA YA");
+        System.out.println("1. Timepass -> masukin detik");
+        System.out.println("2. Show Time");
+        System.out.println("3. Unlimited Uang");
+        int x = Integer.parseInt(sc.nextLine());
+        switch (x) {
+            case 1:
+                int y = Integer.parseInt(sc.nextLine());
+                World.getCurrentSim().testAction(y); 
+                System.out.println("Tidur : " + World.getCurrentSim().getJamTidur().waktu);
+                System.out.println("Tidur : " + World.getCurrentSim().getJamTidur().kondisi);
+                break;
+            case 2:
+                Waktu.displayWaktu(); 
+                break; 
+            case 3:
+                World.getCurrentSim().setUang(99999);
+                break; 
+            default:
+                break;
+        }
+    }
 }

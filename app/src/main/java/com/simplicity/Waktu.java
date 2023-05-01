@@ -30,7 +30,7 @@ public class Waktu {
         detik = detik_input;
     }
 
-    public void displayWaktu() {
+    public static void displayWaktu() {
 
         System.out.print("HARI " + hari);
         System.out.println(""); 
@@ -170,9 +170,10 @@ public class Waktu {
 
     public static void updateTidur(int duration) {
         for (Sim s : World.getSims()) {
+            int newDuration = s.getJamTidur().waktu + duration;
             if (s.getJamTidur().kondisi.equals("Belum tidur")) {
-                if (s.getJamTidur().waktu > 600) {
-                    s.setJamTidur(s.getJamTidur().waktu, "Butuh tidur");
+                if (newDuration > 600) {
+                    s.setJamTidur(newDuration, "Butuh tidur");
                     s.setKesehatan(-5);
                     s.setMood(-5);
                     System.out.println(s.getNama() + " belum tidur selama 10 menit hari ini.");
@@ -181,7 +182,7 @@ public class Waktu {
                     System.out.println("-5 mood");
                 }
                 else {
-                    s.setJamTidur(duration, "Belum tidur");
+                    s.setJamTidur(newDuration, "Belum tidur");
                 }
             }
         }
@@ -190,8 +191,9 @@ public class Waktu {
     public static void updateBuangAir(int duration) {
         for (Sim s : World.getSims()) {
             if (s.getJamBuangAir().kondisi.equals("Belum buang air")) {
+                int newDuration = s.getJamBuangAir().waktu + duration;
                 if (s.getJamBuangAir().waktu > 240) {
-                    s.setJamBuangAir(s.getJamBuangAir().waktu, "Butuh buang air");
+                    s.setJamBuangAir(newDuration, "Butuh buang air");
                     s.setKesehatan(-5);
                     s.setMood(-5);
                     System.out.println(s.getNama() + " belum buang air setelah 4 menit dari waktu terakhir makan.");
@@ -200,7 +202,7 @@ public class Waktu {
                     System.out.println("-5 mood");
                 }
                 else {
-                    s.setJamBuangAir(duration, "Belum buang air");
+                    s.setJamBuangAir(newDuration, "Belum buang air");
                 }
             }
         }

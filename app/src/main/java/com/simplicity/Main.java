@@ -112,6 +112,9 @@ public class Main {
                     end = true;
                     Menu.exit();
                     break;
+                case "cheat":
+                    Menu.cheat(input); 
+                    break; 
                 default:
                     System.out.println("Input tidak valid, silahkan masukkan ulang input");
                     break;
