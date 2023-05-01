@@ -123,9 +123,10 @@ public class Menu {
              actions.add(action);
          }
 
-         // Get valid action to upgrade house
+         // Get valid action to upgrade house and edit room (only in own house)
         if(world.getCurrentRumah().getOwner().equals(World.getCurrentSim().getNama())) {
             actions.add("Upgrade rumah");
+            actions.add("Edit Room");
             ownHouse = true;
         }
 
@@ -140,7 +141,8 @@ public class Menu {
         actions.add("Daydreaming");
         actions.add("Monolog");
         actions.add("Lelucon");
-        actions.add("Edit Room");
+        actions.add("Beli Barang");
+
 
         // Display valid action
         System.out.println("Valid Action");
@@ -174,7 +176,7 @@ public class Menu {
                     displayBahanMakanan();
                     displayFurnitur();
                     System.out.println("Input detail barang");
-                    System.out.print("Nama barang");
+                    System.out.print("Nama barang : ");
                     String namabarang = input.nextLine().toLowerCase();
                     System.out.print("Jumlah barang : ");
                     int jumlah = input.nextInt();
