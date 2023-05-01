@@ -43,10 +43,10 @@ public class Kasur extends Furnitur{
                                 sleepTime = 0;
                             }
                         }
-                        if (detik >= 180) {
-                            sim.setJamTidur(0);
-                        }
                         Waktu.timePass(detik);
+                        if (detik >= 180) {
+                            sim.setJamTidur(0, "Sudah tidur");
+                        }
                     }
                 } catch(InterruptedException e){
                     System.out.println("Tidur dihentikan.");

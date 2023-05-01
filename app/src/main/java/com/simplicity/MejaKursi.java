@@ -50,6 +50,16 @@ public class MejaKursi extends Furnitur {
                         sim.getInventory().reduceItem(temp, 1);
                         sim.setKekenyangan(temp.getNilaiKekenyangan());
                         Waktu.timePass(30);
+                        if (!sim.getJamBuangAir().kondisi.equals("Butuh buang air")) {
+                            if (sim.getJamBuangAir().waktu > 0) {
+                                sim.setJamBuangAir(sim.getJamBuangAir().waktu, "Belum buang air");
+                            } else {
+                                sim.setJamBuangAir(0, "Belum buang air");
+                            }
+                        }
+                        else {
+                            sim.setJamBuangAir(0, "Belum buang air");
+                        }
                     }
                     else {
                         System.out.println("Makanan tidak terdapat pada inventory.");
