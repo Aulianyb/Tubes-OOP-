@@ -18,7 +18,6 @@ public class Menu {
                 "List Object",
                 "Go To Object",
                 "Move Room",
-                "Edit Room",
                 "View Inventory",
                 "View Current Location",
                 "View Sim Info",
@@ -27,6 +26,21 @@ public class Menu {
                 "Help",
                 "Save",
                 "Exit"};
+        String[] optionOwnHouse = {
+                "Action",
+                "List Object",
+                "Go To Object",
+                "Move Room",
+                "View Inventory",
+                "View Current Location",
+                "View Sim Info",
+                "Change Sim",
+                "Add Sim",
+                "Edit Room",
+                "Help",
+                "Save",
+                "Exit"
+        };
 
         if(option.equals("start")) {
             System.out.println("New Game Menu");
@@ -40,6 +54,11 @@ public class Menu {
                 System.out.printf("%d. %s%n",i,optionInGame[i-1]);
             }
             System.out.println();
+        } else if(option.equals("ownhouse")) {
+            System.out.println("In Game Menu");
+            for(int i = 1; i <= optionInGame.length; i++) {
+                System.out.printf("%d. %s%n",i,optionOwnHouse[i-1]);
+            }
         }
     }
 
