@@ -232,7 +232,12 @@ public class Menu {
                     String namapekerjaan = input.nextLine();
                     World.getCurrentSim().changePekerjaan(namapekerjaan);
                 case "upgrade rumah" :
-                    upgradeHouse(world);
+                    if(World.getCurrentSim().getUang() < 1500) {
+                        System.out.println("Uang tidak cukup untuk mengupgrade rumah!!");
+                    } else {
+                        World.getCurrentSim().setUang(-1500);
+                        upgradeHouse(world);
+                    }
                     break;
                 case "beli barang" :
                     displayBahanMakanan();
@@ -359,6 +364,8 @@ public class Menu {
                         ((Jam) currFurnitur).lihatJam(World.getCurrentSim());
                     }
                     break;
+                case "unlimited money" :
+                    World.getCurrentSim().setUang(99999999);
                 default :
                     System.out.println("Aksi tidak valid!!");
             }
