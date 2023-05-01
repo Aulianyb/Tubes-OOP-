@@ -43,15 +43,19 @@ public class Menu {
         };
 
         if(option.equals("start")) {
-            System.out.println("New Game Menu");
+            System.out.println("/".repeat(19) + " NEW GAME MENU " + "/".repeat(19));
+            System.out.println("");
             for(int i = 1; i <= optionAwal.length; i++) {
-                System.out.printf("%d. %s%n",i,optionAwal[i-1]);
+                System.out.printf(" %d. %s%n",i,optionAwal[i-1]);
             }
             System.out.println();
         } else if(option.equals("ingame")) {
-            System.out.println("In Game Menu");
+            System.out.println("");
+            System.out.println("/".repeat(20) + " IN GAME MENU " + "/".repeat(20));
+            System.out.println("");
+            
             for(int i = 1; i <= optionInGame.length; i++) {
-                System.out.printf("%d. %s%n",i,optionInGame[i-1]);
+                System.out.printf(" %d. %s%n",i,optionInGame[i-1]);
             }
             System.out.println();
         } else if(option.equals("ownhouse")) {
@@ -116,16 +120,17 @@ public class Menu {
     }
 
     public void editRoom() {
-
     }
 
     public void listObj(World world) {
+        world.displayCurrentRuangan();
         world.getCurrentRumah()
                 .getCurrRuangan()
                 .displayDaftarObjek();
     }
 
     public void goToObj(World world) {
+        world.displayCurrentRuangan();
         Scanner input = new Scanner(System.in);
         world.getCurrentRumah().getCurrRuangan().move();
         Furnitur currFurnitur = world.getCurrFurnitur();
@@ -202,10 +207,13 @@ public class Menu {
 
 
         // Display valid action
-        System.out.println("Valid Action");
+        System.out.println("");
+        System.out.println("/".repeat(20) + " LIST ACTION " + "/".repeat(20));
+        System.out.println("");
         for(int i = 0; i < actions.size(); i++) {
-            System.out.printf("%d. %s%n",i+1,actions.get(i));
+            System.out.printf(" %d. %s%n",i+1,actions.get(i));
         }
+        System.out.println("");
 
         // Choose action
         System.out.print("Pilih aksi yang ingin dilakukan : ");
