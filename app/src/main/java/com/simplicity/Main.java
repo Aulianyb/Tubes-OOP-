@@ -14,7 +14,19 @@ public class Main {
 
         // Start Game
         boolean end = false;
-        System.out.println("Welcome to Sim-Plicity");
+        System.out.println(" __________");
+        System.out.println("||  _______|   Sponsored by BNMO     +             +");
+        System.out.println("|| |  O v O|   Tugas Besar OOP              +");
+        System.out.println("|| |_______|   Made with <3 by Kelompok 7__________");
+        System.out.println("|| +  o    |......                  \\ |  ________  | /");
+        System.out.println("||         |      |                  \\| | ^ __ ^ | |/");
+        System.out.println("-".repeat(21) + " WELCOME TO " + "-".repeat(21) );
+        System.out.println("  ___ ___ __  __     ___ _    ___ ___ ___ _______   __");
+        System.out.println(" / __|_ _|  \\/  |___| _ \\ |  |_ _/ __|_ _|_   _\\ \\ / /"); 
+        System.out.println(" \\__ \\| || |\\/| |___|  _/ |__ | | (__ | |  | |  \\ V / "); 
+        System.out.println(" |___/___|_|  |_|   |_| |____|___\\___|___| |_|   |_|  "); 
+        System.out.println("-".repeat(53));
+
         while(!end) {
             menu.displayMainMenu("start");
             System.out.println("Masukkan Command: ");
