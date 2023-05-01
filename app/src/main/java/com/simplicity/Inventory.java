@@ -55,13 +55,12 @@ public class Inventory<T extends ObjekGame> {
 
     public void addItem(T item, int jumlah){
         T temp = itemFound(item); 
-        if (item instanceof Makanan){
-            if (temp != null){
-                inventory.put(temp, inventory.get(temp) + jumlah); 
-            } else{
-                inventory.put(item, jumlah); 
-            }
+        if (temp != null){
+            inventory.put(temp, inventory.get(temp) + jumlah); 
+        } else{
+            inventory.put(item, jumlah); 
         }
+        System.out.println("Item " + temp.getNamaObjek() + " berhasil ditambahkan sebanyak " + jumlah + " buah dari inventory!");
     }
 
     public void lihatInventory(){

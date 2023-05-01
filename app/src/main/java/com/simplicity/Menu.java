@@ -255,8 +255,6 @@ public class Menu {
                     }
                     break;
                 case "memasak" :
-                    System.out.print("Input durasi : ");
-                    durasi = input.nextInt();
                     currFurnitur = World.getCurrentSim().getCurrentRumah().getCurrRuangan().getCurrFurnitur();
                     if( currFurnitur instanceof Kompor) {
                         ((Kompor) currFurnitur).masak(World.getCurrentSim());

@@ -27,17 +27,17 @@ public class Testing {
         s1.beliBarang(b, 2);
         s1.beliBarang(b2, 2);
         s1.beliBarang(b3, 2);  
-        s1.getCurrentRumah().upgradeRumah();
+
+        Kompor kompor = new Kompor("kompor"); 
+
+
 
         Waktu.displayPengiriman();  
         Waktu.displayUpgrade();
         s1.getStatus().displayStatus(s1);  
 
         s1.testAction(1100);
-        Waktu.displayPengiriman();
-        Waktu.displayUpgrade();
-
-        s1.getStatus().displayStatus(s1);  
+        kompor.masak(s1);
 
     }
         
