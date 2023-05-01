@@ -27,7 +27,8 @@ public class Testing {
         s1.beliBarang(b, 2);
         s1.beliBarang(b2, 2);
         s1.beliBarang(b3, 2);  
-        s1.getCurrentRumah().upgradeRumah();
+
+        Kompor kompor = new Kompor(); 
 
         Waktu.displayPengiriman();  
         Waktu.displayUpgrade();

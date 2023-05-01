@@ -156,6 +156,7 @@ public class World {
             System.out.println("Oh no! " + currentSim.getNama() + " telah meninggal..");
             if(sims.size() < 2) {
                 // sim cuma 1
+                currentSim.printDeathMessage();
                 System.out.println("Tidak ada sim lagi yang tersedia!!");
                 System.out.println("GAME OVER");
                 Menu.exit();
@@ -189,8 +190,11 @@ public class World {
     }
     
     public static void updateSim(){
-        for(int i = 0; i < sims.size(); i++) {
-            if(sims.get(i).getNama().equals(currentSim.getNama())) {
+        ArrayList<Sim> temp = new ArrayList<Sim>(); 
+        temp.addAll(sims); 
+        for(int i = 0; i < temp.size(); i++) {
+            if(sims.get(i).isDie()) {
+                sims.get(i).printDeathMessage();
                 sims.remove(i);
                 break;
             }

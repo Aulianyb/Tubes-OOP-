@@ -17,10 +17,18 @@ public class Toilet extends Furnitur {
             public void run(){
                 try {
                     System.out.println("Buang Air..."); //indikator buat testing
-                    Thread.sleep(10000);
+                    System.out.printf("["); 
+                    for (int i=0;i<10;i++){
+                        Thread.sleep(1000);
+                        System.out.printf(">"); 
+                    }
+                    System.out.printf("]\n");
                     sim.setKekenyangan(-20);
                     sim.setMood(10);
                     Waktu.timePass(10);
+                    System.out.println("Buang air Selesai!");
+                    System.out.println("Kekenyangan : -20");                      
+                    System.out.println("Mood : +10");    
                 } catch (InterruptedException e){
                     System.out.println("Buang air dihentikan.");
                 }
