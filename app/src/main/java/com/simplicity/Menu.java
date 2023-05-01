@@ -372,8 +372,6 @@ public class Menu {
                         ((Jam) currFurnitur).lihatJam(World.getCurrentSim());
                     }
                     break;
-                case "unlimited money" :
-                    World.getCurrentSim().setUang(99999999);
                 default :
                     System.out.println("Aksi tidak valid!!");
             }
