@@ -19,9 +19,19 @@ public class Sim{
     private int kesehatan; 
     private Status status; 
     private Rumah currentRumah; 
-    private int jamTidur;
-    private int jamBuangAir; 
-    private int jamKerja; 
+    private Tracking jamTidur;
+    private Tracking jamBuangAir;
+    private int jamKerja;
+
+    protected class Tracking {
+        protected int waktu;
+        protected String kondisi;
+
+        protected Tracking(String kondisi) {
+            waktu = 0;
+            this.kondisi = kondisi;
+        }
+    }
     
     public Sim(String namaLengkap, Rumah rumah){
         kekenyangan = 80; 
@@ -34,8 +44,8 @@ public class Sim{
         status = new Status();
         this.namaLengkap = namaLengkap;
         currentRumah = rumah; 
-        jamTidur = 0; 
-        jamBuangAir = 0;
+        jamTidur = new Tracking("Belum tidur");
+        jamBuangAir = new Tracking("Belum buang air");
     }
 
     public String getNama(){
@@ -462,7 +472,29 @@ public class Sim{
         Waktu.timePass(detik);
     }
 
-    public void setJamTidur(int detik) {
-        jamTidur = 0;
+    public Tracking getJamTidur() {
+        return jamTidur;
+    }
+
+    public Tracking getJamBuangAir() {
+        return jamBuangAir;
+    }
+
+    public int getJamKerja() {
+        return jamKerja;
+    }
+
+    public void setJamTidur(int detik, String kondisi) {
+        jamTidur.waktu = detik;
+        jamTidur.kondisi = kondisi;
+    }
+
+    public void setJamBuangAir(int detik, String kondisi) {
+        jamBuangAir.waktu = detik;
+        jamBuangAir.kondisi = kondisi;
+    }
+
+    public void setJamKerja(int detik) {
+        jamKerja = detik;
     }
 }

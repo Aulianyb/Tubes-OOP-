@@ -96,6 +96,9 @@ public class Waktu {
             }
         }
 
+        updateTidur(durasi);
+        updateBuangAir(durasi);
+
         if (menit / 12 > 0){
             hari += menit / 12; 
             menit = menit % 12; 
@@ -163,5 +166,43 @@ public class Waktu {
 
     public static HashMap<Kiriman, Integer> getPengiriman(){
         return barangDikirim; 
+    }
+
+    public static void updateTidur(int duration) {
+        for (Sim s : World.getSims()) {
+            if (s.getJamTidur().kondisi.equals("Belum tidur")) {
+                if (s.getJamTidur().waktu > 600) {
+                    s.setJamTidur(s.getJamTidur().waktu, "Butuh tidur");
+                    s.setKesehatan(-5);
+                    s.setMood(-5);
+                    System.out.println(s.getNama() + " belum tidur selama 10 menit hari ini.");
+                    System.out.println("Penalty:");
+                    System.out.println("-5 kesehatan");
+                    System.out.println("-5 mood");
+                }
+                else {
+                    s.setJamTidur(duration, "Belum tidur");
+                }
+            }
+        }
+    }
+
+    public static void updateBuangAir(int duration) {
+        for (Sim s : World.getSims()) {
+            if (s.getJamBuangAir().kondisi.equals("Belum buang air")) {
+                if (s.getJamBuangAir().waktu > 240) {
+                    s.setJamBuangAir(s.getJamBuangAir().waktu, "Butuh buang air");
+                    s.setKesehatan(-5);
+                    s.setMood(-5);
+                    System.out.println(s.getNama() + " belum buang air setelah 4 menit dari waktu terakhir makan.");
+                    System.out.println("Penalty:");
+                    System.out.println("-5 kesehatan");
+                    System.out.println("-5 mood");
+                }
+                else {
+                    s.setJamBuangAir(duration, "Belum buang air");
+                }
+            }
+        }
     }
 }

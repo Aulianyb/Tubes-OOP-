@@ -206,6 +206,7 @@ public class World {
         for (Sim sim : copy){
             sim.getPekerjaan().addDay();
             sim.getPekerjaan().setJamKerja(0);
+            sim.setJamTidur(0, "Belum tidur");
         }
     }
 
