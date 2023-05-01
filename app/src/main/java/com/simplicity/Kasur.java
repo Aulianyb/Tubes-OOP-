@@ -21,15 +21,25 @@ public class Kasur extends Furnitur{
                         System.out.println("Durasi tidur tidak valid!");
                     } else {
                         int sleepTime = detik * 1000;
-                        System.out.println("Tidur Z z z..."); //indikator buat testing
+                        System.out.println("Tidur amimir..."); //indikator buat testing
                         while (sleepTime > 0) {
                             if (sleepTime - 240000 >= 0) {
-                                Thread.sleep(240000);
+                                System.out.printf("[");
+                                for (int i=0;i<10;i++){
+                                    Thread.sleep(24000);
+                                    System.out.printf(">"); 
+                                }
+                                System.out.printf("]\n");
                                 sim.setMood(30);
                                 sim.setKesehatan(20);
                                 sleepTime -= 240000;
                             } else {
-                                Thread.sleep(sleepTime);
+                                System.out.printf("[");
+                                for (int i=0;i<10;i++){
+                                    Thread.sleep(sleepTime / 10);
+                                    System.out.printf(">"); 
+                                }
+                                System.out.printf("]\n");
                                 sleepTime = 0;
                             }
                         }
