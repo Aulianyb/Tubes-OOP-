@@ -154,25 +154,39 @@ public class World {
     public static void checkDeath(){
         if(currentSim.isDie()){
             System.out.println("Oh no! " + currentSim.getNama() + " telah meninggal..");
-            System.out.println("GANTI SIM atau GAME OVER?");
-            System.out.printf("Masukan pilihan : ");
-            Scanner input = new Scanner(System.in); 
-            String choice = input.nextLine().toUpperCase(); 
-            boolean valid = false; 
-            if (choice.equals("GANTI SIM")){
-                changeSim(input);
-            } else if (choice.equals("GAME OVER")){
+            if(sims.size() < 2) {
+                // sim cuma 1
+                System.out.println("Tidak ada sim lagi yang tersedia!!");
+                System.out.println("GAME OVER");
                 Menu.exit();
-            } else{
-                while (!valid){
-                    System.out.println("Input tidak valid!");
-                    System.out.println("Masukan ulang pilihan : ");
-                    if (choice.equals("GANTI SIM")){
-                        valid = true; 
-                        changeSim(input);
-                    } else if (choice.equals("GAME OVER")){
-                        valid = true; 
-                        Menu.exit();
+            } else {
+                // remove dead sim
+                for(int i = 0; i < sims.size(); i++) {
+                    if(sims.get(i).getNama().equals(currentSim.getNama())) {
+                        sims.remove(i);
+                        break;
+                    }
+                }
+                System.out.println("GANTI SIM atau GAME OVER?");
+                System.out.print("Masukan pilihan : ");
+                Scanner input = new Scanner(System.in);
+                String choice = input.nextLine().toUpperCase();
+                boolean valid = false;
+                if (choice.equals("GANTI SIM")){
+                    changeSim(input);
+                } else if (choice.equals("GAME OVER")){
+                    Menu.exit();
+                } else{
+                    while (!valid){
+                        System.out.println("Input tidak valid!");
+                        System.out.println("Masukan ulang pilihan : ");
+                        if (choice.equals("GANTI SIM")){
+                            valid = true;
+                            changeSim(input);
+                        } else if (choice.equals("GAME OVER")){
+                            valid = true;
+                            Menu.exit();
+                        }
                     }
                 }
             }
