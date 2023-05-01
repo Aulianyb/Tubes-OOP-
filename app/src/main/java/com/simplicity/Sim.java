@@ -21,6 +21,7 @@ public class Sim{
     private Rumah currentRumah; 
     private int jamTidur;
     private int jamBuangAir; 
+    private int jamKerja; 
     
     public Sim(String namaLengkap, Rumah rumah){
         kekenyangan = 80; 
@@ -117,6 +118,7 @@ public class Sim{
             thread = new Thread(new Runnable(){
                 public void run(){
                     try {
+                        status.setStatus("Berolahraga");
                         System.out.println("Olahraga dalam progress!"); //indikator buat testing
                         System.out.printf("["); 
                         for (int i=0;i<10;i++){
@@ -124,9 +126,6 @@ public class Sim{
                             System.out.printf(">"); 
                         }
                         System.out.printf("]"); 
-                    } catch (InterruptedException e){
-                    }
-                    finally{
                         int x = 5 * (detik / 20); 
                         int y = -5 * (detik / 20); 
                         int z = 10 * (detik / 20); 
@@ -136,9 +135,11 @@ public class Sim{
                         System.out.println("\nOlahraga Selesai!");
                         System.out.println("Kesehatan : +" + x);                      
                         System.out.println("Kekenyangan : " + y);                      
-                        System.out.println("Mood : +" + z);  
-                        Waktu.timePass(detik);                    
-                    } 
+                        System.out.println("Mood : +" + z);
+                        status.setStatus("idle");
+                        Waktu.timePass(detik);            
+                    } catch (InterruptedException e){
+                    }
                 }
             }); 
             thread.run();   
@@ -153,6 +154,7 @@ public class Sim{
         thread = new Thread(new Runnable(){
             public void run(){
                 try {
+                    status.setStatus("Berkunjung");
                     System.out.println("Berjalan ke rumah tujuan.."); //indikator buat testing
                     System.out.printf("["); //indikator buat testing
                     for (int i=0;i<10;i++){
@@ -167,6 +169,7 @@ public class Sim{
                     System.out.println("\nKunjungan Selesai!");
                     System.out.println("Kekenyangan : "  + x); 
                     System.out.println("Mood : +" + y);  
+                    status.setStatus("idle");
                     Waktu.timePass(detik);                
                 } catch (InterruptedException e){
                 }
@@ -214,6 +217,7 @@ public class Sim{
             thread = new Thread(new Runnable(){
                 public void run(){
                     try {
+                        status.setStatus("Bermeditasi");
                         System.out.println("Meditasi dalam progress!"); //indikator buat testing
                         System.out.printf("["); 
                         for (int i=0;i<10;i++){
@@ -226,6 +230,7 @@ public class Sim{
                         System.out.println("\nMeditasi Selesai!");                  
                         System.out.println("Mood : +" + x);   
                         Waktu.timePass(detik);
+                        status.setStatus("idle");
                     } catch (InterruptedException e){
                     }
                 }
@@ -237,6 +242,7 @@ public class Sim{
     }
 
     public void berkelahi(Sim kawan){
+        status.setStatus("berkelahi");
         System.out.println("Kamu mengajak " + kawan.getNama() + " berkelahi!"); //indikator buat testing
         if (kawan.getMood() > 90){
             System.out.println(kawan.getNama() + " menolak ajakanmu.");
@@ -269,7 +275,8 @@ public class Sim{
                             System.out.println("Mood : -10");
                         }                  
                         System.out.println("Kesehatan : -10");       
-                        Waktu.timePass(10);       
+                        Waktu.timePass(10);     
+                        status.setStatus("idle");
                     } catch (InterruptedException e){
                     }
                 }
@@ -279,6 +286,7 @@ public class Sim{
     }
 
     public void nyanyi(int detik){
+        status.setStatus("bernyanyi");
         if (detik % 30 == 0){
             thread = new Thread(new Runnable(){
                 public void run(){
@@ -295,6 +303,7 @@ public class Sim{
                         System.out.println("\nBernyanyi Selesai!");                  
                         System.out.println("Mood : +" + x);         
                         Waktu.timePass(detik);
+                        status.setStatus("idle");
                     } catch (InterruptedException e){
                     }
                 }
@@ -306,6 +315,7 @@ public class Sim{
     }
 
     public void menari(int detik){
+        status.setStatus("menari");
         if (detik % 10 == 0){
             thread = new Thread(new Runnable(){
                 public void run(){
@@ -327,6 +337,7 @@ public class Sim{
                             setKesehatan(-5);    
                         }          
                         Waktu.timePass(detik);
+                        status.setStatus("idle");
                     } catch (InterruptedException e){
                     }
                 }
@@ -338,6 +349,7 @@ public class Sim{
     }
 
     public void daydreaming(){
+        status.setStatus("menghalu");
         thread = new Thread( new Runnable(){
             public void run(){
                 System.out.println("Menghalu- eh daydreaming dimulai!");
@@ -376,6 +388,7 @@ public class Sim{
                         System.out.println("Mood : " + diff);   
                     }
                     Waktu.timePass(detik);
+                    status.setStatus("idle");
                 } catch (InterruptedException e){
                 }
             }
@@ -384,6 +397,7 @@ public class Sim{
     }
 
     public void monolog(int detik){
+        status.setStatus("bermonolog");
         if (detik % 30 == 0){
             thread = new Thread(new Runnable(){
                 public void run(){
@@ -405,6 +419,7 @@ public class Sim{
                             setKesehatan(-10);    
                         }                
                         Waktu.timePass(detik);
+                        status.setStatus("idle");
                     } catch (InterruptedException e){
                     }
                 }
@@ -416,6 +431,7 @@ public class Sim{
     }
 
     public void lelucon(Sim kawan){
+        status.setStatus("berlelucon");
         System.out.println(namaLengkap + " memberikan lelucon kepada " + kawan.getNama() + "!"); 
         int x = randomizer.nextInt(2); 
         if (x == 1){
@@ -429,6 +445,7 @@ public class Sim{
             kawan.setMood(10);  
             System.out.println("Mood : +10");    
         }
+        status.setStatus("idle");
     }
 
     public Rumah getCurrentRumah() {

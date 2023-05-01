@@ -201,6 +201,7 @@ public class World {
         ArrayList <Sim> copy = new ArrayList<Sim>(sims); 
         for (Sim sim : copy){
             sim.getPekerjaan().addDay();
+            sim.getPekerjaan().setJamKerja(0);
         }
     }
 

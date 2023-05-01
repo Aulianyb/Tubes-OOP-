@@ -29,7 +29,7 @@ public class Main {
 
         while(!end) {
             menu.displayMainMenu("start");
-            System.out.println("Masukkan Command: ");
+            System.out.print("Masukkan Command : ");
             String cmd = input.nextLine().toLowerCase();
             switch (cmd) {
                 case "start game":
@@ -60,7 +60,7 @@ public class Main {
         while(!end) {
             world.displayCurrentRuangan();
             menu.displayMainMenu("ingame");
-            System.out.print("Masukkan Command: ");
+            System.out.print("Masukkan Command : ");
             String cmd = input.nextLine().toLowerCase();
             switch (cmd) {
                 case "action":
