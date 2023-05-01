@@ -58,8 +58,6 @@ public class Main {
         // Game interface
         end = false;
         while(!end) {
-            world.displayCurrentRuangan();
-
             if(world.isInOwnHouse()) {
                 menu.displayMainMenu("ownhouse");
             } else {
