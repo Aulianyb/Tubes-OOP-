@@ -506,6 +506,9 @@ public class Menu {
         System.out.println("1. Timepass -> masukin detik");
         System.out.println("2. Show Time");
         System.out.println("3. Unlimited Uang");
+        System.out.println("4. kesehatan -79");
+        System.out.println("5. mood -79");
+        System.out.println("6. kekenyangan -79");
         int x = Integer.parseInt(sc.nextLine());
         switch (x) {
             case 1:
@@ -519,7 +522,16 @@ public class Menu {
                 break; 
             case 3:
                 World.getCurrentSim().setUang(99999);
-                break; 
+                break;
+            case 4:
+                World.getCurrentSim().setKesehatan(-79);
+                break;
+            case 5:
+                World.getCurrentSim().setMood(-79);
+                break;
+            case 6:
+                World.getCurrentSim().setKekenyangan(-79);
+                break;
             default:
                 break;
         }

@@ -197,7 +197,7 @@ public class Sim{
             System.out.println(namaLengkap + " sakit berat dan meninggal!");
         }
         if (mood <= 0){
-            System.out.println(namaLengkap + " mengalami dan meninggal!");
+            System.out.println(namaLengkap + " depresi dan meninggal!");
         }
         if (kekenyangan <= 0){
             System.out.println(namaLengkap + " kelaparan dan meninggal!");
