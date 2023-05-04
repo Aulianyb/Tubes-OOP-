@@ -159,7 +159,7 @@ public class World {
         setCurrentSimState();
 
         // sim cuma 1
-        if(sims.size() < 2) {
+        if(sims.size() < 2 && currSimDead) {
             currentSim.printDeathMessage();
             System.out.println("Tidak ada sim lagi yang tersedia!!");
             System.out.println("GAME OVER");
@@ -169,15 +169,20 @@ public class World {
         }
 
         // kalo current sim mati
+        boolean valid = false;
+        Scanner input = new Scanner(System.in);
+        String choice;
         if(currSimDead) {
             System.out.println("GANTI SIM atau GAME OVER?");
             System.out.print("Masukan pilihan : ");
-            Scanner input = new Scanner(System.in);
-            String choice = input.nextLine().toUpperCase();
-            boolean valid = false;
-            if (choice.equals("GANTI SIM")){
+            choice = input.nextLine().toUpperCase();
+            if (choice.equals("GANTI SIM") && sims.size() > 1){
                 changeSim(input);
-            } else if (choice.equals("GAME OVER")){
+            }else if (choice.equals("GANTI SIM")){
+                System.out.println("Hanya tersisa 1 Sim!");
+                System.out.println("Change sim ke sim yang tersisa");
+                setCurrentSim(sims.get(0));
+            }else if (choice.equals("GAME OVER")){
                 Menu.exit();
             } else{
                 while (!valid){
