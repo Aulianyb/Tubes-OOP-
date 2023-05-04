@@ -118,8 +118,10 @@ public class Ruangan {
         int jumlah = 0;
         for (Map.Entry<Furnitur, Integer> entry : this.jumlahObjek.entrySet()) {
             for (int i = 1; i < entry.getValue()+1; i++) {
-                if (i == entry.getValue()) {
-                    jumlah = i;
+                if (entry.getKey().getNamaObjek().equals(furnitur.getNamaObjek())) {
+                    if (i > jumlah) {
+                        jumlah = i;
+                    }
                 }
             }
         }
@@ -181,7 +183,7 @@ public class Ruangan {
             System.out.print("Masukkan nama barang yang ingin dipasang: ");
             namaBarang = input.next();
             //mungkin ntar pake method yang ada di inventory buat ngecek
-            for (Map.Entry<Furnitur, Integer> entry : ((Map<Furnitur,Integer>) currentSim.getInventory()).entrySet()){
+            for (Map.Entry<Furnitur, Integer> entry : ((Map<Furnitur,Integer>) currentSim.getInventory().getInventory()).entrySet()){
                 if (entry.getKey().getNamaObjek().equals(namaBarang)) {
                     key = entry.getKey();
                     valid = true;
@@ -626,6 +628,7 @@ public class Ruangan {
             }
         }
     }
+
 
     public void move() {
         Scanner input = new Scanner(System.in);
