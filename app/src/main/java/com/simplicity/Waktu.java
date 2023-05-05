@@ -59,9 +59,6 @@ public class Waktu {
         if (!barangDikirim.isEmpty()){
             barangDikirim.forEach((key, value) -> {
                 int temp = value - durasi; 
-                if (temp <= 0){
-                    key.getSim().terimaBarang(key.getBarang(), key.getJumlah());
-                }
                 barangDikirim.put(key, temp); 
             });
             Iterator <Map.Entry<Kiriman, Integer>> iterator = barangDikirim.entrySet().iterator(); 

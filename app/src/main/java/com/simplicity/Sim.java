@@ -35,7 +35,7 @@ public class Sim{
     public Sim(String namaLengkap, Rumah rumah){
         kekenyangan = 80; 
         mood = 80; 
-        kesehatan = 100; 
+        kesehatan = 80; 
         uang = 100;  
         int x = randomizer.nextInt(5); 
         pekerjaan = new Pekerjaan(listPekerjaan[x]); 
@@ -159,7 +159,7 @@ public class Sim{
 
     public void berkunjung(Rumah tujuan){
         double hasil = Math.sqrt(Math.pow(tujuan.getLokasi().getX() - currentRumah.getLokasi().getX(), 2) + Math.pow(tujuan.getLokasi().getY() - currentRumah.getLokasi().getY(), 2)); 
-        detik = (int) hasil; 
+        final int detik = (int) hasil; 
         thread = new Thread(new Runnable(){
             public void run(){
                 try {
@@ -232,11 +232,6 @@ public class Sim{
             }
         }); 
         thread.start(); 
-    }
-
-    public void terimaBarang(BisaDibeli barang, int jumlah){
-        System.out.println("[NOTICE PENGIRIMAN] " + barang.getNamaObjek() + " sudah sampai ditujuan!");
-        inventory.addItem((ObjekGame) barang, jumlah);
     }
 
     public void meditasi(int detik){
