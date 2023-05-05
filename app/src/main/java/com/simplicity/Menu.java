@@ -2,9 +2,17 @@ package com.simplicity;
 import java.util.*;
 
 public class Menu {
+    private static Menu instance; 
 
-    public Menu() {
+    private Menu() {
 
+    }
+
+    public static Menu getInstance(){
+        if (instance == null) {
+            instance = new Menu(); 
+        }
+        return instance; 
     }
 
     public void displayMainMenu(String option) {
@@ -83,7 +91,7 @@ public class Menu {
         }
     }
 
-    public static void exit() {
+    public void exit() {
         System.out.println("Thanks for playing! Goodbye!");
         System.exit(0);
     }
@@ -467,7 +475,7 @@ public class Menu {
         }
     }
 
-    public static void cheat(Scanner sc){
+    public void cheat(Scanner sc){
         System.out.println("INI MENU CHEAT MASUKIN ANGKA YA");
         System.out.println("1. Timepass -> masukin detik");
         System.out.println("2. Show Time");

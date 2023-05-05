@@ -177,7 +177,7 @@ public class World {
             currentSim.printDeathMessage();
             System.out.println("Tidak ada sim lagi yang tersedia!!");
             System.out.println("GAME OVER");
-            Menu.exit();
+            Menu.getInstance().exit();
         } else {
             updateSim();
         }
@@ -197,7 +197,7 @@ public class World {
                 System.out.println("Change sim ke sim yang tersisa");
                 setCurrentSim(sims.get(0));
             }else if (choice.equals("GAME OVER")){
-                Menu.exit();
+                Menu.getInstance().exit();
             } else{
                 while (!valid){
                     System.out.println("Input tidak valid!");
@@ -207,7 +207,7 @@ public class World {
                         changeSim(input);
                     } else if (choice.equals("GAME OVER")){
                         valid = true;
-                        Menu.exit();
+                        Menu.getInstance().exit();
                     }
                 }
             }

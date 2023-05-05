@@ -8,7 +8,6 @@ public class Main {
 
     public static void main(String[] args) {
         // Game init
-        Menu menu = new Menu();
         Scanner input = new Scanner(System.in);
 
         // Start Game
@@ -27,7 +26,7 @@ public class Main {
         System.out.println("-".repeat(53));
 
         while(!end) {
-            menu.displayMainMenu("start");
+            Menu.getInstance().displayMainMenu("start");
             System.out.print("Masukkan Command : ");
             String cmd = input.nextLine().toLowerCase();
             switch (cmd) {
@@ -37,11 +36,11 @@ public class Main {
                     end = true;
                     break;
                 case "help":
-                    menu.help("start");
+                    Menu.getInstance().help("start");
                     break;
                 case "exit":
                     end = true;
-                    Menu.exit();
+                    Menu.getInstance().exit();
                     break;
                 default:
                     System.out.println("Input tidak valid, silahkan masukkan ulang input");
@@ -55,41 +54,41 @@ public class Main {
         end = false;
         while(!end) {
             if(World.getInstance().isInOwnHouse()) {
-                menu.displayMainMenu("ownhouse");
+                Menu.getInstance().displayMainMenu("ownhouse");
             } else {
-                menu.displayMainMenu("ingame");
+                Menu.getInstance().displayMainMenu("ingame");
             }
             System.out.print("Masukkan Command : ");
             String cmd = input.nextLine().toLowerCase();
 
             switch (cmd) {
                 case "action":
-                    menu.action();
+                    Menu.getInstance().action();
                     break;
                 case "list object":
-                    menu.listObj();
+                    Menu.getInstance().listObj();
                     break;
                 case "go to object":
-                    menu.goToObj();
+                    Menu.getInstance().goToObj();
                     break;
                 case "move room":
-                    menu.moveRoom();
+                    Menu.getInstance().moveRoom();
                     break;
                 case "edit room":
                     if(World.getInstance().isInOwnHouse()) {
-                        menu.editRoom();
+                        Menu.getInstance().editRoom();
                     } else {
                         System.out.println("Input tidak valid, silahkan masukkan ulang input");
                     }
                     break;
                 case "view inventory":
-                    menu.viewInventory();
+                    Menu.getInstance().viewInventory();
                     break;
                 case "view current location":
-                    menu.viewCurrentLoc();
+                    Menu.getInstance().viewCurrentLoc();
                     break;
                 case "view sim info":
-                    menu.viewSimInfo();
+                    Menu.getInstance().viewSimInfo();
                     break;
                 case "change sim":
                     World.getInstance().changeSim(input);
@@ -99,14 +98,14 @@ public class Main {
                     World.getInstance().displayWorld();
                     break;
                 case "help":
-                    menu.help("ingame");
+                    Menu.getInstance().help("ingame");
                     break;
                 case "exit":
                     end = true;
-                    Menu.exit();
+                    Menu.getInstance().exit();
                     break;
                 case "cheat":
-                    Menu.cheat(input); 
+                    Menu.getInstance().cheat(input); 
                     break; 
                 default:
                     System.out.println("Input tidak valid, silahkan masukkan ulang input");
