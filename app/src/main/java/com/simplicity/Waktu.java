@@ -104,15 +104,15 @@ public class Waktu {
         updateTidur(durasi);
         updateBuangAir(durasi);
         //cek apakah tiap SIM masih hidup atau gak
-        World.checkDeath();
+        World.getInstance().checkDeath();
         if (menit / 12 > 0){
             hari += menit / 12; 
             menit = menit % 12; 
-            World.updateHarian();
+            World.getInstance().updateHarian();
             //reset makan, dll ya gitu deh
         }
 
-        System.out.println("Waktu berjalan sepanjang " + durasi);
+        // System.out.println("Waktu berjalan sepanjang " + durasi);
     }
 
     public void addBeli(BisaDibeli barang, Sim sim, int jumlah, Integer duration){
@@ -132,12 +132,12 @@ public class Waktu {
         System.out.println("-".repeat(48)); 
 
 
-        if (!World.getCurrentSim().getStatus().getBeli()){
+        if (!World.getInstance().getCurrentSim().getStatus().getBeli()){
             System.out.println("|                    |        |                |"); 
             System.out.println("-".repeat(48)); 
         }else{
             barangDikirim.forEach((key, value)->{
-                if (key.getSim() == World.getCurrentSim()){
+                if (key.getSim() == World.getInstance().getCurrentSim()){
                     int x = 20 - key.getBarang().getNamaObjek().length();
                     int y = 8 - key.getJumlah().toString().length(); 
                     int z = 16 - value.toString().length(); 
@@ -155,12 +155,12 @@ public class Waktu {
         System.out.println("|       Rumah        |     Sisa Waktu     |");
         System.out.println("-".repeat(43));
         
-        if (!World.getCurrentSim().getCurrentRumah().getUpgradeStatus()){
+        if (!World.getInstance().getCurrentSim().getCurrentRumah().getUpgradeStatus()){
             System.out.println("|                    |                    |");
             System.out.println("-".repeat(43));
         }else{
             ongoingUpgrade.forEach((key, value)->{
-                if(key.getOwner() == World.getCurrentSim().getNama()){
+                if(key.getOwner() == World.getInstance().getCurrentSim().getNama()){
                     String rumah = "Rumah " + key.getOwner();
                     String sisaWaktu =  (value / 60) + " menit " + (value % 60) + " detik"; 
                     int x = 20 - rumah.length(); 
