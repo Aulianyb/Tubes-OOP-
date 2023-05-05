@@ -10,9 +10,8 @@ public class Toilet extends Furnitur {
         getValidAction().setStatus("buang air");
     }
 
-    // kalau makan = 
-
-    public void buangAir(Sim sim){
+    @Override
+    public void aksi(Sim sim){
         Thread thread = new Thread(new Runnable(){
             public void run(){
                 try {

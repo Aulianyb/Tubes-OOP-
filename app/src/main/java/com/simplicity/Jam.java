@@ -11,7 +11,8 @@ public class Jam extends Furnitur {
         getValidAction().setStatus("melihat waktu");
     }
 
-    public void lihatJam(Sim sim) {
+    @Override
+    public void aksi(Sim sim) {
         int totalDetik = 12 * 60;
         int totalWaktuBerjalan = Waktu.getMenit() * 60 + Waktu.getDetik();
 

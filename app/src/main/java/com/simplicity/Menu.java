@@ -166,13 +166,13 @@ public class Menu {
                 jawabanvalid = jawaban.equalsIgnoreCase("ya") || jawaban.equalsIgnoreCase("tidak");
                 if(jawaban.equalsIgnoreCase("ya")) {
                     if(currFurnitur instanceof Kasur) {
-                        ((Kasur) currFurnitur).tidur(World.getCurrentSim());
+                        currFurnitur.aksi(World.getCurrentSim());
                     } else if(currFurnitur instanceof Kompor) {
-                        ((Kompor) currFurnitur).masak(World.getCurrentSim());
+                        currFurnitur.aksi(World.getCurrentSim());
                     } else if(currFurnitur instanceof MejaKursi) {
-                        ((MejaKursi) currFurnitur).makan(World.getCurrentSim());
+                        currFurnitur.aksi(World.getCurrentSim());
                     } else if(currFurnitur instanceof Toilet) {
-                        ((Toilet) currFurnitur).buangAir(World.getCurrentSim());
+                        currFurnitur.aksi(World.getCurrentSim());
                     } else {
                         System.out.println("Objek tidak valid!!");
                     }
@@ -302,19 +302,19 @@ public class Menu {
                 case "tidur" :
                     currFurnitur = World.getCurrentSim().getCurrentRumah().getCurrRuangan().getCurrFurnitur();
                     if( currFurnitur instanceof Kasur) {
-                        ((Kasur) currFurnitur).tidur(World.getCurrentSim());
+                        currFurnitur.aksi(World.getCurrentSim());
                     }
                     break;
                 case "makan" :
                     currFurnitur = World.getCurrentSim().getCurrentRumah().getCurrRuangan().getCurrFurnitur();
                     if( currFurnitur instanceof MejaKursi) {
-                        ((MejaKursi) currFurnitur).makan(World.getCurrentSim());
+                        currFurnitur.aksi(World.getCurrentSim());
                     }
                     break;
                 case "memasak" :
                     currFurnitur = World.getCurrentSim().getCurrentRumah().getCurrRuangan().getCurrFurnitur();
                     if( currFurnitur instanceof Kompor) {
-                        ((Kompor) currFurnitur).masak(World.getCurrentSim());
+                        currFurnitur.aksi(World.getCurrentSim());
                     }
                     break;
                 case "berkunjung" :
@@ -337,7 +337,7 @@ public class Menu {
                 case "buang air" :
                     currFurnitur = World.getCurrentSim().getCurrentRumah().getCurrRuangan().getCurrFurnitur();
                     if( currFurnitur instanceof Toilet) {
-                        ((Toilet) currFurnitur).buangAir(World.getCurrentSim());
+                        currFurnitur.aksi(World.getCurrentSim());
                     }
                     break;
                 case "meditasi" :
@@ -398,7 +398,7 @@ public class Menu {
                 case "melihat waktu" :
                     currFurnitur = World.getCurrentSim().getCurrentRumah().getCurrRuangan().getCurrFurnitur();
                     if( currFurnitur instanceof Jam) {
-                        ((Jam) currFurnitur).lihatJam(World.getCurrentSim());
+                        currFurnitur.aksi(World.getCurrentSim());
                     }
                     break;
                 default :

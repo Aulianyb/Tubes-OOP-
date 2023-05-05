@@ -13,8 +13,8 @@ public class MejaKursi extends Furnitur {
         getValidAction().setStatus("makan");
     }
 
-    //Method makan
-    public void makan(Sim sim) {
+    @Override
+    public void aksi(Sim sim) {
         Thread thread = new Thread(new Runnable(){
             public void run(){
                 Makanan temp = null;
@@ -50,6 +50,8 @@ public class MejaKursi extends Furnitur {
                         sim.getInventory().reduceItem(temp, 1);
                         sim.setKekenyangan(temp.getNilaiKekenyangan());
                         Waktu.timePass(30);
+                        System.out.println("Makan selesai!");
+                        System.out.println("Kekenyangan : +"+temp.getNilaiKekenyangan());
                         if (!sim.getJamBuangAir().kondisi.equals("Butuh buang air")) {
                             if (sim.getJamBuangAir().waktu > 0) {
                                 sim.setJamBuangAir(sim.getJamBuangAir().waktu, "Belum buang air");

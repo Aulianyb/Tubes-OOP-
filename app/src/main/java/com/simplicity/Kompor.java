@@ -64,7 +64,8 @@ public class Kompor extends Furnitur {
         }
     }
 
-    public void masak(Sim sim) {
+    @Override
+    public void aksi(Sim sim) {
         boolean valid = false;
 
         //Menampilkan menu makanan

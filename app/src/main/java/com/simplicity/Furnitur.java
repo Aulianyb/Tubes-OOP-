@@ -46,4 +46,8 @@ public class Furnitur extends ObjekGame implements BisaDibeli{
     public void setHarga(int harga) {
         this.harga = harga;
     }
+
+    public void aksi(Sim sim) {
+        System.out.println(sim.getNama()+" melakukan aksi.");
+    }
 }

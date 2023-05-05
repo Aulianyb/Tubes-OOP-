@@ -10,7 +10,8 @@ public class Kasur extends Furnitur{
     }
 
     //Status
-    public void tidur(Sim sim){
+    @Override
+    public void aksi(Sim sim){
         Scanner scanner = new Scanner(System.in);
         System.out.print("Input durasi : ");
         int detik = Integer.parseInt(scanner.nextLine());
@@ -44,6 +45,7 @@ public class Kasur extends Furnitur{
                             }
                         }
                         Waktu.timePass(detik);
+                        System.out.println("Tidur selesai!");
                         if (detik >= 180) {
                             sim.setJamTidur(0, "Sudah tidur");
                         }
