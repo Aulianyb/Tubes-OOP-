@@ -12,7 +12,7 @@ public class Menu {
     }
 
     public void displayMainMenu(String option) {
-        String[] optionAwal = {"Start Game", "Load Game", "Help", "Exit"};
+        String[] optionAwal = {"Start Game", "Help", "Exit"};
         String[] optionInGame = {
                 "Action",
                 "List Object",
@@ -24,7 +24,6 @@ public class Menu {
                 "Change Sim",
                 "Add Sim",
                 "Help",
-                "Save",
                 "Exit"};
         String[] optionOwnHouse = {
                 "Action",
@@ -38,7 +37,6 @@ public class Menu {
                 "Add Sim",
                 "Edit Room",
                 "Help",
-                "Save",
                 "Exit"
         };
 
@@ -165,17 +163,7 @@ public class Menu {
             while(!jawabanvalid) {
                 jawabanvalid = jawaban.equalsIgnoreCase("ya") || jawaban.equalsIgnoreCase("tidak");
                 if(jawaban.equalsIgnoreCase("ya")) {
-                    if(currFurnitur instanceof Kasur) {
-                        currFurnitur.aksi(World.getCurrentSim());
-                    } else if(currFurnitur instanceof Kompor) {
-                        currFurnitur.aksi(World.getCurrentSim());
-                    } else if(currFurnitur instanceof MejaKursi) {
-                        currFurnitur.aksi(World.getCurrentSim());
-                    } else if(currFurnitur instanceof Toilet) {
-                        currFurnitur.aksi(World.getCurrentSim());
-                    } else {
-                        System.out.println("Objek tidak valid!!");
-                    }
+                    currFurnitur.aksi(World.getCurrentSim());
                 } else  {
                     System.out.println("Silahkan memilih aksi lain!!");
                 }
@@ -276,7 +264,8 @@ public class Menu {
                     System.out.println("   +    |_|  |_/_/ \\_\\_|_\\_|\\_\\___| |_|    +"); 
                     System.out.println("=================================================="); 
                     System.out.println("|_   _||_   _||_   _||_   _||_   _||_   _||_   _|"); 
-                    System.out.println("  |_|    |_|    |_|    |_|    |_|    |_|    |_|    "); 
+                    System.out.println("  |_|    |_|    |_|    |_|    |_|    |_|    |_|    ");
+                    System.out.println();
                     displayBahanMakanan();
                     displayFurnitur();
                     System.out.println("Input detail barang");
@@ -418,10 +407,16 @@ public class Menu {
                 "Kacang",
                 "Susu",
         };
+        int[] harga = {5,3,10,12,3,3,2,2};
         System.out.println("-".repeat(14) + " LIST BAHAN MAKANAN " + "-".repeat(14));
-        for(int i = 1; i <= bahan.length; i++) {
-            System.out.printf("%d. %s%n",i,bahan[i-1]);
+        System.out.println("+----------------+-------+");
+        System.out.println("| Bahan Makanan  | Harga |");
+        System.out.println("+----------------+-------+");
+        for(int i = 0; i < bahan.length; i++) {
+            System.out.printf("| %-14s | %5d |%n",bahan[i],harga[i]);
         }
+        System.out.println("+----------------+-------+");
+        System.out.println();
     }
 
     public void displayFurnitur() {
@@ -435,10 +430,16 @@ public class Menu {
                 "Meja dan Kursi",
                 "Jam",
         };
+        int[] harga = {50,100,150,50,100,200,50,10};
         System.out.println("-".repeat(17) + " LIST FURNITUR " + "-".repeat(17));
-        for(int i = 1; i <= furnitur.length; i++) {
-            System.out.printf("%d. %s%n",i,furnitur[i-1]);
+        System.out.println("+---------------------+-------+");
+        System.out.println("| Furnitur            | Harga |");
+        System.out.println("+---------------------+-------+");
+        for(int i = 0; i < furnitur.length; i++) {
+            System.out.printf("| %-19s | %5d |%n",furnitur[i],harga[i]);
         }
+        System.out.println("+---------------------+-------+");
+        System.out.println();
     }
 
     public BisaDibeli createObjekGame(String name) {
@@ -479,26 +480,6 @@ public class Menu {
                 System.out.println("Barang tidak tersedia!!");
                 return null;
         }
-    }
-
-    public void save(World world) {
-//        Gson gson = new Gson();
-//        try (FileWriter writer = new FileWriter("save.json")) {
-//            gson.toJson(world, writer);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-    }
-    public World load() {
-//        Gson gson = new Gson();
-//        try {
-//            FileReader reader = new FileReader("save.json");
-//            World world = gson.fromJson(reader, World.class);
-//            return world;
-//        } catch (FileNotFoundException e) {
-//            throw new RuntimeException(e);
-//        }
-        return new World(new Waktu());
     }
 
     public static void cheat(Scanner sc){

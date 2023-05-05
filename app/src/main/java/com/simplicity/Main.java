@@ -37,9 +37,6 @@ public class Main {
                     world.addSim(input,"init");
                     end = true;
                     break;
-                case "load game":
-                    world = menu.load();
-                    Menu.exit();
                 case "help":
                     menu.help("start");
                     break;
@@ -104,9 +101,6 @@ public class Main {
                     break;
                 case "help":
                     menu.help("ingame");
-                    break;
-                case "save":
-                    menu.save(world);
                     break;
                 case "exit":
                     end = true;
