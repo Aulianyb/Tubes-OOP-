@@ -6,17 +6,17 @@ public class Rumah {
     private Ruangan currRuangan;
     private Point lokasi;
     private String owner;
-    private String namaRuangan; 
-    private Point locRuangan; 
-    private String ongoingUpgrade; 
-    private boolean upgrading; 
+    private String namaRuangan;
+    private Point locRuangan;
+    private String ongoingUpgrade;
+    private boolean upgrading;
 
     public Rumah(Point lokasi) {
         Point defaultPoint = new Point(0, 0);
         this.currRuangan = new Ruangan();
         daftarRuangan.put(defaultPoint, this.currRuangan);
         this.lokasi = lokasi;
-        upgrading = false; 
+        upgrading = false;
     }
 
     public String getNamaCurrRuangan() {
@@ -49,7 +49,7 @@ public class Rumah {
         boolean valid;
         valid = false;
         for (Map.Entry<Point, Ruangan> entry : this.daftarRuangan.entrySet()) {
-            if (entry.getValue().getNama().equals(namaRuangan)) {
+            if (entry.getValue().getNama().equalsIgnoreCase(namaRuangan)) {
                 valid = true;
                 break;
             }
@@ -77,7 +77,7 @@ public class Rumah {
                     valid = true;
                 }
                 for (Map.Entry<Point, Ruangan> entry : this.daftarRuangan.entrySet()) {
-                    if (entry.getValue().getNama().equals(pilihRuangan)) {
+                    if (entry.getValue().getNama().equalsIgnoreCase(pilihRuangan)) {
                         locAcuan = entry.getKey();
                     }
                 }
@@ -87,28 +87,28 @@ public class Rumah {
         namaRuangan = input.next();
         System.out.print("Masukkan lokasi ruangan (ATAS/BAWAH/KANAN/KIRI): ");
         ongoingUpgrade = input.next();
-        if (ongoingUpgrade.equals("ATAS")) {
+        if (ongoingUpgrade.equalsIgnoreCase("ATAS")) {
             x = locAcuan.getX();
             y = locAcuan.getY() + 1;
             locRuangan = new Point(x, y);
             if (isAvailable(locRuangan)) {
                 valid = false;
             }
-        } else if (ongoingUpgrade.equals("BAWAH")) {
+        } else if (ongoingUpgrade.equalsIgnoreCase("BAWAH")) {
             x = locAcuan.getX();
             y = locAcuan.getY() - 1;
             locRuangan = new Point(x, y);
             if (isAvailable(locRuangan)) {
                 valid = false;
             }
-        } else if (ongoingUpgrade.equals("KANAN")) {
+        } else if (ongoingUpgrade.equalsIgnoreCase("KANAN")) {
             x = locAcuan.getX() + 1;
             y = locAcuan.getY();
             locRuangan = new Point(x, y);
             if (isAvailable(locRuangan)) {
                 valid = false;
-            } 
-        } else if (ongoingUpgrade.equals("KIRI")) {
+            }
+        } else if (ongoingUpgrade.equalsIgnoreCase("KIRI")) {
             x = locAcuan.getX() - 1;
             y = locAcuan.getY();
             locRuangan = new Point(x, y);
@@ -120,29 +120,29 @@ public class Rumah {
         }
         if (valid) {
             System.out.println("[NOTICE UPGRADE] Proses upgrade rumah dimulai!");
-            upgrading = true; 
+            upgrading = true;
             Waktu.getInstance().addUpgrade(this);
         } else {
             System.out.println("[NOTICE UPGRADE] Ruangan tidak bisa ditambahkan!");
         }
         Thread thread = new Thread(new Runnable(){
             public void run(){
-                int target = TimeThread.getInstance().getMillis() + 5; 
-                int now = TimeThread.getInstance().getMillis(); 
+                int target = TimeThread.getInstance().getMillis() + 5;
+                int now = TimeThread.getInstance().getMillis();
                 while (now < target){
                     try{
                         Thread.sleep(1000);
-                        now = TimeThread.getInstance().getMillis(); 
+                        now = TimeThread.getInstance().getMillis();
                     } catch (InterruptedException ex){
-                        
+
                     }
                 }
                 Ruangan ruangan = new Ruangan(namaRuangan);
                 daftarRuangan.put(locRuangan, ruangan);
                 upgrading = false;
             }
-        }); 
-        thread.start(); 
+        });
+        thread.start();
     }
 
     public void pindahRuangan() {
@@ -152,7 +152,7 @@ public class Rumah {
         System.out.print("Masukkan ruangan yang ingin dituju: ");
         String pilihRuangan = input.next();
         for (Map.Entry<Point, Ruangan> entry : this.daftarRuangan.entrySet()) {
-            if (entry.getValue().getNama().equals(pilihRuangan)) {
+            if (entry.getValue().getNama().equalsIgnoreCase(pilihRuangan)) {
                 this.currRuangan = entry.getValue();
                 avail = true;
             }
@@ -177,6 +177,6 @@ public class Rumah {
     }
 
     public boolean getUpgradeStatus(){
-        return upgrading; 
+        return upgrading;
     }
 }
