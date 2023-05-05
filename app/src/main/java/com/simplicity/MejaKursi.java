@@ -59,7 +59,12 @@ public class MejaKursi extends Furnitur {
 
                         if (valid) {
                             System.out.println("Makan..."); //indikator buat testing
-                            Thread.sleep(30000);
+                            System.out.printf("[");
+                            for (int j = 0; j < 10; j++) {
+                                Thread.sleep(3000);
+                                System.out.printf(">");
+                            }
+                            System.out.println("]");
                             sim.getInventory().reduceItem(temp, 1);
                             sim.setKekenyangan(temp.getNilaiKekenyangan());
                             Waktu.getInstance().timePass(30);
