@@ -9,6 +9,9 @@ public class Main {
     public static void main(String[] args) {
         // Game init
         Scanner input = new Scanner(System.in);
+        TimeThread timeThread = TimeThread.getInstance(); 
+        Thread mainThread = new Thread(timeThread); 
+        mainThread.start();
 
         // Start Game
         boolean end = false;
