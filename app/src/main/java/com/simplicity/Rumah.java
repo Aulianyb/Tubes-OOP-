@@ -125,14 +125,24 @@ public class Rumah {
         } else {
             System.out.println("[NOTICE UPGRADE] Ruangan tidak bisa ditambahkan!");
         }
-    }
-
-    public void implementUpgrade(){
-        Ruangan ruangan = new Ruangan(namaRuangan);
-        daftarRuangan.put(locRuangan, ruangan);
-        System.out.println("[NOTICE UPGRADE] Ruangan berhasil ditambahkan!");
-        upgrading = false;
-        this.displayDaftarRuangan();
+        Thread thread = new Thread(new Runnable(){
+            public void run(){
+                int target = TimeThread.getInstance().getMillis() + 5; 
+                int now = TimeThread.getInstance().getMillis(); 
+                while (now < target){
+                    try{
+                        Thread.sleep(1000);
+                        now = TimeThread.getInstance().getMillis(); 
+                    } catch (InterruptedException ex){
+                        
+                    }
+                }
+                Ruangan ruangan = new Ruangan(namaRuangan);
+                daftarRuangan.put(locRuangan, ruangan);
+                upgrading = false;
+            }
+        }); 
+        thread.start(); 
     }
 
     public void pindahRuangan() {

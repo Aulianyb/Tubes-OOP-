@@ -205,7 +205,7 @@ public class Sim{
 
     public void beliBarang(BisaDibeli barang, int jumlah){
         // final Integer x = (randomizer.nextInt(5) + 1) * 30;
-        final Integer x = 20; 
+        Integer x = 5; 
         if (uang < barang.getHarga() * jumlah){
             System.out.println("Maaf, uang yang dimiliki tidak mencukupi!"); 
         } else{
@@ -227,7 +227,7 @@ public class Sim{
                         
                     }
                 }
-                System.out.println("[NOTICE PENGIRIMAN] " + barang.getNamaObjek() + " sudah sampai ditujuan!");
+                System.out.println();
                 inventory.addItem((ObjekGame) barang, jumlah);   
             }
         }); 

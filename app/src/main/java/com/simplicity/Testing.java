@@ -33,12 +33,13 @@ public class Testing {
         s1.beliBarang(b2, 2);
         s1.beliBarang(b3, 2);  
         // Kompor kompor = new Kompor("kompor"); 
-        Waktu.displayPengiriman();  
+        s1.getCurrentRumah().upgradeRumah();
+        Waktu.displayUpgrade();
         s1.daydreaming();
-        Waktu.displayPengiriman();  
+        Waktu.displayUpgrade();  
         s1.daydreaming();
-        Waktu.displayPengiriman();  
-        s1.getInventory().lihatInventory();
+        Waktu.displayUpgrade();
+
 
 
         // Waktu.displayUpgrade();

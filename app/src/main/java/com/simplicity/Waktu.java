@@ -59,6 +59,9 @@ public class Waktu {
         if (!barangDikirim.isEmpty()){
             barangDikirim.forEach((key, value) -> {
                 int temp = value - durasi; 
+                if (temp <= 0){
+                    System.out.println("[NOTICE PENGIRIMAN] " + key.getBarang().getNamaObjek() + " sudah sampai ditujuan!");
+                }
                 barangDikirim.put(key, temp); 
             });
             Iterator <Map.Entry<Kiriman, Integer>> iterator = barangDikirim.entrySet().iterator(); 
@@ -76,7 +79,7 @@ public class Waktu {
             ongoingUpgrade.forEach((key, value) -> {
                 int temp = value - durasi; 
                 if (temp <= 0){
-                    key.implementUpgrade();
+                    System.out.println("[NOTICE UPGRADE] Ruangan di rumah " + key.getOwner() + " berhasil ditambahkan!");
                 }
                 ongoingUpgrade.put(key, temp); 
             });
