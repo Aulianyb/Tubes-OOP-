@@ -5,7 +5,6 @@ import java.util.*;
 public class Sim{
     //atribut static
     private static Thread thread; 
-    private static int detik;
     private static String[] listPekerjaan = {"Badut Sulap", "Koki", "Polisi", "Programmer", "Dokter"}; 
     private static Random randomizer = new Random(); 
 
@@ -36,7 +35,7 @@ public class Sim{
     public Sim(String namaLengkap, Rumah rumah){
         kekenyangan = 80; 
         mood = 80; 
-        kesehatan = 100; 
+        kesehatan = 80; 
         uang = 100;  
         int x = randomizer.nextInt(5); 
         pekerjaan = new Pekerjaan(listPekerjaan[x]); 
@@ -160,7 +159,7 @@ public class Sim{
 
     public void berkunjung(Rumah tujuan){
         double hasil = Math.sqrt(Math.pow(tujuan.getLokasi().getX() - currentRumah.getLokasi().getX(), 2) + Math.pow(tujuan.getLokasi().getY() - currentRumah.getLokasi().getY(), 2)); 
-        detik = (int) hasil; 
+        final int detik = (int) hasil; 
         thread = new Thread(new Runnable(){
             public void run(){
                 try {
@@ -205,21 +204,34 @@ public class Sim{
     }
 
     public void beliBarang(BisaDibeli barang, int jumlah){
+        // final Integer x = (randomizer.nextInt(5) + 1) * 30;
+        final Integer x = 20; 
         if (uang < barang.getHarga() * jumlah){
             System.out.println("Maaf, uang yang dimiliki tidak mencukupi!"); 
         } else{
-            setUang(-1 * barang.getHarga() * jumlah);
-            Integer x = (randomizer.nextInt(5) + 1) * 30;  
-            // Integer x = 5;
+            setUang(-1 * barang.getHarga() * jumlah);  
             System.out.println("[NOTICE PENGIRIMAN] " + barang.getNamaObjek() + " sedang dalam proses pengiriman.."); 
             Waktu.addBeli(barang, this, jumlah, x);
             status.setBeli(true);
         }
-    }
 
-    public void terimaBarang(BisaDibeli barang, int jumlah){
-        System.out.println("[NOTICE PENGIRIMAN] " + barang.getNamaObjek() + " sudah sampai ditujuan!");
-        inventory.addItem((ObjekGame) barang, jumlah);
+        Thread thread = new Thread(new Runnable(){
+            public void run(){
+                int target = TimeThread.getInstance().getMillis() + x; 
+                int now = TimeThread.getInstance().getMillis(); 
+                while (now < target){
+                    try{
+                        Thread.sleep(1000);
+                        now = TimeThread.getInstance().getMillis(); 
+                    } catch (InterruptedException ex){
+                        
+                    }
+                }
+                System.out.println("[NOTICE PENGIRIMAN] " + barang.getNamaObjek() + " sudah sampai ditujuan!");
+                inventory.addItem((ObjekGame) barang, jumlah);   
+            }
+        }); 
+        thread.start(); 
     }
 
     public void meditasi(int detik){
@@ -359,6 +371,7 @@ public class Sim{
     }
 
     public void daydreaming(){
+        TimeThread.getInstance().resume();
         status.setStatus("menghalu");
         thread = new Thread( new Runnable(){
             public void run(){
@@ -397,13 +410,14 @@ public class Sim{
                     } else{
                         System.out.println("Mood : " + diff);   
                     }
-                    Waktu.timePass(detik);
+                    Waktu.timePass(10);
                     status.setStatus("idle");
                 } catch (InterruptedException e){
                 }
             }
         }); 
         thread.run();
+        TimeThread.getInstance().pause();
     }
 
     public void monolog(int detik){
@@ -498,11 +512,26 @@ public class Sim{
         jamKerja = detik;
     }
 
-    public void testThread(TimeThread t){
-        t.resume();
-        System.out.println("Boiye lmao");
-        t.pause(); 
-        System.out.println("Thread Done");
+    public void testThread(){ 
+        Thread thread = new Thread(new Runnable(){
+            public void run(){
+                System.out.println("Bahooooo");
+                int target = TimeThread.getInstance().getMillis() + 10; 
+                int now = TimeThread.getInstance().getMillis(); 
+                while (now < target){
+                    try{
+                        Thread.sleep(1000);
+                        // System.out.println("target - " + target);
+                        // System.out.println("now - " + now);
+                        now = TimeThread.getInstance().getMillis(); 
+                    } catch (InterruptedException ex){
+
+                    }
+                }
+                System.out.println("It works");     
+            }
+        });
+        thread.start(); 
     }
 
 }

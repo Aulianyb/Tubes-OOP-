@@ -59,9 +59,6 @@ public class Waktu {
         if (!barangDikirim.isEmpty()){
             barangDikirim.forEach((key, value) -> {
                 int temp = value - durasi; 
-                if (temp <= 0){
-                    key.getSim().terimaBarang(key.getBarang(), key.getJumlah());
-                }
                 barangDikirim.put(key, temp); 
             });
             Iterator <Map.Entry<Kiriman, Integer>> iterator = barangDikirim.entrySet().iterator(); 
@@ -103,6 +100,8 @@ public class Waktu {
             World.updateHarian();
             //reset makan, dll ya gitu deh
         }
+
+        System.out.println("Waktu berjalan sepanjang " + durasi);
     }
 
     public static void addBeli(BisaDibeli barang, Sim sim, int jumlah, Integer duration){

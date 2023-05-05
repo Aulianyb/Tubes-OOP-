@@ -27,21 +27,20 @@ public class Testing {
         BahanMakanan b2 = new BahanMakanan("Ayam");
         BahanMakanan b3 = new BahanMakanan("Sapi");
         BahanMakanan b4 = new BahanMakanan("Kentang");
-
-        s1.testThread(t);
-        s1.olahraga(20);
-        t.resume();
-
-
-        // s1.beliBarang(b, 2);
-        // s1.beliBarang(b2, 2);
-        // s1.beliBarang(b3, 2);  
-
+       
+        TimeThread.getInstance().pause();
+        s1.beliBarang(b, 2);
+        s1.beliBarang(b2, 2);
+        s1.beliBarang(b3, 2);  
         // Kompor kompor = new Kompor("kompor"); 
+        Waktu.displayPengiriman();  
+        s1.daydreaming();
+        Waktu.displayPengiriman();  
+        s1.daydreaming();
+        Waktu.displayPengiriman();  
+        s1.getInventory().lihatInventory();
 
 
-
-        // Waktu.displayPengiriman();  
         // Waktu.displayUpgrade();
         // s1.getStatus().displayStatus(s1);  
 
