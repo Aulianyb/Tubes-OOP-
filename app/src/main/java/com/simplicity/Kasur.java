@@ -19,7 +19,7 @@ public class Kasur extends Furnitur{
         Thread thread = new Thread(new Runnable(){
             public void run(){
                 try {
-                    if (detik <= 180) {
+                    if (detik < 180) {
                         System.out.println("Durasi tidur tidak valid!");
                     } else {
                         int sleepTime = detik * 1000;
