@@ -124,6 +124,7 @@ public class Sim{
 
     public void olahraga(int detik){
         if (detik % 20 == 0){
+            TimeThread.getInstance().resume();
             thread = new Thread(new Runnable(){
                 public void run(){
                     try {
@@ -146,7 +147,8 @@ public class Sim{
                         System.out.println("Kekenyangan : " + y);                      
                         System.out.println("Mood : +" + z);
                         status.setStatus("idle");
-                        Waktu.getInstance().timePass(detik);            
+                        Waktu.getInstance().timePass(detik);
+                        TimeThread.getInstance().pause();
                     } catch (InterruptedException e){
                     }
                 }
@@ -158,6 +160,7 @@ public class Sim{
     }
 
     public void berkunjung(Rumah tujuan){
+        TimeThread.getInstance().resume();
         double hasil = Math.sqrt(Math.pow(tujuan.getLokasi().getX() - currentRumah.getLokasi().getX(), 2) + Math.pow(tujuan.getLokasi().getY() - currentRumah.getLokasi().getY(), 2)); 
         final int detik = (int) hasil; 
         thread = new Thread(new Runnable(){
@@ -179,7 +182,8 @@ public class Sim{
                     System.out.println("Kekenyangan : "  + x); 
                     System.out.println("Mood : +" + y);  
                     status.setStatus("idle");
-                    Waktu.getInstance().timePass(detik);                
+                    Waktu.getInstance().timePass(detik);  
+                    TimeThread.getInstance().pause();              
                 } catch (InterruptedException e){
                 }
             }
@@ -204,8 +208,8 @@ public class Sim{
     }
 
     public void beliBarang(BisaDibeli barang, int jumlah){
-        // final Integer x = (randomizer.nextInt(5) + 1) * 30;
-        Integer x = 5; 
+        final Integer x = (randomizer.nextInt(5) + 1) * 30;
+        // Integer x = 5; 
         if (uang < barang.getHarga() * jumlah){
             System.out.println("Maaf, uang yang dimiliki tidak mencukupi!"); 
         } else{
@@ -213,29 +217,29 @@ public class Sim{
             System.out.println("[NOTICE PENGIRIMAN] " + barang.getNamaObjek() + " sedang dalam proses pengiriman.."); 
             Waktu.getInstance().addBeli(barang, this, jumlah, x);
             status.setBeli(true);
-        }
-
-        Thread thread = new Thread(new Runnable(){
-            public void run(){
-                int target = TimeThread.getInstance().getMillis() + x; 
-                int now = TimeThread.getInstance().getMillis(); 
-                while (now < target){
-                    try{
-                        Thread.sleep(1000);
-                        now = TimeThread.getInstance().getMillis(); 
-                    } catch (InterruptedException ex){
-                        
+            Thread thread = new Thread(new Runnable(){
+                public void run(){
+                    int target = TimeThread.getInstance().getMillis() + x; 
+                    int now = TimeThread.getInstance().getMillis(); 
+                    while (now < target){
+                        try{
+                            Thread.sleep(1000);
+                            now = TimeThread.getInstance().getMillis(); 
+                        } catch (InterruptedException ex){
+                            
+                        }
                     }
+                    System.out.println();
+                    inventory.addItem((ObjekGame) barang, jumlah);   
                 }
-                System.out.println();
-                inventory.addItem((ObjekGame) barang, jumlah);   
-            }
-        }); 
-        thread.start(); 
+            }); 
+            thread.start(); 
+        }
     }
 
     public void meditasi(int detik){
         if (detik % 30 == 0){
+            TimeThread.getInstance().resume();
             thread = new Thread(new Runnable(){
                 public void run(){
                     try {
@@ -258,6 +262,7 @@ public class Sim{
                 }
             }); 
             thread.run();   
+            TimeThread.getInstance().pause();
         } else{
             System.out.println("Durasi Harus kelipatan 30!"); 
         }
@@ -270,6 +275,7 @@ public class Sim{
             System.out.println(kawan.getNama() + " menolak ajakanmu.");
             System.out.println("'Berkelahi itu tidak Baik! >:(' - " + kawan.getNama());
         } else{
+            TimeThread.getInstance().resume();
             System.out.println(kawan.getNama() + " menerima ajakanmu!");
             System.out.println(kawan.getNama() + " melontarkan pukulannya!");
             thread = new Thread(new Runnable(){
@@ -304,12 +310,14 @@ public class Sim{
                 }
             });
             thread.run(); 
+            TimeThread.getInstance().pause();
         } 
     }
 
     public void nyanyi(int detik){
         status.setStatus("bernyanyi");
         if (detik % 30 == 0){
+            TimeThread.getInstance().resume();
             thread = new Thread(new Runnable(){
                 public void run(){
                     try {
@@ -331,6 +339,7 @@ public class Sim{
                 }
             }); 
             thread.run();   
+            TimeThread.getInstance().pause();
         } else{
             System.out.println("Durasi Harus kelipatan 30!"); 
         }
@@ -339,6 +348,7 @@ public class Sim{
     public void menari(int detik){
         status.setStatus("menari");
         if (detik % 10 == 0){
+            TimeThread.getInstance().resume();
             thread = new Thread(new Runnable(){
                 public void run(){
                     try {
@@ -365,6 +375,7 @@ public class Sim{
                 }
             }); 
             thread.run();   
+            TimeThread.getInstance().pause();
         } else{
             System.out.println("Durasi Harus kelipatan 10!"); 
         }
@@ -423,6 +434,7 @@ public class Sim{
     public void monolog(int detik){
         status.setStatus("bermonolog");
         if (detik % 30 == 0){
+            TimeThread.getInstance().resume();
             thread = new Thread(new Runnable(){
                 public void run(){
                     try {
@@ -449,6 +461,7 @@ public class Sim{
                 }
             }); 
             thread.run();   
+            TimeThread.getInstance().pause();
         } else{
             System.out.println("Durasi Harus kelipatan 30!"); 
         }
@@ -512,26 +525,26 @@ public class Sim{
         jamKerja = detik;
     }
 
-    public void testThread(){ 
-        Thread thread = new Thread(new Runnable(){
-            public void run(){
-                System.out.println("Bahooooo");
-                int target = TimeThread.getInstance().getMillis() + 10; 
-                int now = TimeThread.getInstance().getMillis(); 
-                while (now < target){
-                    try{
-                        Thread.sleep(1000);
-                        // System.out.println("target - " + target);
-                        // System.out.println("now - " + now);
-                        now = TimeThread.getInstance().getMillis(); 
-                    } catch (InterruptedException ex){
+    // public void testThread(){ 
+    //     Thread thread = new Thread(new Runnable(){
+    //         public void run(){
+    //             System.out.println("Bahooooo");
+    //             int target = TimeThread.getInstance().getMillis() + 10; 
+    //             int now = TimeThread.getInstance().getMillis(); 
+    //             while (now < target){
+    //                 try{
+    //                     Thread.sleep(1000);
+    //                     // System.out.println("target - " + target);
+    //                     // System.out.println("now - " + now);
+    //                     now = TimeThread.getInstance().getMillis(); 
+    //                 } catch (InterruptedException ex){
 
-                    }
-                }
-                System.out.println("It works");     
-            }
-        });
-        thread.start(); 
-    }
+    //                 }
+    //             }
+    //             System.out.println("It works");     
+    //         }
+    //     });
+    //     thread.start(); 
+    // }
 
 }
