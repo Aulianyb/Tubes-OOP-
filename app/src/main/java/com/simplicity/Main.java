@@ -10,7 +10,6 @@ public class Main {
         // Game init
         Menu menu = new Menu();
         Scanner input = new Scanner(System.in);
-        World world = new World(Waktu.getInstance());
 
         // Start Game
         boolean end = false;
@@ -34,7 +33,7 @@ public class Main {
             switch (cmd) {
                 case "start game":
                     // New User
-                    world.addSim(input,"init");
+                    World.getInstance().addSim(input,"init");
                     end = true;
                     break;
                 case "help":
@@ -50,12 +49,12 @@ public class Main {
             }
         }
 
-        world.displayWorld();
+        World.getInstance().displayWorld();
 
         // Game interface
         end = false;
         while(!end) {
-            if(world.isInOwnHouse()) {
+            if(World.getInstance().isInOwnHouse()) {
                 menu.displayMainMenu("ownhouse");
             } else {
                 menu.displayMainMenu("ingame");
@@ -65,20 +64,20 @@ public class Main {
 
             switch (cmd) {
                 case "action":
-                    menu.action(world);
+                    menu.action();
                     break;
                 case "list object":
-                    menu.listObj(world);
+                    menu.listObj();
                     break;
                 case "go to object":
-                    menu.goToObj(world);
+                    menu.goToObj();
                     break;
                 case "move room":
-                    menu.moveRoom(world);
+                    menu.moveRoom();
                     break;
                 case "edit room":
-                    if(world.isInOwnHouse()) {
-                        menu.editRoom(world);
+                    if(World.getInstance().isInOwnHouse()) {
+                        menu.editRoom();
                     } else {
                         System.out.println("Input tidak valid, silahkan masukkan ulang input");
                     }
@@ -87,17 +86,17 @@ public class Main {
                     menu.viewInventory();
                     break;
                 case "view current location":
-                    menu.viewCurrentLoc(world);
+                    menu.viewCurrentLoc();
                     break;
                 case "view sim info":
-                    menu.viewSimInfo(world);
+                    menu.viewSimInfo();
                     break;
                 case "change sim":
-                    World.changeSim(input);
+                    World.getInstance().changeSim(input);
                     break;
                 case "add sim":
-                    world.addSim(input,"");
-                    world.displayWorld();
+                    World.getInstance().addSim(input,"");
+                    World.getInstance().displayWorld();
                     break;
                 case "help":
                     menu.help("ingame");

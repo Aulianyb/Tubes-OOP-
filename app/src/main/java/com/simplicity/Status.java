@@ -29,7 +29,7 @@ public class Status {
     public void updatePembelian(Sim sim){
         beliBarang = false; 
         Waktu.getInstance().getPengiriman().forEach((key, action)->{
-            if (key.getSim() == World.getCurrentSim()){
+            if (key.getSim() == World.getInstance().getCurrentSim()){
                 beliBarang = true; 
             }
         });

@@ -4,14 +4,23 @@ import java.util.*;
 public class World {
     private final int panjang = 64;
     private final int lebar = 64;
-    private static HashMap<Point, Rumah> daftarRumah = new HashMap<>();
-    private static Waktu waktu;
-    private static Sim currentSim;
-    private static ArrayList<Sim> sims = new ArrayList<>();
-    private static boolean addSim = false;
 
-    public World(Waktu waktu_input) {
-        waktu = waktu_input;
+    private static World instance; 
+    private HashMap<Point, Rumah> daftarRumah = new HashMap<>();
+    private Waktu waktu;
+    private Sim currentSim;
+    private static ArrayList<Sim> sims = new ArrayList<>();
+    private boolean addSim = false;
+
+    private World() {
+        waktu = Waktu.getInstance();
+    }
+
+    public static World getInstance() {
+        if (instance == null) {
+            instance = new World(); 
+        }
+        return instance; 
     }
 
     public HashMap<Point, Rumah> getRumahList() {
@@ -77,11 +86,11 @@ public class World {
         }
     }
 
-    public static void setCurrentSim(Sim sim) {
+    public void setCurrentSim(Sim sim) {
         currentSim = sim;
     }
 
-    public static Sim getCurrentSim() {
+    public Sim getCurrentSim() {
         return currentSim;
     }
 
@@ -114,7 +123,7 @@ public class World {
                 .displayRuangan();
     }
 
-    public static void changeSim(Scanner inp) {
+    public void changeSim(Scanner inp) {
         if(getSims().size() > 1) {
             List<String> names = new ArrayList<>();
             for(Sim sim : getSims()) {
@@ -134,7 +143,7 @@ public class World {
                             sims.set(i,getCurrentSim());
                         }
                         if(sims.get(i).getNama().equals(namasim)) {
-                            World.setCurrentSim(sims.get(i));
+                            setCurrentSim(sims.get(i));
                             end=true;
                         }
                     }
@@ -156,7 +165,7 @@ public class World {
         return daftarRumah;
     }
 
-    public static void checkDeath(){
+    public void checkDeath(){
         // cek currsim mati
         boolean currSimDead = currentSim.isDie();
 
@@ -205,7 +214,7 @@ public class World {
         }
     }
     
-    public static void updateSim(){
+    public void updateSim(){
         Iterator<Sim> iter = sims.iterator();
         while(iter.hasNext()) {
             Sim sim = iter.next();
@@ -219,14 +228,14 @@ public class World {
         }
     }
 
-    public static void updateHarian(){
+    public void updateHarian(){
         addSim = false;
         for (Sim sim : sims){
             sim.setJamTidur(0, "Belum tidur");
         }
     }
 
-    public static void updateDaftarRumah(String deadSim) {
+    public void updateDaftarRumah(String deadSim) {
         for(Sim sim : sims) {
             if(sim.getCurrentRumah().getOwner().equals(deadSim)) {
                  sim.setCurrentRumah(getOwnHouse(sim,daftarRumah));
@@ -250,7 +259,7 @@ public class World {
         return null;
     }
 
-    public static void setCurrentSimState() {
+    public void setCurrentSimState() {
         for(int i = 0; i < sims.size(); i++) {
             if(sims.get(i).getNama().equals(currentSim.getNama())) {
                 sims.set(i,currentSim);
