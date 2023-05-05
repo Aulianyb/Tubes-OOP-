@@ -180,7 +180,6 @@ public class Menu {
     public void action(World world) {
         Scanner input = new Scanner(System.in);
         List<String> actions = new ArrayList<>();
-        boolean ownHouse = false;
 
         // Get valid action from currFurnitur
          if(!(world.getCurrFurnitur() == null)) {
@@ -194,7 +193,6 @@ public class Menu {
         if(world.getCurrentRumah().getOwner().equals(World.getCurrentSim().getNama())) {
             actions.add("Upgrade rumah");
             actions.add("Edit Room");
-            ownHouse = true;
         }
 
         // Add sim valid actions
@@ -217,13 +215,13 @@ public class Menu {
 
 
         // Display valid action
-        System.out.println("");
+        System.out.println();
         System.out.println("/".repeat(20) + " LIST ACTION " + "/".repeat(20));
-        System.out.println("");
+        System.out.println();
         for(int i = 0; i < actions.size(); i++) {
             System.out.printf(" %d. %s%n",i+1,actions.get(i));
         }
-        System.out.println("");
+        System.out.println();
 
         // Choose action
         System.out.print("Pilih aksi yang ingin dilakukan : ");
@@ -236,162 +234,143 @@ public class Menu {
                 break;
             }
         }
-
+        String[] aksiobjek = {
+                "melihat waktu",
+                "tidur",
+                "becermin",
+                "mendengarkan musik",
+                "pijat",
+                "membaca",
+                "shower",
+                "lari",
+                "cuci tangan",
+                "tidur",
+                "makan",
+                "memasak",
+                "buang air"};
         // Action conditional
         if(!found) {
             System.out.println("Aksi yang dimasukkan tidak valid!!");
         } else {
             int durasi;
             Furnitur currFurnitur;
-            switch(actioninput) {
-                case "ganti pekerjaan" :
-                    Pekerjaan.displayPekerjaanValid();
-                    System.out.print("\nInput nama pekerjaan baru : ");
-                    String namapekerjaan = input.nextLine();
-                    World.getCurrentSim().changePekerjaan(namapekerjaan);
-                case "upgrade rumah" :
-                    if(World.getCurrentSim().getUang() < 1500) {
-                        System.out.println("Uang tidak cukup untuk mengupgrade rumah!!");
-                    } else {
-                        World.getCurrentSim().setUang(-1500);
-                        upgradeHouse(world);
+            if (actioninput.equals("ganti pekerjaan")) {
+                Pekerjaan.displayPekerjaanValid();
+                System.out.print("\nInput nama pekerjaan baru : ");
+                String namapekerjaan = input.nextLine();
+                World.getCurrentSim().changePekerjaan(namapekerjaan);
+
+                if (World.getCurrentSim().getUang() < 1500) {
+                    System.out.println("Uang tidak cukup untuk mengupgrade rumah!!");
+                } else {
+                    World.getCurrentSim().setUang(-1500);
+                    upgradeHouse(world);
+                }
+            } else if (actioninput.equals("upgrade rumah")) {
+                if (World.getCurrentSim().getUang() < 1500) {
+                    System.out.println("Uang tidak cukup untuk mengupgrade rumah!!");
+                } else {
+                    World.getCurrentSim().setUang(-1500);
+                    upgradeHouse(world);
+                }
+            } else if (actioninput.equals("beli barang")) {
+                System.out.println("         __  __   _   ___ _  _____ _____ ");
+                System.out.println("  +     |  \\/  | /_\\ | _ \\ |/ / __|_   _|   +");
+                System.out.println("     +  | |\\/| |/ _ \\|   / ' <| _|  | |       +");
+                System.out.println("   +    |_|  |_/_/ \\_\\_|_\\_|\\_\\___| |_|    +");
+                System.out.println("==================================================");
+                System.out.println("|_   _||_   _||_   _||_   _||_   _||_   _||_   _|");
+                System.out.println("  |_|    |_|    |_|    |_|    |_|    |_|    |_|    ");
+                System.out.println();
+                displayBahanMakanan();
+                displayFurnitur();
+                System.out.println("Input detail barang");
+                System.out.print("Nama barang : ");
+                String namabarang = input.nextLine().toLowerCase();
+                System.out.print("Jumlah barang : ");
+                int jumlah = input.nextInt();
+                BisaDibeli barang = createObjekGame(namabarang);
+                if (barang != null) {
+                    World.getCurrentSim().beliBarang(barang, jumlah);
+                }
+            } else if (actioninput.equals("kerja")) {
+                System.out.print("Input durasi : ");
+                durasi = input.nextInt();
+                World.getCurrentSim().getPekerjaan().kerja(World.getCurrentSim(), durasi);
+            } else if (actioninput.equals("olahraga")) {
+                System.out.print("Input durasi : ");
+                durasi = input.nextInt();
+                World.getCurrentSim().olahraga(durasi);
+            } else if (actioninput.equals("berkunjung")) {
+                world.displayWorld();
+                System.out.print("Input tujuan berkunjung : ");
+                String tujuan = input.nextLine().toLowerCase();
+                Rumah rumahtujuan = null;
+                for (Rumah rumah : world.getDaftarRumah().values()) {
+                    if (rumah.getOwner().equalsIgnoreCase(tujuan)) {
+                        rumahtujuan = rumah;
                     }
-                    break;
-                case "beli barang" :
-                    System.out.println("         __  __   _   ___ _  _____ _____ "); 
-                    System.out.println("  +     |  \\/  | /_\\ | _ \\ |/ / __|_   _|   +"); 
-                    System.out.println("     +  | |\\/| |/ _ \\|   / ' <| _|  | |       +"); 
-                    System.out.println("   +    |_|  |_/_/ \\_\\_|_\\_|\\_\\___| |_|    +"); 
-                    System.out.println("=================================================="); 
-                    System.out.println("|_   _||_   _||_   _||_   _||_   _||_   _||_   _|"); 
-                    System.out.println("  |_|    |_|    |_|    |_|    |_|    |_|    |_|    ");
-                    System.out.println();
-                    displayBahanMakanan();
-                    displayFurnitur();
-                    System.out.println("Input detail barang");
-                    System.out.print("Nama barang : ");
-                    String namabarang = input.nextLine().toLowerCase();
-                    System.out.print("Jumlah barang : ");
-                    int jumlah = input.nextInt();
-                    BisaDibeli barang = createObjekGame(namabarang);
-                    if(barang != null) {
-                        World.getCurrentSim().beliBarang(barang,jumlah);
+                }
+                if (rumahtujuan == null) {
+                    System.out.println("Rumah tujuan tidak valid!!");
+                } else {
+                    World.getCurrentSim().berkunjung(rumahtujuan);
+                    World.getCurrentSim().setCurrentRumah(rumahtujuan);
+                }
+            } else if (actioninput.equals("meditasi")) {
+                System.out.print("Input durasi : ");
+                durasi = input.nextInt();
+                World.getCurrentSim().meditasi(durasi);
+            } else if (actioninput.equals("berkelahi")) {
+                World.displaySims();
+                System.out.print("Input lawan berkelahi: ");
+                String lawan = input.nextLine().toLowerCase();
+                Sim simlawan = null;
+                for (Sim sim : World.getSims()) {
+                    if (sim.getNama().equalsIgnoreCase(lawan)) {
+                        simlawan = sim;
                     }
-                    break;
-                case "kerja" :
-                    System.out.print("Input durasi : ");
-                    durasi = input.nextInt();
-                    World.getCurrentSim().getPekerjaan().kerja(World.getCurrentSim(), durasi);
-                    break;
-                case "olahraga" :
-                    System.out.print("Input durasi : ");
-                    durasi = input.nextInt();
-                    World.getCurrentSim().olahraga(durasi);
-                    break;
-                case "tidur" :
-                    currFurnitur = World.getCurrentSim().getCurrentRumah().getCurrRuangan().getCurrFurnitur();
-                    if( currFurnitur instanceof Kasur) {
-                        currFurnitur.aksi(World.getCurrentSim());
+                }
+                if (simlawan == null || simlawan.getNama().equals(World.getCurrentSim().getNama())) {
+                    System.out.println("Lawan tidak valid!!");
+                } else {
+                    World.getCurrentSim().berkelahi(simlawan);
+                }
+            } else if (actioninput.equals("nyanyi")) {
+                System.out.print("Input durasi : ");
+                durasi = input.nextInt();
+                World.getCurrentSim().nyanyi(durasi);
+            } else if (actioninput.equals("menari")) {
+                System.out.print("Input durasi : ");
+                durasi = input.nextInt();
+                World.getCurrentSim().menari(durasi);
+            } else if (actioninput.equals("daydreaming")) {
+                World.getCurrentSim().daydreaming();
+            } else if (actioninput.equals("monolog")) {
+                System.out.print("Input durasi : ");
+                durasi = input.nextInt();
+                World.getCurrentSim().monolog(durasi);
+            } else if (actioninput.equals("lelucon")) {
+                World.displaySims();
+                System.out.print("Input target Sim: ");
+                String target = input.nextLine().toLowerCase();
+                Sim simtarget = null;
+                for (Sim sim : World.getSims()) {
+                    if (sim.getNama().equalsIgnoreCase(target)) {
+                        simtarget = sim;
                     }
-                    break;
-                case "makan" :
-                    currFurnitur = World.getCurrentSim().getCurrentRumah().getCurrRuangan().getCurrFurnitur();
-                    if( currFurnitur instanceof MejaKursi) {
-                        currFurnitur.aksi(World.getCurrentSim());
-                    }
-                    break;
-                case "memasak" :
-                    currFurnitur = World.getCurrentSim().getCurrentRumah().getCurrRuangan().getCurrFurnitur();
-                    if( currFurnitur instanceof Kompor) {
-                        currFurnitur.aksi(World.getCurrentSim());
-                    }
-                    break;
-                case "berkunjung" :
-                    world.displayWorld();
-                    System.out.print("Input tujuan berkunjung : ");
-                    String tujuan = input.nextLine().toLowerCase();
-                    Rumah rumahtujuan = null;
-                    for(Rumah rumah : world.getDaftarRumah().values()) {
-                        if(rumah.getOwner().equalsIgnoreCase(tujuan)) {
-                            rumahtujuan = rumah;
-                        }
-                    }
-                    if(rumahtujuan == null) {
-                        System.out.println("Rumah tujuan tidak valid!!");
-                    } else {
-                        World.getCurrentSim().berkunjung(rumahtujuan);
-                        World.getCurrentSim().setCurrentRumah(rumahtujuan);
-                    }
-                    break;
-                case "buang air" :
-                    currFurnitur = World.getCurrentSim().getCurrentRumah().getCurrRuangan().getCurrFurnitur();
-                    if( currFurnitur instanceof Toilet) {
-                        currFurnitur.aksi(World.getCurrentSim());
-                    }
-                    break;
-                case "meditasi" :
-                    System.out.print("Input durasi : ");
-                    durasi = input.nextInt();
-                    World.getCurrentSim().meditasi(durasi);
-                    break;
-                case "berkelahi" :
-                    World.displaySims();
-                    System.out.print("Input lawan berkelahi: ");
-                    String lawan = input.nextLine().toLowerCase();
-                    Sim simlawan = null;
-                    for(Sim sim : World.getSims()) {
-                        if (sim.getNama().equalsIgnoreCase(lawan)) {
-                            simlawan = sim;
-                        }
-                    }
-                    if(simlawan == null || simlawan.getNama().equals(World.getCurrentSim().getNama())) {
-                        System.out.println("Lawan tidak valid!!");
-                    } else {
-                        World.getCurrentSim().berkelahi(simlawan);
-                    }
-                    break;
-                case "nyanyi" :
-                    System.out.print("Input durasi : ");
-                    durasi = input.nextInt();
-                    World.getCurrentSim().nyanyi(durasi);
-                    break;
-                case "menari" :
-                    System.out.print("Input durasi : ");
-                    durasi = input.nextInt();
-                    World.getCurrentSim().menari(durasi);
-                    break;
-                case "daydreaming" :
-                    World.getCurrentSim().daydreaming();
-                    break;
-                case "monolog" :
-                    System.out.print("Input durasi : ");
-                    durasi = input.nextInt();
-                    World.getCurrentSim().monolog(durasi);
-                    break;
-                case "lelucon" :
-                    World.displaySims();
-                    System.out.print("Input target Sim: ");
-                    String target = input.nextLine().toLowerCase();
-                    Sim simtarget = null;
-                    for(Sim sim : World.getSims()) {
-                        if (sim.getNama().equalsIgnoreCase(target)) {
-                            simtarget = sim;
-                        }
-                    }
-                    if(simtarget == null || simtarget.getNama().equals(World.getCurrentSim().getNama())) {
-                        System.out.println("Target tidak valid!!");
-                    } else {
-                        World.getCurrentSim().lelucon(simtarget);
-                    }
-                    break;
-                case "melihat waktu" :
-                    currFurnitur = World.getCurrentSim().getCurrentRumah().getCurrRuangan().getCurrFurnitur();
-                    if( currFurnitur instanceof Jam) {
-                        currFurnitur.aksi(World.getCurrentSim());
-                    }
-                    break;
-                default :
-                    System.out.println("Aksi tidak valid!!");
+                }
+                if (simtarget == null || simtarget.getNama().equals(World.getCurrentSim().getNama())) {
+                    System.out.println("Target tidak valid!!");
+                } else {
+                    World.getCurrentSim().lelucon(simtarget);
+                }
+            } else if (Arrays.asList(aksiobjek).contains(actioninput)){
+                currFurnitur = World.getCurrentSim().getCurrentRumah().getCurrRuangan().getCurrFurnitur();
+                currFurnitur.aksi(World.getCurrentSim());
+            }
+            else {
+                System.out.println("Aksi tidak valid!!");
             }
         }
     }
