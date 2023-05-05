@@ -1,5 +1,7 @@
 package com.simplicity;
 
+import java.sql.Time;
+
 public class Toilet extends Furnitur {
     public Toilet(String namaObjek) {
         super(namaObjek);
@@ -12,6 +14,7 @@ public class Toilet extends Furnitur {
 
     @Override
     public void aksi(Sim sim){
+        TimeThread.getInstance().resume();
         Thread thread = new Thread(new Runnable(){
             public void run(){
                 try {
@@ -35,5 +38,6 @@ public class Toilet extends Furnitur {
             }
         });
         thread.run();
+        TimeThread.getInstance().pause();
     }
 }

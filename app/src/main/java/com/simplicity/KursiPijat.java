@@ -16,6 +16,7 @@ public class KursiPijat extends Furnitur {
         Scanner s = new Scanner(System.in);
         int durasi = Integer.parseInt(s.nextLine());
 
+        TimeThread.getInstance().resume();
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -52,5 +53,6 @@ public class KursiPijat extends Furnitur {
             }
         });
         thread.run();
+        TimeThread.getInstance().pause();
     }
 }

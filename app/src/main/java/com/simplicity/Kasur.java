@@ -15,6 +15,7 @@ public class Kasur extends Furnitur{
         Scanner scanner = new Scanner(System.in);
         System.out.print("Input durasi : ");
         int detik = Integer.parseInt(scanner.nextLine());
+        TimeThread.getInstance().resume();
         Thread thread = new Thread(new Runnable(){
             public void run(){
                 try {
@@ -56,5 +57,6 @@ public class Kasur extends Furnitur{
             }
         });
         thread.run();
+        TimeThread.getInstance().pause();
     }
 }
