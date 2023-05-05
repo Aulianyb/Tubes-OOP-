@@ -1,10 +1,6 @@
 package com.simplicity;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.*;
-// import com.google.gson.Gson;
+
 public class Menu {
 
     public Menu() {
@@ -42,7 +38,7 @@ public class Menu {
 
         if(option.equals("start")) {
             System.out.println("/".repeat(19) + " NEW GAME MENU " + "/".repeat(19));
-            System.out.println("");
+            System.out.println();
             for(int i = 1; i <= optionAwal.length; i++) {
                 System.out.printf(" %d. %s%n",i,optionAwal[i-1]);
             }
@@ -122,17 +118,13 @@ public class Menu {
     public void editRoom(World world) {
         System.out.println("Aksi Edit :");
         System.out.println("1. Pasang Barang");
-        System.out.println("2. Pindahin Barang");
-        System.out.println("3. Remove Barang");
+        System.out.println("2. Remove Barang");
         Scanner input = new Scanner(System.in);
         System.out.print("Pilih Aksi Edit : ");
         String action = input.nextLine().toLowerCase();
         switch(action) {
             case "pasang barang" :
                 world.getCurrentRumah().getCurrRuangan().pasangBarang(World.getCurrentSim());
-                break;
-            case "pindahin barang" :
-
                 break;
             case "remove barang" :
                 world.getCurrentRumah().getCurrRuangan().removeBarang(World.getCurrentSim());
@@ -483,6 +475,7 @@ public class Menu {
         System.out.println("4. kesehatan -79");
         System.out.println("5. mood -79");
         System.out.println("6. kekenyangan -79");
+        System.out.println("7. add all item");
         int x = Integer.parseInt(sc.nextLine());
         switch (x) {
             case 1:
@@ -507,7 +500,28 @@ public class Menu {
                 World.getCurrentSim().setKekenyangan(-79);
                 break;
             case 7:
-                World.getCurrentSim();
+                World.getCurrentSim().getInventory().addItem(new BahanMakanan("Nasi"),10);
+                World.getCurrentSim().getInventory().addItem(new BahanMakanan("Kentang"),10);
+                World.getCurrentSim().getInventory().addItem(new BahanMakanan("Ayam"),10);
+                World.getCurrentSim().getInventory().addItem(new BahanMakanan("Wortel"),10);
+                World.getCurrentSim().getInventory().addItem(new BahanMakanan("Sapi"),10);
+                World.getCurrentSim().getInventory().addItem(new BahanMakanan("Bayam"),10);
+                World.getCurrentSim().getInventory().addItem(new BahanMakanan("Kacang"),10);
+                World.getCurrentSim().getInventory().addItem(new BahanMakanan("Susu"),10);
+                World.getCurrentSim().getInventory().addItem(new KasurSingle("KasurSingle"),10);
+                World.getCurrentSim().getInventory().addItem(new KasurQueenSize("KasurQueenSize"),10);
+                World.getCurrentSim().getInventory().addItem(new KasurKingSize("KasurKingSize"),10);
+                World.getCurrentSim().getInventory().addItem(new Toilet("Toilet"),10);
+                World.getCurrentSim().getInventory().addItem(new KomporGas("KomporGas"),10);
+                World.getCurrentSim().getInventory().addItem(new KomporListrik("KomporListrik"),10);
+                World.getCurrentSim().getInventory().addItem(new MejaKursi("MejaDanKursi"),10);
+                World.getCurrentSim().getInventory().addItem(new Cermin("Cermin"),10);
+                World.getCurrentSim().getInventory().addItem(new Gramofon("Gramofon"),10);
+                World.getCurrentSim().getInventory().addItem(new Wastafel("Wastafel"),10);
+                World.getCurrentSim().getInventory().addItem(new KursiPijat("KursiPijat"),10);
+                World.getCurrentSim().getInventory().addItem(new Shower("Shower"),10);
+                World.getCurrentSim().getInventory().addItem(new RakBuku("RakBuku"),10);
+                World.getCurrentSim().getInventory().addItem(new Treadmil("Treadmil"),10);
                 break;
             default:
                 break;
