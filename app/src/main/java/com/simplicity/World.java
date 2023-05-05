@@ -8,7 +8,7 @@ public class World {
     private static Waktu waktu;
     private static Sim currentSim;
     private static ArrayList<Sim> sims = new ArrayList<>();
-    // private static Point currentLoc;
+    private static boolean addSim = false;
 
     public World(Waktu waktu_input) {
         waktu = waktu_input;
@@ -50,24 +50,29 @@ public class World {
 
     public void addSim(Scanner inp, String conditional) {
         boolean end = false;
-        List<String> names = new ArrayList<>();
-        for(Sim sim : getSims()) {
-            names.add(sim.getNama());
-        }
-        while(!end) {
-            System.out.print("Masukkan nama sim baru : ");
-            String namaLengkap = inp.nextLine();
-            boolean found = names.contains(namaLengkap);
-            if(found) {
-                System.out.println("Nama Sim sudah ada! Silahkan masukkan nama lain!");
-            } else {
-                Rumah rumah = addRumah(namaLengkap);
-                Sim sim = new Sim(namaLengkap, rumah);
-                if(conditional.equals("init")) {
-                    setCurrentSim(sim);
+        if(addSim) {
+            System.out.println("Add sim hanya dapat dilakukan sekali per hari!! Silahkan tunggu hari selanjutnya!!");
+        } else {
+            addSim = true;
+            List<String> names = new ArrayList<>();
+            for(Sim sim : getSims()) {
+                names.add(sim.getNama());
+            }
+            while(!end) {
+                System.out.print("Masukkan nama sim baru : ");
+                String namaLengkap = inp.nextLine();
+                boolean found = names.contains(namaLengkap);
+                if(found) {
+                    System.out.println("Nama Sim sudah ada! Silahkan masukkan nama lain!");
+                } else {
+                    Rumah rumah = addRumah(namaLengkap);
+                    Sim sim = new Sim(namaLengkap, rumah);
+                    if(conditional.equals("init")) {
+                        setCurrentSim(sim);
+                    }
+                    sims.add(sim);
+                    end = true;
                 }
-                sims.add(sim);
-                end = true;
             }
         }
     }
@@ -215,8 +220,8 @@ public class World {
     }
 
     public static void updateHarian(){
-        ArrayList <Sim> copy = new ArrayList<Sim>(sims); 
-        for (Sim sim : copy){
+        addSim = false;
+        for (Sim sim : sims){
             sim.getPekerjaan().addDay();
             sim.getPekerjaan().setJamKerja(0);
             sim.setJamTidur(0, "Belum tidur");
