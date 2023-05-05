@@ -103,6 +103,7 @@ public class Kompor extends Furnitur {
             if (!masakan.bahanInInventory(sim, masakan.getBahan())) {
                 System.out.println("Bahan tidak tersedia pada inventory!");
             } else {
+                TimeThread.getInstance().resume();
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -126,6 +127,7 @@ public class Kompor extends Furnitur {
                     }
                 });
                 thread.run();
+                TimeThread.getInstance().pause();
             }
         }
     }

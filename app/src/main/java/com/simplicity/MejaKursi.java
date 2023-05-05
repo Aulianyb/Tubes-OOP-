@@ -15,6 +15,7 @@ public class MejaKursi extends Furnitur {
 
     @Override
     public void aksi(Sim sim) {
+        TimeThread.getInstance().resume();
         Thread thread = new Thread(new Runnable(){
             public void run(){
                 Makanan temp = null;
@@ -74,5 +75,6 @@ public class MejaKursi extends Furnitur {
             }
         });
         thread.run();
+        TimeThread.getInstance().pause();
     }
 }

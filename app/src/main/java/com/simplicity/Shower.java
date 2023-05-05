@@ -12,6 +12,7 @@ public class Shower extends Furnitur {
 
     @Override
     public void aksi(Sim sim) {
+        TimeThread.getInstance().resume();
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -36,5 +37,6 @@ public class Shower extends Furnitur {
             }
         });
         thread.run();
+        TimeThread.getInstance().pause();
     }
 }
