@@ -45,7 +45,7 @@ public class KursiPijat extends Furnitur {
                         }
                     }
                     System.out.println("Pijat selesai!");
-                    Waktu.timePass(durasi);
+                    Waktu.getInstance().timePass(durasi);
                 }
                 catch (InterruptedException e) {
                     System.out.println("Pijat dihentikan.");

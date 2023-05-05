@@ -14,7 +14,7 @@ public class Jam extends Furnitur {
     @Override
     public void aksi(Sim sim) {
         int totalDetik = 12 * 60;
-        int totalWaktuBerjalan = Waktu.getMenit() * 60 + Waktu.getDetik();
+        int totalWaktuBerjalan = Waktu.getInstance().getMenit() * 60 + Waktu.getInstance().getDetik();
 
         int sisaMenit = (totalDetik - totalWaktuBerjalan) / 60;
         int sisaDetik = (totalDetik - totalWaktuBerjalan) % 60;
@@ -37,9 +37,9 @@ public class Jam extends Furnitur {
         System.out.println(sisaDetik);
 
         System.out.print("Sisa Waktu Pengiriman Barang: ");
-        Waktu.displayPengiriman();
+        Waktu.getInstance().displayPengiriman();
 
         System.out.print("Sisa Waktu Upgrade Rumah: ");
-        Waktu.displayUpgrade();
+        Waktu.getInstance().displayUpgrade();
     }
 }

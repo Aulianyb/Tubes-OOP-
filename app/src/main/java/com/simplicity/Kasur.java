@@ -45,7 +45,7 @@ public class Kasur extends Furnitur{
                                 sleepTime = 0;
                             }
                         }
-                        Waktu.timePass(detik);
+                        Waktu.getInstance().timePass(detik);
                         System.out.println("Tidur selesai!");
                         if (detik >= 180) {
                             sim.setJamTidur(0, "Sudah tidur");

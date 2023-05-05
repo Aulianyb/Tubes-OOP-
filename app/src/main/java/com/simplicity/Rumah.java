@@ -121,7 +121,7 @@ public class Rumah {
         if (valid) {
             System.out.println("[NOTICE UPGRADE] Proses upgrade rumah dimulai!");
             upgrading = true; 
-            Waktu.addUpgrade(this);
+            Waktu.getInstance().addUpgrade(this);
         } else {
             System.out.println("[NOTICE UPGRADE] Ruangan tidak bisa ditambahkan!");
         }

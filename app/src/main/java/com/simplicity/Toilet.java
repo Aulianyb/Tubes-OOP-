@@ -27,7 +27,7 @@ public class Toilet extends Furnitur {
                     System.out.printf("]\n");
                     sim.setKekenyangan(-20);
                     sim.setMood(10);
-                    Waktu.timePass(10);
+                    Waktu.getInstance().timePass(10);
                     sim.setJamBuangAir(0, "Sudah buang air");
                     System.out.println("Buang air Selesai!");
                     System.out.println("Kekenyangan : -20");                      

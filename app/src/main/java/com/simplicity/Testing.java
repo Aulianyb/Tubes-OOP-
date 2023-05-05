@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Testing {
     public static void main(String[] args) throws InterruptedException{
-        World w = new World(new Waktu());
+        World w = new World(Waktu.getInstance());
         Menu m = new Menu();
         Point p1 = new Point(30, 30); 
         Point p2 = new Point(0, 0); 
@@ -34,11 +34,11 @@ public class Testing {
         s1.beliBarang(b3, 2);  
         // Kompor kompor = new Kompor("kompor"); 
         s1.getCurrentRumah().upgradeRumah();
-        Waktu.displayUpgrade();
+        Waktu.getInstance().displayUpgrade();
         s1.daydreaming();
-        Waktu.displayUpgrade();  
+        Waktu.getInstance().displayUpgrade();  
         s1.daydreaming();
-        Waktu.displayUpgrade();
+        Waktu.getInstance().displayUpgrade();
 
 
 

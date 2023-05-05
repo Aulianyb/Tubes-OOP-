@@ -146,7 +146,7 @@ public class Sim{
                         System.out.println("Kekenyangan : " + y);                      
                         System.out.println("Mood : +" + z);
                         status.setStatus("idle");
-                        Waktu.timePass(detik);            
+                        Waktu.getInstance().timePass(detik);            
                     } catch (InterruptedException e){
                     }
                 }
@@ -179,7 +179,7 @@ public class Sim{
                     System.out.println("Kekenyangan : "  + x); 
                     System.out.println("Mood : +" + y);  
                     status.setStatus("idle");
-                    Waktu.timePass(detik);                
+                    Waktu.getInstance().timePass(detik);                
                 } catch (InterruptedException e){
                 }
             }
@@ -211,7 +211,7 @@ public class Sim{
         } else{
             setUang(-1 * barang.getHarga() * jumlah);  
             System.out.println("[NOTICE PENGIRIMAN] " + barang.getNamaObjek() + " sedang dalam proses pengiriman.."); 
-            Waktu.addBeli(barang, this, jumlah, x);
+            Waktu.getInstance().addBeli(barang, this, jumlah, x);
             status.setBeli(true);
         }
 
@@ -251,7 +251,7 @@ public class Sim{
                         setMood(x); 
                         System.out.println("\nMeditasi Selesai!");                  
                         System.out.println("Mood : +" + x);   
-                        Waktu.timePass(detik);
+                        Waktu.getInstance().timePass(detik);
                         status.setStatus("idle");
                     } catch (InterruptedException e){
                     }
@@ -297,7 +297,7 @@ public class Sim{
                             System.out.println("Mood : -10");
                         }                  
                         System.out.println("Kesehatan : -10");       
-                        Waktu.timePass(10);     
+                        Waktu.getInstance().timePass(10);     
                         status.setStatus("idle");
                     } catch (InterruptedException e){
                     }
@@ -324,7 +324,7 @@ public class Sim{
                         setMood(x); 
                         System.out.println("\nBernyanyi Selesai!");                  
                         System.out.println("Mood : +" + x);         
-                        Waktu.timePass(detik);
+                        Waktu.getInstance().timePass(detik);
                         status.setStatus("idle");
                     } catch (InterruptedException e){
                     }
@@ -358,7 +358,7 @@ public class Sim{
                             System.out.println("Kesehatan : -5");    
                             setKesehatan(-5);    
                         }          
-                        Waktu.timePass(detik);
+                        Waktu.getInstance().timePass(detik);
                         status.setStatus("idle");
                     } catch (InterruptedException e){
                     }
@@ -410,7 +410,7 @@ public class Sim{
                     } else{
                         System.out.println("Mood : " + diff);   
                     }
-                    Waktu.timePass(10);
+                    Waktu.getInstance().timePass(10);
                     status.setStatus("idle");
                 } catch (InterruptedException e){
                 }
@@ -442,7 +442,7 @@ public class Sim{
                             System.out.println("Kesehatan : -10");    
                             setKesehatan(-10);    
                         }                
-                        Waktu.timePass(detik);
+                        Waktu.getInstance().timePass(detik);
                         status.setStatus("idle");
                     } catch (InterruptedException e){
                     }
@@ -483,7 +483,7 @@ public class Sim{
     //buat testing 
     public void testAction(int detik){
         System.out.println("Ini aksi test selama " + detik + " detik");
-        Waktu.timePass(detik);
+        Waktu.getInstance().timePass(detik);
     }
 
     public Tracking getJamTidur() {

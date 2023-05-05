@@ -120,7 +120,7 @@ public class Kompor extends Furnitur {
                                 sim.getInventory().reduceItem((ObjekGame)masakan.getBahan().get(i), 1);
                             }
                             sim.getInventory().addItem((ObjekGame)masakan, 1);
-                            Waktu.timePass(durasiMasak);
+                            Waktu.getInstance().timePass(durasiMasak);
                         } catch (InterruptedException e) {
                             System.out.println("Proses memasak dihentikan. Bahan makanan dikembalikan ke Inventory...");
                         }

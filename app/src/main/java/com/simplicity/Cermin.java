@@ -27,7 +27,7 @@ public class Cermin extends Furnitur {
                     }
                     System.out.println("]");
                     sim.setMood(+10);
-                    Waktu.timePass(10);
+                    Waktu.getInstance().timePass(10);
                     System.out.println("Becermin selesai!");
                     System.out.println("Mood : +10");
                 }
