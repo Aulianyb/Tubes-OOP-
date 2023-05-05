@@ -4,9 +4,11 @@ public class TimeThread implements Runnable {
     private static TimeThread instance; 
     private Object lock = new Object(); 
     private boolean pause; 
+    private int millis; 
 
     private TimeThread(){
-        pause = true; 
+        pause = true;
+        millis = 0;  
     }
 
     public static TimeThread getInstance(){
@@ -31,6 +33,8 @@ public class TimeThread implements Runnable {
             }
             try {
                 Thread.sleep(1000);
+                millis+=1; 
+                // System.out.println(millis); //testing doang
             }catch(InterruptedException ex){
 
             }
@@ -46,6 +50,9 @@ public class TimeThread implements Runnable {
 
     public void pause(){
         pause = true; 
-        System.out.println("Bazinga"); 
+    }
+
+    public int getMillis(){
+        return millis; 
     }
 }

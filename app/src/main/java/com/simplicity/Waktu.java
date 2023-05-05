@@ -103,6 +103,8 @@ public class Waktu {
             World.updateHarian();
             //reset makan, dll ya gitu deh
         }
+
+        System.out.println("Waktu berjalan sepanjang " + durasi);
     }
 
     public static void addBeli(BisaDibeli barang, Sim sim, int jumlah, Integer duration){
