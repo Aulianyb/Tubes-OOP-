@@ -455,6 +455,20 @@ public class Menu {
                 return new MejaKursi("MejaDanKursi");
             case "jam" :
                 return new Jam("Jam");
+            case "cermin" :
+                return new Cermin("Cermin");
+            case "gramofon" :
+                return new Gramofon("Gramofon");
+            case "kursi pijat" :
+                return new KursiPijat("KursiPijat");
+            case "rak buku" :
+                return new RakBuku("RakBuku");
+            case "shower" :
+                return new Shower("Shower");
+            case "treadmil" :
+                return new Treadmil("Treadmil");
+            case "wastafel" :
+                return new Wastafel("Wastafel");
             default :
                 System.out.println("Barang tidak tersedia!!");
                 return null;
@@ -491,6 +505,9 @@ public class Menu {
                 break;
             case 6:
                 World.getCurrentSim().setKekenyangan(-79);
+                break;
+            case 7:
+                World.getCurrentSim();
                 break;
             default:
                 break;
