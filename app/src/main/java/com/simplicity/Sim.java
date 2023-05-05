@@ -497,4 +497,12 @@ public class Sim{
     public void setJamKerja(int detik) {
         jamKerja = detik;
     }
+
+    public void testThread(TimeThread t){
+        t.resume();
+        System.out.println("Boiye lmao");
+        t.pause(); 
+        System.out.println("Thread Done");
+    }
+
 }
