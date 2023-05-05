@@ -26,7 +26,7 @@ public class Shower extends Furnitur {
                     System.out.println("]");
                     sim.setKesehatan(+20);
                     sim.setMood(+10);
-                    Waktu.timePass(30);
+                    Waktu.getInstance().timePass(30);
                     System.out.println("Mandi selesai!");
                     System.out.println("Kesehatan : +20");
                     System.out.println("Mood : +10");

@@ -10,7 +10,7 @@ public class Main {
         // Game init
         Menu menu = new Menu();
         Scanner input = new Scanner(System.in);
-        World world = new World(new Waktu());
+        World world = new World(Waktu.getInstance());
 
         // Start Game
         boolean end = false;

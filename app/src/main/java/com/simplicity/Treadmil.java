@@ -29,7 +29,7 @@ public class Treadmil extends Furnitur {
                     sim.setKekenyangan(-15);
                     sim.setKesehatan(+15);
                     sim.setMood(+10);
-                    Waktu.timePass(20);
+                    Waktu.getInstance().timePass(20);
                     System.out.println("Lari selesai!");
                     System.out.println("Kekenyangan : -15");
                     System.out.println("Kesehatan : +15");

@@ -25,7 +25,7 @@ public class RakBuku extends Furnitur {
                     }
                     System.out.println("]");
                     sim.setMood(+15);
-                    Waktu.timePass(30);
+                    Waktu.getInstance().timePass(30);
                     System.out.println("Membaca selesai!");
                     System.out.println("Mood : +15");
                 }

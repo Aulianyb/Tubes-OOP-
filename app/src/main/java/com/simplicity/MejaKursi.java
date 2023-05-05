@@ -50,7 +50,7 @@ public class MejaKursi extends Furnitur {
                         Thread.sleep(30000);
                         sim.getInventory().reduceItem(temp, 1);
                         sim.setKekenyangan(temp.getNilaiKekenyangan());
-                        Waktu.timePass(30);
+                        Waktu.getInstance().timePass(30);
                         System.out.println("Makan selesai!");
                         System.out.println("Kekenyangan : +"+temp.getNilaiKekenyangan());
                         if (!sim.getJamBuangAir().kondisi.equals("Butuh buang air")) {

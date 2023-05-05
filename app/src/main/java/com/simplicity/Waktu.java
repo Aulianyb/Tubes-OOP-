@@ -2,23 +2,31 @@ package com.simplicity;
 import java.util.*;
 
 public class Waktu {
-    private static int hari; 
-    private static int menit;
-    private static int detik;
-    private static HashMap <Kiriman, Integer> barangDikirim = new HashMap<Kiriman, Integer>();
-    private static HashMap <Rumah, Integer> ongoingUpgrade = new HashMap<Rumah, Integer>(); 
+    private static Waktu instance; 
+    private int hari; 
+    private int menit;
+    private int detik;
+    private HashMap <Kiriman, Integer> barangDikirim = new HashMap<Kiriman, Integer>();
+    private HashMap <Rumah, Integer> ongoingUpgrade = new HashMap<Rumah, Integer>(); 
 
-    public Waktu() {
+    private Waktu() {
         menit = 0;
         detik = 0;
         hari = 0; 
     }
 
-    public static int getMenit() {
+    public static Waktu getInstance(){
+        if (instance == null) {
+            instance = new Waktu(); 
+        }
+        return instance; 
+    }
+
+    public int getMenit() {
         return menit;
     }
 
-    public static int getDetik() {
+    public int getDetik() {
         return detik;
     }
 
@@ -30,7 +38,7 @@ public class Waktu {
         detik = detik_input;
     }
 
-    public static void displayWaktu() {
+    public void displayWaktu() {
 
         System.out.print("HARI " + hari);
         System.out.println(""); 
@@ -52,7 +60,7 @@ public class Waktu {
         return((menit * 60) + detik);
     }
 
-    public static void timePass(int durasi){
+    public void timePass(int durasi){
         detik += durasi % 60;
         menit += durasi / 60; 
 
@@ -107,16 +115,16 @@ public class Waktu {
         System.out.println("Waktu berjalan sepanjang " + durasi);
     }
 
-    public static void addBeli(BisaDibeli barang, Sim sim, int jumlah, Integer duration){
+    public void addBeli(BisaDibeli barang, Sim sim, int jumlah, Integer duration){
         Kiriman kiriman = new Kiriman(barang, sim, jumlah); 
         barangDikirim.put(kiriman, duration); 
     }
 
-    public static void addUpgrade(Rumah rumah){
+    public void addUpgrade(Rumah rumah){
         ongoingUpgrade.put(rumah, 18 * 60); 
     }
 
-    public static void displayPengiriman(){
+    public void displayPengiriman(){
         System.out.println(""); 
         System.out.println("              P E N G I R I M A N"); 
         System.out.println("-".repeat(48)); 
@@ -140,7 +148,7 @@ public class Waktu {
         }
     }
 
-    public static void displayUpgrade(){
+    public void displayUpgrade(){
         System.out.println(""); 
         System.out.println("          U P G R A D E  R U M A H"); 
         System.out.println("-".repeat(43));
@@ -164,7 +172,7 @@ public class Waktu {
         }
     }
 
-    public static HashMap<Kiriman, Integer> getPengiriman(){
+    public HashMap<Kiriman, Integer> getPengiriman(){
         return barangDikirim; 
     }
 

@@ -489,7 +489,7 @@ public class Menu {
                 System.out.println("Tidur : " + World.getCurrentSim().getJamTidur().kondisi);
                 break;
             case 2:
-                Waktu.displayWaktu(); 
+                Waktu.getInstance().displayWaktu(); 
                 break; 
             case 3:
                 World.getCurrentSim().setUang(99999);

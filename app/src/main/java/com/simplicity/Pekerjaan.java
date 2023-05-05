@@ -13,8 +13,8 @@ public class Pekerjaan {
     private static Thread thread; 
     private String namaPekerjaan; 
     private int gaji; 
-    private int daysSince; 
-    private int jamKerja = 0; 
+    private int daysSince; //berapa hari punya pekerjaan -> totalhours
+    private int jamKerja = 0;  //berapa jam kerja dalam SATU HARI -> reset tiap hari
 
     public Pekerjaan(String pekerjaan){
         if (pekerjaanvalid.containsKey(pekerjaan)){
@@ -80,9 +80,9 @@ public class Pekerjaan {
                         System.out.println("Bekerja Selesai!");
                         System.out.println("Kekenyangan : " + x);                      
                         System.out.println("Mood : " + y);                      
-                        Waktu.timePass(detik); 
+                        Waktu.getInstance().timePass(detik); 
                         jamKerja += detik; 
-                        if (jamKerja >= 240){
+                        if (jamKerja >= 240){ //gak bisa lebih dari 4 menit PER HARI
                             int z = ((detik / 60) / 4) * gaji;
                             sim.setUang(z); 
                             System.out.println("Uang : +" + z);  

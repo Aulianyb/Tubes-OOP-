@@ -25,7 +25,7 @@ public class Wastafel extends Furnitur {
                     }
                     System.out.println("]");
                     sim.setKesehatan(+5);
-                    Waktu.timePass(5);
+                    Waktu.getInstance().timePass(5);
                     System.out.println("Cuci tangan selesai!");
                     System.out.println("Kesehatan : +5");
                 }

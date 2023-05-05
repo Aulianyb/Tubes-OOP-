@@ -25,7 +25,7 @@ public class Gramofon extends Furnitur {
                     }
                     System.out.println("]");
                     sim.setMood(+10);
-                    Waktu.timePass(15);
+                    Waktu.getInstance().timePass(15);
                     System.out.println("Mendengarkan musik selesai!");
                     System.out.println("Mood : +10");
                 }

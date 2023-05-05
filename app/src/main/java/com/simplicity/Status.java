@@ -28,7 +28,7 @@ public class Status {
 
     public void updatePembelian(Sim sim){
         beliBarang = false; 
-        Waktu.getPengiriman().forEach((key, action)->{
+        Waktu.getInstance().getPengiriman().forEach((key, action)->{
             if (key.getSim() == World.getCurrentSim()){
                 beliBarang = true; 
             }
