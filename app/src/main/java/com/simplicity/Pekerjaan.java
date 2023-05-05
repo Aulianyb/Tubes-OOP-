@@ -9,11 +9,16 @@ public class Pekerjaan {
         put("Polisi", 35); 
         put("Programmer", 45);
         put("Dokter", 50); 
+        put("Database Administrator", 45);
+        put("System Analyst", 40); 
+        put("OS Developer", 55);
+        put("3D Artist", 45);
+        put("CIO", 50);  
     }}; 
     private static Thread thread; 
     private String namaPekerjaan; 
     private int gaji; 
-    private int daysSince; //berapa hari punya pekerjaan -> totalhours
+    private int totalDetik;
     private int jamKerja = 0;  //berapa jam kerja dalam SATU HARI -> reset tiap hari
 
     public Pekerjaan(String pekerjaan){
@@ -24,7 +29,7 @@ public class Pekerjaan {
             System.out.println("Maaf, pekerjaan yang dimasukkan tidak valid"); 
             //untuk sekarang, nilai atributnya bakalan  null
         } 
-        daysSince = 0; 
+        totalDetik = 0; 
         jamKerja = 0; 
     }
 
@@ -43,14 +48,14 @@ public class Pekerjaan {
                 System.out.println("Maaf uang " + sim.getNama() + " tidak mencukupi untuk mengganti pekerjaan"); 
             }
             else{
-                if (daysSince < 1){
-                    System.out.println("Hanya bisa mengganti pekerjaan satu hari setelah memilih pekerjaan!"); 
+                if (totalDetik < 720){
+                    System.out.println("Hanya bisa mengganti pekerjaan setelah bekerja lebih dari 12 menit!"); 
                 }
                 else{
                     sim.setUang(-1 * biaya);
                     namaPekerjaan = pekerjaan; 
                     gaji = pekerjaanvalid.get(pekerjaan);
-                    daysSince = 0;
+                    totalDetik = 0;
                     jamKerja = 0;
                     System.out.println("Pekerjaan berhasil diganti menjadi " + pekerjaan); 
                 }
@@ -82,6 +87,7 @@ public class Pekerjaan {
                         System.out.println("Mood : " + y);                      
                         Waktu.getInstance().timePass(detik); 
                         jamKerja += detik; 
+                        totalDetik += detik; 
                         if (jamKerja >= 240){ //gak bisa lebih dari 4 menit PER HARI
                             int z = ((detik / 60) / 4) * gaji;
                             sim.setUang(z); 
@@ -98,16 +104,8 @@ public class Pekerjaan {
         }
     }
 
-    public void setDay(int day){
-        daysSince = day; 
-    }
-
-    public void addDay(){
-        daysSince += 1; 
-    }
-
-    public int getDaysSince() {
-        return daysSince;
+    public int getTotalDetik() {
+        return totalDetik;
     }
     
     public static void displayPekerjaanValid() {

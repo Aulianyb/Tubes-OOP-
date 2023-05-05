@@ -201,7 +201,7 @@ public class Menu {
         actions.add("Beli Barang");
 
         // Get valid action to change job
-        if(World.getCurrentSim().getPekerjaan().getDaysSince() > 0) {
+        if(World.getCurrentSim().getPekerjaan().getTotalDetik() > 720) {
             actions.add("Ganti Pekerjaan");
         }
 

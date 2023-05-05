@@ -222,8 +222,6 @@ public class World {
     public static void updateHarian(){
         addSim = false;
         for (Sim sim : sims){
-            sim.getPekerjaan().addDay();
-            sim.getPekerjaan().setJamKerja(0);
             sim.setJamTidur(0, "Belum tidur");
         }
     }
