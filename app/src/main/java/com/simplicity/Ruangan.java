@@ -171,7 +171,6 @@ public class Ruangan {
                 currentSim.getInventory().lihatInventory();
                 System.out.print("Masukkan nama barang yang ingin dipasang: ");
                 namaBarang = input.next();
-                //mungkin ntar pake method yang ada di inventory buat ngecek
                 for (Map.Entry<ObjekGame, Integer> entry : ((Map<ObjekGame,Integer>) currentSim.getInventory().getInventory()).entrySet()) {
                     if (entry.getKey() instanceof Furnitur) {
                         Furnitur furnitur = (Furnitur) entry.getKey();
@@ -925,128 +924,163 @@ public class Ruangan {
             toilet.setKategori("Nonmakanan");
             currentSim.getInventory().addItem(toilet, 1);
             jumlahObjek.put(toilet, Integer.valueOf(jumlahObjek.get(toilet)-1));
-            num = namaBarang.split("Toilet");
+            num = namaBarang.toLowerCase().split("toilet");
         } else if (namaBarang.toLowerCase().contains("komporlistrik")) {
             KomporListrik komporListrik = (KomporListrik) searchBarang("KomporListrik");
             komporListrik.setKategori("Nonmakanan");
             currentSim.getInventory().addItem(komporListrik, 1);
             jumlahObjek.put(komporListrik, Integer.valueOf(jumlahObjek.get(komporListrik)-1));
-            num = namaBarang.split("KomporListrik");
+            num = namaBarang.toLowerCase().split("komporlistrik");
         } else if (namaBarang.toLowerCase().contains("jam")) {
             Jam jam = (Jam) searchBarang("Jam");
             jam.setKategori("Nonmakanan");
             currentSim.getInventory().addItem(jam, 1);
             jumlahObjek.put(jam, Integer.valueOf(jumlahObjek.get(jam)-1));
-            num = namaBarang.split("Jam");
+            num = namaBarang.toLowerCase().split("jam");
         } else if (namaBarang.toLowerCase().contains("kasursingle")) {
             KasurSingle kasurSingle = (KasurSingle) searchBarang("KasurSingle");
             kasurSingle.setKategori("Nonmakanan");
             currentSim.getInventory().addItem(kasurSingle, 1);
             jumlahObjek.put(kasurSingle, Integer.valueOf(jumlahObjek.get(kasurSingle)-1));
-            num = namaBarang.split("KasurSingle");
+            num = namaBarang.toLowerCase().split("kasursingle");
         } else if (namaBarang.toLowerCase().contains("komporgas")) {
             KomporGas komporGas = (KomporGas) searchBarang("KomporGas");
             komporGas.setKategori("Nonmakanan");
             currentSim.getInventory().addItem(komporGas, 1);
             jumlahObjek.put(komporGas, Integer.valueOf(jumlahObjek.get(komporGas)-1));
-            num = namaBarang.split("KomporGas");
+            num = namaBarang.toLowerCase().split("komporgas");
         } else if (namaBarang.toLowerCase().contains("kasurqueensize")) {
             KasurQueenSize kasurQueenSize = (KasurQueenSize) searchBarang("KasurQueenSize");
             kasurQueenSize.setKategori("Nonmakanan");
             currentSim.getInventory().addItem(kasurQueenSize, 1);
             jumlahObjek.put(kasurQueenSize, Integer.valueOf(jumlahObjek.get(kasurQueenSize)-1));
-            num = namaBarang.split("KasurQueenSize");
+            num = namaBarang.toLowerCase().split("kasurqueensize");
         } else if (namaBarang.toLowerCase().contains("kasurkingsize")) {
             KasurKingSize kasurKingSize = (KasurKingSize) searchBarang("KasurKingSize");
             kasurKingSize.setKategori("Nonmakanan");
             currentSim.getInventory().addItem(kasurKingSize, 1);
             jumlahObjek.put(kasurKingSize, Integer.valueOf(jumlahObjek.get(kasurKingSize)-1));
-            num = namaBarang.split("KasurKingSize");
+            num = namaBarang.toLowerCase().split("kasurkingsize");
         } else if (namaBarang.toLowerCase().contains("mejakursi")) {
             MejaKursi mejaKursi = (MejaKursi) searchBarang("MejaKursi");
             mejaKursi.setKategori("Nonmakanan");
             currentSim.getInventory().addItem(mejaKursi, 1);
             jumlahObjek.put(mejaKursi, Integer.valueOf(jumlahObjek.get(mejaKursi)-1));
-            num = namaBarang.split("MejaKursi");
+            num = namaBarang.toLowerCase().split("mejakursi");
         } else if (namaBarang.toLowerCase().contains("shower")) {
             Shower shower = (Shower) searchBarang("Shower");
             shower.setKategori("Nonmakanan");
             currentSim.getInventory().addItem(shower, 1);
             jumlahObjek.put(shower, Integer.valueOf(jumlahObjek.get(shower)-1));
-            num = namaBarang.split("Shower");
+            num = namaBarang.toLowerCase().split("shower");
         } else if (namaBarang.toLowerCase().contains("kursipijat")) {
             KursiPijat kursiPijat = (KursiPijat) searchBarang("KursiPijat");
             kursiPijat.setKategori("Nonmakanan");
             currentSim.getInventory().addItem(kursiPijat, 1);
             jumlahObjek.put(kursiPijat, Integer.valueOf(jumlahObjek.get(kursiPijat)-1));
-            num = namaBarang.split("KursiPijat");
+            num = namaBarang.toLowerCase().split("kursipijat");
         } else if (namaBarang.toLowerCase().contains("cermin")) {
             Cermin cermin = (Cermin) searchBarang("Cermin");
             cermin.setKategori("Nonmakanan");
             currentSim.getInventory().addItem(cermin, 1);
             jumlahObjek.put(cermin, Integer.valueOf(jumlahObjek.get(cermin)-1));
-            num = namaBarang.split("Cermin");
+            num = namaBarang.toLowerCase().split("cermin");
         } else if (namaBarang.toLowerCase().contains("rakbuku")) {
             RakBuku rakBuku = (RakBuku) searchBarang("RakBuku");
             rakBuku.setKategori("Nonmakanan");
             currentSim.getInventory().addItem(rakBuku, 1);
             jumlahObjek.put(rakBuku, Integer.valueOf(jumlahObjek.get(rakBuku)-1));
-            num = namaBarang.split("RakBuku");
+            num = namaBarang.toLowerCase().split("rakbuku");
         } else if (namaBarang.toLowerCase().contains("wastafel")) {
             Wastafel wastafel = (Wastafel) searchBarang("Wastafel");
             wastafel.setKategori("Nonmakanan");
             currentSim.getInventory().addItem(wastafel, 1);
             jumlahObjek.put(wastafel, Integer.valueOf(jumlahObjek.get(wastafel)-1));
-            num = namaBarang.split("Wastafel");
+            num = namaBarang.toLowerCase().split("wastafel");
         } else if (namaBarang.toLowerCase().contains("treadmil")) {
             Treadmil treadmil = (Treadmil) searchBarang("Treadmil");
             treadmil.setKategori("Nonmakanan");
             currentSim.getInventory().addItem(treadmil, 1);
             jumlahObjek.put(treadmil, Integer.valueOf(jumlahObjek.get(treadmil)-1));
-            num = namaBarang.split("Treadmil");
+            num = namaBarang.toLowerCase().split("treadmil");
         } else if (namaBarang.toLowerCase().contains("gramofon")) {
             Gramofon gramofon = (Gramofon) searchBarang("Gramofon");
             gramofon.setKategori("Nonmakanan");
             currentSim.getInventory().addItem(gramofon, 1);
             jumlahObjek.put(gramofon, Integer.valueOf(jumlahObjek.get(gramofon)-1));
-            num = namaBarang.split("Gramofon");
+            num = namaBarang.toLowerCase().split("gramofon");
         }
 
         for (Map.Entry<Point, String> entry : this.daftarObjek.entrySet()){
-            if (namaBarang.contains("Toilet") && entry.getValue().contains("Toilet")) {
+            if (namaBarang.toLowerCase().contains("toilet") && entry.getValue().contains("Toilet")) {
                 String arr[] = entry.getValue().split("Toilet");
                 if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
                     daftarObjek.put(entry.getKey(), ("Toilet" + (Integer.parseInt(arr[1])-1)));
                 }
-            } else if (namaBarang.contains("KomporListrik") && entry.getValue().contains("KomporListrik")) {
+            } else if (namaBarang.toLowerCase().contains("komporlistrik") && entry.getValue().contains("KomporListrik")) {
                 String arr[] = entry.getValue().split("KomporListrik");
                 if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
                     daftarObjek.put(entry.getKey(), ("KomporListrik" + (Integer.parseInt(arr[1])-1)));
                 }
-            } else if (namaBarang.contains("Jam") && entry.getValue().contains("Jam")) {
+            } else if (namaBarang.toLowerCase().contains("jam") && entry.getValue().contains("Jam")) {
                 String arr[] = entry.getValue().split("Jam");
                 if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
                     daftarObjek.put(entry.getKey(), ("Jam" + (Integer.parseInt(arr[1])-1)));
                 }
-            } else if (namaBarang.contains("KomporGas") && entry.getValue().contains("KomporGas")) {
+            } else if (namaBarang.toLowerCase().contains("komporgas") && entry.getValue().contains("KomporGas")) {
                 String arr[] = entry.getValue().split("KomporGas");
                 if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
                     daftarObjek.put(entry.getKey(), ("KomporGas" + (Integer.parseInt(arr[1])-1)));
                 }
-            } else if (namaBarang.contains("KasurQueenSize") && entry.getValue().contains("KasurQueenSize")) {
+            } else if (namaBarang.toLowerCase().contains("kasurqueensize") && entry.getValue().contains("KasurQueenSize")) {
                 String arr[] = entry.getValue().split("KasurQueenSize");
                 if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
                     daftarObjek.put(entry.getKey(), ("KasurQueenSize" + (Integer.parseInt(arr[1])-1)));
                 }
-            } else if (namaBarang.contains("KasurKingSize") && entry.getValue().contains("KasurKingSize")) {
+            } else if (namaBarang.toLowerCase().contains("kasurkingsize") && entry.getValue().contains("KasurKingSize")) {
                 String arr[] = entry.getValue().split("KasurKingSize");
                 if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
                     daftarObjek.put(entry.getKey(), ("KasurKingSize" + (Integer.parseInt(arr[1])-1)));
                 }
-            } else if (namaBarang.contains("MejaKursi") && entry.getValue().contains("MejaKursi")) {
+            } else if (namaBarang.toLowerCase().contains("mejakursi") && entry.getValue().contains("MejaKursi")) {
                 String arr[] = entry.getValue().split("MejaKursi");
                 if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
                     daftarObjek.put(entry.getKey(), ("MejaKursi" + (Integer.parseInt(arr[1])-1)));
+                }
+            } else if (namaBarang.toLowerCase().contains("shower") && entry.getValue().contains("Shower")) {
+                String arr[] = entry.getValue().split("Shower");
+                if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
+                    daftarObjek.put(entry.getKey(), ("Shower" + (Integer.parseInt(arr[1])-1)));
+                }
+            } else if (namaBarang.toLowerCase().contains("kursipijat") && entry.getValue().contains("KursiPijat")) {
+                String arr[] = entry.getValue().split("KursiPijat");
+                if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
+                    daftarObjek.put(entry.getKey(), ("KursiPijat" + (Integer.parseInt(arr[1])-1)));
+                }
+            } else if (namaBarang.toLowerCase().contains("cermin") && entry.getValue().contains("Cermin")) {
+                String arr[] = entry.getValue().split("Cermin");
+                if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
+                    daftarObjek.put(entry.getKey(), ("Cermin" + (Integer.parseInt(arr[1])-1)));
+                }
+            } else if (namaBarang.toLowerCase().contains("rakbuku") && entry.getValue().contains("RakBuku")) {
+                String arr[] = entry.getValue().split("RakBuku");
+                if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
+                    daftarObjek.put(entry.getKey(), ("RakBuku" + (Integer.parseInt(arr[1])-1)));
+                }
+            } else if (namaBarang.toLowerCase().contains("wastafel") && entry.getValue().contains("Wastafel")) {
+                String arr[] = entry.getValue().split("Wastafel");
+                if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
+                    daftarObjek.put(entry.getKey(), ("Wastafel" + (Integer.parseInt(arr[1])-1)));
+                }
+            } else if (namaBarang.toLowerCase().contains("treadmil") && entry.getValue().contains("Treadmil")) {
+                String arr[] = entry.getValue().split("Treadmil");
+                if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
+                    daftarObjek.put(entry.getKey(), ("Treadmil" + (Integer.parseInt(arr[1])-1)));
+                }
+            } else if (namaBarang.toLowerCase().contains("gramofon") && entry.getValue().contains("Gramofon")) {
+                String arr[] = entry.getValue().split("Gramofon");
+                if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
+                    daftarObjek.put(entry.getKey(), ("Gramofon" + (Integer.parseInt(arr[1])-1)));
                 }
             }
         }
@@ -1055,78 +1089,78 @@ public class Ruangan {
             for (int y = 0; y < this.panjang; y++) {
                 if (matrixRuangan[x][y].equalsIgnoreCase(namaBarang)) {
                     matrixRuangan[x][y] = "";
-                } else if (namaBarang.contains("Toilet") && matrixRuangan[x][y].contains("Toilet")) {
+                } else if (namaBarang.toLowerCase().contains("toilet") && matrixRuangan[x][y].contains("Toilet")) {
                     String arr[] = matrixRuangan[x][y].split("Toilet");
                     if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
                         matrixRuangan[x][y] = "Toilet" + (Integer.parseInt(arr[1])-1);
                     }
-                } else if (namaBarang.contains("KomporListrik") && matrixRuangan[x][y].contains("KomporListrik")) {
-                    String arr[] = namaBarang.split("KomporListrik");
+                } else if (namaBarang.toLowerCase().contains("komporlistrik") && matrixRuangan[x][y].contains("KomporListrik")) {
+                    String arr[] = matrixRuangan[x][y].split("KomporListrik");
                     if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
                         matrixRuangan[x][y] = "KomporListrik" + (Integer.parseInt(arr[1])-1);
                     }
-                } else if (namaBarang.contains("Jam") && matrixRuangan[x][y].contains("Jam")) {
-                    String arr[] = namaBarang.split("Jam");
+                } else if (namaBarang.toLowerCase().contains("jam") && matrixRuangan[x][y].contains("Jam")) {
+                    String arr[] = matrixRuangan[x][y].split("Jam");
                     if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
                         matrixRuangan[x][y] = "Jam" + (Integer.parseInt(arr[1])-1);
                     }
-                } else if (namaBarang.contains("KasurSingle") && matrixRuangan[x][y].contains("KasurSingle")) {
-                    String arr[] = namaBarang.split("KasurSingle");
+                } else if (namaBarang.toLowerCase().contains("kasursingle") && matrixRuangan[x][y].contains("KasurSingle")) {
+                    String arr[] = matrixRuangan[x][y].split("KasurSingle");
                     if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
                         matrixRuangan[x][y] = "KasurSingle" + (Integer.parseInt(arr[1])-1);
                     }
-                } else if (namaBarang.contains("KomporGas") && matrixRuangan[x][y].contains("KomporGas")) {
-                    String arr[] = namaBarang.split("KomporGas");
+                } else if (namaBarang.toLowerCase().contains("komporgas") && matrixRuangan[x][y].contains("KomporGas")) {
+                    String arr[] = matrixRuangan[x][y].split("KomporGas");
                     if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
                         matrixRuangan[x][y] = "KomporGas" + (Integer.parseInt(arr[1])-1);
                     }
-                } else if (namaBarang.contains("KasurQueenSize") && matrixRuangan[x][y].contains("KasurQueenSize")) {
-                    String arr[] = namaBarang.split("KasurQueenSize");
+                } else if (namaBarang.toLowerCase().contains("kasurqueensize") && matrixRuangan[x][y].contains("KasurQueenSize")) {
+                    String arr[] = matrixRuangan[x][y].split("KasurQueenSize");
                     if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
                         matrixRuangan[x][y] = "KasurQueenSize" + (Integer.parseInt(arr[1])-1);
                     }
-                } else if (namaBarang.contains("KasurKingSize") && matrixRuangan[x][y].contains("KasurKingSize")) {
-                    String arr[] = namaBarang.split("KasurKingSize");
+                } else if (namaBarang.toLowerCase().contains("kasurkingsize") && matrixRuangan[x][y].contains("KasurKingSize")) {
+                    String arr[] = matrixRuangan[x][y].split("KasurKingSize");
                     if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
                         matrixRuangan[x][y] = "KasurKingSize" + (Integer.parseInt(arr[1])-1);
                     }
-                } else if (namaBarang.contains("MejaKursi") && matrixRuangan[x][y].contains("MejaKursi")) {
-                    String arr[] = namaBarang.split("MejaKursi");
+                } else if (namaBarang.toLowerCase().contains("mejakursi") && matrixRuangan[x][y].contains("MejaKursi")) {
+                    String arr[] = matrixRuangan[x][y].split("MejaKursi");
                     if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
                         matrixRuangan[x][y] = "MejaKursi" + (Integer.parseInt(arr[1])-1);
                     }
-                } else if (namaBarang.contains("Shower") && matrixRuangan[x][y].contains("Shower")) {
-                    String arr[] = namaBarang.split("Shower");
+                } else if (namaBarang.toLowerCase().contains("shower") && matrixRuangan[x][y].contains("Shower")) {
+                    String arr[] = matrixRuangan[x][y].split("Shower");
                     if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
                         matrixRuangan[x][y] = "Shower" + (Integer.parseInt(arr[1])-1);
                     }
-                } else if (namaBarang.contains("KursiPijat") && matrixRuangan[x][y].contains("KursiPijat")) {
-                    String arr[] = namaBarang.split("KursiPijat");
+                } else if (namaBarang.toLowerCase().contains("kursipijat") && matrixRuangan[x][y].contains("KursiPijat")) {
+                    String arr[] = matrixRuangan[x][y].split("KursiPijat");
                     if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
                         matrixRuangan[x][y] = "KursiPijat" + (Integer.parseInt(arr[1])-1);
                     }
-                } else if (namaBarang.contains("Cermin") && matrixRuangan[x][y].contains("Cermin")) {
-                    String arr[] = namaBarang.split("Cermin");
+                } else if (namaBarang.toLowerCase().contains("cermin") && matrixRuangan[x][y].contains("Cermin")) {
+                    String arr[] = matrixRuangan[x][y].split("Cermin");
                     if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
                         matrixRuangan[x][y] = "Cermin" + (Integer.parseInt(arr[1])-1);
                     }
-                } else if (namaBarang.contains("RakBuku") && matrixRuangan[x][y].contains("RakBuku")) {
-                    String arr[] = namaBarang.split("RakBuku");
+                } else if (namaBarang.toLowerCase().contains("rakbuku") && matrixRuangan[x][y].contains("RakBuku")) {
+                    String arr[] = matrixRuangan[x][y].split("RakBuku");
                     if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
                         matrixRuangan[x][y] = "RakBuku" + (Integer.parseInt(arr[1])-1);
                     }
-                } else if (namaBarang.contains("Wastafel") && matrixRuangan[x][y].contains("Wastafel")) {
-                    String arr[] = namaBarang.split("Wastafel");
+                } else if (namaBarang.toLowerCase().contains("wastafel") && matrixRuangan[x][y].contains("Wastafel")) {
+                    String arr[] = matrixRuangan[x][y].split("Wastafel");
                     if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
                         matrixRuangan[x][y] = "Wastafel" + (Integer.parseInt(arr[1])-1);
                     }
-                } else if (namaBarang.contains("Treadmil") && matrixRuangan[x][y].contains("Treadmil")) {
-                    String arr[] = namaBarang.split("Treadmil");
+                } else if (namaBarang.toLowerCase().contains("treadmil") && matrixRuangan[x][y].contains("Treadmil")) {
+                    String arr[] = matrixRuangan[x][y].split("Treadmil");
                     if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
                         matrixRuangan[x][y] = "Treadmil" + (Integer.parseInt(arr[1])-1);
                     }
-                } else if (namaBarang.contains("Gramofon") && matrixRuangan[x][y].contains("Gramofon")) {
-                    String arr[] = namaBarang.split("Gramofon");
+                } else if (namaBarang.toLowerCase().contains("gramofon") && matrixRuangan[x][y].contains("Gramofon")) {
+                    String arr[] = matrixRuangan[x][y].split("Gramofon");
                     if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {
                         matrixRuangan[x][y] = "Gramofon" + (Integer.parseInt(arr[1])-1);
                     }
