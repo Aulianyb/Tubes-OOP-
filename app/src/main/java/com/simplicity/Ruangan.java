@@ -847,13 +847,14 @@ public class Ruangan {
         }
     }
 
-    public void move() {
+    public boolean move() {
         Scanner input = new Scanner(System.in);
         System.out.println("Available Object :");
         displayDaftarObjek();
         System.out.println("Pilih objek yang ingin dituju :");
         String obj = input.nextLine();
         boolean found = false;
+        boolean valid = false;
 
         for(String namaFurnitur : daftarObjek.values()) {
             if(obj.equalsIgnoreCase(namaFurnitur)) {
@@ -866,13 +867,14 @@ public class Ruangan {
                 if (obj.toLowerCase().contains(furnitur.getNamaObjek().toLowerCase())) {
                     currFurnitur = furnitur;
                     System.out.printf("Current object : %s%n", currFurnitur.getNamaObjek());
+                    valid = true;
                     break;
                 }
             }
         } else {
             System.out.println("Objek tidak ada diruangan ini!!");
         }
-
+        return valid;
     }
 
     public Furnitur searchKey(String namaBarang) {

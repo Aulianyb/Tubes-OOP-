@@ -154,26 +154,28 @@ public class Menu {
     public void goToObj() {
         World.getInstance().displayCurrentRuangan();
         Scanner input = new Scanner(System.in);
-        World.getInstance().getCurrentRumah().getCurrRuangan().move();
-        Furnitur currFurnitur = World.getInstance().getCurrFurnitur();
-        if(currFurnitur != null) {
-            System.out.printf("Aksi yang bisa dilakukan pada objek ini adalah %s.%n", currFurnitur.getValidAction().getStatus());
-            System.out.println("Apakah ingin melakukan aksi tersebut?");
-            System.out.print("Input jawaban (YA/TIDAK): ");
-            String jawaban = input.nextLine();
-            boolean jawabanvalid = false;
-            while(!jawabanvalid) {
-                jawabanvalid = jawaban.equalsIgnoreCase("ya") || jawaban.equalsIgnoreCase("tidak");
-                if(jawaban.equalsIgnoreCase("ya")) {
-                    currFurnitur.aksi(World.getInstance().getCurrentSim());
-                } else  {
-                    System.out.println("Silahkan memilih aksi lain!!");
-                }
+        boolean valid = World.getInstance().getCurrentRumah().getCurrRuangan().move();
+        if(valid) {
+            Furnitur currFurnitur = World.getInstance().getCurrFurnitur();
+            if(currFurnitur != null) {
+                System.out.printf("Aksi yang bisa dilakukan pada objek ini adalah %s.%n", currFurnitur.getValidAction().getStatus());
+                System.out.println("Apakah ingin melakukan aksi tersebut?");
+                System.out.print("Input jawaban (YA/TIDAK): ");
+                String jawaban = input.nextLine();
+                boolean jawabanvalid = false;
+                while(!jawabanvalid) {
+                    jawabanvalid = jawaban.equalsIgnoreCase("ya") || jawaban.equalsIgnoreCase("tidak");
+                    if(jawaban.equalsIgnoreCase("ya")) {
+                        currFurnitur.aksi(World.getInstance().getCurrentSim());
+                    } else  {
+                        System.out.println("Silahkan memilih aksi lain!!");
+                    }
 
-                if(!jawabanvalid) {
-                    System.out.println("Silahkan input ulang (YA/TIDAK)!!");
-                    System.out.print("Input jawaban (YA/TIDAK) : ");
-                    jawaban = input.nextLine();
+                    if(!jawabanvalid) {
+                        System.out.println("Silahkan input ulang (YA/TIDAK)!!");
+                        System.out.print("Input jawaban (YA/TIDAK) : ");
+                        jawaban = input.nextLine();
+                    }
                 }
             }
         }
