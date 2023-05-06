@@ -200,7 +200,7 @@ public class Waktu {
         for (Sim s : World.getSims()) {
             if (s.getJamBuangAir().kondisi.equals("Belum buang air")) {
                 int newDuration = s.getJamBuangAir().waktu + duration;
-                if (s.getJamBuangAir().waktu > 240) {
+                if (newDuration > 240) {
                     s.setJamBuangAir(newDuration, "Butuh buang air");
                     s.setKesehatan(-5);
                     s.setMood(-5);

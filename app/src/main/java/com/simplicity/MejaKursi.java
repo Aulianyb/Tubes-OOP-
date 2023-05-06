@@ -46,6 +46,7 @@ public class MejaKursi extends Furnitur {
 
                         //Input makanan yang ingin dimakan
                         Scanner scanner = new Scanner(System.in);
+                        System.out.printf("Masukkan makanan yang ingin dimakan : ");
                         String namaMakanan = scanner.nextLine();
                         boolean valid = false;
                         //Mengonsumsi makanan
