@@ -189,10 +189,9 @@ public class Menu {
              actions.add(action);
          }
 
-         // Get valid action to upgrade house and edit room (only in own house)
+         // Get valid action to upgrade house
         if(World.getInstance().getCurrentRumah().getOwner().equals(World.getInstance().getCurrentSim().getNama())) {
             actions.add("Upgrade rumah");
-            actions.add("Edit Room");
         }
 
         // Add sim valid actions
