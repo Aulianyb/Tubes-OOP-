@@ -18,14 +18,15 @@ public class Jam extends Furnitur {
 
         int sisaMenit = (totalDetik - totalWaktuBerjalan) / 60;
         int sisaDetik = (totalDetik - totalWaktuBerjalan) % 60;
-
-        System.out.println("============================= Waktu =============================");
-        System.out.print("Sisa Waktu Hari Ini: ");
+        System.out.println("");
+        System.out.println("=".repeat(23) +  " WAKTU " + "=".repeat(23));
+        System.out.println("");
+        System.out.print("Sisa Waktu Hari Ini : ");
         if (sisaMenit < 10) {
-            System.out.print(":0");
+            System.out.print("0");
         }
         else {
-            System.out.print(":");
+            System.out.print("");
         }
         System.out.print(sisaMenit);
         if (sisaDetik < 10) {
@@ -36,10 +37,12 @@ public class Jam extends Furnitur {
         }
         System.out.println(sisaDetik);
 
-        System.out.print("Sisa Waktu Pengiriman Barang: ");
+        System.out.print("Sisa Waktu Pengiriman Barang : ");
+        System.out.println("");
         Waktu.getInstance().displayPengiriman();
-
-        System.out.print("Sisa Waktu Upgrade Rumah: ");
+        System.out.println("");
+        System.out.print("Sisa Waktu Upgrade Rumah : ");
+        System.out.println("");
         Waktu.getInstance().displayUpgrade();
     }
 }
