@@ -287,19 +287,16 @@ public class Menu {
                 System.out.println("Input detail barang");
                 System.out.print("Nama barang : ");
                 String namabarang = input.nextLine().toLowerCase();
-                System.out.print("Jumlah barang : ");
-                int jumlah = input.nextInt();
+                int jumlah = readInteger(input,"barang");
                 BisaDibeli barang = createObjekGame(namabarang);
                 if (barang != null) {
                     World.getInstance().getCurrentSim().beliBarang(barang, jumlah);
                 }
             } else if (actioninput.equals("kerja")) {
-                System.out.print("Input durasi : ");
-                durasi = input.nextInt();
+                durasi = readInteger(input,"durasi");
                 World.getInstance().getCurrentSim().getPekerjaan().kerja(World.getInstance().getCurrentSim(), durasi);
             } else if (actioninput.equals("olahraga")) {
-                System.out.print("Input durasi : ");
-                durasi = input.nextInt();
+                durasi = readInteger(input,"durasi");
                 World.getInstance().getCurrentSim().olahraga(durasi);
             } else if (actioninput.equals("berkunjung")) {
                 World.getInstance().displayWorld();
@@ -318,8 +315,7 @@ public class Menu {
                     World.getInstance().getCurrentSim().setCurrentRumah(rumahtujuan);
                 }
             } else if (actioninput.equals("meditasi")) {
-                System.out.print("Input durasi : ");
-                durasi = input.nextInt();
+                durasi = readInteger(input,"durasi");
                 World.getInstance().getCurrentSim().meditasi(durasi);
             } else if (actioninput.equals("berkelahi")) {
                 World.displaySims();
@@ -337,18 +333,15 @@ public class Menu {
                     World.getInstance().getCurrentSim().berkelahi(simlawan);
                 }
             } else if (actioninput.equals("nyanyi")) {
-                System.out.print("Input durasi : ");
-                durasi = input.nextInt();
+                durasi = readInteger(input,"durasi");
                 World.getInstance().getCurrentSim().nyanyi(durasi);
             } else if (actioninput.equals("menari")) {
-                System.out.print("Input durasi : ");
-                durasi = input.nextInt();
+                durasi = readInteger(input,"durasi");
                 World.getInstance().getCurrentSim().menari(durasi);
             } else if (actioninput.equals("daydreaming")) {
                 World.getInstance().getCurrentSim().daydreaming();
             } else if (actioninput.equals("monolog")) {
-                System.out.print("Input durasi : ");
-                durasi = input.nextInt();
+                durasi = readInteger(input,"durasi");
                 World.getInstance().getCurrentSim().monolog(durasi);
             } else if (actioninput.equals("lelucon")) {
                 World.displaySims();
@@ -473,6 +466,25 @@ public class Menu {
                 System.out.println("Barang tidak tersedia!!");
                 return null;
         }
+    }
+
+    public static int readInteger(Scanner input, String condition) {
+        int number;
+        while(true) {
+            try {
+                if(condition.equals("barang")) {
+                    System.out.print("Jumlah barang : ");
+                } else if(condition.equals("durasi")) {
+                    System.out.print("Input durasi : ");
+                }
+                number = input.nextInt();
+                break;
+            } catch(InputMismatchException e) {
+                System.out.println("Silahkan masukan angka yang valid!!!");
+                input.nextLine();
+            }
+        }
+        return number;
     }
 
     public void cheat(Scanner sc){
