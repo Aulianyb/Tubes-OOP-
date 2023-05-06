@@ -28,7 +28,7 @@ public class Menu {
                 "Change Sim",
                 "Add Sim",
                 "Help",
-                "Exit"};
+                "Exit",};
         String[] optionOwnHouse = {
                 "Action",
                 "List Object",
@@ -41,7 +41,7 @@ public class Menu {
                 "Add Sim",
                 "Edit Room",
                 "Help",
-                "Exit"
+                "Exit",
         };
 
         if(option.equals("start")) {
@@ -52,19 +52,19 @@ public class Menu {
             }
             System.out.println();
         } else if(option.equals("ingame")) {
-//            System.out.println();
-//            System.out.println("/".repeat(20) + " IN GAME MENU " + "/".repeat(20));
-//            System.out.println();
-//
-//            for(int i = 1; i <= optionInGame.length; i++) {
-//                System.out.printf(" %d. %s%n",i,optionInGame[i-1]);
-//            }
-//            System.out.println();
+            System.out.println();
+            System.out.println("/".repeat(20) + " IN GAME MENU " + "/".repeat(20));
+            System.out.println();
+
+            for(int i = 1; i <= optionInGame.length; i++) {
+                System.out.printf(" %d. %s%n",i,optionInGame[i-1]);
+            }
+            System.out.println();
         } else if(option.equals("ownhouse")) {
             System.out.println();
             System.out.println("/".repeat(20) + " IN GAME MENU " + "/".repeat(20));
             System.out.println();
-            for(int i = 1; i <= optionInGame.length; i++) {
+            for(int i = 1; i <= optionOwnHouse.length; i++) {
                 System.out.printf(" %d. %s%n",i,optionOwnHouse[i-1]);
             }
             System.out.println();
