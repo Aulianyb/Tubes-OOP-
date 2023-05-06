@@ -446,7 +446,7 @@ public class Menu {
             case "kompor listrik" :
                 return new KomporListrik("KomporListrik");
             case "meja dan kursi" :
-                return new MejaKursi("MejaDanKursi");
+                return new MejaKursi("MejaKursi");
             case "jam" :
                 return new Jam("Jam");
             case "cermin" :
@@ -544,7 +544,7 @@ public class Menu {
                 World.getInstance().getCurrentSim().getInventory().addItem(new Toilet("Toilet"),10);
                 World.getInstance().getCurrentSim().getInventory().addItem(new KomporGas("KomporGas"),10);
                 World.getInstance().getCurrentSim().getInventory().addItem(new KomporListrik("KomporListrik"),10);
-                World.getInstance().getCurrentSim().getInventory().addItem(new MejaKursi("MejaDanKursi"),10);
+                World.getInstance().getCurrentSim().getInventory().addItem(new MejaKursi("MejaKursi"),10);
                 World.getInstance().getCurrentSim().getInventory().addItem(new Cermin("Cermin"),10);
                 World.getInstance().getCurrentSim().getInventory().addItem(new Gramofon("Gramofon"),10);
                 World.getInstance().getCurrentSim().getInventory().addItem(new Wastafel("Wastafel"),10);
