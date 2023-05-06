@@ -164,739 +164,685 @@ public class Ruangan {
         String namaBarang;
         Furnitur key = null;
         Scanner input = new Scanner(System.in);
-        do {
-            currentSim.getInventory().lihatInventory();
-            System.out.print("Masukkan nama barang yang ingin dipasang: ");
-            namaBarang = input.next();
-            //mungkin ntar pake method yang ada di inventory buat ngecek
-            for (Map.Entry<ObjekGame, Integer> entry : ((Map<ObjekGame,Integer>) currentSim.getInventory().getInventory()).entrySet()) {
-                if (entry.getKey() instanceof Furnitur) {
-                    Furnitur furnitur = (Furnitur) entry.getKey();
-                    if (furnitur.getNamaObjek().equalsIgnoreCase(namaBarang)) {
-                        key = furnitur;
+        if(!isFurniturAvailable(currentSim.getInventory())) {
+            System.out.println("gada furnitur");
+        } else {
+            do {
+                currentSim.getInventory().lihatInventory();
+                System.out.print("Masukkan nama barang yang ingin dipasang: ");
+                namaBarang = input.next();
+                //mungkin ntar pake method yang ada di inventory buat ngecek
+                for (Map.Entry<ObjekGame, Integer> entry : ((Map<ObjekGame,Integer>) currentSim.getInventory().getInventory()).entrySet()) {
+                    if (entry.getKey() instanceof Furnitur) {
+                        Furnitur furnitur = (Furnitur) entry.getKey();
+                        if (furnitur.getNamaObjek().equalsIgnoreCase(namaBarang)) {
+                            key = furnitur;
+                            valid = true;
+                        }
+                    }
+                }
+                if (!valid) {
+                    System.out.println("Barang tidak tersedia silahkan coba lagi!");
+                }
+            } while (!valid);
+            if (namaBarang.equalsIgnoreCase("Toilet")) {
+                valid = false;
+                int x, y;
+                do {
+                    System.out.println("Masukkan lokasi objek: ");
+                    x = Menu.readInteger(input, "x");
+                    y = Menu.readInteger(input, "y");
+                    if (cekPoint(x, y)) {
                         valid = true;
+                    } else {
+                        System.out.println("Titik tidak sesuai, coba ulangi!");
                     }
+                } while (!valid);
+                Point locToilet = new Point(x, y);
+                if (!isAvailable(locToilet)) {
+                    addJumlah("Toilet");
+                    int i = jumlahObjek.get(searchBarang(namaBarang));
+                    matrixRuangan[x][y] = "Toilet"+i;
+                    daftarObjek.put(locToilet, "Toilet"+i);
+                    System.out.println("Toilet berhasil dipasang!");
+                    currentSim.getInventory().reduceItem(key, 1);
+                } else {
+                    System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
                 }
             }
-            if (!valid) {
-                System.out.println("Barang tidak tersedia silahkan coba lagi!");
+            if (namaBarang.equalsIgnoreCase("KomporListrik")) {
+                valid = false;
+                int x, y;
+                do {
+                    System.out.println("Masukkan lokasi objek: ");
+                    x = Menu.readInteger(input, "x");
+                    y = Menu.readInteger(input, "y");
+                    if (cekPoint(x, y)) {
+                        valid = true;
+                    } else {
+                        System.out.println("Titik tidak sesuai, coba ulangi!");
+                    }
+                } while (!valid);
+                Point locKomporListrik = new Point(x, y);
+                if (!isAvailable(locKomporListrik)) {
+                    addJumlah("KomporListrik");
+                    int i = jumlahObjek.get(searchBarang(namaBarang));
+                    matrixRuangan[x][y] = "KomporListrik"+i;
+                    daftarObjek.put(locKomporListrik, "KomporListrik"+i);
+                    System.out.println("KomporListrik berhasil dipasang!");
+                    currentSim.getInventory().reduceItem(key, 1);
+                } else {
+                    System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
+                }
             }
-        } while (!valid);
-        if (namaBarang.equalsIgnoreCase("Toilet")) {
-            valid = false;
-            int x, y;
-            do {
-                System.out.println("Masukkan lokasi objek: ");
-                System.out.print("x: ");
-                x = input.nextInt();
-                System.out.print("y: ");
-                y = input.nextInt();
-                if (cekPoint(x, y)) {
-                    valid = true;
+            if (namaBarang.equalsIgnoreCase("Jam")) {
+                valid = false;
+                int x, y;
+                do {
+                    System.out.println("Masukkan lokasi objek: ");
+                    x = Menu.readInteger(input, "x");
+                    y = Menu.readInteger(input, "y");
+                    if (cekPoint(x, y)) {
+                        valid = true;
+                    } else {
+                        System.out.println("Titik tidak sesuai, coba ulangi!");
+                    }
+                } while (!valid);
+                Point locJam = new Point(x, y);
+                if (!isAvailable(locJam)) {
+                    addJumlah("Jam");
+                    int i = jumlahObjek.get(searchBarang(namaBarang));
+                    matrixRuangan[x][y] = "Jam"+i;
+                    daftarObjek.put(locJam, "Jam"+i);
+                    System.out.println("Jam berhasil dipasang!");
+                    currentSim.getInventory().reduceItem(key, 1);
                 } else {
-                    System.out.println("Titik tidak sesuai, coba ulangi!");
+                    System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
                 }
-            } while (!valid);
-            Point locToilet = new Point(x, y);
-            if (!isAvailable(locToilet)) {
-                addJumlah("Toilet");
-                int i = jumlahObjek.get(searchBarang(namaBarang));
-                matrixRuangan[x][y] = "Toilet"+i;
-                daftarObjek.put(locToilet, "Toilet"+i);
-                System.out.println("Toilet berhasil dipasang!");
-                currentSim.getInventory().reduceItem(key, 1);
-            } else {
-                System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
             }
-        }
-        if (namaBarang.equalsIgnoreCase("KomporListrik")) {
-            valid = false;
-            int x, y;
-            do {
-                System.out.println("Masukkan lokasi objek: ");
-                System.out.print("x: ");
-                x = input.nextInt();
-                System.out.print("y: ");
-                y = input.nextInt();
-                if (cekPoint(x, y)) {
-                    valid = true;
+            if (namaBarang.equalsIgnoreCase("KasurSingle")) {
+                valid = false;
+                int x1, y1, x2, y2;
+                do {
+                    System.out.println("Masukkan lokasi objek (titik awal): ");
+                    x1 = Menu.readInteger(input,"x");
+                    y1 = Menu.readInteger(input,"y");
+                    System.out.println("Masukkan lokasi objek (titik akhir): ");
+                    x2 = Menu.readInteger(input,"x");
+                    y2 = Menu.readInteger(input,"y");
+                    if (((x2 == x1+3 && y1 == y2) || (y2 == y1+3 && x1 == x2) || (x2 == x1-3 && y1 == y2) || (y2 == y1-3 && x1 == x2)) && cekPoint(x1, y1) && cekPoint(x2, y2)) {
+                        valid = true;
+                    } else {
+                        System.out.println("Titik tidak sesuai, coba ulangi!");
+                    }
+                } while (!valid);
+                Point locKasurSingle1 = new Point(x1, y1);
+                Point locKasurSingle4 = new Point(x2, y2);
+                Point locKasurSingle2;
+                Point locKasurSingle3;
+                if (x2 == x1+3) {
+                    locKasurSingle2 = new Point(x1+1, y1);
+                    locKasurSingle3 = new Point(x1+2, y2);
+                } else if (x2 == x1-3) {
+                    locKasurSingle2 = new Point(x1-1, y1);
+                    locKasurSingle3 = new Point(x1-2, y2);
+                } else if (y2 == y1+3) {
+                    locKasurSingle2 = new Point(x1, y1+1);
+                    locKasurSingle3 = new Point(x2, y1+2);
                 } else {
-                    System.out.println("Titik tidak sesuai, coba ulangi!");
+                    locKasurSingle2 = new Point(x1, y1-1);
+                    locKasurSingle3 = new Point(x2, y2-2);
                 }
-            } while (!valid);
-            Point locKomporListrik = new Point(x, y);
-            if (!isAvailable(locKomporListrik)) {
-                addJumlah("KomporListrik");
-                int i = jumlahObjek.get(searchBarang(namaBarang));
-                matrixRuangan[x][y] = "KomporListrik"+i;
-                daftarObjek.put(locKomporListrik, "KomporListrik"+i);
-                System.out.println("KomporListrik berhasil dipasang!");
-                currentSim.getInventory().reduceItem(key, 1);
-            } else {
-                System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
+                if (!isAvailable(locKasurSingle1) && !isAvailable(locKasurSingle2) && !isAvailable(locKasurSingle3) && !isAvailable(locKasurSingle4)) {
+                    addJumlah("KasurSingle");
+                    int i = jumlahObjek.get(searchBarang(namaBarang));
+                    if (x1<=x2 && y1<=y2) {
+                        for (int a = x1; a < x2+1; a++) {
+                            for (int b = y1; b < y2+1; b++) {
+                                matrixRuangan[a][b] = "KasurSingle"+i;
+                            }
+                        }
+                    } else if (x1<=x2 && y1>y2) {
+                        for (int a = x1; a < x2+1; a++) {
+                            for (int b = y2; b < y1+1; b++) {
+                                matrixRuangan[a][b] = "KasurSingle"+i;
+                            }
+                        }
+                    } else if (x1>x2 && y1<=y2) {
+                        for (int a = x2; a < x1+1; a++) {
+                            for (int b = y1; b < y2+1; b++) {
+                                matrixRuangan[a][b] = "KasurSingle"+i;
+                            }
+                        }
+                    } else {
+                        for (int a = x2; a < x1+1; a++) {
+                            for (int b = y2; b < y1+1; b++) {
+                                matrixRuangan[a][b] = "KasurSingle"+i;
+                            }
+                        }
+                    }
+                    daftarObjek.put(locKasurSingle1, "KasurSingle"+i);
+                    daftarObjek.put(locKasurSingle2, "KasurSingle"+i);
+                    daftarObjek.put(locKasurSingle3, "KasurSingle"+i);
+                    daftarObjek.put(locKasurSingle4, "KasurSingle"+i);
+                    System.out.println("KasurSingle berhasil dipasang!");
+                    currentSim.getInventory().reduceItem(key, 1);
+                } else {
+                    System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
+                }
             }
-        }
-        if (namaBarang.equalsIgnoreCase("Jam")) {
-            valid = false;
-            int x, y;
-            do {
-                System.out.println("Masukkan lokasi objek: ");
-                System.out.print("x: ");
-                x = input.nextInt();
-                System.out.print("y: ");
-                y = input.nextInt();
-                if (cekPoint(x, y)) {
-                    valid = true;
+            if (namaBarang.equalsIgnoreCase("KomporGas")) {
+                valid = false;
+                int x1, y1, x2, y2;
+                do {
+                    System.out.println("Masukkan lokasi objek (titik awal): ");
+                    x1 = Menu.readInteger(input,"x");
+                    y1 = Menu.readInteger(input,"y");
+                    System.out.println("Masukkan lokasi objek (titik akhir): ");
+                    x2 = Menu.readInteger(input,"x");
+                    y2 = Menu.readInteger(input,"y");
+                    if (((x2 == x1+1 && y1 == y2) || (y2 == y1+1 && x1 == x2) || (x2 == x1-1 && y1 == y2) || (y2 == y1-1 && x1 == x2)) && cekPoint(x1, y1) && cekPoint(x2, y2)) {
+                        valid = true;
+                    } else {
+                        System.out.println("Titik tidak sesuai dengan dimensi!");
+                    }
+                } while (!valid);
+                Point locKomporGas1 = new Point(x1, y1);
+                Point locKomporGas2 = new Point(x2, y2);
+                if (!isAvailable(locKomporGas1) && !isAvailable(locKomporGas2)) {
+                    addJumlah("KomporGas");
+                    int i = jumlahObjek.get(searchBarang(namaBarang));
+                    if (x1<=x2 && y1<=y2) {
+                        for (int a = x1; a < x2+1; a++) {
+                            for (int b = y1; b < y2+1; b++) {
+                                matrixRuangan[a][b] = "KomporGas"+i;
+                            }
+                        }
+                    } else if (x1<=x2 && y1>y2) {
+                        for (int a = x1; a < x2+1; a++) {
+                            for (int b = y2; b < y1+1; b++) {
+                                matrixRuangan[a][b] = "KomporGas"+i;
+                            }
+                        }
+                    } else if (x1>x2 && y1<=y2) {
+                        for (int a = x2; a < x1+1; a++) {
+                            for (int b = y1; b < y2+1; b++) {
+                                matrixRuangan[a][b] = "KomporGas"+i;
+                            }
+                        }
+                    } else {
+                        for (int a = x2; a < x1+1; a++) {
+                            for (int b = y2; b < y1+1; b++) {
+                                matrixRuangan[a][b] = "KomporGas"+i;
+                            }
+                        }
+                    }
+                    daftarObjek.put(locKomporGas1, "KomporGas"+i);
+                    daftarObjek.put(locKomporGas2, "KomporGas"+i);
+                    System.out.println("KomporGas berhasil dipasang!");
+                    currentSim.getInventory().reduceItem(key, 1);
                 } else {
-                    System.out.println("Titik tidak sesuai, coba ulangi!");
+                    System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
                 }
-            } while (!valid);
-            Point locJam = new Point(x, y);
-            if (!isAvailable(locJam)) {
-                addJumlah("Jam");
-                int i = jumlahObjek.get(searchBarang(namaBarang));
-                matrixRuangan[x][y] = "Jam"+i;
-                daftarObjek.put(locJam, "Jam"+i);
-                System.out.println("Jam berhasil dipasang!");
-                currentSim.getInventory().reduceItem(key, 1);
-            } else {
-                System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
             }
-        }
-        if (namaBarang.equalsIgnoreCase("KasurSingle")) {
-            valid = false;
-            int x1, y1, x2, y2;
-            do {
-                System.out.println("Masukkan lokasi objek (titik awal): ");
-                System.out.print("x: ");
-                x1 = input.nextInt();
-                System.out.print("y: ");
-                y1 = input.nextInt();
-                System.out.println("Masukkan lokasi objek (titik akhir): ");
-                System.out.print("x: ");
-                x2 = input.nextInt();
-                System.out.print("y: ");
-                y2 = input.nextInt();
-                if (((x2 == x1+3 && y1 == y2) || (y2 == y1+3 && x1 == x2) || (x2 == x1-3 && y1 == y2) || (y2 == y1-3 && x1 == x2)) && cekPoint(x1, y1) && cekPoint(x2, y2)) {
-                    valid = true;
+            if (namaBarang.equalsIgnoreCase("KasurQueenSize")) {
+                valid = false;
+                int x1, y1, x2, y2, x3, y3, x4, y4;
+                do {
+                    System.out.println("Masukkan lokasi objek (titik kiri atas): ");
+                    x1 = Menu.readInteger(input,"x");
+                    y1 = Menu.readInteger(input,"y");
+                    System.out.println("Masukkan lokasi objek (titik kanan atas): ");
+                    x2 = Menu.readInteger(input,"x");
+                    y2 = Menu.readInteger(input,"y");
+                    System.out.println("Masukkan lokasi objek (titik kiri bawah): ");
+                    x3 = Menu.readInteger(input,"x");
+                    y3 = Menu.readInteger(input,"y");
+                    System.out.println("Masukkan lokasi objek (titik kanan bawah): ");
+                    x4 = Menu.readInteger(input,"x");
+                    y4 = Menu.readInteger(input,"y");
+                    if ((x2 == x1+3 && y3 == y1+1 && x4 == x3+3 && y4 == y2+1) || (x2 == x1+1 && y3 == y1+3 && x4 == x3+1 && y4 == y2+3) && cekPoint(x1, y1) && cekPoint(x2, y2) && cekPoint(x3, y3) && cekPoint(x4, y4)) {
+                        valid = true;
+                    } else {
+                        System.out.println("Titik tidak sesuai, coba ulangi!");
+                    }
+                } while (!valid);
+                Point locKasurQueenSize1 = new Point(x1, y1);
+                Point locKasurQueenSize4 = new Point(x2, y2);
+                Point locKasurQueenSize5 = new Point(x3, y3);
+                Point locKasurQueenSize8 = new Point(x4, y4);
+                Point locKasurQueenSize2;
+                Point locKasurQueenSize3;
+                Point locKasurQueenSize6;
+                Point locKasurQueenSize7;
+                if (x2 == x1+3 && y3 == y1+1 && x4 == x3+3 && y4 == y2+1) {
+                    locKasurQueenSize2 = new Point(x1+1, y1);
+                    locKasurQueenSize3 = new Point(x1+2, y1);
+                    locKasurQueenSize6 = new Point(x1+1, y1+1);
+                    locKasurQueenSize7 = new Point(x1+2, y1+1);
                 } else {
-                    System.out.println("Titik tidak sesuai, coba ulangi!");
+                    locKasurQueenSize2 = new Point(x1, y1+1);
+                    locKasurQueenSize3 = new Point(x1, y1+2);
+                    locKasurQueenSize6 = new Point(x1+1, y1+1);
+                    locKasurQueenSize7 = new Point(x1+1, y1+2);
                 }
-            } while (!valid);
-            Point locKasurSingle1 = new Point(x1, y1);
-            Point locKasurSingle4 = new Point(x2, y2);
-            Point locKasurSingle2;
-            Point locKasurSingle3;
-            if (x2 == x1+3) {
-                locKasurSingle2 = new Point(x1+1, y1);
-                locKasurSingle3 = new Point(x1+2, y2);
-            } else if (x2 == x1-3) {
-                locKasurSingle2 = new Point(x1-1, y1);
-                locKasurSingle3 = new Point(x1-2, y2);
-            } else if (y2 == y1+3) {
-                locKasurSingle2 = new Point(x1, y1+1);
-                locKasurSingle3 = new Point(x2, y1+2);
-            } else {
-                locKasurSingle2 = new Point(x1, y1-1);
-                locKasurSingle3 = new Point(x2, y2-2);
+                if (!isAvailable(locKasurQueenSize1) && !isAvailable(locKasurQueenSize2) && !isAvailable(locKasurQueenSize3) && !isAvailable(locKasurQueenSize4) && !isAvailable(locKasurQueenSize5) && !isAvailable(locKasurQueenSize6) && !isAvailable(locKasurQueenSize7) && !isAvailable(locKasurQueenSize8)) {
+                    addJumlah("KasurQueenSize");
+                    int i = jumlahObjek.get(searchBarang(namaBarang));
+                    for (int a = x1; a < x4+1; a++) {
+                        for (int b = y1; b < y4+1; b++) {
+                            matrixRuangan[a][b] = "KasurQueenSize"+i;
+                        }
+                    }
+                    daftarObjek.put(locKasurQueenSize1, "KasurQueenSize"+i);
+                    daftarObjek.put(locKasurQueenSize2, "KasurQueenSize"+i);
+                    daftarObjek.put(locKasurQueenSize3, "KasurQueenSize"+i);
+                    daftarObjek.put(locKasurQueenSize4, "KasurQueenSize"+i);
+                    daftarObjek.put(locKasurQueenSize5, "KasurQueenSize"+i);
+                    daftarObjek.put(locKasurQueenSize6, "KasurQueenSize"+i);
+                    daftarObjek.put(locKasurQueenSize7, "KasurQueenSize"+i);
+                    daftarObjek.put(locKasurQueenSize8, "KasurQueenSize"+i);
+                    System.out.println("KasurQueenSize berhasil dipasang!");
+                    currentSim.getInventory().reduceItem(key, 1);
+                } else {
+                    System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
+                }
             }
-            if (!isAvailable(locKasurSingle1) && !isAvailable(locKasurSingle2) && !isAvailable(locKasurSingle3) && !isAvailable(locKasurSingle4)) {
-                addJumlah("KasurSingle");
-                int i = jumlahObjek.get(searchBarang(namaBarang));
-                if (x1<=x2 && y1<=y2) {
-                    for (int a = x1; a < x2+1; a++) {
-                        for (int b = y1; b < y2+1; b++) {
-                            matrixRuangan[a][b] = "KasurSingle"+i;
-                        }
+            if (namaBarang.equalsIgnoreCase("KasurKingSize")) {
+                valid = false;
+                int x1, y1, x2, y2, x3, y3, x4, y4;
+                do {
+                    System.out.println("Masukkan lokasi objek (titik kiri atas): ");
+                    x1 = Menu.readInteger(input,"x");
+                    y1 = Menu.readInteger(input,"y");
+                    System.out.println("Masukkan lokasi objek (titik kanan atas): ");
+                    x2 = Menu.readInteger(input,"x");
+                    y2 = Menu.readInteger(input,"y");
+                    System.out.println("Masukkan lokasi objek (titik kiri bawah): ");
+                    x3 = Menu.readInteger(input,"x");
+                    y3 = Menu.readInteger(input,"y");
+                    System.out.println("Masukkan lokasi objek (titik kanan bawah): ");
+                    x4 = Menu.readInteger(input,"x");
+                    y4 = Menu.readInteger(input,"y");
+                    if ((x2 == x1+4 && y3 == y1+1 && x4 == x3+4 && y4 == y2+1) || (x2 == x1+1 && y3 == y1+4 && x4 == x3+1 && y4 == y2+4) && cekPoint(x1, y1) && cekPoint(x2, y2) && cekPoint(x3, y3) && cekPoint(x4, y4)) {
+                        valid = true;
+                    } else {
+                        System.out.println("Titik tidak sesuai, coba ulangi!");
                     }
-                } else if (x1<=x2 && y1>y2) {
-                    for (int a = x1; a < x2+1; a++) {
-                        for (int b = y2; b < y1+1; b++) {
-                            matrixRuangan[a][b] = "KasurSingle"+i;
-                        }
-                    }
-                } else if (x1>x2 && y1<=y2) {
-                    for (int a = x2; a < x1+1; a++) {
-                        for (int b = y1; b < y2+1; b++) {
-                            matrixRuangan[a][b] = "KasurSingle"+i;
-                        }
-                    }
+                } while (!valid);
+                Point locKasurKingSize1 = new Point(x1, y1);
+                Point locKasurKingSize5 = new Point(x2, y2);
+                Point locKasurKingSize6 = new Point(x3, y3);
+                Point locKasurKingSize10 = new Point(x4, y4);
+                Point locKasurKingSize2;
+                Point locKasurKingSize3;
+                Point locKasurKingSize4;
+                Point locKasurKingSize7;
+                Point locKasurKingSize8;
+                Point locKasurKingSize9;
+                if (x2 == x1+4 && y3 == y1+1 && x4 == x3+4 && y4 == y2+1) {
+                    locKasurKingSize2 = new Point(x1+1, y1);
+                    locKasurKingSize3 = new Point(x1+2, y1);
+                    locKasurKingSize4 = new Point(x1+3, y1);
+                    locKasurKingSize7 = new Point(x1+1, y1+1);
+                    locKasurKingSize8 = new Point(x1+2, y1+1);
+                    locKasurKingSize9 = new Point(x1+3, y1+1);
                 } else {
-                    for (int a = x2; a < x1+1; a++) {
-                        for (int b = y2; b < y1+1; b++) {
-                            matrixRuangan[a][b] = "KasurSingle"+i;
+                    locKasurKingSize2 = new Point(x1, y1+1);
+                    locKasurKingSize3 = new Point(x1, y1+2);
+                    locKasurKingSize4 = new Point(x1, y1+3);
+                    locKasurKingSize7 = new Point(x1+1, y1+1);
+                    locKasurKingSize8 = new Point(x1+1, y1+2);
+                    locKasurKingSize9 = new Point(x1+1, y1+3);
+                }
+                if (!isAvailable(locKasurKingSize1) && !isAvailable(locKasurKingSize2) && !isAvailable(locKasurKingSize3) && !isAvailable(locKasurKingSize4) && !isAvailable(locKasurKingSize5) && !isAvailable(locKasurKingSize6) && !isAvailable(locKasurKingSize7) && !isAvailable(locKasurKingSize8) && !isAvailable(locKasurKingSize9) && !isAvailable(locKasurKingSize10)) {
+                    addJumlah("KasurKingSize");
+                    int i = jumlahObjek.get(searchBarang(namaBarang));
+                    for (int a = x1; a < x4+1; a++) {
+                        for (int b = y1; b < y4+1; b++) {
+                            matrixRuangan[a][b] = "KasurKingSize"+i;
                         }
                     }
+                    daftarObjek.put(locKasurKingSize1, "KasurKingSize"+i);
+                    daftarObjek.put(locKasurKingSize2, "KasurKingSize"+i);
+                    daftarObjek.put(locKasurKingSize3, "KasurKingSize"+i);
+                    daftarObjek.put(locKasurKingSize4, "KasurKingSize"+i);
+                    daftarObjek.put(locKasurKingSize5, "KasurKingSize"+i);
+                    daftarObjek.put(locKasurKingSize6, "KasurKingSize"+i);
+                    daftarObjek.put(locKasurKingSize7, "KasurKingSize"+i);
+                    daftarObjek.put(locKasurKingSize8, "KasurKingSize"+i);
+                    daftarObjek.put(locKasurKingSize9, "KasurKingSize"+i);
+                    daftarObjek.put(locKasurKingSize10, "KasurKingSize"+i);
+                    System.out.println("KasurKingSize berhasil dipasang!");
+                    currentSim.getInventory().reduceItem(key, 1);
+                } else {
+                    System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
                 }
-                daftarObjek.put(locKasurSingle1, "KasurSingle"+i);
-                daftarObjek.put(locKasurSingle2, "KasurSingle"+i);
-                daftarObjek.put(locKasurSingle3, "KasurSingle"+i);
-                daftarObjek.put(locKasurSingle4, "KasurSingle"+i);
-                System.out.println("KasurSingle berhasil dipasang!");
-                currentSim.getInventory().reduceItem(key, 1);
-            } else {
-                System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
             }
-        }
-        if (namaBarang.equalsIgnoreCase("KomporGas")) {
-            valid = false;
-            int x1, y1, x2, y2;
-            do {
-                System.out.println("Masukkan lokasi objek (titik awal): ");
-                System.out.print("x: ");
-                x1 = input.nextInt();
-                System.out.print("y: ");
-                y1 = input.nextInt();
-                System.out.println("Masukkan lokasi objek (titik akhir): ");
-                System.out.print("x: ");
-                x2 = input.nextInt();
-                System.out.print("y: ");
-                y2 = input.nextInt();
-                if (((x2 == x1+1 && y1 == y2) || (y2 == y1+1 && x1 == x2) || (x2 == x1-1 && y1 == y2) || (y2 == y1-1 && x1 == x2)) && cekPoint(x1, y1) && cekPoint(x2, y2)) {
-                    valid = true;
+            if (namaBarang.equalsIgnoreCase("MejaKursi")) {
+                valid = false;
+                int x1, y1, x2, y2, x3, y3, x4, y4;
+                do {
+                    System.out.println("Masukkan lokasi objek (titik kiri atas): ");
+                    x1 = Menu.readInteger(input,"x");
+                    y1 = Menu.readInteger(input,"y");
+                    System.out.println("Masukkan lokasi objek (titik kanan atas): ");
+                    x2 = Menu.readInteger(input,"x");
+                    y2 = Menu.readInteger(input,"y");
+                    System.out.println("Masukkan lokasi objek (titik kiri bawah): ");
+                    x3 = Menu.readInteger(input,"x");
+                    y3 = Menu.readInteger(input,"y");
+                    System.out.println("Masukkan lokasi objek (titik kanan bawah): ");
+                    x4 = Menu.readInteger(input,"x");
+                    y4 = Menu.readInteger(input,"y");
+                    if ((x2 == x1+2) && (x4 == x3+2) && (y3 == y1+2) && (y4 == y2+2) && cekPoint(x1, y1) && cekPoint(x2, y2) && cekPoint(x3, y3) && cekPoint(x4, y4)) {
+                        valid = true;
+                    } else {
+                        System.out.println("Titik tidak sesuai, coba ulangi!");
+                    }
+                } while (!valid);
+                Point locMejaKursi1 = new Point(x1, y1);
+                Point locMejaKursi9 = new Point(x2, y2);
+                Point locMejaKursi2 = new Point(x1+1, y1);
+                Point locMejaKursi3 = new Point(x1+2, y1);
+                Point locMejaKursi4 = new Point(x1, y1+1);
+                Point locMejaKursi5 = new Point(x1, y1+2);
+                Point locMejaKursi6 = new Point(x1+1, y1+1);
+                Point locMejaKursi7 = new Point(x1+2, y1+1);
+                Point locMejaKursi8 = new Point(x1+1, y1+2);
+                if (!isAvailable(locMejaKursi1) && !isAvailable(locMejaKursi2) && !isAvailable(locMejaKursi3) && !isAvailable(locMejaKursi4) && !isAvailable(locMejaKursi5)  && !isAvailable(locMejaKursi6) && !isAvailable(locMejaKursi7) && !isAvailable(locMejaKursi8) && !isAvailable(locMejaKursi9)) {
+                    addJumlah("MejaKursi");
+                    int i = jumlahObjek.get(searchBarang(namaBarang));
+                    for (int a = x1; a < x4+1; a++) {
+                        for (int b = y1; b < y4+1; b++) {
+                            matrixRuangan[a][b] = "MejaKursi"+i;
+                        }
+                    }
+                    daftarObjek.put(locMejaKursi1, "MejaKursi"+i);
+                    daftarObjek.put(locMejaKursi2, "MejaKursi"+i);
+                    daftarObjek.put(locMejaKursi3, "MejaKursi"+i);
+                    daftarObjek.put(locMejaKursi4, "MejaKursi"+i);
+                    daftarObjek.put(locMejaKursi5, "MejaKursi"+i);
+                    daftarObjek.put(locMejaKursi6, "MejaKursi"+i);
+                    daftarObjek.put(locMejaKursi7, "MejaKursi"+i);
+                    daftarObjek.put(locMejaKursi8, "MejaKursi"+i);
+                    daftarObjek.put(locMejaKursi9, "MejaKursi"+i);
+                    System.out.println("MejaKursi berhasil dipasang!");
+                    currentSim.getInventory().reduceItem(key, 1);
                 } else {
-                    System.out.println("Titik tidak sesuai dengan dimensi!");
+                    System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
                 }
-            } while (!valid);
-            Point locKomporGas1 = new Point(x1, y1);
-            Point locKomporGas2 = new Point(x2, y2);
-            if (!isAvailable(locKomporGas1) && !isAvailable(locKomporGas2)) {
-                addJumlah("KomporGas");
-                int i = jumlahObjek.get(searchBarang(namaBarang));
-                if (x1<=x2 && y1<=y2) {
-                    for (int a = x1; a < x2+1; a++) {
-                        for (int b = y1; b < y2+1; b++) {
-                            matrixRuangan[a][b] = "KomporGas"+i;
-                        }
-                    }
-                } else if (x1<=x2 && y1>y2) {
-                    for (int a = x1; a < x2+1; a++) {
-                        for (int b = y2; b < y1+1; b++) {
-                            matrixRuangan[a][b] = "KomporGas"+i;
-                        }
-                    }
-                } else if (x1>x2 && y1<=y2) {
-                    for (int a = x2; a < x1+1; a++) {
-                        for (int b = y1; b < y2+1; b++) {
-                            matrixRuangan[a][b] = "KomporGas"+i;
-                        }
-                    }
-                } else {
-                    for (int a = x2; a < x1+1; a++) {
-                        for (int b = y2; b < y1+1; b++) {
-                            matrixRuangan[a][b] = "KomporGas"+i;
-                        }
-                    }
-                }
-                daftarObjek.put(locKomporGas1, "KomporGas"+i);
-                daftarObjek.put(locKomporGas2, "KomporGas"+i);
-                System.out.println("KomporGas berhasil dipasang!");
-                currentSim.getInventory().reduceItem(key, 1);
-            } else {
-                System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
             }
-        }
-        if (namaBarang.equalsIgnoreCase("KasurQueenSize")) {
-            valid = false;
-            int x1, y1, x2, y2, x3, y3, x4, y4;
-            do {
-                System.out.println("Masukkan lokasi objek (titik kiri atas): ");
-                System.out.print("x: ");
-                x1 = input.nextInt();
-                System.out.print("y: ");
-                y1 = input.nextInt();
-                System.out.println("Masukkan lokasi objek (titik kanan atas): ");
-                System.out.print("x: ");
-                x2 = input.nextInt();
-                System.out.print("y: ");
-                y2 = input.nextInt();
-                System.out.println("Masukkan lokasi objek (titik kiri bawah): ");
-                System.out.print("x: ");
-                x3 = input.nextInt();
-                System.out.print("y: ");
-                y3 = input.nextInt();
-                System.out.println("Masukkan lokasi objek (titik kanan bawah): ");
-                System.out.print("x: ");
-                x4 = input.nextInt();
-                System.out.print("y: ");
-                y4 = input.nextInt();
-                if ((x2 == x1+3 && y3 == y1+1 && x4 == x3+3 && y4 == y2+1) || (x2 == x1+1 && y3 == y1+3 && x4 == x3+1 && y4 == y2+3) && cekPoint(x1, y1) && cekPoint(x2, y2) && cekPoint(x3, y3) && cekPoint(x4, y4)) {
-                    valid = true;
-                } else {
-                    System.out.println("Titik tidak sesuai, coba ulangi!");
-                }
-            } while (!valid);
-            Point locKasurQueenSize1 = new Point(x1, y1);
-            Point locKasurQueenSize4 = new Point(x2, y2);
-            Point locKasurQueenSize5 = new Point(x3, y3);
-            Point locKasurQueenSize8 = new Point(x4, y4);
-            Point locKasurQueenSize2;
-            Point locKasurQueenSize3;
-            Point locKasurQueenSize6;
-            Point locKasurQueenSize7;
-            if (x2 == x1+3 && y3 == y1+1 && x4 == x3+3 && y4 == y2+1) {
-                locKasurQueenSize2 = new Point(x1+1, y1);
-                locKasurQueenSize3 = new Point(x1+2, y1);
-                locKasurQueenSize6 = new Point(x1+1, y1+1);
-                locKasurQueenSize7 = new Point(x1+2, y1+1);
-            } else {
-                locKasurQueenSize2 = new Point(x1, y1+1);
-                locKasurQueenSize3 = new Point(x1, y1+2);
-                locKasurQueenSize6 = new Point(x1+1, y1+1);
-                locKasurQueenSize7 = new Point(x1+1, y1+2);
-            }
-            if (!isAvailable(locKasurQueenSize1) && !isAvailable(locKasurQueenSize2) && !isAvailable(locKasurQueenSize3) && !isAvailable(locKasurQueenSize4) && !isAvailable(locKasurQueenSize5) && !isAvailable(locKasurQueenSize6) && !isAvailable(locKasurQueenSize7) && !isAvailable(locKasurQueenSize8)) {
-                addJumlah("KasurQueenSize");
-                int i = jumlahObjek.get(searchBarang(namaBarang));
-                for (int a = x1; a < x4+1; a++) {
-                    for (int b = y1; b < y4+1; b++) {
-                        matrixRuangan[a][b] = "KasurQueenSize"+i;
+            if (namaBarang.equalsIgnoreCase("Shower")) {
+                valid = false;
+                int x1, y1, x2, y2;
+                do {
+                    System.out.println("Masukkan lokasi objek (titik awal): ");
+                    x1 = Menu.readInteger(input,"x");
+                    y1 = Menu.readInteger(input,"y");
+                    System.out.println("Masukkan lokasi objek (titik akhir): ");
+                    x2 = Menu.readInteger(input,"x");
+                    y2 = Menu.readInteger(input,"y");
+                    if (((x2 == x1+1 && y1 == y2) || (y2 == y1+1 && x1 == x2) || (x2 == x1-1 && y1 == y2) || (y2 == y1-1 && x1 == x2)) && cekPoint(x1, y1) && cekPoint(x2, y2)) {
+                        valid = true;
+                    } else {
+                        System.out.println("Titik tidak sesuai dengan dimensi!");
                     }
-                }
-                daftarObjek.put(locKasurQueenSize1, "KasurQueenSize"+i);
-                daftarObjek.put(locKasurQueenSize2, "KasurQueenSize"+i);
-                daftarObjek.put(locKasurQueenSize3, "KasurQueenSize"+i);
-                daftarObjek.put(locKasurQueenSize4, "KasurQueenSize"+i);
-                daftarObjek.put(locKasurQueenSize5, "KasurQueenSize"+i);
-                daftarObjek.put(locKasurQueenSize6, "KasurQueenSize"+i);
-                daftarObjek.put(locKasurQueenSize7, "KasurQueenSize"+i);
-                daftarObjek.put(locKasurQueenSize8, "KasurQueenSize"+i);
-                System.out.println("KasurQueenSize berhasil dipasang!");
-                currentSim.getInventory().reduceItem(key, 1);
-            } else {
-                System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
-            }
-        }
-        if (namaBarang.equalsIgnoreCase("KasurKingSize")) {
-            valid = false;
-            int x1, y1, x2, y2, x3, y3, x4, y4;
-            do {
-                System.out.println("Masukkan lokasi objek (titik kiri atas): ");
-                System.out.print("x: ");
-                x1 = input.nextInt();
-                System.out.print("y: ");
-                y1 = input.nextInt();
-                System.out.println("Masukkan lokasi objek (titik kanan atas): ");
-                System.out.print("x: ");
-                x2 = input.nextInt();
-                System.out.print("y: ");
-                y2 = input.nextInt();
-                System.out.println("Masukkan lokasi objek (titik kiri bawah): ");
-                System.out.print("x: ");
-                x3 = input.nextInt();
-                System.out.print("y: ");
-                y3 = input.nextInt();
-                System.out.println("Masukkan lokasi objek (titik kanan bawah): ");
-                System.out.print("x: ");
-                x4 = input.nextInt();
-                System.out.print("y: ");
-                y4 = input.nextInt();
-                if ((x2 == x1+4 && y3 == y1+1 && x4 == x3+4 && y4 == y2+1) || (x2 == x1+1 && y3 == y1+4 && x4 == x3+1 && y4 == y2+4) && cekPoint(x1, y1) && cekPoint(x2, y2) && cekPoint(x3, y3) && cekPoint(x4, y4)) {
-                    valid = true;
-                } else {
-                    System.out.println("Titik tidak sesuai, coba ulangi!");
-                }
-            } while (!valid);
-            Point locKasurKingSize1 = new Point(x1, y1);
-            Point locKasurKingSize5 = new Point(x2, y2);
-            Point locKasurKingSize6 = new Point(x3, y3);
-            Point locKasurKingSize10 = new Point(x4, y4);
-            Point locKasurKingSize2;
-            Point locKasurKingSize3;
-            Point locKasurKingSize4;
-            Point locKasurKingSize7;
-            Point locKasurKingSize8;
-            Point locKasurKingSize9;
-            if (x2 == x1+4 && y3 == y1+1 && x4 == x3+4 && y4 == y2+1) {
-                locKasurKingSize2 = new Point(x1+1, y1);
-                locKasurKingSize3 = new Point(x1+2, y1);
-                locKasurKingSize4 = new Point(x1+3, y1);
-                locKasurKingSize7 = new Point(x1+1, y1+1);
-                locKasurKingSize8 = new Point(x1+2, y1+1);
-                locKasurKingSize9 = new Point(x1+3, y1+1);
-            } else {
-                locKasurKingSize2 = new Point(x1, y1+1);
-                locKasurKingSize3 = new Point(x1, y1+2);
-                locKasurKingSize4 = new Point(x1, y1+3);
-                locKasurKingSize7 = new Point(x1+1, y1+1);
-                locKasurKingSize8 = new Point(x1+1, y1+2);
-                locKasurKingSize9 = new Point(x1+1, y1+3);
-            }
-            if (!isAvailable(locKasurKingSize1) && !isAvailable(locKasurKingSize2) && !isAvailable(locKasurKingSize3) && !isAvailable(locKasurKingSize4) && !isAvailable(locKasurKingSize5) && !isAvailable(locKasurKingSize6) && !isAvailable(locKasurKingSize7) && !isAvailable(locKasurKingSize8) && !isAvailable(locKasurKingSize9) && !isAvailable(locKasurKingSize10)) {
-                addJumlah("KasurKingSize");
-                int i = jumlahObjek.get(searchBarang(namaBarang));
-                for (int a = x1; a < x4+1; a++) {
-                    for (int b = y1; b < y4+1; b++) {
-                        matrixRuangan[a][b] = "KasurKingSize"+i;
-                    }
-                }
-                daftarObjek.put(locKasurKingSize1, "KasurKingSize"+i);
-                daftarObjek.put(locKasurKingSize2, "KasurKingSize"+i);
-                daftarObjek.put(locKasurKingSize3, "KasurKingSize"+i);
-                daftarObjek.put(locKasurKingSize4, "KasurKingSize"+i);
-                daftarObjek.put(locKasurKingSize5, "KasurKingSize"+i);
-                daftarObjek.put(locKasurKingSize6, "KasurKingSize"+i);
-                daftarObjek.put(locKasurKingSize7, "KasurKingSize"+i);
-                daftarObjek.put(locKasurKingSize8, "KasurKingSize"+i);
-                daftarObjek.put(locKasurKingSize9, "KasurKingSize"+i);
-                daftarObjek.put(locKasurKingSize10, "KasurKingSize"+i);
-                System.out.println("KasurKingSize berhasil dipasang!");
-                currentSim.getInventory().reduceItem(key, 1);
-            } else {
-                System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
-            }
-        }
-        if (namaBarang.equalsIgnoreCase("MejaKursi")) {
-            valid = false;
-            int x1, y1, x2, y2, x3, y3, x4, y4;
-            do {
-                System.out.println("Masukkan lokasi objek (titik kiri atas): ");
-                System.out.print("x: ");
-                x1 = input.nextInt();
-                System.out.print("y: ");
-                y1 = input.nextInt();
-                System.out.println("Masukkan lokasi objek (titik kanan atas): ");
-                System.out.print("x: ");
-                x2 = input.nextInt();
-                System.out.print("y: ");
-                y2 = input.nextInt();
-                System.out.println("Masukkan lokasi objek (titik kiri bawah): ");
-                System.out.print("x: ");
-                x3 = input.nextInt();
-                System.out.print("y: ");
-                y3 = input.nextInt();
-                System.out.println("Masukkan lokasi objek (titik kanan bawah): ");
-                System.out.print("x: ");
-                x4 = input.nextInt();
-                System.out.print("y: ");
-                y4 = input.nextInt();
-                if ((x2 == x1+2) && (x4 == x3+2) && (y3 == y1+2) && (y4 == y2+2) && cekPoint(x1, y1) && cekPoint(x2, y2) && cekPoint(x3, y3) && cekPoint(x4, y4)) {
-                    valid = true;
-                } else {
-                    System.out.println("Titik tidak sesuai, coba ulangi!");
-                }
-            } while (!valid);
-            Point locMejaKursi1 = new Point(x1, y1);
-            Point locMejaKursi9 = new Point(x2, y2);
-            Point locMejaKursi2 = new Point(x1+1, y1);
-            Point locMejaKursi3 = new Point(x1+2, y1);
-            Point locMejaKursi4 = new Point(x1, y1+1);
-            Point locMejaKursi5 = new Point(x1, y1+2);
-            Point locMejaKursi6 = new Point(x1+1, y1+1);
-            Point locMejaKursi7 = new Point(x1+2, y1+1);
-            Point locMejaKursi8 = new Point(x1+1, y1+2);
-            if (!isAvailable(locMejaKursi1) && !isAvailable(locMejaKursi2) && !isAvailable(locMejaKursi3) && !isAvailable(locMejaKursi4) && !isAvailable(locMejaKursi5)  && !isAvailable(locMejaKursi6) && !isAvailable(locMejaKursi7) && !isAvailable(locMejaKursi8) && !isAvailable(locMejaKursi9)) {
-                addJumlah("MejaKursi");
-                int i = jumlahObjek.get(searchBarang(namaBarang));
-                for (int a = x1; a < x4+1; a++) {
-                    for (int b = y1; b < y4+1; b++) {
-                        matrixRuangan[a][b] = "MejaKursi"+i;
-                    }
-                }
-                daftarObjek.put(locMejaKursi1, "MejaKursi"+i);
-                daftarObjek.put(locMejaKursi2, "MejaKursi"+i);
-                daftarObjek.put(locMejaKursi3, "MejaKursi"+i);
-                daftarObjek.put(locMejaKursi4, "MejaKursi"+i);
-                daftarObjek.put(locMejaKursi5, "MejaKursi"+i);
-                daftarObjek.put(locMejaKursi6, "MejaKursi"+i);
-                daftarObjek.put(locMejaKursi7, "MejaKursi"+i);
-                daftarObjek.put(locMejaKursi8, "MejaKursi"+i);
-                daftarObjek.put(locMejaKursi9, "MejaKursi"+i);
-                System.out.println("MejaKursi berhasil dipasang!");
-                currentSim.getInventory().reduceItem(key, 1);
-            } else {
-                System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
-            }
-        }
-        if (namaBarang.equalsIgnoreCase("Shower")) {
-            valid = false;
-            int x1, y1, x2, y2;
-            do {
-                System.out.println("Masukkan lokasi objek (titik awal): ");
-                System.out.print("x: ");
-                x1 = input.nextInt();
-                System.out.print("y: ");
-                y1 = input.nextInt();
-                System.out.println("Masukkan lokasi objek (titik akhir): ");
-                System.out.print("x: ");
-                x2 = input.nextInt();
-                System.out.print("y: ");
-                y2 = input.nextInt();
-                if (((x2 == x1+1 && y1 == y2) || (y2 == y1+1 && x1 == x2) || (x2 == x1-1 && y1 == y2) || (y2 == y1-1 && x1 == x2)) && cekPoint(x1, y1) && cekPoint(x2, y2)) {
-                    valid = true;
-                } else {
-                    System.out.println("Titik tidak sesuai dengan dimensi!");
-                }
-            } while (!valid);
-            Point locShower1 = new Point(x1, y1);
-            Point locShower2 = new Point(x2, y2);
-            if (!isAvailable(locShower1) && !isAvailable(locShower2)) {
-                addJumlah("Shower");
-                int i = jumlahObjek.get(searchBarang(namaBarang));
-                if (x1<=x2 && y1<=y2) {
-                    for (int a = x1; a < x2+1; a++) {
-                        for (int b = y1; b < y2+1; b++) {
-                            matrixRuangan[a][b] = "Shower"+i;
+                } while (!valid);
+                Point locShower1 = new Point(x1, y1);
+                Point locShower2 = new Point(x2, y2);
+                if (!isAvailable(locShower1) && !isAvailable(locShower2)) {
+                    addJumlah("Shower");
+                    int i = jumlahObjek.get(searchBarang(namaBarang));
+                    if (x1<=x2 && y1<=y2) {
+                        for (int a = x1; a < x2+1; a++) {
+                            for (int b = y1; b < y2+1; b++) {
+                                matrixRuangan[a][b] = "Shower"+i;
+                            }
+                        }
+                    } else if (x1<=x2 && y1>y2) {
+                        for (int a = x1; a < x2+1; a++) {
+                            for (int b = y2; b < y1+1; b++) {
+                                matrixRuangan[a][b] = "Shower"+i;
+                            }
+                        }
+                    } else if (x1>x2 && y1<=y2) {
+                        for (int a = x2; a < x1+1; a++) {
+                            for (int b = y1; b < y2+1; b++) {
+                                matrixRuangan[a][b] = "Shower"+i;
+                            }
+                        }
+                    } else {
+                        for (int a = x2; a < x1+1; a++) {
+                            for (int b = y2; b < y1+1; b++) {
+                                matrixRuangan[a][b] = "Shower"+i;
+                            }
                         }
                     }
-                } else if (x1<=x2 && y1>y2) {
-                    for (int a = x1; a < x2+1; a++) {
-                        for (int b = y2; b < y1+1; b++) {
-                            matrixRuangan[a][b] = "Shower"+i;
-                        }
-                    }
-                } else if (x1>x2 && y1<=y2) {
-                    for (int a = x2; a < x1+1; a++) {
-                        for (int b = y1; b < y2+1; b++) {
-                            matrixRuangan[a][b] = "Shower"+i;
-                        }
-                    }
+                    daftarObjek.put(locShower1, "Shower"+i);
+                    daftarObjek.put(locShower2, "Shower"+i);
+                    System.out.println("Shower berhasil dipasang!");
+                    currentSim.getInventory().reduceItem(key, 1);
                 } else {
-                    for (int a = x2; a < x1+1; a++) {
-                        for (int b = y2; b < y1+1; b++) {
-                            matrixRuangan[a][b] = "Shower"+i;
-                        }
-                    }
+                    System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
                 }
-                daftarObjek.put(locShower1, "Shower"+i);
-                daftarObjek.put(locShower2, "Shower"+i);
-                System.out.println("Shower berhasil dipasang!");
-                currentSim.getInventory().reduceItem(key, 1);
-            } else {
-                System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
             }
-        }
-        if (namaBarang.equalsIgnoreCase("KursiPijat")) {
-            valid = false;
-            int x, y;
-            do {
-                System.out.println("Masukkan lokasi objek: ");
-                System.out.print("x: ");
-                x = input.nextInt();
-                System.out.print("y: ");
-                y = input.nextInt();
-                if (cekPoint(x, y)) {
-                    valid = true;
+            if (namaBarang.equalsIgnoreCase("KursiPijat")) {
+                valid = false;
+                int x, y;
+                do {
+                    System.out.println("Masukkan lokasi objek: ");
+                    x = Menu.readInteger(input,"x");
+                    y = Menu.readInteger(input,"y");
+                    if (cekPoint(x, y)) {
+                        valid = true;
+                    } else {
+                        System.out.println("Titik tidak sesuai, coba ulangi!");
+                    }
+                } while (!valid);
+                Point locKursiPijat = new Point(x, y);
+                if (!isAvailable(locKursiPijat)) {
+                    addJumlah("KursiPijat");
+                    int i = jumlahObjek.get(searchBarang(namaBarang));
+                    matrixRuangan[x][y] = "KursiPijat"+i;
+                    daftarObjek.put(locKursiPijat, "KursiPijat"+i);
+                    System.out.println("KursiPijat berhasil dipasang!");
+                    currentSim.getInventory().reduceItem(key, 1);
                 } else {
-                    System.out.println("Titik tidak sesuai, coba ulangi!");
+                    System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
                 }
-            } while (!valid);
-            Point locKursiPijat = new Point(x, y);
-            if (!isAvailable(locKursiPijat)) {
-                addJumlah("KursiPijat");
-                int i = jumlahObjek.get(searchBarang(namaBarang));
-                matrixRuangan[x][y] = "KursiPijat"+i;
-                daftarObjek.put(locKursiPijat, "KursiPijat"+i);
-                System.out.println("KursiPijat berhasil dipasang!");
-                currentSim.getInventory().reduceItem(key, 1);
-            } else {
-                System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
             }
-        }
-        if (namaBarang.equalsIgnoreCase("Cermin")) {
-            valid = false;
-            int x, y;
-            do {
-                System.out.println("Masukkan lokasi objek: ");
-                System.out.print("x: ");
-                x = input.nextInt();
-                System.out.print("y: ");
-                y = input.nextInt();
-                if (cekPoint(x, y)) {
-                    valid = true;
+            if (namaBarang.equalsIgnoreCase("Cermin")) {
+                valid = false;
+                int x, y;
+                do {
+                    System.out.println("Masukkan lokasi objek: ");
+                    x = Menu.readInteger(input,"x");
+                    y = Menu.readInteger(input,"y");
+                    if (cekPoint(x, y)) {
+                        valid = true;
+                    } else {
+                        System.out.println("Titik tidak sesuai, coba ulangi!");
+                    }
+                } while (!valid);
+                Point locCermin = new Point(x, y);
+                if (!isAvailable(locCermin)) {
+                    addJumlah("Cermin");
+                    int i = jumlahObjek.get(searchBarang(namaBarang));
+                    matrixRuangan[x][y] = "Cermin"+i;
+                    daftarObjek.put(locCermin, "Cermin"+i);
+                    System.out.println("Cermin berhasil dipasang!");
+                    currentSim.getInventory().reduceItem(key, 1);
                 } else {
-                    System.out.println("Titik tidak sesuai, coba ulangi!");
+                    System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
                 }
-            } while (!valid);
-            Point locCermin = new Point(x, y);
-            if (!isAvailable(locCermin)) {
-                addJumlah("Cermin");
-                int i = jumlahObjek.get(searchBarang(namaBarang));
-                matrixRuangan[x][y] = "Cermin"+i;
-                daftarObjek.put(locCermin, "Cermin"+i);
-                System.out.println("Cermin berhasil dipasang!");
-                currentSim.getInventory().reduceItem(key, 1);
-            } else {
-                System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
             }
-        }
-        if (namaBarang.equalsIgnoreCase("RakBuku")) {
-            valid = false;
-            int x1, y1, x2, y2;
-            do {
-                System.out.println("Masukkan lokasi objek (titik awal): ");
-                System.out.print("x: ");
-                x1 = input.nextInt();
-                System.out.print("y: ");
-                y1 = input.nextInt();
-                System.out.println("Masukkan lokasi objek (titik akhir): ");
-                System.out.print("x: ");
-                x2 = input.nextInt();
-                System.out.print("y: ");
-                y2 = input.nextInt();
-                if (((x2 == x1+2 && y1 == y2) || (y2 == y1+2 && x1 == x2) || (x2 == x1-2 && y1 == y2) || (y2 == y1-2 && x1 == x2)) && cekPoint(x1, y1) && cekPoint(x2, y2)) {
-                    valid = true;
+            if (namaBarang.equalsIgnoreCase("RakBuku")) {
+                valid = false;
+                int x1, y1, x2, y2;
+                do {
+                    System.out.println("Masukkan lokasi objek (titik awal): ");
+                    x1 = Menu.readInteger(input,"x");
+                    y1 = Menu.readInteger(input,"y");
+                    System.out.println("Masukkan lokasi objek (titik akhir): ");
+                    x2 = Menu.readInteger(input,"x");
+                    y2 = Menu.readInteger(input,"y");
+                    if (((x2 == x1+2 && y1 == y2) || (y2 == y1+2 && x1 == x2) || (x2 == x1-2 && y1 == y2) || (y2 == y1-2 && x1 == x2)) && cekPoint(x1, y1) && cekPoint(x2, y2)) {
+                        valid = true;
+                    } else {
+                        System.out.println("Titik tidak sesuai, coba ulangi!");
+                    }
+                } while (!valid);
+                Point locRakBuku1 = new Point(x1, y1);
+                Point locRakBuku3 = new Point(x2, y2);
+                Point locRakBuku2;
+                if (x2 == x1+2) {
+                    locRakBuku2 = new Point(x1+1, y1);
+                } else if (x2 == x1-2) {
+                    locRakBuku2 = new Point(x1-1, y1);
+                } else if (y2 == y1+2) {
+                    locRakBuku2 = new Point(x1, y1+1);
                 } else {
-                    System.out.println("Titik tidak sesuai, coba ulangi!");
+                    locRakBuku2 = new Point(x1, y1-1);
                 }
-            } while (!valid);
-            Point locRakBuku1 = new Point(x1, y1);
-            Point locRakBuku3 = new Point(x2, y2);
-            Point locRakBuku2;
-            if (x2 == x1+2) {
-                locRakBuku2 = new Point(x1+1, y1);
-            } else if (x2 == x1-2) {
-                locRakBuku2 = new Point(x1-1, y1);
-            } else if (y2 == y1+2) {
-                locRakBuku2 = new Point(x1, y1+1);
-            } else {
-                locRakBuku2 = new Point(x1, y1-1);
+                if (!isAvailable(locRakBuku1) && !isAvailable(locRakBuku2) && !isAvailable(locRakBuku3)) {
+                    addJumlah("RakBuku");
+                    int i = jumlahObjek.get(searchBarang(namaBarang));
+                    if (x1<=x2 && y1<=y2) {
+                        for (int a = x1; a < x2+1; a++) {
+                            for (int b = y1; b < y2+1; b++) {
+                                matrixRuangan[a][b] = "RakBuku"+i;
+                            }
+                        }
+                    } else if (x1<=x2 && y1>y2) {
+                        for (int a = x1; a < x2+1; a++) {
+                            for (int b = y2; b < y1+1; b++) {
+                                matrixRuangan[a][b] = "RakBuku"+i;
+                            }
+                        }
+                    } else if (x1>x2 && y1<=y2) {
+                        for (int a = x2; a < x1+1; a++) {
+                            for (int b = y1; b < y2+1; b++) {
+                                matrixRuangan[a][b] = "RakBuku"+i;
+                            }
+                        }
+                    } else {
+                        for (int a = x2; a < x1+1; a++) {
+                            for (int b = y2; b < y1+1; b++) {
+                                matrixRuangan[a][b] = "RakBuku"+i;
+                            }
+                        }
+                    }
+                    daftarObjek.put(locRakBuku1, "RakBuku"+i);
+                    daftarObjek.put(locRakBuku2, "RakBuku"+i);
+                    daftarObjek.put(locRakBuku3, "RakBuku"+i);
+                    System.out.println("RakBuku berhasil dipasang!");
+                    currentSim.getInventory().reduceItem(key, 1);
+                } else {
+                    System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
+                }
             }
-            if (!isAvailable(locRakBuku1) && !isAvailable(locRakBuku2) && !isAvailable(locRakBuku3)) {
-                addJumlah("RakBuku");
-                int i = jumlahObjek.get(searchBarang(namaBarang));
-                if (x1<=x2 && y1<=y2) {
-                    for (int a = x1; a < x2+1; a++) {
-                        for (int b = y1; b < y2+1; b++) {
-                            matrixRuangan[a][b] = "RakBuku"+i;
-                        }
+            if (namaBarang.equalsIgnoreCase("Wastafel")) {
+                valid = false;
+                int x, y;
+                do {
+                    System.out.println("Masukkan lokasi objek: ");
+                    x = Menu.readInteger(input,"x");
+                    y = Menu.readInteger(input,"y");
+                    if (cekPoint(x, y)) {
+                        valid = true;
+                    } else {
+                        System.out.println("Titik tidak sesuai, coba ulangi!");
                     }
-                } else if (x1<=x2 && y1>y2) {
-                    for (int a = x1; a < x2+1; a++) {
-                        for (int b = y2; b < y1+1; b++) {
-                            matrixRuangan[a][b] = "RakBuku"+i;
-                        }
-                    }
-                } else if (x1>x2 && y1<=y2) {
-                    for (int a = x2; a < x1+1; a++) {
-                        for (int b = y1; b < y2+1; b++) {
-                            matrixRuangan[a][b] = "RakBuku"+i;
-                        }
-                    }
+                } while (!valid);
+                Point locWastafel = new Point(x, y);
+                if (!isAvailable(locWastafel)) {
+                    addJumlah("Wastafel");
+                    int i = jumlahObjek.get(searchBarang(namaBarang));
+                    matrixRuangan[x][y] = "Wastafel"+i;
+                    daftarObjek.put(locWastafel, "Wastafel"+i);
+                    System.out.println("Wastafel berhasil dipasang!");
+                    currentSim.getInventory().reduceItem(key, 1);
                 } else {
-                    for (int a = x2; a < x1+1; a++) {
-                        for (int b = y2; b < y1+1; b++) {
-                            matrixRuangan[a][b] = "RakBuku"+i;
-                        }
-                    }
+                    System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
                 }
-                daftarObjek.put(locRakBuku1, "RakBuku"+i);
-                daftarObjek.put(locRakBuku2, "RakBuku"+i);
-                daftarObjek.put(locRakBuku3, "RakBuku"+i);
-                System.out.println("RakBuku berhasil dipasang!");
-                currentSim.getInventory().reduceItem(key, 1);
-            } else {
-                System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
             }
-        }
-        if (namaBarang.equalsIgnoreCase("Wastafel")) {
-            valid = false;
-            int x, y;
-            do {
-                System.out.println("Masukkan lokasi objek: ");
-                System.out.print("x: ");
-                x = input.nextInt();
-                System.out.print("y: ");
-                y = input.nextInt();
-                if (cekPoint(x, y)) {
-                    valid = true;
-                } else {
-                    System.out.println("Titik tidak sesuai, coba ulangi!");
+            if (namaBarang.equalsIgnoreCase("Treadmil")) {
+                valid = false;
+                int x1, y1, x2, y2;
+                do {
+                    System.out.println("Masukkan lokasi objek (titik awal): ");
+                    x1 = Menu.readInteger(input,"x");
+                    y1 = Menu.readInteger(input,"y");
+                    System.out.println("Masukkan lokasi objek (titik akhir): ");
+                    x2 = Menu.readInteger(input,"x");
+                    y2 = Menu.readInteger(input,"y");
+                    if (((x2 == x1+1 && y1 == y2) || (y2 == y1+1 && x1 == x2) || (x2 == x1-1 && y1 == y2) || (y2 == y1-1 && x1 == x2)) && cekPoint(x1, y1) && cekPoint(x2, y2)) {
+                        valid = true;
+                    } else {
+                        System.out.println("Titik tidak sesuai dengan dimensi!");
+                    }
+                } while (!valid);
+                Point locTreadmil1 = new Point(x1, y1);
+                Point locTreadmil2 = new Point(x2, y2);
+                if (!isAvailable(locTreadmil1) && !isAvailable(locTreadmil2)) {
+                    addJumlah("Treadmil");
+                    int i = jumlahObjek.get(searchBarang(namaBarang));
+                    if (x1<=x2 && y1<=y2) {
+                        for (int a = x1; a < x2+1; a++) {
+                            for (int b = y1; b < y2+1; b++) {
+                                matrixRuangan[a][b] = "Treadmil"+i;
+                            }
+                        }
+                    } else if (x1<=x2 && y1>y2) {
+                        for (int a = x1; a < x2+1; a++) {
+                            for (int b = y2; b < y1+1; b++) {
+                                matrixRuangan[a][b] = "Treadmil"+i;
+                            }
+                        }
+                    } else if (x1>x2 && y1<=y2) {
+                        for (int a = x2; a < x1+1; a++) {
+                            for (int b = y1; b < y2+1; b++) {
+                                matrixRuangan[a][b] = "Treadmil"+i;
+                            }
+                        }
+                    } else {
+                        for (int a = x2; a < x1+1; a++) {
+                            for (int b = y2; b < y1+1; b++) {
+                                matrixRuangan[a][b] = "Treadmil"+i;
+                            }
+                        }
+                    }
+                    daftarObjek.put(locTreadmil1, "Treadmil"+i);
+                    daftarObjek.put(locTreadmil2, "Treadmil"+i);
+                    System.out.println("Treadmil berhasil dipasang!");
+                    currentSim.getInventory().reduceItem(key, 1);
                 }
-            } while (!valid);
-            Point locWastafel = new Point(x, y);
-            if (!isAvailable(locWastafel)) {
-                addJumlah("Wastafel");
-                int i = jumlahObjek.get(searchBarang(namaBarang));
-                matrixRuangan[x][y] = "Wastafel"+i;
-                daftarObjek.put(locWastafel, "Wastafel"+i);
-                System.out.println("Wastafel berhasil dipasang!");
-                currentSim.getInventory().reduceItem(key, 1);
-            } else {
-                System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
             }
-        }
-        if (namaBarang.equalsIgnoreCase("Treadmil")) {
-            valid = false;
-            int x1, y1, x2, y2;
-            do {
-                System.out.println("Masukkan lokasi objek (titik awal): ");
-                System.out.print("x: ");
-                x1 = input.nextInt();
-                System.out.print("y: ");
-                y1 = input.nextInt();
-                System.out.println("Masukkan lokasi objek (titik akhir): ");
-                System.out.print("x: ");
-                x2 = input.nextInt();
-                System.out.print("y: ");
-                y2 = input.nextInt();
-                if (((x2 == x1+1 && y1 == y2) || (y2 == y1+1 && x1 == x2) || (x2 == x1-1 && y1 == y2) || (y2 == y1-1 && x1 == x2)) && cekPoint(x1, y1) && cekPoint(x2, y2)) {
-                    valid = true;
+            if (namaBarang.equalsIgnoreCase("Gramofon")) {
+                valid = false;
+                int x, y;
+                do {
+                    System.out.println("Masukkan lokasi objek: ");
+                    x = Menu.readInteger(input,"x");
+                    y = Menu.readInteger(input,"y");
+                    if (cekPoint(x, y)) {
+                        valid = true;
+                    } else {
+                        System.out.println("Titik tidak sesuai, coba ulangi!");
+                    }
+                } while (!valid);
+                Point locGramofon = new Point(x, y);
+                if (!isAvailable(locGramofon)) {
+                    addJumlah("Gramofon");
+                    int i = jumlahObjek.get(searchBarang(namaBarang));
+                    matrixRuangan[x][y] = "Gramofon"+i;
+                    daftarObjek.put(locGramofon, "Gramofon"+i);
+                    System.out.println("Gramofon berhasil dipasang!");
+                    currentSim.getInventory().reduceItem(key, 1);
                 } else {
-                    System.out.println("Titik tidak sesuai dengan dimensi!");
+                    System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
                 }
-            } while (!valid);
-            Point locTreadmil1 = new Point(x1, y1);
-            Point locTreadmil2 = new Point(x2, y2);
-            if (!isAvailable(locTreadmil1) && !isAvailable(locTreadmil2)) {
-                addJumlah("Treadmil");
-                int i = jumlahObjek.get(searchBarang(namaBarang));
-                if (x1<=x2 && y1<=y2) {
-                    for (int a = x1; a < x2+1; a++) {
-                        for (int b = y1; b < y2+1; b++) {
-                            matrixRuangan[a][b] = "Treadmil"+i;
-                        }
-                    }
-                } else if (x1<=x2 && y1>y2) {
-                    for (int a = x1; a < x2+1; a++) {
-                        for (int b = y2; b < y1+1; b++) {
-                            matrixRuangan[a][b] = "Treadmil"+i;
-                        }
-                    }
-                } else if (x1>x2 && y1<=y2) {
-                    for (int a = x2; a < x1+1; a++) {
-                        for (int b = y1; b < y2+1; b++) {
-                            matrixRuangan[a][b] = "Treadmil"+i;
-                        }
-                    }
-                } else {
-                    for (int a = x2; a < x1+1; a++) {
-                        for (int b = y2; b < y1+1; b++) {
-                            matrixRuangan[a][b] = "Treadmil"+i;
-                        }
-                    }
-                }
-                daftarObjek.put(locTreadmil1, "Treadmil"+i);
-                daftarObjek.put(locTreadmil2, "Treadmil"+i);
-                System.out.println("Treadmil berhasil dipasang!");
-                currentSim.getInventory().reduceItem(key, 1);
-            }
-        }
-        if (namaBarang.equalsIgnoreCase("Gramofon")) {
-            valid = false;
-            int x, y;
-            do {
-                System.out.println("Masukkan lokasi objek: ");
-                System.out.print("x: ");
-                x = input.nextInt();
-                System.out.print("y: ");
-                y = input.nextInt();
-                if (cekPoint(x, y)) {
-                    valid = true;
-                } else {
-                    System.out.println("Titik tidak sesuai, coba ulangi!");
-                }
-            } while (!valid);
-            Point locGramofon = new Point(x, y);
-            if (!isAvailable(locGramofon)) {
-                addJumlah("Gramofon");
-                int i = jumlahObjek.get(searchBarang(namaBarang));
-                matrixRuangan[x][y] = "Gramofon"+i;
-                daftarObjek.put(locGramofon, "Gramofon"+i);
-                System.out.println("Gramofon berhasil dipasang!");
-                currentSim.getInventory().reduceItem(key, 1);
-            } else {
-                System.out.println("Lokasi tidak tersedia, barang tidak dapat dipasang!");
             }
         }
     }
@@ -1253,5 +1199,16 @@ public class Ruangan {
                 jumlahObjek.put(gramofon, 1);
             }
         }
+    }
+
+    public boolean isFurniturAvailable(Inventory inventory) {
+        boolean available = false;
+        for(Map.Entry<ObjekGame, Integer> entry : ((Map<ObjekGame,Integer>) inventory.getInventory()).entrySet()) {
+            if(entry.getKey() instanceof Furnitur) {
+                available = true;
+                break;
+            }
+        }
+        return available;
     }
 }

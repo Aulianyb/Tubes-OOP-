@@ -475,6 +475,10 @@ public class Menu {
                     System.out.print("Jumlah barang : ");
                 } else if(condition.equals("durasi")) {
                     System.out.print("Input durasi : ");
+                } else if(condition.equals("x")) {
+                    System.out.print("x: ");
+                } else if(condition.equals("y")) {
+                    System.out.print("y: ");
                 }
                 number = input.nextInt();
                 break;
