@@ -14,12 +14,12 @@ public class Status {
     
     }
 
-    public void setStatus(String status){
-        namaStatus = status; 
-    }
-
     public boolean getBeli(){
         return beliBarang; 
+    }
+
+    public void setStatus(String status){
+        namaStatus = status; 
     }
     
     public void setBeli(boolean beli){

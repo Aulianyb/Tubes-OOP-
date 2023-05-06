@@ -79,6 +79,22 @@ public class Sim{
         return inventory; 
     }
 
+    public Tracking getJamTidur() {
+        return jamTidur;
+    }
+
+    public Tracking getJamBuangAir() {
+        return jamBuangAir;
+    }
+
+    public int getJamKerja() {
+        return jamKerja;
+    }
+
+    public Rumah getCurrentRumah() {
+        return currentRumah;
+    }
+
     public void setNama(String namaBaru){
         namaLengkap = namaBaru; 
     }
@@ -120,6 +136,23 @@ public class Sim{
         if (kesehatan > 100){
             kesehatan = 100;
         }
+    }
+    public void setJamTidur(int detik, String kondisi) {
+        jamTidur.waktu = detik;
+        jamTidur.kondisi = kondisi;
+    }
+
+    public void setJamBuangAir(int detik, String kondisi) {
+        jamBuangAir.waktu = detik;
+        jamBuangAir.kondisi = kondisi;
+    }
+
+    public void setJamKerja(int detik) {
+        jamKerja = detik;
+    }
+    
+    public void setCurrentRumah(Rumah rumah) {
+        currentRumah = rumah;
     }
 
     public void olahraga(int detik){
@@ -189,22 +222,6 @@ public class Sim{
             }
         }); 
         thread.run(); 
-    }
-
-    public boolean isDie(){
-        return ((kesehatan <= 0) || (mood <= 0) || (kekenyangan <= 0)); 
-    }
-
-    public void printDeathMessage(){
-        if (kesehatan <= 0){
-            System.out.println(namaLengkap + " sakit berat dan meninggal!");
-        }
-        if (mood <= 0){
-            System.out.println(namaLengkap + " depresi dan meninggal!");
-        }
-        if (kekenyangan <= 0){
-            System.out.println(namaLengkap + " kelaparan dan meninggal!");
-        }
     }
 
     public void beliBarang(BisaDibeli barang, int jumlah){
@@ -485,44 +502,26 @@ public class Sim{
         status.setStatus("idle");
     }
 
-    public Rumah getCurrentRumah() {
-        return currentRumah;
+    public boolean isDie(){
+        return ((kesehatan <= 0) || (mood <= 0) || (kekenyangan <= 0)); 
     }
 
-    public void setCurrentRumah(Rumah rumah) {
-        currentRumah = rumah;
+    public void printDeathMessage(){
+        if (kesehatan <= 0){
+            System.out.println(namaLengkap + " sakit berat dan meninggal!");
+        }
+        if (mood <= 0){
+            System.out.println(namaLengkap + " depresi dan meninggal!");
+        }
+        if (kekenyangan <= 0){
+            System.out.println(namaLengkap + " kelaparan dan meninggal!");
+        }
     }
 
     //buat testing 
     public void testAction(int detik){
         System.out.println("Ini aksi test selama " + detik + " detik");
         Waktu.getInstance().timePass(detik);
-    }
-
-    public Tracking getJamTidur() {
-        return jamTidur;
-    }
-
-    public Tracking getJamBuangAir() {
-        return jamBuangAir;
-    }
-
-    public int getJamKerja() {
-        return jamKerja;
-    }
-
-    public void setJamTidur(int detik, String kondisi) {
-        jamTidur.waktu = detik;
-        jamTidur.kondisi = kondisi;
-    }
-
-    public void setJamBuangAir(int detik, String kondisi) {
-        jamBuangAir.waktu = detik;
-        jamBuangAir.kondisi = kondisi;
-    }
-
-    public void setJamKerja(int detik) {
-        jamKerja = detik;
     }
 
     // public void testThread(){ 

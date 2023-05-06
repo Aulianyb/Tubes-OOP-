@@ -15,7 +15,7 @@ public class Ruangan {
         this.matrixRuangan = new String[panjang][lebar];
         for (int x = 0; x < this.lebar; x++) {
             for (int y = 0; y < this.panjang; y++) {
-                this.matrixRuangan[x][y] = "Kosong";
+                this.matrixRuangan[x][y] = "";
             }
         }
         // Default toilet
@@ -92,7 +92,7 @@ public class Ruangan {
         this.matrixRuangan = new String[panjang][lebar];
         for (int x = 0; x < this.lebar; x++) {
             for (int y = 0; y < this.panjang; y++) {
-                this.matrixRuangan[x][y] = "Kosong";
+                this.matrixRuangan[x][y] = "";
             }
         }
     }
@@ -1054,7 +1054,7 @@ public class Ruangan {
         for (int x = 0; x < this.lebar; x++) {
             for (int y = 0; y < this.panjang; y++) {
                 if (matrixRuangan[x][y].equalsIgnoreCase(namaBarang)) {
-                    matrixRuangan[x][y] = "Kosong";
+                    matrixRuangan[x][y] = "";
                 } else if (namaBarang.contains("Toilet") && matrixRuangan[x][y].contains("Toilet")) {
                     String arr[] = matrixRuangan[x][y].split("Toilet");
                     if (Integer.parseInt(arr[1])>Integer.parseInt(num[1])) {

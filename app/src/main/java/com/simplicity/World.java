@@ -175,8 +175,21 @@ public class World {
         // sim cuma 1
         if(sims.size() < 2 && currSimDead) {
             currentSim.printDeathMessage();
-            System.out.println("Tidak ada sim lagi yang tersedia!!");
-            System.out.println("GAME OVER");
+            System.out.println("                        OH NO!");
+            System.out.println("                 ___________________   ");
+            System.out.println(" :(        _    |   ______________   |   _    :(");
+            System.out.println("          \\ \\   |  |              |  |  / /");
+            System.out.println("     :(    \\ \\  |  |  X        X  |  | / /        :(");
+            System.out.println("            \\ \\ |  |    ______    |  |/ /");
+            System.out.println(" :(          \\ \\|  |   |      |   |  | /     :(");
+            System.out.println("-------- TIDAK ADA SIM LAGI YANG TERSEDIA ! ---------");
+            System.out.println(""); 
+            System.out.println("      ___   _   __  __ ___    _____   _____ ___ ");
+            System.out.println("     / __| /_\\ |  \\/  | __|  / _ \\ \\ / / __| _ \\");
+            System.out.println("    | (_ |/ _ \\| |\\/| | _|  | (_) \\ V /| _||   /");
+            System.out.println("     \\___/_/ \\_\\_|  |_|___|  \\___/ \\_/ |___|_|_\\");
+            System.out.println("-".repeat(53)); 
+
             Menu.getInstance().exit();
         } else {
             updateSim();

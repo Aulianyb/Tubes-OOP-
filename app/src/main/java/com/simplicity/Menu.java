@@ -65,8 +65,10 @@ public class Menu {
             System.out.println("/".repeat(20) + " IN GAME MENU " + "/".repeat(20));
             System.out.println();
             for(int i = 1; i <= optionInGame.length; i++) {
-                System.out.printf("%d. %s%n",i,optionOwnHouse[i-1]);
+                System.out.printf(" %d. %s%n",i,optionOwnHouse[i-1]);
             }
+            System.out.println();
+
         }
     }
 
@@ -495,14 +497,16 @@ public class Menu {
         System.out.println("1. Timepass -> masukin detik");
         System.out.println("2. Show Time");
         System.out.println("3. Unlimited Uang");
-        System.out.println("4. kesehatan -79");
-        System.out.println("5. mood -79");
-        System.out.println("6. kekenyangan -79");
-        System.out.println("7. add all item");
+        System.out.println("4. Set kesehatan -> masukin input");
+        System.out.println("5. Set mood -> masukin input");
+        System.out.println("6. Set kekenyangan -> masukin input");
+        System.out.println("7. add all item -> masukin input");
+        
         int x = Integer.parseInt(sc.nextLine());
+        int y;
         switch (x) {
             case 1:
-                int y = Integer.parseInt(sc.nextLine());
+                y = Integer.parseInt(sc.nextLine());
                 World.getInstance().getCurrentSim().testAction(y); 
                 System.out.println("Tidur : " + World.getInstance().getCurrentSim().getJamTidur().waktu);
                 System.out.println("Tidur : " + World.getInstance().getCurrentSim().getJamTidur().kondisi);
@@ -514,13 +518,16 @@ public class Menu {
                 World.getInstance().getCurrentSim().setUang(99999);
                 break;
             case 4:
-                World.getInstance().getCurrentSim().setKesehatan(-79);
+                y = Integer.parseInt(sc.nextLine());
+                World.getInstance().getCurrentSim().setKesehatan(y);
                 break;
             case 5:
-                World.getInstance().getCurrentSim().setMood(-79);
+                y = Integer.parseInt(sc.nextLine());
+                World.getInstance().getCurrentSim().setMood(y);
                 break;
             case 6:
-                World.getInstance().getCurrentSim().setKekenyangan(-79);
+                y = Integer.parseInt(sc.nextLine());
+                World.getInstance().getCurrentSim().setKekenyangan(y);
                 break;
             case 7:
                 World.getInstance().getCurrentSim().getInventory().addItem(new BahanMakanan("Nasi"),10);

@@ -41,6 +41,14 @@ public class Pekerjaan {
         return gaji; 
     }
 
+    public int getTotalDetik() {
+        return totalDetik;
+    }
+
+    public void setJamKerja(int x){
+        jamKerja = x; 
+    }
+
     public void setPekerjaan(Sim sim, String pekerjaan){
         if (pekerjaanvalid.containsKey(pekerjaan)){
             int biaya = (int) (0.5 * gaji); 
@@ -103,10 +111,6 @@ public class Pekerjaan {
             System.out.println("Durasi Harus kelipatan 120!"); 
         }
     }
-
-    public int getTotalDetik() {
-        return totalDetik;
-    }
     
     public static void displayPekerjaanValid() {
         int i = 1;
@@ -114,9 +118,5 @@ public class Pekerjaan {
             System.out.printf("%d. valid%n",i);
             i++;
         }
-    }
-
-    public void setJamKerja(int x){
-        jamKerja = x; 
     }
 }
