@@ -63,16 +63,24 @@ public class Main {
             }
             System.out.print("Masukkan Command : ");
             String cmd = input.nextLine().toLowerCase();
-
+            boolean noobject = World.getInstance().getCurrentRumah().getCurrRuangan().getDaftarObjekSize() < 1; ;
             switch (cmd) {
                 case "action":
                     Menu.getInstance().action();
                     break;
                 case "list object":
-                    Menu.getInstance().listObj();
+                    if(noobject) {
+                        System.out.println("Tidak ada objek diruangan ini!!!");
+                    } else {
+                        Menu.getInstance().listObj();
+                    }
                     break;
                 case "go to object":
-                    Menu.getInstance().goToObj();
+                    if(noobject) {
+                        System.out.println("Tidak ada objek diruangan ini!!!");
+                    } else {
+                        Menu.getInstance().goToObj();
+                    }
                     break;
                 case "move room":
                     Menu.getInstance().moveRoom();

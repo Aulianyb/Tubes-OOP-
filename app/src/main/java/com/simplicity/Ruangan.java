@@ -1247,4 +1247,8 @@ public class Ruangan {
         }
         return available;
     }
+
+    public int getDaftarObjekSize() {
+        return daftarObjek.size();
+    }
 }

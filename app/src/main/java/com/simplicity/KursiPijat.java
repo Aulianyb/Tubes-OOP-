@@ -14,7 +14,7 @@ public class KursiPijat extends Furnitur {
     @Override
     public void aksi(Sim sim) {
         Scanner s = new Scanner(System.in);
-        int durasi = Integer.parseInt(s.nextLine());
+        int durasi = Menu.readInteger(s,"durasi");
 
         TimeThread.getInstance().resume();
         Thread thread = new Thread(new Runnable() {
