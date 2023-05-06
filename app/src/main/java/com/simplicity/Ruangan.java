@@ -916,6 +916,8 @@ public class Ruangan {
             }
             if (!valid) {
                 System.out.println("Barang tidak tersedia silahkan coba lagi!");
+            } else {
+                System.out.println(namaBarang + " berhasil dihapus!");
             }
         } while (!valid);
 
