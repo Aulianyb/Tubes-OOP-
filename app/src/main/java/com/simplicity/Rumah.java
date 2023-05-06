@@ -179,4 +179,8 @@ public class Rumah {
     public boolean getUpgradeStatus(){
         return upgrading;
     }
+
+    public HashMap<Point, Ruangan> getDaftarRuangan() {
+        return daftarRuangan;
+    }
 }

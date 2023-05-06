@@ -404,8 +404,15 @@ public class Menu {
                 "Kompor Listrik",
                 "Meja dan Kursi",
                 "Jam",
+                "Shower",
+                "Kursi Pijat",
+                "Cermin",
+                "Rak Buku",
+                "Wastafel",
+                "Treadmil",
+                "Gramofon",
         };
-        int[] harga = {50,100,150,50,100,200,50,10};
+        int[] harga = {50,100,150,50,100,200,50,10,40,60,35,80,35,150,65};
         System.out.println("-".repeat(17) + " LIST FURNITUR " + "-".repeat(17));
         System.out.println("+---------------------+-------+");
         System.out.println("| Furnitur            | Harga |");
@@ -503,7 +510,7 @@ public class Menu {
         System.out.println("5. Set mood -> masukin input");
         System.out.println("6. Set kekenyangan -> masukin input");
         System.out.println("7. add all item -> masukin input");
-        
+        System.out.println("8. nambah ruangan 1,1");
         int x = Integer.parseInt(sc.nextLine());
         int y;
         switch (x) {
@@ -555,6 +562,9 @@ public class Menu {
                 World.getInstance().getCurrentSim().getInventory().addItem(new RakBuku("RakBuku"),10);
                 World.getInstance().getCurrentSim().getInventory().addItem(new Treadmil("Treadmil"),10);
                 break;
+            case 8:
+                Ruangan ruangan = new Ruangan("Kamar");
+                World.getInstance().getCurrentSim().getCurrentRumah().getDaftarRuangan().put(new Point(1,1),ruangan);
             default:
                 break;
         }
