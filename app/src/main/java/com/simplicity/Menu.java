@@ -52,14 +52,14 @@ public class Menu {
             }
             System.out.println();
         } else if(option.equals("ingame")) {
-            System.out.println();
-            System.out.println("/".repeat(20) + " IN GAME MENU " + "/".repeat(20));
-            System.out.println();
-            
-            for(int i = 1; i <= optionInGame.length; i++) {
-                System.out.printf(" %d. %s%n",i,optionInGame[i-1]);
-            }
-            System.out.println();
+//            System.out.println();
+//            System.out.println("/".repeat(20) + " IN GAME MENU " + "/".repeat(20));
+//            System.out.println();
+//
+//            for(int i = 1; i <= optionInGame.length; i++) {
+//                System.out.printf(" %d. %s%n",i,optionInGame[i-1]);
+//            }
+//            System.out.println();
         } else if(option.equals("ownhouse")) {
             System.out.println();
             System.out.println("/".repeat(20) + " IN GAME MENU " + "/".repeat(20));
